@@ -27,12 +27,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="TASK1The performance of the network printer server has become sluggish, causing interruptions in the workflow at the North Pole workshop. Santa has directed us to generate a support request and exami">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/1.jpg">
+<meta property="og:image" content="http://example.com/images/1.png">
 <meta property="article:published_time" content="2024-02-13T13:48:24.000Z">
-<meta property="article:modified_time" content="2024-02-13T14:08:08.696Z">
+<meta property="article:modified_time" content="2024-02-13T14:11:33.082Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/1.jpg">
+<meta name="twitter:image" content="http://example.com/images/1.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,7 +174,7 @@
   <div class="article-gallery-photos">
     
       <a class="article-gallery-img" rel="gallery_clskf5ujw0000w8ky692zhqr7">
-        <img src="/images/1.jpg" itemprop="image">
+        <img src="/images/1.png" itemprop="image">
       </a>
     
   </div>
@@ -250,44 +250,44 @@
 <h2 id="TASK1"><a href="#TASK1" class="headerlink" title="TASK1"></a><em>TASK1</em></h2><blockquote>
 <p><em>网络打印机服务器的性能变得迟钝，导致北极车间的工作流程中断。圣诞老人已指示我们生成支持请求并检查网络数据以查明问题的根源。他怀疑格林奇和他的团队可能卷入了这种情况。您能否验证是否存在向打印机服务器发送过多流量的IP 地址？</em></p>
 </blockquote>
-<p>首先确认打印机服务器的ip，筛一下端口<br><img src="/%5Cwpimages%5C1_1" alt="在这里插入图片描述"><br>也就这些长得像打印机端口了，懒得挨个看端口，直接筛192.168.68.128<br><img src="/%5Cwpimages%5C1_2" alt="在这里插入图片描述"><br>看到9100端口的流量有打印机特征<br>于是再筛选一下端口<br><img src="/%5Cwpimages%5C1_3" alt="在这里插入图片描述"><br>可以看到也就172.17.79.133访问的多</p>
+<p>首先确认打印机服务器的ip，筛一下端口<br><img src="/wpimages/1_1.png" alt="在这里插入图片描述"><br>也就这些长得像打印机端口了，懒得挨个看端口，直接筛192.168.68.128<br><img src="/wpimages/1_2.png" alt="在这里插入图片描述"><br>看到9100端口的流量有打印机特征<br>于是再筛选一下端&#x2F;<br><img src="/wpimages/1_3.png" alt="在这里插入/片描述"><br>可以看到也就172.17.79.133访问的多</p>
 <hr>
 <p><em><strong>TASK2</strong></em></p>
 <blockquote>
 <p><em>Bytesparkle being the technical Lead, found traces of port scanning from the same IP identified in previous attack. Which port was then targeted for initial compromise of the printer?<br>Bytesparkle 作为技术负责人，从上次攻击中发现的同一 IP 中发现了端口扫描的痕迹。然后，哪个端口是打印机初始入侵的目标?</em></p>
 </blockquote>
-<p>筛选一下扫描的包<br><img src="/%5Cwpimages%5C1_4" alt="在这里插入图片描述"></p>
+<p>筛选一下扫描的包<br><img src="/wpimages/1_4.png" alt="在这里插入图片描述"></p>
 <hr>
 <p> <strong>TASK3</strong></p>
 <blockquote>
 <p>What is the full name of printer running on the server?<br>服务器上运行的打印机的全名是什么？</p>
 </blockquote>
 <p>挨个翻 或者zeek解出来搜关键字info</p>
-<p><img src="/%5Cwpimages%5C1_5" alt="在这里插入图片描述"></p>
+<p><img src="/wpimages/1_5.png" alt="在这里插入图片描述"></p>
 <hr>
 <p><strong>TASK4</strong></p>
 <blockquote>
 <p><em>Grinch intercepted a list of nice and naughty children created by Santa. What was name of the second child on the nice list?<br>格林奇截获了圣诞老人创造的一份善良而顽皮的孩子名单。好名单上的第二个孩子叫什么名字？</em></p>
 </blockquote>
-<p><img src="/%5Cwpimages%5C1_6" alt="在这里插入图片描述"></p>
+<p><img src="/wpimages/1_6.png" alt="在这里插入图片描述"></p>
 <hr>
 <p> <strong>TASK5</strong></p>
 <blockquote>
 <p><em>The Grinch obtained a print job instruction file intended for a printer used by an employee named Elfin. It appears that Santa and the North Pole management team have made the decision to dismiss Elfin. Could you please provide the word for word rationale behind the decision to terminate Elfin’s employment?<br>格林奇获得了一个打印作业说明文件，该文件用于一位名叫埃尔芬的员工使用的打印机。圣诞老人和北极管理团队似乎已经决定解雇埃尔芬。您能否逐字逐句地提供终止 Elfin 雇佣关系的决定背后的理由？</em></p>
 </blockquote>
-<p><img src="/%5Cwpimages%5C1_7" alt="在这里插入图片描述"></p>
+<p><img src="/wpimages/1_7.png" alt="在这里插入图片描述"></p>
 <hr>
 <p><strong>TASK6</strong></p>
 <blockquote>
 <p><em>What was the name of the scheduled print job?<br>计划的打印作业的名称是什么？</em></p>
 </blockquote>
-<p><img src="/%5Cwpimages%5C1_8" alt="在这里插入图片描述"></p>
+<p><img src="/wpimages/1_8.png" alt="在这里插入图片描述"></p>
 <hr>
 <p> <strong>Task 7</strong></p>
 <blockquote>
 <p><em>在我们对当前数据包捕获的持续分析中，情况已经惊人地升级。我们的安全系统在一台高度关键的服务器上检测到了漏洞利用后活动的迹象，该服务器本应通过仅 SSH 密钥访问来确保安全。这一事态发展引起了安全团队的严重关切。虽然 Bytesparkle 正在调查该漏洞，但他推测此安全事件可能与早期的打印机问题有关。您能否确定并提供打印机服务器上文件的完整路径，使 Grinch 能够横向移动到此关键服务器？</em></p>
 </blockquote>
-<p>对包长度排序 从最大的找<br><img src="/%5Cwpimages%5C1_9" alt="在这里插入图片描述"></p>
+<p>对包长度排序 从最大的找<br><img src="/wpimages/1_9.png" alt="在这里插入图片描述"></p>
 <hr>
 <blockquote>
 <p><strong>TASK8</strong><br>What is size of this file in bytes?<br>此文件的大小（以字节为单位）是多少？</p>
@@ -298,13 +298,13 @@
 <blockquote>
 <p><em>What was the hostname of the other compromised critical server? 另一个受感染的关键服务器的主机名是什么？</em></p>
 </blockquote>
-<p><img src="/%5Cwpimages%5C1_10" alt="在这里插入图片描述"></p>
+<p><img src="/wpimages/1_10.png" alt="在这里插入图片描述"></p>
 <hr>
 <p><strong>Task 10</strong></p>
 <blockquote>
 <p>格林奇是什么时候尝试从打印机中删除文件的？（世界标准时间）</p>
 </blockquote>
-<p><img src="/%5Cwpimages%5C1_11" alt="在这里插入图片描述"></p>
+<p><img src="/wpimages/1_11.png" alt="在这里插入图片描述"></p>
 
         
       </div>
