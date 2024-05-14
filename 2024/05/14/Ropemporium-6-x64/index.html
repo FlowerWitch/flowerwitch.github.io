@@ -40,7 +40,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/wpimages/2024/ctf/pwn/roprmporium_x64.jpg">
 <meta property="article:published_time" content="2024-05-14T05:45:15.000Z">
-<meta property="article:modified_time" content="2024-05-14T13:45:16.171Z">
+<meta property="article:modified_time" content="2024-05-14T13:50:32.362Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary">
@@ -312,7 +312,11 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1000101</span></span><br><span class="line"><span class="comment">#取3位</span></span><br><span class="line"><span class="number">101</span></span><br></pre></td></tr></table></figure>
 <p>于是<code>rbx = 0b101 = 5</code></p>
 <hr>
-<h2 id="xlat获取在-rbx-的地址-al的偏移的内容，然后再赋值给到al"><a href="#xlat获取在-rbx-的地址-al的偏移的内容，然后再赋值给到al" class="headerlink" title="xlat获取在[rbx]的地址+al的偏移的内容，然后再赋值给到al"></a><code>xlat</code>获取在<code>[rbx]</code>的地址+<code>al</code>的偏移的内容，然后再赋值给到<code>al</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xlat   BYTE PTR ds:[rbx]</span><br></pre></td></tr></table></figure></h2><p>这里<code>stosb</code>是根据<code>df</code>的值来决定，给<code>al</code>值赋给<code>rdi</code>后，目的地址，或是说这里的<code>rdi</code>的地址会+1或者-1，可以看作是前进或者后退，这样的话仅通过操作<code>df</code>就可以控制指针方向了,不过这里用不到呢 XD</p>
+<p><code>xlat</code>获取在<code>[rbx]</code>的地址+<code>al</code>的偏移的内容，然后再赋值给到<code>al</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xlat   BYTE PTR ds:[rbx]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>这里<code>stosb</code>是根据<code>df</code>的值来决定，给<code>al</code>值赋给<code>rdi</code>后，目的地址，或是说这里的<code>rdi</code>的地址会+1或者-1，可以看作是前进或者后退，这样的话仅通过操作<code>df</code>就可以控制指针方向了，不过这里用不到df来做指向呢 XD</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x00400639      aa       stosb   byte [rdi], al</span><br><span class="line">0x0040063a      c3       ret</span><br></pre></td></tr></table></figure>
 
 <hr>
