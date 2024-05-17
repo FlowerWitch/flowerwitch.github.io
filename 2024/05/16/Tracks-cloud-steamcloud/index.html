@@ -38,14 +38,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="12345678910111213141516└─$ sudo nmap -sS 10.129.96.167 --min-rate&#x3D;3000 -p22,2379,2380,8443,10249,10250,10256, -sV -OStarting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2024-05-16 04:21 EDTStats: 0:00:45 ela">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/">
+<meta property="og:image" content="http://example.com/wpimages/2024/tracks-cloud/steamcloud/background.jpg">
 <meta property="article:published_time" content="2024-05-16T09:08:44.000Z">
-<meta property="article:modified_time" content="2024-05-17T10:06:02.051Z">
+<meta property="article:modified_time" content="2024-05-17T10:55:04.458Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="k8s">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/">
+<meta name="twitter:image" content="http://example.com/wpimages/2024/tracks-cloud/steamcloud/background.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -193,13 +193,13 @@
                 <div class="category-count">1</div>
             </a>
         
-            <a class="category-link" href="/categories/ctf/">
-                ctf
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
                 <div class="category-count">1</div>
             </a>
         
-            <a class="category-link" href="/categories/Sherlocks/">
-                Sherlocks
+            <a class="category-link" href="/categories/ctf/">
+                ctf
                 <div class="category-count">1</div>
             </a>
         </div>
@@ -262,8 +262,8 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_clwajw24w00018kkyajnh2sd9">
-        <img src="/images/" itemprop="image">
+      <a class="article-gallery-img" rel="gallery_clwakd0y80007xgkyed4573ce">
+        <img src="/wpimages/2024/tracks-cloud/steamcloud/background.jpg" itemprop="image">
       </a>
     
   </div>
@@ -366,10 +366,22 @@
 
 <hr>
 <p>然后发现8443好像没有<code>/run</code>接口 神奇 也可能是我没找到，连10250的&#x2F;run接口都在官方文档里没找到..k8s的接口文档藏得好深啊</p>
-<h3 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h3><p>10250</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubelet/server/auth_test.go">https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubelet/server/auth_test.go</a><br><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubelet/server/server.go">https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubelet/server/server.go</a><br><a target="_blank" rel="noopener" href="https://gist.github.com/lizrice/c32740fac51db2a5518f06c3dae4944f">https://gist.github.com/lizrice/c32740fac51db2a5518f06c3dae4944f</a></p>
-<p>8443</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/a00ium/p/10905279.html">https://www.cnblogs.com/a00ium/p/10905279.html</a><br><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubeapiserver/admission/exclusion/resources.go">https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubeapiserver/admission/exclusion/resources.go</a></p>
+<h3 id="过程参考文档："><a href="#过程参考文档：" class="headerlink" title="过程参考文档："></a>过程参考文档：</h3><p><a target="_blank" rel="noopener" href="https://gist.github.com/lizrice/c32740fac51db2a5518f06c3dae4944f">https://gist.github.com/lizrice/c32740fac51db2a5518f06c3dae4944f</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2272199">https://cloud.tencent.com/developer/article/2272199</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1521596?areaId=106001">https://cloud.tencent.com/developer/article/1521596?areaId=106001</a></p>
+<p><a target="_blank" rel="noopener" href="https://faun.pub/attacking-kubernetes-clusters-using-the-kubelet-api-abafc36126ca">https://faun.pub/attacking-kubernetes-clusters-using-the-kubelet-api-abafc36126ca</a></p>
+<p><a target="_blank" rel="noopener" href="https://tttang.com/archive/1389/">https://tttang.com/archive/1389/</a></p>
+<p>10250<br>apiserver<br><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/5ceb99dc6bae8a3013192439bdbee942d14de190/staging/src/k8s.io/apiserver/pkg/endpoints/request/requestinfo.go#L93">https://github.com/kubernetes/kubernetes/blob/5ceb99dc6bae8a3013192439bdbee942d14de190/staging/src/k8s.io/apiserver/pkg/endpoints/request/requestinfo.go#L93</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubelet/server/auth_test.go">https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubelet/server/auth_test.go</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubelet/server/server.go">https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubelet/server/server.go</a></p>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/lizrice/c32740fac51db2a5518f06c3dae4944f">https://gist.github.com/lizrice/c32740fac51db2a5518f06c3dae4944f</a></p>
+<p>8443 kubelet</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/a00ium/p/10905279.html">https://www.cnblogs.com/a00ium/p/10905279.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubeapiserver/admission/exclusion/resources.go">https://github.com/kubernetes/kubernetes/blob/release-1.30/pkg/kubeapiserver/admission/exclusion/resources.go</a></p>
+<p>exec解析</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/a00ium/p/10905279.html">https://www.cnblogs.com/a00ium/p/10905279.html</a></p>
+<p>官方文档</p>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/</a></p>
 <p>翻了翻源码好像确实是没有</p>
 
         
