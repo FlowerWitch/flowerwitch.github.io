@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-84TPQBH5EH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-84TPQBH5EH');
+</script>
+<!-- End Google Analytics -->
+
+  
+  
+
+  
+  <title>padding oracle attack 原理 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="首先需要理解的是异或，这个非常简单，举几个例子 123456789101112131415160 ^ 1 &#x3D; 11 ^ 0 &#x3D; 10 ^ 0 &#x3D; 01 ^ 1 &#x3D; 0一个数值 ^ 另一个数值 &#x3D; 亦或中间值一个数值 ^ 亦或中间值 &#x3D; 另一个数值另一个数值 ^ 亦或中间值 &#x3D; 一个数值任意数值 ^ 0 &#x3D; 任意数值  接下来是一个利用思路，如果我们此时有一个字符串是10086,我们将其与一个iv进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="padding oracle attack 原理">
+<meta property="og:url" content="http://example.com/2024/06/07/shiro-721/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首先需要理解的是异或，这个非常简单，举几个例子 123456789101112131415160 ^ 1 &#x3D; 11 ^ 0 &#x3D; 10 ^ 0 &#x3D; 01 ^ 1 &#x3D; 0一个数值 ^ 另一个数值 &#x3D; 亦或中间值一个数值 ^ 亦或中间值 &#x3D; 另一个数值另一个数值 ^ 亦或中间值 &#x3D; 一个数值任意数值 ^ 0 &#x3D; 任意数值  接下来是一个利用思路，如果我们此时有一个字符串是10086,我们将其与一个iv进">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/2024/misc/shiro-721/background.jpg">
+<meta property="article:published_time" content="2024-06-07T06:59:34.000Z">
+<meta property="article:modified_time" content="2024-06-07T18:48:05.773Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="misc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/2024/misc/shiro-721/background.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Hexo </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/poc/" rel="tag">poc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">2</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-5/">
+                htb-Season-5
+                <div class="category-count">4</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2024/06/07/shiro-721/" title="padding oracle attack 原理" >
+            <div class="recent-link-text">
+              padding oracle attack 原理
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/06/06/box-freelancer-wp/" title="【season-5】box freelancer wp" >
+            <div class="recent-link-text">
+              【season-5】box freelancer wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/05/30/box-magicgardens-wp/" title="【season-5】box magicgardens wp" >
+            <div class="recent-link-text">
+              【season-5】box magicgardens wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/05/26/box-BoardLight-wp/" title="【season-5】box BoardLight wp" >
+            <div class="recent-link-text">
+              【season-5】box BoardLight wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/05/18/Tracks-cloud-bucket/" title="Tracks-cloud-bucket" >
+            <div class="recent-link-text">
+              Tracks-cloud-bucket
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-shiro-721" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_clx51h2u70000zgkyb4ok9ok1">
+        <img src="/wpimages/2024/misc/shiro-721/background.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        padding oracle attack 原理
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-06-07T06:59:34.000Z" itemprop="datePublished">2024-06-07</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            4.7k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>首先需要理解的是异或，这个非常简单，举几个例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">0 ^ 1 = 1</span><br><span class="line"></span><br><span class="line">1 ^ 0 = 1</span><br><span class="line"></span><br><span class="line">0 ^ 0 = 0</span><br><span class="line"></span><br><span class="line">1 ^ 1 = 0</span><br><span class="line"></span><br><span class="line">一个数值 ^ 另一个数值 = 亦或中间值</span><br><span class="line"></span><br><span class="line">一个数值 ^ 亦或中间值 = 另一个数值</span><br><span class="line"></span><br><span class="line">另一个数值 ^ 亦或中间值 = 一个数值</span><br><span class="line"></span><br><span class="line">任意数值 ^ 0 = 任意数值</span><br></pre></td></tr></table></figure>
+
+<p>接下来是一个利用思路，如果我们此时有一个字符串是<code>10086</code>,我们将其与一个<code>iv</code>进行简单的亦或.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">10086 变化成下面这个亚子</span><br><span class="line"></span><br><span class="line">0x31 0x30 0x30 0x38 0x36</span><br><span class="line"></span><br><span class="line">iv = 0x6b 0x72 0x62 0x76 0x67</span><br><span class="line"></span><br><span class="line">然后进行对应的亦或,变成</span><br><span class="line"></span><br><span class="line">0x5a 0x42 0x52 0x4e 0x51</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>此时如果想让他变回<code>&quot;10086&quot;</code>只需要再和iv亦或一次即可。</p>
+<p>但如果我要将其<code>&quot;10086&quot;</code>在亦或后变成其他数值的话，只需要操作<code>iv</code>即可。</p>
+<p>比如我要把<code>&quot;10086&quot;</code>与<code>iv</code>亦或后变成<code>20086</code>。</p>
+<p>我就可以将<code>&quot;1&quot;</code>与<code>iv</code>亦或后的<code>0x5a</code>，与<code>&quot;2&quot;</code>的<code>hex</code>进行亦或，比如这样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;2&quot; = 0x32</span><br><span class="line"></span><br><span class="line">0x5a ^ 0x32 = 0x68</span><br></pre></td></tr></table></figure>
+<p>由 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一个数值 ^ 另一个数值 = 亦或中间值</span><br><span class="line"></span><br><span class="line">一个数值 ^ 亦或中间值 = 另一个数值</span><br></pre></td></tr></table></figure>
+<p>此时<code>0x68</code>就是 我们第一次<code>iv</code>后的<code>0x5a</code> 与 <code>&quot;2&quot;</code>的 <code>0x32</code>产生的中间值</p>
+<p>所以我们只需要替换掉<code>iv</code>的<code>0x5a</code>变为<code>0x68</code>即可实现在<code>iv</code>亦或时将<code>0x5a</code>变更为<code>2</code></p>
+<p>如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a=[<span class="string">&#x27;0x5a&#x27;</span>, <span class="string">&#x27;0x42&#x27;</span>, <span class="string">&#x27;0x52&#x27;</span>, <span class="string">&#x27;0x4e&#x27;</span>, <span class="string">&#x27;0x51&#x27;</span>]</span><br><span class="line"></span><br><span class="line">b=[<span class="string">&#x27;0x68&#x27;</span>, <span class="string">&#x27;0x72&#x27;</span>, <span class="string">&#x27;0x62&#x27;</span>, <span class="string">&#x27;0x76&#x27;</span>, <span class="string">&#x27;0x67&#x27;</span>]</span><br><span class="line"> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(a)):</span><br><span class="line">     <span class="built_in">print</span>(<span class="built_in">chr</span>(<span class="built_in">int</span>(a[i],<span class="number">16</span>) ^ <span class="built_in">int</span>(b[i],<span class="number">16</span>)),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="number">20086</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就通过替换<code>iv</code>变为，<code>要变换的目标值</code>和<code>cipertext</code>的<code>亦或中间值</code>即可实现解密后的数值变更为我们<code>要变换的目标值</code>。</p>
+<hr>
+<p><code>Padding Oracle Attack </code>这里采用和这位师傅相同的的8字节padding做演示，这个padding也是这个攻击实现的核心原因。</p>
+<p>这里了解一下补位</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/672527050">https://zhuanlan.zhihu.com/p/672527050</a></p>
+</blockquote>
+<p>因为是8字节的，所以如果字节数不满8字节的情况下需要补位</p>
+<p><img src="/wpimages/2024/misc/shiro-721/cip1.jpg" alt="cip1"></p>
+<p>比如这个<code>des</code>后的<code>iv</code>中间值，8个字节，我们当前不知道这个<code>des</code>后<code>iv</code>中间值，我们要通过操作<code>iv</code>来实现对<code>iv</code>的还原。</p>
+<p>比如我们明文是</p>
+<p><code>0x62,0x61,0x62,0x61,0x62,0x61,0x62</code></p>
+<p>加密时候因为不足<code>8</code>位，有了<code>7</code>位所以最后需要补一个<code>0x01</code>，明文就变成了</p>
+<p><code>0x62,0x61,0x62,0x61,0x62,0x61,0x62,0x01</code></p>
+<p>这就是补位了，如果你缺俩那就补俩<code>0x02</code>，如果你缺仨那就补三个<code>0x03</code>，如果缺10个建议直接补钙</p>
+<h2 id="上面的都沾点废话了，就是基础的补位，下面才是正经的部分"><a href="#上面的都沾点废话了，就是基础的补位，下面才是正经的部分" class="headerlink" title="上面的都沾点废话了，就是基础的补位，下面才是正经的部分"></a>上面的都沾点废话了，就是基础的补位，下面才是正经的部分</h2><h2 id="这里是padding-oracle-attack"><a href="#这里是padding-oracle-attack" class="headerlink" title="这里是padding oracle attack "></a>这里是padding oracle attack </h2><p>这个部分参考</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://buaq.net/go-35066.html">https://buaq.net/go-35066.html</a></p>
+</blockquote>
+<p>这里借鉴了文中这位师傅的说法</p>
+<blockquote>
+<p><code>Ciphertext</code>经过<code>block cipher decryption</code>后的值称为<code>Inermediary Value</code>也就是<code>iv</code></p>
+</blockquote>
+<p>侬可能会好奇<code>block cipher decryption</code>是啥，因为cbc模式的是先过一边iv，然后再过一遍奇妙的加密，才有的密文。</p>
+<p>解密也是先过一遍奇妙的加密，再过iv。（困得慌不想细写这个玩意，因为和这个攻击实现其实没啥关系..主要是系统那侧加解密的，我们需要关注的只有iv）</p>
+<p>因为<code>cbc</code>是由上一个密文作为<code>iv</code>对下一个进行<code>异或</code>加密嘛，所以可以控制<code>密文1</code>来对<code>密文2</code>来获取<code>中间值</code>也就是上面师傅说的<code>Inermediary Value</code>，具体怎么获得中间值这个就是<code>padding oracle attack</code>存在的意义。</p>
+<blockquote>
+<p>需要注意<code>padding oracle attack</code>实现的前提之一是需要能发起产生交互服务端，并且能对<code>padding</code>补位是否成功的情况做出反馈.</p>
+</blockquote>
+<p>假如我们有两个16字节的<code>Ciphertext</code> 方便看所以下面对应了他的明文<code>Plaintext</code></p>
+<blockquote>
+<p>Ciphertext</p>
+</blockquote>
+<p>1<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00]</code></p>
+<p>2<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00]</code></p>
+<blockquote>
+<p>Plaintext</p>
+</blockquote>
+<p>1<code>[0x7c 0x42 0xda 0x7b 0x84 0xa2 0x77 0xb1 0x31 0x37 0x1f 0xcd 0xbe 0x3e 0x23 0x1c]</code></p>
+<p>2<code>[0x4a 0xec 0xf6 0xed 0x58 0xfc 0xdc 0xa4 0xa3 0x4a 0x39 0x25 0x39 0x5b 0xeb 0x42]</code></p>
+<p>我们直接给ciphertext全0，然后可以通过给<code>Ciphertext 1</code>的最后一位轮询出一个值，来使得的<code>Plaintext 2</code>最后一位符合<code>0x01</code>，也就是符合<code>padding</code>规则，说白了padding规则只看你明文符不符合规矩就是了</p>
+<p>这里按照上文中师傅给出的</p>
+<blockquote>
+<p>Ciphertext</p>
+</blockquote>
+<p>1<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x43]</code>&lt;-当这里给了个<code>0x43</code>的时候下面<code>明文2</code>变成<code>0x01</code>了</p>
+<p>2<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00]</code></p>
+<blockquote>
+<p>Plaintext</p>
+</blockquote>
+<p>1<code>[0x3d 0x10 0xc6 0xbc 0x68 0xe7 0xdd 0xc4 0xc1 0x75 0x65 0x85 0x6a 0x3d 0xef 0x92]</code> </p>
+<p>2<code>[0x4a 0xec 0xf6 0xed 0x58 0xfc 0xdc 0xa4 0xa3 0x4a 0x39 0x25 0x39 0x5b 0xeb 0x01]</code>&lt;-这里<code>异或</code>后便乘<code>0x01</code>啦 符合<code>padding</code>规则了，服务端就会不报错了</p>
+<p>其实这个时候虽然服务器侧不报错了，但如果我们在不知道明文的情况下，如果不确定可以再给<code>密文1</code>倒数第二个随便一个值避免瞎猫撞死耗子，比如这样</p>
+<blockquote>
+<p>Ciphertext</p>
+</blockquote>
+<p>1<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x08 0x43]</code></p>
+<p>2<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00]</code></p>
+<blockquote>
+<p>Plaintext</p>
+</blockquote>
+<p>1<code>[0x3d 0x10 0xc6 0xbc 0x68 0xe7 0xdd 0xc4 0xc1 0x75 0x65 0x85 0x6a 0x3d 0xef 0x92]</code> </p>
+<p>2<code>[0x4a 0xec 0xf6 0xed 0x58 0xfc 0xdc 0xa4 0xa3 0x4a 0x39 0x25 0x39 0x5b 0xe3 0x01]</code></p>
+<p>可以看到还是符合的,只要不是乱给明文倒数第二个变成<code>0x01</code>就不会报错..因为如果要出现俩补位的就是要填充<code>0x02</code>了，所以俩<code>0x1</code>会报错，这里是为了确定我们操作<code>密文1</code>影响到<code>明文2</code>出的倒数第一位明文是<code>0x01</code>，而不是出现了类似俩<code>0x2</code>或者别的也能通过padding情况，所以要再倒数第二位也再试一下捏，我们要保证的就是这一轮先确保padding的是<code>0x1</code>，等下一位才能用到<code>0x2</code>padding.</p>
+<p>这里假使在我们不知道明文的情况下，通过轮询测试<code>密文1</code>倒数第一位在<code>0x43</code>，且给倒数第二个随便一个数也都能通过的情况下，可以断定此时<code>明文2</code>就是<code>0x01</code>，于是我们就可以得到第二段16位的倒数第一位的<code>中间值 Inermediary Value</code>，由<code>0x43 ^ 0x1 = 0x42</code>现在可以控制它倒数第一位的明文了，啊真是太美妙辣！XD</p>
+<p>然后我们就可以开始推他倒数第二位了，这里倒数第二位这个就要用到<code>0x02</code>来补padding规则了，倒数第一位变为<code>0x02</code>这个简单用我们获取到的<code>0x42 ^ 0x2 = 0x40</code>改一下<code>密文1</code>的倒数第一位，倒数第二位的话接着轮询到不报错即可，因为第一位这里保证是<code>0x02</code>所有不需要对第三位测了。</p>
+<blockquote>
+<p>Ciphertext</p>
+</blockquote>
+<p>1<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0xe9 0x40]</code></p>
+<p>2<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00]</code></p>
+<blockquote>
+<p>Plaintext</p>
+</blockquote>
+<p>1<code>[0x3d 0x10 0xc6 0xbc 0x68 0xe7 0xdd 0xc4 0xc1 0x75 0x65 0x85 0x6a 0x3d 0xe9 0x92]</code> </p>
+<p>2<code>[0x4a 0xec 0xf6 0xed 0x58 0xfc 0xdc 0xa4 0xa3 0x4a 0x39 0x25 0x39 0x5b 0x02 0x02]</code></p>
+<p>很好，这里我努力跑出了<code>明文2</code>倒数第二位在<code>密文1</code>倒数第二位为<code>0xe9</code>时他就不报错了（草），可以看到<code>明文2</code>倒数第二位就变成<code>0x02</code>，符合padding规则所以他就不报错了，于是我们就可以得知<code>明文2</code>的倒数第二个值的<code>中间值 Inermediary Value</code>为<code>0xe9 ^ 0x02 = 0xeb</code>，接下来就可以继续跑第三个值了。</p>
+<blockquote>
+<p>Ciphertext</p>
+</blockquote>
+<p>1<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x58 0xe8 0x41]</code></p>
+<p>2<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00]</code></p>
+<blockquote>
+<p>Plaintext</p>
+</blockquote>
+<p>1<code>[0x3d 0x10 0xc6 0xbc 0x68 0xe7 0xdd 0xc4 0xc1 0x75 0x65 0x85 0x6a 0x3d 0xe9 0x92]</code> </p>
+<p>2<code>[0x4a 0xec 0xf6 0xed 0x58 0xfc 0xdc 0xa4 0xa3 0x4a 0x39 0x25 0x39 0x03 0x03 0x03]</code></p>
+<p>这里有了倒数第一位的iv和倒数第二位的iv就可以直接异或<code>0x03</code>得出<code>明文2</code>他们对应<code>0x3</code>在<code>密文1</code>对应的位数上应该是啥值了，就不多赘述了，这里确保了<code>明文2</code>的倒数第二第三位是<code>0x3</code>之后就继续跑<code>密文2</code>的倒数第三位，直到不报错，就说明<code>明文2</code>倒数第三位也等于<code>0x3</code>满足padding的规则了就。</p>
+<p>然后再用这里跑出来<code>密文1</code>倒数第三位的<code>0x3d</code>再异或一下<code>0x3</code>就得到了<code>明文2</code>倒数第三位的<code>iv</code>…依次往后类推就完事了</p>
+<p>我写不动了，就是跑出来的就的改一下然后接着跑下一位，满足padding规则就不报错了，然后异或一下这一位补位的值就拿到了iv，再跑出来的都再改改，接着跑下一位。</p>
+<blockquote>
+<p>Ciphertext</p>
+</blockquote>
+<p>1<code>[0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0xe8 0x00]</code></p>
+<p>2<code>[0xXX 0xXX 0xXX 0xXX 0xXX 0xXX 0xXX 0xXX 0xXX 0xXX 0xXX 0xXX 0xXX 0xXX 0xXX 0xXX]</code> 这里懒就用XX代替一下这个block跑出来的iv异或出的要实现的值。</p>
+<p>然后就可以计算上一个区块了，或者下一个区块..看自己喜欢吧，反正新block的第一个都是从<code>0x01</code>开始跑和上面一开始写的流程是一样.</p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/06/06/box-freelancer-wp/"
+      title="【season-5】box freelancer wp"
+     >
+
+    <p class="title-text">
+      
+        【season-5】box freelancer wp
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
