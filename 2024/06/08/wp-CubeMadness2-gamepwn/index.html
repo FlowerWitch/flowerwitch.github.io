@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-<html theme="dark" showBanner="true" hasBanner="true" > 
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
 <link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
 <link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
 <link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
@@ -25,19 +25,27 @@
   
 
   
-  <title>Category: ctf | Hexo</title>
+  <title>CubeMadness2-gamepwn | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/categories/ctf/index.html">
+  <meta name="description" content="映入眼帘的和CM1一样，也都是吃满20个给flag  还是打开CE追一下值  这里吃到第四个的时候其实就ok了  然后尝试改一下值，会发现改了没反应，或者改了也不生效一会就变回去了  猜测是有什么恢复逻辑之类的，于是给值的内存写入部分下个断点。  看了下三个地址当中的这个是主要的判断，因为每秒好像都在处理逻辑  看一下汇编，好像是这里一直在赋值. 再往上走了下看看edx的值是从哪来的  挨个下了断">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CubeMadness2-gamepwn">
+<meta property="og:url" content="http://example.com/2024/06/08/wp-CubeMadness2-gamepwn/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="映入眼帘的和CM1一样，也都是吃满20个给flag  还是打开CE追一下值  这里吃到第四个的时候其实就ok了  然后尝试改一下值，会发现改了没反应，或者改了也不生效一会就变回去了  猜测是有什么恢复逻辑之类的，于是给值的内存写入部分下个断点。  看了下三个地址当中的这个是主要的判断，因为每秒好像都在处理逻辑  看一下汇编，好像是这里一直在赋值. 再往上走了下看看edx的值是从哪来的  挨个下了断">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/2024/ctf/gamepwn/background.jpg">
+<meta property="article:published_time" content="2024-06-08T10:05:04.000Z">
+<meta property="article:modified_time" content="2024-06-08T13:01:32.439Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
+<meta property="article:tag" content="gamepwn">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/2024/ctf/gamepwn/background.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -247,63 +255,168 @@
     <div id="content-body">
        
 
-<div class="archive-main-card">
-    <div class="archive-top">
-      <div class="main-title-bar">
-        <div class="main-title-dot"></div>
-        <h1 class="article-title">Archives</h1>
-      </div>    
-    </div>
+
+<article id="post-wp-CubeMadness2-gamepwn" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
     
+<div class="article-gallery">
+  <div class="article-gallery-photos">
     
-      
-      
-        
-        <div class="year-line">
-            <div class="year-num">2024</div>
-            <div class="dot-wrapper">
-                <div class="dot"></div>
-            </div>
-            <div class="article-count">2 articles</div>
-        </div>
-      
-      <a class="archive-article-link" href="/2024/06/08/wp-CubeMadness2-gamepwn/" title="CubeMadness2-gamepwn">
-        <div class="date">06-08</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    CubeMadness2-gamepwn
-                
-            </div>
-        </div>
-        <div class="tags">
-            #wp #gamepwn
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2024/02/20/ctf-blockchain-1/" title="htb—ctf-blockchain/Distract_and Destroy">
-        <div class="date">02-20</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    htb—ctf-blockchain/Distract_and Destroy
-                
-            </div>
-        </div>
-        <div class="tags">
-            #wp #blockchain
-        </div>
+      <a class="article-gallery-img" rel="gallery_clx5yl9mh00001sky84se7bwt">
+        <img src="/wpimages/2024/ctf/gamepwn/background.jpg" itemprop="image">
       </a>
     
   </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        CubeMadness2-gamepwn
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-06-08T10:05:04.000Z" itemprop="datePublished">2024-06-08</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/ctf/">ctf</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.5k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gamepwn/" rel="tag">gamepwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>映入眼帘的和<code>CM1</code>一样，也都是吃满<code>20</code>个给<code>flag</code></p>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp1.jpg" alt="gp1"></p>
+<p>还是打开<code>CE</code>追一下值</p>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp2.jpg" alt="gp2"></p>
+<p>这里吃到第四个的时候其实就ok了</p>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp3.jpg" alt="gp3"></p>
+<p>然后尝试改一下值，会发现改了没反应，或者改了也不生效一会就变回去了</p>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp4.jpg" alt="gp4"></p>
+<p>猜测是有什么恢复逻辑之类的，于是给值的内存写入部分下个断点。</p>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp5.jpg" alt="gp5"></p>
+<p>看了下三个地址当中的这个是主要的判断，因为每秒好像都在处理逻辑</p>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp6.jpg" alt="gp6"></p>
+<p>看一下汇编，好像是这里一直在赋值.</p>
+<p>再往上走了下看看<code>edx</code>的值是从哪来的</p>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp7.jpg" alt="gp7"></p>
+<p>挨个下了断点简单看了下是</p>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp8.jpg" alt="gp8"></p>
+<p>1.<code>[rax+000000B8]</code>内存指向的值赋给了<code>rdx</code></p>
+<hr>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp8.1.jpg" alt="gp8.1"></p>
+<p>1.1这里看下<code>rdx</code>被赋值的地址指向了一个<code>8f 24</code></p>
+<hr>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp9.jpg" alt="gp9"></p>
+<p>2.然后<code>eax = 6208CECB</code></p>
+<hr>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp10.jpg" alt="gp10"></p>
+<p>3.再<code>imul[rdx]</code>就是<code>rdx</code>指向的值和<code>eax</code>做了个乘法，然后将乘积的取了低位32给了<code>la</code>也就是<code>rax</code>..高位的32位给了<code>ld</code>也就是这里的<code>rdx</code>，可以看下面这个。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="built_in">bin</span>((<span class="number">0x248f</span>*<span class="number">0x6208CECB</span>)))</span><br><span class="line"><span class="number">0b11100000000000000000000000000000111101100101</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="built_in">hex</span>(<span class="number">0b111101100101</span>))</span><br><span class="line"><span class="number">0xf65</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="built_in">hex</span>(<span class="number">0b111000000000</span>))</span><br><span class="line"><span class="number">0xe00</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp12.jpg" alt="gp12"></p>
+<p>4.再将<code>rdx</code>向右移了<code>0x9</code>位</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="built_in">hex</span>(<span class="number">0xe00</span> &gt;&gt; <span class="number">0x9</span>))</span><br><span class="line"><span class="number">0x7</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp13.jpg" alt="gp13"></p>
+<p>5.又把<code>rdx</code>的值赋给了<code>rax</code></p>
+<hr>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp14.jpg" alt="gp14"></p>
+<p>6.再把<code>rax</code>或者说<code>eax</code>的值右移了<code>0x1f</code>位..因为值位数比较短，就给归零了…这里如果<code>rdx</code>之前算出的值太长的话，这里确实会受到影响.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="number">0x7</span> &gt;&gt; <span class="number">0x1f</span>)</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp15.jpg" alt="gp15"></p>
+<p>7.这里一个把<code>eax</code>的值加给<code>edx</code>后，edx就把值交给<code>rsi</code>了，然后看到游戏里就是吃到了7个。</p>
+<hr>
+<p>总结下这里通过<code>1.</code>给<code>rdx</code>赋了个初始值，然后<code>2.</code>又给了<code>rax</code>一个<code>0x6208CECB</code>，他俩在<code>3.</code>那里<code>rdx * rax</code>然后高低位互相赋值，这里结束赋给<code>rdx</code>的值再<code>&gt;&gt; 9</code>之后基本就是我们的游戏的结果了.</p>
+<p>那就说明他是一直从内存里写入，然后解密读取内存里的，所以我们直接改就没鸟用。</p>
+<p>那我们知道的这个值咋来的之后就可以尝试构造一个能达成结果等于<code>20</code>的数值赋给对应的<code>rdx</code>指向的内存.</p>
+<hr>
+<p>因为他最后是<code>0xe00 &gt;&gt; 0x9</code></p>
+<p>所以我们倒推，先弄个<code>20</code> 往左挪<code>0x9</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="built_in">hex</span>(<span class="number">20</span> &lt;&lt;<span class="number">0x9</span>))</span><br><span class="line"><span class="number">0x2800</span></span><br></pre></td></tr></table></figure>
+
+<p>然后看看谁和<code>0x6208CECB</code>相乘的高32位可以等于<code>0x2800</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">0b1010000000000011111111111111111111111111111111</span>)</span><br><span class="line"><span class="number">43984760078335</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="number">0b1010000000000000000000000000000000000000000000</span>)</span><br><span class="line"><span class="number">43980465111040</span></span><br></pre></td></tr></table></figure>
+
+<p>反正就这个之间了..跑不出来也没招了..</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="number">43984760078335</span> / <span class="number">0x6208CECB</span>)</span><br><span class="line"><span class="number">26742.611321277676</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10000</span>,<span class="number">26742</span>):</span><br><span class="line">     a= <span class="built_in">bin</span>(i * <span class="number">0x6208CECB</span>)</span><br><span class="line">     <span class="keyword">if</span> <span class="built_in">len</span>(<span class="built_in">str</span>(a)[<span class="number">2</span>::]) == <span class="number">46</span>:</span><br><span class="line">             <span class="keyword">if</span> a[<span class="number">0</span>:<span class="number">8</span>] == <span class="string">&quot;0b101000&quot;</span>: <span class="comment">#&lt;--因为0x2800 -- 0x28ff都可以</span></span><br><span class="line">                     <span class="built_in">print</span>(<span class="built_in">hex</span>(i))</span><br></pre></td></tr></table></figure>
+
+<p>跑出来俩随便用一个..</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x6874</span><br><span class="line">0x6875</span><br></pre></td></tr></table></figure>
+
+<p>这里是小端序，改的时候注意倒换一下，比如<code>68 74</code> 填进去要填<code>74 68</code></p>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp16.jpg" alt="gp16"></p>
+<p>然后就出了</p>
+<p><img src="/wpimages/2024/ctf/gamepwn/gp17.jpg" alt="gp17"></p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/06/07/shiro-721/"
+      title="padding oracle attack 原理"
+     >
+
+    <p class="title-text">
+      
+        padding oracle attack 原理
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
     </div>
     <div id="footer-wrapper">
       <footer id="footer">
