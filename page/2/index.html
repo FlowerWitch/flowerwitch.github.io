@@ -182,7 +182,7 @@
         
             <a class="category-link" href="/categories/htb-Season-5/">
                 htb-Season-5
-                <div class="category-count">5</div>
+                <div class="category-count">6</div>
             </a>
         
             <a class="category-link" href="/categories/ctf/">
@@ -205,6 +205,12 @@
     <div class="widget">
       <h3 class="widget-title">Recent Posts</h3>
       <ul>
+        
+          <a class="recent-link" href="/2024/06/24/box-Axlle-wp/" title="【season-5】 htb Axlle wp" >
+            <div class="recent-link-text">
+              【season-5】 htb Axlle wp
+            </div>
+          </a>
         
           <a class="recent-link" href="/2024/06/16/box-Editorial-wp/" title="【season-5】box Editorial wp" >
             <div class="recent-link-text">
@@ -230,12 +236,6 @@
             </div>
           </a>
         
-          <a class="recent-link" href="/2024/06/06/box-freelancer-wp/" title="【season-5】box freelancer wp" >
-            <div class="recent-link-text">
-              【season-5】box freelancer wp
-            </div>
-          </a>
-        
       </ul>
     </div>
   </div>
@@ -246,6 +246,98 @@
     </div>
     <div id="content-body">
       
+   
+
+
+<article id="post-Ropemporium-6-x64" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/05/14/Ropemporium-6-x64/">Ropemporium-6-x64</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-05-14T05:45:15.000Z" itemprop="datePublished">2024-05-14</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.7k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              说实话我感觉64的比32的难不少..应该是我笨的关系。
+其中比较逆天的是bextr我着实找不到太多资料最后debug了半天发现了规律
+举个栗子比如这里bextr rbx,rcx,rdx
+rcx = 0b100010100
+rdx = 302
+rbx的值就是rcx&gt;&gt;2,或者说是忽略掉低位的两位
+123100010100 &gt;&gt;2#变成1000101
+然后取低位开始数3位
+1231000101#取3位101
+于是rbx = 0b101 = 5
+再举个例子比如：2300就可以拆为 23 00 
+代表从第0位开始取23位
+
+xlat获取在[rbx]的地址+al的偏移的内容，然后再赋值给到al
+1xlat   BYTE PTR ds:[rbx]
+
+
+这里stosb是根据df的值来决定，给al值赋给rdi后，目的地址，或是说这里的rdi的地址会+1或者-1，可以看作是前进或者后退，这样的话仅通过操作df就可以控制指针方向了，不过这里用不到df来做指向呢 XD
+120x00400639      aa       stosb   byte [rdi], al0x0040...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/wpimages/2024/ctf/pwn/roprmporium_x64.jpg)" 
+      href="/2024/05/14/Ropemporium-6-x64/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
    
 
 
