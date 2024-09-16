@@ -25,7 +25,7 @@
   
 
   
-  <title>jail | Hexo</title>
+  <title>jail 和 ssti | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
@@ -33,18 +33,18 @@
 
   <meta name="description" content="ssti 和 jail除去渲染部分其实利用的是一样的，都是寻找执行链条 这里常用用来寻找的几个方法分别为  摘自 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;h0cksr&#x2F;p&#x2F;16189741.html  12345678910111213__class__  返回类型所属的对象&#x2F;&#x2F; __base__和__mro__都是用来寻找基类的__mro__    返回一个包含对象所继承的基类元组和方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jail">
+<meta property="og:title" content="jail 和 ssti">
 <meta property="og:url" content="http://example.com/2024/09/11/jail/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="ssti 和 jail除去渲染部分其实利用的是一样的，都是寻找执行链条 这里常用用来寻找的几个方法分别为  摘自 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;h0cksr&#x2F;p&#x2F;16189741.html  12345678910111213__class__  返回类型所属的对象&#x2F;&#x2F; __base__和__mro__都是用来寻找基类的__mro__    返回一个包含对象所继承的基类元组和方法">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/">
+<meta property="og:image" content="http://example.com/wpimages/2024/ctf/jail/background.jpg">
 <meta property="article:published_time" content="2024-09-11T04:59:17.000Z">
-<meta property="article:modified_time" content="2024-09-11T08:43:25.481Z">
+<meta property="article:modified_time" content="2024-09-16T10:01:52.454Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/">
+<meta name="twitter:image" content="http://example.com/wpimages/2024/ctf/jail/background.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -204,7 +204,7 @@
         
             <a class="category-link" href="/categories/htb-Season-6/">
                 htb-Season-6
-                <div class="category-count">5</div>
+                <div class="category-count">6</div>
             </a>
         </div>
     </div>
@@ -218,9 +218,15 @@
       <h3 class="widget-title">Recent Posts</h3>
       <ul>
         
-          <a class="recent-link" href="/2024/09/11/jail/" title="jail" >
+          <a class="recent-link" href="/2024/09/16/box-wp-Caption/" title="【season-6】 htb Caption wp" >
             <div class="recent-link-text">
-              jail
+              【season-6】 htb Caption wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/09/11/jail/" title="jail 和 ssti" >
+            <div class="recent-link-text">
+              jail 和 ssti
             </div>
           </a>
         
@@ -239,12 +245,6 @@
           <a class="recent-link" href="/2024/08/26/htb-MonitorsThree-wp/" title="【season-6】 htb MonitorsThree wp" >
             <div class="recent-link-text">
               【season-6】 htb MonitorsThree wp
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2024/08/23/htb-Lantern-wp/" title="【season-6】 htb Lantern wp" >
-            <div class="recent-link-text">
-              【season-6】 htb Lantern wp
             </div>
           </a>
         
@@ -267,7 +267,7 @@
   <div class="article-gallery-photos">
     
       <a class="article-gallery-img" rel="gallery_cm0xh4rxq0000u4ky2ojg5k3e">
-        <img src="/images/" itemprop="image">
+        <img src="/wpimages/2024/ctf/jail/background.jpg" itemprop="image">
       </a>
     
   </div>
@@ -283,7 +283,7 @@
   
     
       <h1 class="p-name article-title" itemprop="headline name">
-        jail
+        jail 和 ssti
       </h1>
     
   
@@ -316,7 +316,7 @@
 <blockquote>
 <p>摘自 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/h0cksr/p/16189741.html">https://www.cnblogs.com/h0cksr/p/16189741.html</a></p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">__class__  返回类型所属的对象</span><br><span class="line">// __base__和__mro__都是用来寻找基类的</span><br><span class="line">__mro__    返回一个包含对象所继承的基类元组和方法在解析时按照元组的顺序解析。(继承链)</span><br><span class="line">__base__   返回该对象所继承的基类</span><br><span class="line">__subclasses__   每个新类都保留了子类的引用，这个方法返回一个类中仍然可用的的引用的列表</span><br><span class="line">//通过以上几个魔法函数找到可利用的模块和<span class="built_in">object</span>父类</span><br><span class="line"></span><br><span class="line">__init__  类的初始化方法</span><br><span class="line">__globals__  对包含函数全局变量的字典的引用</span><br><span class="line"></span><br><span class="line">//__dir__()和__dict__可以帮助我们找到需要类方法</span><br><span class="line">__dir__()   更多的可以参考这个文章类特殊成员/函数https://www.cnblogs.com/twotigers/p/<span class="number">7779501.</span>html</span><br><span class="line">__dict__    为了方便用户查看类中包含哪些属性，Python 类提供了 __dict__ 属性。需要注意的一点是，该属性可以用类名或者类的实例对象来调用，用类名直接调用 __dict__，会输出该由类中所有类属性组成的字典；而使用类的实例对象调用 __dict__，会输出由类中所有实例属性组成的字典。</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">__class__  返回类型所属的对象</span><br><span class="line">// __base__和__mro__都是用来寻找基类的</span><br><span class="line">__mro__    返回一个包含对象所继承的基类元组和方法在解析时按照元组的顺序解析。(继承链)</span><br><span class="line">__base__   返回该对象所继承的基类</span><br><span class="line">__subclasses__   每个新类都保留了子类的引用，这个方法返回一个类中仍然可用的的引用的列表</span><br><span class="line">//通过以上几个魔法函数找到可利用的模块和<span class="built_in">object</span>父类</span><br><span class="line"></span><br><span class="line">__init__  类的初始化方法</span><br><span class="line">__globals__  对包含函数全局变量的字典的引用</span><br><span class="line"></span><br><span class="line">//__dir__()和__dict__可以帮助我们找到需要类方法 </span><br><span class="line">__dir__()   更多的可以参考这个文章类特殊成员/函数https://www.cnblogs.com/twotigers/p/<span class="number">7779501.</span>html</span><br><span class="line">__dict__    为了方便用户查看类中包含哪些属性，Python 类提供了 __dict__ 属性。需要注意的一点是，该属性可以用类名或者类的实例对象来调用，用类名直接调用 __dict__，会输出该由类中所有类属性组成的字典；而使用类的实例对象调用 __dict__，会输出由类中所有实例属性组成的字典。</span><br></pre></td></tr></table></figure>
 
 <p>这里我们用一个最基础的str，也就是字符来取他的类</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &#x27;&#x27;.__class__</span><br><span class="line">&lt;class &#x27;str&#x27;&gt;</span><br></pre></td></tr></table></figure>
@@ -400,10 +400,15 @@
   
     
 <nav id="article-nav">
-  <a class="article-nav-btn left  disabled "
+  <a class="article-nav-btn left "
+    
+      href="/2024/09/16/box-wp-Caption/"
+      title="【season-6】 htb Caption wp"
      >
     <i class="fa-solid fa-angle-left"></i>
     <p class="title-text">
+      
+        【season-6】 htb Caption wp
         
     </p>
   </a>
