@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-84TPQBH5EH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-84TPQBH5EH');
+</script>
+<!-- End Google Analytics -->
+
+  
+  
+
+  
+  <title>record-双供应链拿一个目标 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="1之后会更新一部分可以公开的脱敏后的拿点或src的思路过程记录，以供熟悉的朋友和师傅们参考   1本文强脱敏，因为涉及的企业都很大，涉及到信息和资产相关的都不会贴图，相关特征图片也用其他类似的代替，所以文字占了大部分，着重记录一下思路，十分抱歉师傅们见谅。  本次攻击用到了两个供应链，包含一个我没公开的day 这次的目标是一个投送广告的大屏管理企业，拿下了这个系统基本就控住了那个地市三分之一的商业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="record-双供应链拿一个目标">
+<meta property="og:url" content="http://example.com/2024/10/16/src-Long-Supply-ChainAttack-1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1之后会更新一部分可以公开的脱敏后的拿点或src的思路过程记录，以供熟悉的朋友和师傅们参考   1本文强脱敏，因为涉及的企业都很大，涉及到信息和资产相关的都不会贴图，相关特征图片也用其他类似的代替，所以文字占了大部分，着重记录一下思路，十分抱歉师傅们见谅。  本次攻击用到了两个供应链，包含一个我没公开的day 这次的目标是一个投送广告的大屏管理企业，拿下了这个系统基本就控住了那个地市三分之一的商业">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/src/ChainAttck-1/background.jpg">
+<meta property="article:published_time" content="2024-10-16T03:12:19.000Z">
+<meta property="article:modified_time" content="2024-10-16T07:38:17.717Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="实例记录">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/src/ChainAttck-1/background.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Hexo </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gamepwn/" rel="tag">gamepwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/poc/" rel="tag">poc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/study/" rel="tag">study</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E8%AE%B0%E5%BD%95/" rel="tag">实例记录</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">2</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-5/">
+                htb-Season-5
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-6/">
+                htb-Season-6
+                <div class="category-count">6</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">2</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2024/10/16/src-Long-Supply-ChainAttack-1/" title="record-双供应链拿一个目标" >
+            <div class="recent-link-text">
+              record-双供应链拿一个目标
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/09/18/ABP-Framework-Vulnerable-to-API-Interface-Information-Leak/" title="Framework-API-Interface-Information-Leak" >
+            <div class="recent-link-text">
+              Framework-API-Interface-Information-Leak
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/09/16/box-wp-Caption/" title="【season-6】 htb Caption wp" >
+            <div class="recent-link-text">
+              【season-6】 htb Caption wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/09/11/jail/" title="jail 和 ssti" >
+            <div class="recent-link-text">
+              jail 和 ssti
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/09/09/htb-wp-Sightless/" title="【season-6】 htb Sightless wp" >
+            <div class="recent-link-text">
+              【season-6】 htb Sightless wp
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-src-Long-Supply-ChainAttack-1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm2beuwoz0000a4kyg0gk5kxs">
+        <img src="/wpimages/src/ChainAttck-1/background.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        record-双供应链拿一个目标
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-10-16T03:12:19.000Z" itemprop="datePublished">2024-10-16</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            3k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E8%AE%B0%E5%BD%95/" rel="tag">实例记录</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">之后会更新一部分可以公开的脱敏后的拿点或src的思路过程记录，以供熟悉的朋友和师傅们参考</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">本文强脱敏，因为涉及的企业都很大，涉及到信息和资产相关的都不会贴图，相关特征图片也用其他类似的代替，所以文字占了大部分，着重记录一下思路，十分抱歉师傅们见谅。</span><br></pre></td></tr></table></figure>
+
+<p>本次攻击用到了两个供应链，包含一个我没公开的day</p>
+<p>这次的目标是一个投送广告的大屏管理企业，拿下了这个系统基本就控住了那个地市三分之一的商业大屏</p>
+<p>而其资产是托管在其他厂商那里，或者说是委托其他厂商来开发运维，目标只是作为使用方。</p>
+<p><img src="/wpimages/src/ChainAttck-1/1.jpg" alt="web1"></p>
+<p>那目标就很明确，由这目标单位范围延伸覆盖到了运维厂商侧，然后开始收集厂商资产。</p>
+<p>在收集过程中发现这个厂商做了非常多家企业的运维开发业务，但业务系统并不一致，只是主域名资产都是备案在厂商。</p>
+<p>不过对于这种单位，他运维团队除非很大，否则在运维习惯上会有很大的通用性，为了验证这点，在查了他单位的人员信息和一些采购、业务纠纷、合同指标之后发现他公司的开发运维技术团队并不大，直觉告诉我只要打进一个或者两个，就有很大概率杀到目标单位。</p>
+<p>所以我挑选了旗下的一个建筑企业，因为他的ui很眼熟，让我想起来一个年初时候的一个项目，当时的目标是一个五百强企业，除了高防就是封，10分钟给我封了3ip，压根没法测，其他队伍也碰了一鼻子灰。</p>
+<p>最后我顺着系统指纹找到了供应链企业的一个测试环境，其并没有套waf，在我字典的狂轰乱炸下出了个名字肥肠逆天的入口接口，当时打了两天，黑盒fuzz出了他们所有未授权的接口和参数，最后成功拿到了这个目标企业在海外援建的所有人员和项目的信息，艰难拿下4000分（分好少..）</p>
+<p>（这个图的login并不是本项目用到的,随便找了个别的）</p>
+<p><img src="/wpimages/src/ChainAttck-1/2.jpg" alt="web1"></p>
+<p>不过这个也就只是看着眼熟，在看了前端的特征并没有什么相同的特点。</p>
+<p>然后我就去打开了原来那条链的几个版本的站点，找了个几个原来系统在比对了几个版本之后我确信这个是被二开过的，ui基本全换了，但是登录框布局并没有替换，但是不知具体使用的版本。</p>
+<p>但是他漏了一点，在一个无关紧要的js里有系统原来的名字，而这个系统也是在我day的覆盖范围内的。</p>
+<p><img src="/wpimages/src/ChainAttck-1/3.jpg" alt="web1"></p>
+<p>我先尝试了绕过被关闭的注册添加一个admin权限用户</p>
+<p><img src="/wpimages/src/ChainAttck-1/8.jpg" alt="web1"></p>
+<p>不过他这个比较坑的是虽然可以未授权直接添加，但是必须要用手机再做个短信验证，我在发过包去等认证短信等了好久还是没等到，猜测他系统可能没对接短信平台。那就退而求其次，尝试翻一下用户信息和平台的文件信息。</p>
+<p>然后先用洞绕过前台翻取它系统中的敏感文件，然后就报错了</p>
+<p><img src="/wpimages/src/ChainAttck-1/4.jpg" alt="web1"></p>
+<p>应该是文件太多pg没法直接全返回，所以加个过滤就ok</p>
+<p><img src="/wpimages/src/ChainAttck-1/5.jpg" alt="web1"></p>
+<p><img src="/wpimages/src/ChainAttck-1/6.jpg" alt="web1"></p>
+<p>在翻了很久之后找到一个一年前交付时候的技术文档，在翻阅中我发现他家在项目开发中，凡是二开的项目都喜欢新加一个接口路径，并且都喜欢以项目名相关信息的拼音简写。</p>
+<p><img src="/wpimages/src/ChainAttck-1/7.jpg" alt="web1"></p>
+<p>比如水利系统，就会写成 <code>/slxt/system/xxxx/xxxxxxx</code></p>
+<p>而在这文档中也存在一个系统url上面有泄露他的开头路径，可能是测试用的，点进去就是个接近静态的站点，毛js都没加载，拼上翻出的前缀路径再爆破目录后也是什么都没产出，简直逆天，测了一顿什么都没出来。</p>
+<p><img src="/wpimages/src/ChainAttck-1/15.jpg" alt="web1"></p>
+<p>除此之外其中大部分都是一些非目标的项目信息，而人员信息也就是一些三要素，简单的收集了一下，这套系统中的超管是强制强口令的所以压根没法爆破。</p>
+<p><img src="/wpimages/src/ChainAttck-1/13.jpg" alt="web1"></p>
+<p>然后这里面就没什么收获了，主要登录需要短信验证，而这套系统我也没找到可以前台getshell的点。</p>
+<p>没办法这里啃不出东西来，就去看了这个厂商其他资产，在精挑乱选之后我尝试拼了另一个企业的简写作为路径fuzz了下路径下的接口，可能是我猜错路径名，亦或是我的想法不成立，打了几个资产也都没有任何收获。</p>
+<p>不过我还是坚信，能用我都能发现的漏洞的系统的企业，它指定是不会很安全。</p>
+<p>所以我挨个资产从头排着打，一共是二十几个系统资产，在打到了厂商业官网的时候，我发现他有个登陆，点击后跳转到了另一个只有ip的资产</p>
+<p><img src="/wpimages/src/ChainAttck-1/9.jpg" alt="web1"></p>
+<p>在看他的网页源码时，发现这个站点的js特征暴露出这个站点有我今年时候发现的另一个框架漏洞，不过只是一个接口信息泄露。</p>
+<p><img src="/wpimages/src/ChainAttck-1/10.jpg" alt="web1"></p>
+<p>然后就拿出当时的利用记录对它进行一个嗦，发现相关泄露路径都被ban了，猜测可能是开发对框架魔改过，没办法只能祭出最后一个，在这个框架中其实存在一个隐藏的js，不过名字会比较复杂并且通常是不会直接暴露出来，而在这个框架的官方文档中也没有体现，开发基本上是发现不了有这个东西，但是他会同样暴露出所有接口和params。（这是打另一个项目时候在个边缘资产发现有个企业用了这套框架，曰进去之后发现的）</p>
+<p>所以目前是这个样子</p>
+<p><img src="/wpimages/src/ChainAttck-1/11.jpg" alt="web1"></p>
+<p>然后就对接口进行挨个fuzz，这套系统同样也是在框架原来的路径之外也单独写了个自己的接口路径.</p>
+<p>举个例子，正常框架下的原生接口是这样的</p>
+<p><img src="/wpimages/src/ChainAttck-1/16.jpg" alt="web1"></p>
+<p>通常大部分开发喜欢在原生接口路由后面接着写</p>
+<p><img src="/wpimages/src/ChainAttck-1/17.jpg" alt="web1"></p>
+<p>而这家喜欢这样写</p>
+<p><img src="/wpimages/src/ChainAttck-1/18.jpg" alt="web1"></p>
+<p>而其他暴露在外面原生功能还是沿用的框架的接口，比如登录传入的接口还是原生框架的，这框架原来就很成熟的，所以测不出东西来。</p>
+<p>这也怪不得直接跑路径是跑不出啥来。</p>
+<p>fuzz的方式比较多，我习惯ffuf跑，方式很多看个人习惯，这里就不多赘述了。</p>
+<p>在一顿跑之后其实大部分接口都401了，但在其中还是有几个漏网之鱼，其中有一个<code>logs</code>引起了我的注意</p>
+<p>在访问之后发现其是这套系统中所有的请求记录，其中包含了post请求的body</p>
+<p><img src="/wpimages/src/ChainAttck-1/14.jpg" alt="web1"></p>
+<p>但遗憾的是可能是这套系统的开发对他进行过修改，body部分被好像置空了，我在尝试POST了几个之后发现我传入的data也被替换为空。</p>
+<p>最后我把这十几个系统全测完了，只收获了两个接口泄露，一个人员和项目信息泄露，以及发现两个运维厂商没备案的资产，至于目标站点可以说是坚若磐石（</p>
+<p><img src="/wpimages/src/ChainAttck-1/19.jpg" alt="web1"></p>
+<p>不过我有个在打同一个厂商的时候习惯建一个wordlist保留这个项目他们js或者swagger等泄露所有接口path的习惯，这次也同样不例外，然后我就不断对着这些个站点递归扫啊扫，黑盒打起来是真难受啊。</p>
+<p>在第四天的时候我仍旧在漫无目的的测这十几个资产，然后我看着资产突发奇想，有没有一种可能他的交付演示环境，使用的同样会是泄露接口的框架的后台，可能他把main路径藏在了静态页后面的路径。</p>
+<p>然后在拼接之后就真的出货了</p>
+<p><img src="/wpimages/src/ChainAttck-1/20.jpg" alt="web1"></p>
+<p>是的，他确实把路径藏在了<code>/test/xxx/xxxx-api/</code>，但这次暴露是暴露出来了，他们并没有往这里面直接加接口，或者他们压根测试环境就没有完全用到这个框架，我是麻了。</p>
+<p>思索了一下他们开发写码子的习惯，我猜测他们<code>/test/xxx/</code>test后的第一个路径有可能就是他们的对应的其他站点根路径，所以我直接把其他十来个站点积攒的字典对他进行一个跑。</p>
+<p>最后出了一堆不存在的接口，在里面我又见到了其他两个站点都有的<code>logs</code>目录，但是这次并没有让我失望。</p>
+<p><img src="/wpimages/src/ChainAttck-1/21.jpg" alt="web1"></p>
+<p>他开发忘记屏蔽body回显了，并且这个环境目前还在使用，在我过滤了<code>url</code>key为<code>login</code>路径之后直接就看到了其他人的登陆时候的账户密码。</p>
+<p>考虑到大概率是他们开发登陆的，我拿到超管密码直接去测运维厂商其他资产</p>
+<p><img src="/wpimages/src/ChainAttck-1/22.jpg" alt="web1"></p>
+<p>果不其然，开发一懒导致口令全是通用的。</p>
+<p>然后再试试目标系统。</p>
+<p><img src="/wpimages/src/ChainAttck-1/23.jpg" alt="web1"></p>
+<p>结束，全部拿下。</p>
+<p>不得不说他这个开发的可视化管理的大屏非常帅气，但是因为容易被一眼认出是哪个地区的哪个企业，所以不敢放，十分抱歉。</p>
+<p>最后是整个攻击的路线图</p>
+<p><img src="/wpimages/src/ChainAttck-1/24.jpg" alt="web1"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">实在不好意思，有些地方技术细节不敢写太细了，这次整个过程涉及的企业都比较敏感所以只能记录一下大体的思路。</span><br></pre></td></tr></table></figure>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/09/18/ABP-Framework-Vulnerable-to-API-Interface-Information-Leak/"
+      title="Framework-API-Interface-Information-Leak"
+     >
+
+    <p class="title-text">
+      
+        Framework-API-Interface-Information-Leak
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
