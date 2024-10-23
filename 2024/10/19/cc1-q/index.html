@@ -25,7 +25,7 @@
   
 
   
-  <title>cc1-一些容易混淆的点 | Hexo</title>
+  <title>cc-一些容易混淆的点 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
@@ -33,14 +33,14 @@
 
   <meta name="description" content="对TransformMap调用了setValue()，但因为他的父类是AbstractInputCheckedMapDecorator其中的MapEntry继承AbstractMapEntryDecorator，而这个AbstractMapEntryDecorator实现了Map.entry部分,同时其子类MapEntry重写了setValue,所以TransformMap在Mapentry轮询的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cc1-一些容易混淆的点">
+<meta property="og:title" content="cc-一些容易混淆的点">
 <meta property="og:url" content="http://example.com/2024/10/19/cc1-q/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="对TransformMap调用了setValue()，但因为他的父类是AbstractInputCheckedMapDecorator其中的MapEntry继承AbstractMapEntryDecorator，而这个AbstractMapEntryDecorator实现了Map.entry部分,同时其子类MapEntry重写了setValue,所以TransformMap在Mapentry轮询的">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/wpimages/Tips/cc1/background.jpg">
 <meta property="article:published_time" content="2024-10-19T10:24:00.000Z">
-<meta property="article:modified_time" content="2024-10-22T14:50:19.139Z">
+<meta property="article:modified_time" content="2024-10-23T16:26:32.203Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Tips">
 <meta name="twitter:card" content="summary">
@@ -218,9 +218,9 @@
       <h3 class="widget-title">Recent Posts</h3>
       <ul>
         
-          <a class="recent-link" href="/2024/10/19/cc1-q/" title="cc1-一些容易混淆的点" >
+          <a class="recent-link" href="/2024/10/19/cc1-q/" title="cc-一些容易混淆的点" >
             <div class="recent-link-text">
-              cc1-一些容易混淆的点
+              cc-一些容易混淆的点
             </div>
           </a>
         
@@ -266,7 +266,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_cm2gcvus10000v8ky72ms1uum">
+      <a class="article-gallery-img" rel="gallery_cm2m37k7s001lmoky5nn6fbar">
         <img src="/wpimages/Tips/cc1/background.jpg" itemprop="image">
       </a>
     
@@ -283,7 +283,7 @@
   
     
       <h1 class="p-name article-title" itemprop="headline name">
-        cc1-一些容易混淆的点
+        cc-一些容易混淆的点
       </h1>
     
   
@@ -302,7 +302,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            7.9k words 
+            8.7k words 
           </div>
         </div>
         
@@ -317,8 +317,7 @@
 
 
 <hr>
-<p>链式调用部分</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Method</span> <span class="variable">getruntimemethod</span> <span class="operator">=</span> (Method) <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;getMethod&quot;</span>,<span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;String.class,Class[].class&#125;,<span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="string">&quot;getRuntime&quot;</span>,<span class="literal">null</span>&#125;).transform(Runtime.class);</span><br><span class="line"></span><br><span class="line"><span class="type">Runtime</span> <span class="variable">runtime</span> <span class="operator">=</span> (Runtime) <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;invoke&quot;</span>,<span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;Object.class,Object[].class&#125;,<span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="literal">null</span>,<span class="literal">null</span>&#125;).transform(getruntimemethod);</span><br></pre></td></tr></table></figure>
+<h2 id="循环调用部分"><a href="#循环调用部分" class="headerlink" title="循环调用部分"></a>循环调用部分</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Method</span> <span class="variable">getruntimemethod</span> <span class="operator">=</span> (Method) <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;getMethod&quot;</span>,<span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;String.class,Class[].class&#125;,<span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="string">&quot;getRuntime&quot;</span>,<span class="literal">null</span>&#125;).transform(Runtime.class);</span><br><span class="line"></span><br><span class="line"><span class="type">Runtime</span> <span class="variable">runtime</span> <span class="operator">=</span> (Runtime) <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;invoke&quot;</span>,<span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;Object.class,Object[].class&#125;,<span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="literal">null</span>,<span class="literal">null</span>&#125;).transform(getruntimemethod);</span><br></pre></td></tr></table></figure>
 
 <p>可能比较难理解的是<code>InvokerTransformer</code>里面这个部分</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object <span class="title function_">transform</span><span class="params">(Object input)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (input == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">Class</span> <span class="variable">cls</span> <span class="operator">=</span> input.getClass();</span><br><span class="line">        <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> cls.getMethod(iMethodName, iParamTypes);</span><br><span class="line">        <span class="keyword">return</span> method.invoke(input, iArgs);</span><br></pre></td></tr></table></figure>
@@ -338,8 +337,7 @@
 <p>而<code>TransformedMap</code>它的父类重写了<code>setValue</code>所以又会去调它<code>TransformedMap.checkValue(Value)</code>的时候会调用到他的<code>valueTransformer.transform(value)</code>，这里<code>valueTransformer</code>就是我给他的<code>ChainedTransformer</code></p>
 <p>那自然也就调用了<code>ChainedTransformer.Transformer(Value)</code></p>
 <hr>
-<p><code>ChainedTransformer</code>调用的时候需要输入<code>value</code>但他这里已经写死了是个<code>AnnotationTypeMismatchExceptionProxy</code>,我们如何将他<code>ChainedTransformer</code>数组最初输入执行的做一个<code>Runtime</code>类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">value</span> <span class="operator">=</span> memberValue.getValue();</span><br><span class="line"><span class="keyword">if</span> (!(memberType.isInstance(value) ||</span><br><span class="line">      value <span class="keyword">instanceof</span> ExceptionProxy)) &#123;</span><br><span class="line">    memberValue.setValue(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">AnnotationTypeMismatchExceptionProxy</span>(</span><br><span class="line">            value.getClass() + <span class="string">&quot;[&quot;</span> + value + <span class="string">&quot;]&quot;</span>).setMember(</span><br><span class="line">                annotationType.members().get(name)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ChainedTransformer调用的时候需要输入value但他这里已经写死了是个AnnotationTypeMismatchExceptionProxy-我们如何将他ChainedTransformer数组最初输入执行的做一个Runtime类"><a href="#ChainedTransformer调用的时候需要输入value但他这里已经写死了是个AnnotationTypeMismatchExceptionProxy-我们如何将他ChainedTransformer数组最初输入执行的做一个Runtime类" class="headerlink" title="ChainedTransformer调用的时候需要输入value但他这里已经写死了是个AnnotationTypeMismatchExceptionProxy,我们如何将他ChainedTransformer数组最初输入执行的做一个Runtime类"></a><code>ChainedTransformer</code>调用的时候需要输入<code>value</code>但他这里已经写死了是个<code>AnnotationTypeMismatchExceptionProxy</code>,我们如何将他<code>ChainedTransformer</code>数组最初输入执行的做一个<code>Runtime</code>类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">value</span> <span class="operator">=</span> memberValue.getValue();</span><br><span class="line"><span class="keyword">if</span> (!(memberType.isInstance(value) ||</span><br><span class="line">      value <span class="keyword">instanceof</span> ExceptionProxy)) &#123;</span><br><span class="line">    memberValue.setValue(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">AnnotationTypeMismatchExceptionProxy</span>(</span><br><span class="line">            value.getClass() + <span class="string">&quot;[&quot;</span> + value + <span class="string">&quot;]&quot;</span>).setMember(</span><br><span class="line">                annotationType.members().get(name)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>首先看我们的最初的<code>ChainTransformer</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object <span class="title function_">transform</span><span class="params">(Object object)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; iTransformers.length; i++) &#123;</span><br><span class="line">        object = iTransformers[i].transform(object);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> object;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -354,8 +352,7 @@
 
 <p>所以我们可以通过在第一个使用<code>ConstantTransformer(Runtime.class)</code>来让<code>AnnotationTypeMismatchExceptionProxy</code>输入的<code>setValue(Value)</code>废掉，并使得第一个会直接返回<code>Runtime.class</code>以供后面的使用。</p>
 <hr>
-<p><code>InvokerTransformer</code>第一次调用时候获取的是<code>method</code>这里可能会比较绕</p>
-<p>一开始想为什么这里不直接调用<code>getRuntime</code>，而是去调用<code>getMethod</code>让他返回<code>getRuntime</code>的<code>Method</code>，主要还是Runtime的序列化问题,其次</p>
+<h3 id="InvokerTransformer第一次调用时候获取的是method这里可能会比较绕"><a href="#InvokerTransformer第一次调用时候获取的是method这里可能会比较绕" class="headerlink" title="InvokerTransformer第一次调用时候获取的是method这里可能会比较绕"></a><code>InvokerTransformer</code>第一次调用时候获取的是<code>method</code>这里可能会比较绕</h3><p>一开始想为什么这里不直接调用<code>getRuntime</code>，而是去调用<code>getMethod</code>让他返回<code>getRuntime</code>的<code>Method</code>，主要还是Runtime的序列化问题,其次</p>
 <p><code>InvokerTransformer(&quot;getMethod&quot;,new Class[]&#123;String.class,Class[].class&#125;,neew Object[]&#123;&quot;getRuntime&quot;,null&#125;)</code></p>
 <p>因为,我们传入的是<code>Runtime.class</code>，进入之后<code>cls</code>相当于是<code>Runtime.class.getClass()</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Class</span> <span class="variable">cls</span> <span class="operator">=</span> input.getClass();</span><br><span class="line"><span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> cls.getMethod(iMethodName, iParamTypes);</span><br><span class="line"><span class="keyword">return</span> method.invoke(input, iArgs);</span><br></pre></td></tr></table></figure>
@@ -397,6 +394,19 @@
 <p>对<code>AnnotationInvokcationHandler2</code>正常序列化</p>
 <p>再反序列化的时候就<code>readObject</code>-&gt;<code>.entry()</code>-&gt;<code>invoke</code>-&gt;<code>.get(Value)</code>-&gt;<code>.transformer(Value)</code>后面就和一开始那条链一样了</p>
 <hr>
+<h3 id="cc6为什么Lazymap需要处理一下删除掉其中map的key"><a href="#cc6为什么Lazymap需要处理一下删除掉其中map的key" class="headerlink" title="cc6为什么Lazymap需要处理一下删除掉其中map的key"></a>cc6为什么<code>Lazymap</code>需要处理一下删除掉其中<code>map</code>的<code>key</code></h3><p>因为我们在<code>TiedMaoEntry</code>将其<code>put</code>到<code>Hashmap</code>的时候，会触发<code>hashcode()</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">TiedMapEntry</span> <span class="variable">ti</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TiedMapEntry</span>(lazymap,<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">HashMap&lt;Object,Object&gt; hp = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">hp.put(ti,<span class="string">&quot;asd&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>最终走到<code>Lazymap</code>这里，并把外部的<code>TiedMapEntry</code>的<code>value</code>最终作为<code>key</code>put给<code>lazymap</code>的<code>map</code>当中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object <span class="title function_">get</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">    <span class="comment">// create value for key if key is not currently in the map</span></span><br><span class="line">    <span class="keyword">if</span> (map.containsKey(key) == <span class="literal">false</span>) &#123; <span class="comment">// &lt;-这里获取不到这个key才可以</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">value</span> <span class="operator">=</span> factory.transform(key);</span><br><span class="line">        map.put(key, value);</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map.get(key);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以当触发反序列化的时候我们的<code>put</code>时候<code>lazymap</code>中的<code>key</code>和<code>value</code>会下面判<code>True</code>也就自然调用不了<code>transform</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (map.containsKey(key) == false)</span><br></pre></td></tr></table></figure>
+
+<p>解决访问这里两种</p>
+<p>1.<code>lazymap.remove(TiedMapEntry传入的value)</code>,让<code>lazymap</code>这里<code>map</code>中的<code>table[0]</code>变为空</p>
+<p>2.修改掉这个键值对，让他换成别的反正<code>key</code>别和<code>TiedMapEntry传入的value</code>一样就行（还是推荐第一种 我比较闲才会用这种）</p>
+<p><img src="/wpimages/Tips/cc1/cc6_1.jpg" alt="web1"></p>
 
         
       </div>
