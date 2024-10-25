@@ -455,7 +455,17 @@ AnnotationInvocationHandler因为不是公共类，所以只能通过反射的�
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          有东西被加密了, 请输入hash查看.
+          <div class="truncate-text">
+            
+              
+ABP is a renowned open-source .NET framework, and its “/api/abp/api-definition“ path within the framework leaks the API interfaces within the project.
+
+Within this, we can identify the API paths inherent to the ABP framework itself.
+like api/abp/xxx
+
+The leaked API path of ABP itself is not the primary danger, as it is quite limited. However, developers using this framework may not realize that the APIs in their own projects are directly exposed within the api-definition file. Consequently, ...
+            
+          </div>
         
       </div>
 
