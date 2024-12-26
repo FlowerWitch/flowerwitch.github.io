@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-84TPQBH5EH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-84TPQBH5EH');
+</script>
+<!-- End Google Analytics -->
+
+  
+  
+
+  
+  <title>crtp-study-note | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="有东西被加密了, 请输入hash查看.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="crtp-study-note">
+<meta property="og:url" content="http://example.com/2024/12/20/crtp-study-note/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="有东西被加密了, 请输入hash查看.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/">
+<meta property="article:published_time" content="2024-12-20T11:40:41.000Z">
+<meta property="article:modified_time" content="2024-12-26T08:25:07.053Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Hexo </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AD/" rel="tag">AD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AS-REQ-ST/" rel="tag">AS-REQ ST</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AllowedtoAct/" rel="tag">AllowedtoAct</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-36467/" rel="tag">CVE-2024-36467</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-42327/" rel="tag">CVE-2024-42327</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DACL/" rel="tag">DACL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Forensic/" rel="tag">Forensic</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/LFI/" rel="tag">LFI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Nmap/" rel="tag">Nmap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PasstheCert/" rel="tag">PasstheCert</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQL-injection/" rel="tag">SQL injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Tips/" rel="tag">Tips</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Zabbix/" rel="tag">Zabbix</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ansible-vault/" rel="tag">ansible_vault</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azure-devops/" rel="tag">azure devops</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azureAD/" rel="tag">azureAD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/brute-rid/" rel="tag">brute-rid</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bypass-kerberos-only/" rel="tag">bypass-kerberos-only</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cd/" rel="tag">cd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/consul/" rel="tag">consul</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/deb/" rel="tag">deb</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dpapi/" rel="tag">dpapi</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/esc1/" rel="tag">esc1</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fishing/" rel="tag">fishing</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gamepwn/" rel="tag">gamepwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ghost/" rel="tag">ghost</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/h2/" rel="tag">h2</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/jwt/" rel="tag">jwt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/kcd/" rel="tag">kcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ldap/" rel="tag">ldap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/limesurvey/" rel="tag">limesurvey</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mail/" rel="tag">mail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/merge/" rel="tag">merge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/no-preAuth/" rel="tag">no-preAuth</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/poc/" rel="tag">poc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pod/" rel="tag">pod</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pods/" rel="tag">pods</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pre2k/" rel="tag">pre2k</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pwn/" rel="tag">pwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rbcd/" rel="tag">rbcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/remote-potato/" rel="tag">remote-potato</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rootkit/" rel="tag">rootkit</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rosating/" rel="tag">rosating</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/s3/" rel="tag">s3</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sercerts/" rel="tag">sercerts</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sherlocks/" rel="tag">sherlocks</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ssti/" rel="tag">ssti</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/study/" rel="tag">study</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/symlink/" rel="tag">symlink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/winlogon/" rel="tag">winlogon</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E8%AE%B0%E5%BD%95/" rel="tag">实例记录</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-5/">
+                htb-Season-5
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-6/">
+                htb-Season-6
+                <div class="category-count">10</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/AD/">
+                AD
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/CVE/">
+                CVE
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/forensic/">
+                forensic
+                <div class="category-count">2</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2024/12/26/Tracks-AD-Authority/" title="Tracks-AD-Authority" >
+            <div class="recent-link-text">
+              Tracks-AD-Authority
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/20/crtp-study-note/" title="crtp-study-note" >
+            <div class="recent-link-text">
+              crtp-study-note
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/20/Sherlocks-Blizzard-Breakdown/" title="【Sherlocks】Blizzard-Breakdown" >
+            <div class="recent-link-text">
+              【Sherlocks】Blizzard-Breakdown
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/19/Sherlocks-Cookie-Consumption/" title="【Sherlocks】Cookie-Consumption" >
+            <div class="recent-link-text">
+              【Sherlocks】Cookie-Consumption
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/17/box-wp-Heal/" title="【season-6】 htb Heal wp" >
+            <div class="recent-link-text">
+              【season-6】 htb Heal wp
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-crtp-study-note" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm559inl4000024kyb7618hhy">
+        <img src="/images/" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        crtp-study-note
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-12-20T11:40:41.000Z" itemprop="datePublished">2024-12-20</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            552 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="03d8d1e0f58040760c41acd39cc7af249f7187b5d60aebf1f35c99aea86d9af8">165d50f05814027fb7fe5e4ae8a088d8ed45cb227c5039853179c5405e990a0ba396e77b775f1008bf57a4198dec5f607540f46ee8b06befc8b36450ca38f7a84d3eaf64e479ed9d02771a9683e2c86d6de2c86517834a4f82344e5c09870247b06ecd0f5ede85916f00432a8fda7db243d5985852bf557a774662d36fdb21e151396688d18019460190adb8001ff632dcd285ef298793b53e6e711d548dcc4f55e6a166bd59befebc822524c0fa16b5c10823af8dbc6e2cddc6521b51ae1b9a35c34fda6fc8d46180ded74ef4df77135f5ffed7f416910a95ff4ab685f3c074119c64ad0df580f93fe9dd76d04d929ad2c269accc5e259eaf8ff43f1acec7076837049a21f79e1e675fa8ffdbad0d37784abb2a1e0278d3dfa7a545dbe2c77919ffb1681e87cc78a0ac687ab95f8b7e4c908e85b378e8ddb11efd6b600a67c5d4a833c766683de335176afaa10496d02c2c55e1278c809ce8b1b16a9f77b947ad2b267b8f4e8db77068d94b075630cb4094b377ba846b581073981a3fcaa4edf707e9cf2355ad6dc6d217f4af6c82e84e86dea1a8f7c548c91c58b62bf0180ed9223bd795a58f3053a8b7547f3c44c0f447ba6d5da0393741e3440b287ec1e31b1d6d108c04337c097d609bfccf760511a6c59dc209e2b0160759fe51e336b13b92ac580504a21b86d90c2c4167a9265c78763ca7b379d255fede3b8d6b8232e36cec4120d75bc7df23a8342f50452bac58f7cd0b6927ff649c4e6e09455a954865d7c886d851c751c78a2b7059e4502b8c7df7ced926b6f69f1a74d043e7e6c67adb88f4be2700b2ccd96161016e1074412f2bc4c10c8e586e7125612b41398e0e17082326d294b4129c8b673614ce4b9859cf10552b908ba2f629e2a869bf61bbea2f728a08ccff105c10ba3ee6a0e7dd8c629754c7e27faa9e378cdbed10c034951fe6fb3790c84988754fed97af77b9ce4be4e024e05bc71ef75dc97c8a1291c78960a7fec4085b17e0a6da131c3f045287bd055c7e223f73e6c2f4d70e6e857f5b56445d0c8a723cfd5a632b9327e3342368a665ee23d7148e58599d9aefd2f38ed9fe383e08e69a9318f0ebde80f6ec40e83cdb0b4d14ca6db21f0bf7d02e06d2e58c08b3aa7d2a77fca12e04930dd5994616374a887bdc86e37672118e55a8316c36c2696b0f153031c909e37efd40c643ec09afc26f2a85beee6d93f0930e5e046c8e9b9b9118712ba98318360b693ed73414a2d3b195373a991fd708ba394462c8940468d9a37ba94809abe8fc88503fa02f6650884d3908dff7e1dbc68ba2b80742ef1eb17a01e4005a03847b41b22a74be2df4a7f46674cdf60f1084467f81286387cfff5b46ec3b05e5c2e849b580a55a1c219a1360a5699f5e40eb5b5b7e6c6785adaaffe159d1824eedf7ec0b0522d38ffaeec7227fbad808c3e23b26a9c54a500558701fbc50b927f6c7b430eaf307a1b5e36a64cfc48148d29973806843759752bc5a95ff455954786e5a7f46b6c69a28f1e9efe46ebffe45a9f89ec13660a0b100d3c82bdd22ab6f41f51d23c47134d935edc7ec2edb83bece1cc157d46df9169af5c48fd38a5901150d4d260e06d98936332946274f5942692b2d66df416af61341478faa8efae2576626ad8466a20607416fa35f23db92ab2e98472432e6e2cb0c68bd25755cd9169fb47f3df246150cc6afbcb185067d4c3aa893a4062b5459dc49fb59e8911653279062155c10b51fc84a2caf1d669cfde50d1e4067d4a3779ee8b87a93fedf644f33a711955504cfc6a124752c6abf3eb7c2db2874bcab9377682e79681c68a27052be34f6bf65b84ead09b80a78e2279afb7a330b46ac663e385310c4d2280f55044cedfc82f4ca07a70e3468b06ae8781fc34ef81ac974c3344fac9d9a1f53b1c5af110149b128b60fc064aade3fc10f571fb1e5311a6453976cc87cefeb6c003532d8b985e1942756de62cdc5a3f4428b4a17f9ceed2f939483acdbf0b88b5df65c034b65390c8d5d0c09e8ebfeb9d6307cae66dc3e91a502438a98acd7fd5398a8d90011e005a6c6196cfc4de6cb814f7338f5f5d92749b0f5bbbd3aba77830ed863f16b155f38e92e5b6ca3fb968dcd16961e9fb73d3d18fea45a8163d9e94ef1bf809eba47dbe1dd03a93ff93cda97de957f08f526321d9f3d9cac717b20adb523d4e70189b7940cded0b17984314c26f6f5931b452ab631a314ecd27bb7aca21738b5348477c3f83c6a3e51d9865c1ec071bdeead0489735229737ef470f814c42004d61e4dd3ba7a5a6d2a0203d10c0d6283349beeb1814994454192d16215f4006fdbb5f093450bce7e86f095689243a284650537d6a4eab506f72e244e41da34895a64d4f0d6e0a033c9d6813a4387226254097db5f003d3dcdcdc364f70fde566244e4f9ff99f0da0fe618d7478eb44ef111c0786da5a3e311d0d6f83a06346c70f42c08c4c0cff3e2721c86cac78654eef99622f1b3d2b71d9b7a2ea0d4c00e191f4b94d9fba8bb3541c8a78133646ef626aa280ff86b15aee263ac0882b58c0514c94b0bdf29223070537f8438d6fb49e5078dcb954622c9ef63ab71a6b62dc970fb49cc3907c6ee7149deed19a4b848fcb79cdd0dac39d</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">root or admin hash</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2024/12/26/Tracks-AD-Authority/"
+      title="Tracks-AD-Authority"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        Tracks-AD-Authority
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/12/20/Sherlocks-Blizzard-Breakdown/"
+      title="【Sherlocks】Blizzard-Breakdown"
+     >
+
+    <p class="title-text">
+      
+        【Sherlocks】Blizzard-Breakdown
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
