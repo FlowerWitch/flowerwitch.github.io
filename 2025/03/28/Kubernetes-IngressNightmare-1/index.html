@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-84TPQBH5EH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-84TPQBH5EH');
+</script>
+<!-- End Google Analytics -->
+
+  
+  
+
+  
+  <title>「IngressNightmareをめざす異世界泥頭車！一、serviceはなに？！」 | ❀言わぬが花❀</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="借着这次的CVE-2025-1097、CVE-2025-1098、CVE-2025-24514、CVE-2025-1974填一下19年留下的陈年云相关的老坑，docker部分也同样会找机会补全 （K8s的部分因为没丢到当时的博客导致和早年的固件笔记一起丢了） ，从kubernetes相对基础的部分入手，讲一下常见的核心功能，最后以CVE-2025-1974几个漏洞产生的原理和过程为终点，目的是借">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「IngressNightmareをめざす異世界泥頭車！一、serviceはなに？！」">
+<meta property="og:url" content="http://example.com/2025/03/28/Kubernetes-IngressNightmare-1/index.html">
+<meta property="og:site_name" content="❀言わぬが花❀">
+<meta property="og:description" content="借着这次的CVE-2025-1097、CVE-2025-1098、CVE-2025-24514、CVE-2025-1974填一下19年留下的陈年云相关的老坑，docker部分也同样会找机会补全 （K8s的部分因为没丢到当时的博客导致和早年的固件笔记一起丢了） ，从kubernetes相对基础的部分入手，讲一下常见的核心功能，最后以CVE-2025-1974几个漏洞产生的原理和过程为终点，目的是借">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/wpimages/2025/Kubernetes-IngressNightmare-1/background.jpg">
+<meta property="article:published_time" content="2025-03-28T05:23:15.000Z">
+<meta property="article:modified_time" content="2025-04-06T16:24:56.704Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Kubernetes">
+<meta property="article:tag" content="service">
+<meta property="article:tag" content="Nodeport">
+<meta property="article:tag" content="kube-proxy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wpimages/2025/Kubernetes-IngressNightmare-1/background.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="❀言わぬが花❀" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>❀言わぬが花❀ </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/2FA/" rel="tag">2FA</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AD/" rel="tag">AD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AS-REQ-ST/" rel="tag">AS-REQ ST</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AllowedtoAct/" rel="tag">AllowedtoAct</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-36467/" rel="tag">CVE-2024-36467</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-42327/" rel="tag">CVE-2024-42327</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Command-injection/" rel="tag">Command injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DACL/" rel="tag">DACL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DLL/" rel="tag">DLL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ESC1/" rel="tag">ESC1</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ESC4/" rel="tag">ESC4</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ForceChangePassword/" rel="tag">ForceChangePassword</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Forensic/" rel="tag">Forensic</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GMSA/" rel="tag">GMSA</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GPO/" rel="tag">GPO</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GSSAPI/" rel="tag">GSSAPI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Gbbion/" rel="tag">Gbbion</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GenericAll/" rel="tag">GenericAll</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/HKLM/" rel="tag">HKLM</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/LFI/" rel="tag">LFI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/LFR/" rel="tag">LFR</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/NTHASH/" rel="tag">NTHASH</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Nmap/" rel="tag">Nmap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Nodeport/" rel="tag">Nodeport</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/OU/" rel="tag">OU</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PKINIT/" rel="tag">PKINIT</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PSReadLine/" rel="tag">PSReadLine</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PasstheCert/" rel="tag">PasstheCert</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PetitPotam/" rel="tag">PetitPotam</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Powershell/" rel="tag">Powershell</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Pseudorandom/" rel="tag">Pseudorandom</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/RECYCLE-BIN/" rel="tag">RECYCLE.BIN</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Roundcube-Webmail/" rel="tag">Roundcube Webmail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Rubeus/" rel="tag">Rubeus</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SPN/" rel="tag">SPN</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQL-injection/" rel="tag">SQL injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SSRF/" rel="tag">SSRF</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SeBackupPrivilege/" rel="tag">SeBackupPrivilege</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SeImpersonatePrivilege/" rel="tag">SeImpersonatePrivilege</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Server-Operators/" rel="tag">Server Operators</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SharPy/" rel="tag">SharPy</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Shellcode/" rel="tag">Shellcode</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/TOTP/" rel="tag">TOTP</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Tips/" rel="tag">Tips</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/WriteGPlink/" rel="tag">WriteGPlink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/WriteOwner/" rel="tag">WriteOwner</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Zabbix/" rel="tag">Zabbix</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ansible-vault/" rel="tag">ansible_vault</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/asp/" rel="tag">asp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azure-devops/" rel="tag">azure devops</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azureAD/" rel="tag">azureAD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bbot/" rel="tag">bbot</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/beacon/" rel="tag">beacon</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bloodhound/" rel="tag">bloodhound</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bookstack/" rel="tag">bookstack</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/browser/" rel="tag">browser</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/brute-rid/" rel="tag">brute-rid</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bypass-AMSI/" rel="tag">bypass AMSI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bypass-kerberos-only/" rel="tag">bypass-kerberos-only</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cd/" rel="tag">cd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cme/" rel="tag">cme</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/consul/" rel="tag">consul</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/deb/" rel="tag">deb</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/defaultapppool/" rel="tag">defaultapppool</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dnsadmin/" rel="tag">dnsadmin</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dnschef/" rel="tag">dnschef</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dnstools/" rel="tag">dnstools</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dpapi/" rel="tag">dpapi</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/efspotato/" rel="tag">efspotato</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/esc1/" rel="tag">esc1</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fifo/" rel="tag">fifo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/firewall/" rel="tag">firewall</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fishing/" rel="tag">fishing</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fuzz/" rel="tag">fuzz</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gamepwn/" rel="tag">gamepwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ghost/" rel="tag">ghost</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gpo/" rel="tag">gpo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/h2/" rel="tag">h2</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/hardhat/" rel="tag">hardhat</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/havoc/" rel="tag">havoc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/impacket-GetUserSPNs/" rel="tag">impacket-GetUserSPNs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/impacket-smbclient/" rel="tag">impacket-smbclient</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/iptables-save/" rel="tag">iptables-save</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/jar/" rel="tag">jar</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/jwt/" rel="tag">jwt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/kcd/" rel="tag">kcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/krbrelayx/" rel="tag">krbrelayx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/kube-proxy/" rel="tag">kube-proxy</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/laps/" rel="tag">laps</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ldap/" rel="tag">ldap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ldaps/" rel="tag">ldaps</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/limesurvey/" rel="tag">limesurvey</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/logon-script/" rel="tag">logon script</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/lsaquery/" rel="tag">lsaquery</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mail/" rel="tag">mail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/merge/" rel="tag">merge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/msDS-KeyCredentialLink/" rel="tag">msDS-KeyCredentialLink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mssql/" rel="tag">mssql</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/neo4j/" rel="tag">neo4j</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/no-preAuth/" rel="tag">no-preAuth</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ntlmrelayx/" rel="tag">ntlmrelayx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pfishing/" rel="tag">pfishing</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pfx/" rel="tag">pfx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/poc/" rel="tag">poc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pod/" rel="tag">pod</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pods/" rel="tag">pods</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/postgresql/" rel="tag">postgresql</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/powershell/" rel="tag">powershell</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/powerview/" rel="tag">powerview</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pre2k/" rel="tag">pre2k</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/psexec/" rel="tag">psexec</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pswa/" rel="tag">pswa</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pwn/" rel="tag">pwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pyjail/" rel="tag">pyjail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rbcd/" rel="tag">rbcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/remote-potato/" rel="tag">remote-potato</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/reverse/" rel="tag">reverse</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rootkit/" rel="tag">rootkit</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rosating/" rel="tag">rosating</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rpcclient/" rel="tag">rpcclient</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/runascs/" rel="tag">runascs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/s3/" rel="tag">s3</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sercerts/" rel="tag">sercerts</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/service/" rel="tag">service</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sherlocks/" rel="tag">sherlocks</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/shm/" rel="tag">shm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sliver-ticketer/" rel="tag">sliver ticketer</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/smb/" rel="tag">smb</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/smb-krbrelayx/" rel="tag">smb_krbrelayx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/smbmap/" rel="tag">smbmap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/splunk/" rel="tag">splunk</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sqlcmd/" rel="tag">sqlcmd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sqli/" rel="tag">sqli</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sssd/" rel="tag">sssd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ssti/" rel="tag">ssti</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/study/" rel="tag">study</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/symlink/" rel="tag">symlink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/teampass/" rel="tag">teampass</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/tgt/" rel="tag">tgt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/username-anarchy/" rel="tag">username-anarchy</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wapt/" rel="tag">wapt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/winlogon/" rel="tag">winlogon</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ysoserial-net/" rel="tag">ysoserial.net</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/zip/" rel="tag">zip</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E8%AE%B0%E5%BD%95/" rel="tag">实例记录</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/forensic/">
+                forensic
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/AD/">
+                AD
+                <div class="category-count">11</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-5/">
+                htb-Season-5
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-6/">
+                htb-Season-6
+                <div class="category-count">10</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-7/">
+                htb-Season-7
+                <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/CVE/">
+                CVE
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2025/04/04/box-wp-Haze/" title="【season-7】 htb Haze wp" >
+            <div class="recent-link-text">
+              【season-7】 htb Haze wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/03/28/Kubernetes-IngressNightmare-1/" title="「IngressNightmareをめざす異世界泥頭車！一、serviceはなに？！」" >
+            <div class="recent-link-text">
+              「IngressNightmareをめざす異世界泥頭車！一、serviceはなに？！」
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/03/25/box-wp-Code/" title="【season-7】 htb Code wp" >
+            <div class="recent-link-text">
+              【season-7】 htb Code wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/03/19/box-wp-TheFrizz/" title="【season-7】 htb TheFrizz wp" >
+            <div class="recent-link-text">
+              【season-7】 htb TheFrizz wp
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/03/13/Tracks-AD-Acute/" title="Tracks-AD-Acute" >
+            <div class="recent-link-text">
+              Tracks-AD-Acute
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-Kubernetes-IngressNightmare-1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm95uvrbj00023gky84ekg8d7">
+        <img src="/wpimages/2025/Kubernetes-IngressNightmare-1/background.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        「IngressNightmareをめざす異世界泥頭車！一、serviceはなに？！」
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-03-28T05:23:15.000Z" itemprop="datePublished">2025-03-28</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/cloud/">cloud</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            13k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodeport/" rel="tag">Nodeport</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kube-proxy/" rel="tag">kube-proxy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/service/" rel="tag">service</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <blockquote>
+<p>借着这次的<code>CVE-2025-1097、CVE-2025-1098、CVE-2025-24514、CVE-2025-1974</code>填一下19年留下的陈年云相关的老坑，docker部分也同样会找机会补全 <del>（K8s的部分因为没丢到当时的博客导致和早年的固件笔记一起丢了）</del> ，从kubernetes相对基础的部分入手，讲一下常见的核心功能，最后以<code>CVE-2025-1974</code>几个漏洞产生的原理和过程为终点，目的是借着机会复习下k8s的一些组件，因为是摸鱼时候才会写写所以会断断续续的更新这个笔记。<del>（全记到blog这样笔记就不会再丢了）</del> 。</p>
+</blockquote>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><hr>
+<blockquote>
+<p>CVE参考wiz文章内容<br><a target="_blank" rel="noopener" href="https://www.wiz.io/blog/ingress-nginx-kubernetes-vulnerabilities">https://www.wiz.io/blog/ingress-nginx-kubernetes-vulnerabilities</a></p>
+</blockquote>
+<p><del>这里着重探讨危害相对较高的<code>CVE-2025-1974</code>XD</del></p>
+<p>首先，需要理解的是<code>CVE-2025-24514</code>，因为<code>CVE-2025-1974</code>..等几个漏洞的利用基本都建立在<code>CVE-2025-24514</code><strong>(Ingress NGINX Admission 处理AdmissionReview请求时字段未过滤，导致可通过注释注入 )</strong> 或类似的思路之上。</p>
+<p>而在<code>CVE-2025-24514</code>之前，要先了解<a target="_blank" rel="noopener" href="https://github.com/kubernetes/ingress-nginx">Ingress NGINX</a></p>
+<p>站在对外暴露服务的映射角度来看，<a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress/">Ingress</a>和<a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/">service</a>分别对应了常规7层模型里的<code>七层</code>和<code>四层</code>，但其二者在kubernetes中实际架构中是上下层关系，后面也会讲到这部分。</p>
+<p>（图片偷自 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress/">https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress/</a> ）<br><img src="/wpimages/2025/Kubernetes-IngressNightmare-1/image-1.png" alt="alt text"></p>
+<p>总之，我会从<code>service</code>开始，因为其相对基础；再经过<code>Ingress NGINX</code>，<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/"><code>admission controller</code></a>概念等，直至延申到后面CVE的内容。</p>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><hr>
+<p>文章中的实验我都会用minikube来做，会方便很多，用法参考下文</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://minikube.sigs.k8s.io/docs/start/?arch=/linux/x86-64/stable/binary+download#take-the-next-step">https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download#take-the-next-step</a></p>
+</blockquote>
+<p>其实用docker来拉minikube的话不需要安装这么多依赖，不过还是列出来方便其他部署方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#docker</span></span><br><span class="line">sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">sudo yum install docker-ce docker-ce-cli containerd.io </span><br><span class="line">sudo systemctl start docker</span><br><span class="line"></span><br><span class="line"><span class="comment">#conntrack</span></span><br><span class="line">sudo yum install -y conntrack</span><br><span class="line"></span><br><span class="line"><span class="comment">#crictl</span></span><br><span class="line">wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.32.0/crictl-v1.32.0-linux-amd64.tar.gz</span><br><span class="line">sudo tar zxvf crictl-v1.32.0-linux-amd64.tar.gz -C /usr/sbin</span><br><span class="line"></span><br><span class="line"><span class="comment">#cri-dockerd</span></span><br><span class="line">wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.16/cri-dockerd-0.3.16.amd64.tgz</span><br><span class="line">tar -zxvf cri-dockerd-0.3.16.amd64.tgz</span><br><span class="line">sudo <span class="built_in">cp</span> cri-dockerd /usr/local/bin/cri-dockerd</span><br><span class="line">wget https://raw.githubusercontent.com/Mirantis/cri-dockerd/refs/heads/master/packaging/systemd/cri-docker.service</span><br><span class="line">wget https://raw.githubusercontent.com/Mirantis/cri-dockerd/refs/heads/master/packaging/systemd/cri-docker.service</span><br><span class="line">sudo install ./* /etc/systemd/system</span><br><span class="line">sudo sed -i -e <span class="string">&#x27;s,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,&#x27;</span> /etc/systemd/system/cri-docker.service</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart cri-docker</span><br><span class="line"><span class="comment">#这里因为精神洁癖，喜欢用到的时候再手动开服务就不enable了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#containernetworking-plugins</span></span><br><span class="line">sudo yum install containernetworking-plugins</span><br><span class="line"></span><br><span class="line"><span class="comment">#containernetworking-plugins</span></span><br><span class="line">wget https://github.com/containernetworking/plugins/releases/download/v1.6.2/cni-plugins-linux-amd64-v1.6.2.tgz</span><br><span class="line">CNI_PLUGIN_INSTALL_DIR=<span class="string">&quot;/opt/cni/bin&quot;</span></span><br><span class="line">sudo <span class="built_in">mkdir</span> -p <span class="string">&quot;<span class="variable">$CNI_PLUGIN_INSTALL_DIR</span>&quot;</span></span><br><span class="line">sudo tar -xf cni-plugins-linux-amd64-v1.6.2.tgz -C <span class="string">&quot;<span class="variable">$CNI_PLUGIN_INSTALL_DIR</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里为了方便我选择docker拉服务，测试环境是ubuntu24.10</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64</span><br><span class="line">sudo install minikube-linux-amd64 /usr/local/bin/minikube &amp;&amp; <span class="built_in">rm</span> minikube-linux-amd64</span><br><span class="line"></span><br><span class="line"><span class="comment"># docker</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install ca-certificates curl</span><br><span class="line">sudo install -m 0755 -d /etc/apt/keyrings</span><br><span class="line">sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc</span><br><span class="line">sudo <span class="built_in">chmod</span> a+r /etc/apt/keyrings/docker.asc</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add the repository to Apt sources:</span></span><br><span class="line"><span class="built_in">echo</span> \</span><br><span class="line">  <span class="string">&quot;deb [arch=<span class="subst">$(dpkg --print-architecture)</span> signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \</span></span><br><span class="line"><span class="string">  <span class="subst">$(. /etc/os-release &amp;&amp; echo <span class="string">&quot;<span class="variable">$VERSION_CODENAME</span>&quot;</span>)</span> stable&quot;</span> | \</span><br><span class="line">  sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br><span class="line"></span><br><span class="line">sudo sed -i <span class="string">&#x27;s/debian/ubuntu/g&#x27;</span> /etc/apt/sources.list.d/docker.list</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br><span class="line"></span><br><span class="line"><span class="comment">#当前用户丢到docker组这里已经丢过了就不记录了</span></span><br><span class="line"></span><br><span class="line">minikube start --driver=docker --/wpimages/2025/Kubernetes-IngressNightmare-1/image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我这里ipv6不支持所以关一下，不然会影响解析</span></span><br><span class="line"><span class="comment"># sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#这里我用的docker因为没有梯子所以用国内源了</span></span><br><span class="line">minikube start --driver=docker --/wpimages/2025/Kubernetes-IngressNightmare-1/image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --bas</span><br><span class="line">e-image=<span class="string">&quot;registry.cn-hangzhou.aliyuncs.com/google_containers/kicbase:v0.0.46&quot;</span> --memory=2066mb</span><br><span class="line"></span><br><span class="line"><span class="comment">#装一下kubectl</span></span><br><span class="line">minikube kubectl -- get pods -A</span><br></pre></td></tr></table></figure>
+
+<p>装完确定pod都活着就ok了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~$  minikube kubectl -- get pods -A</span><br><span class="line">NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE</span><br><span class="line">kube-system   coredns-668d6bf9bc-82gm2           1/1     Running   0             10m</span><br><span class="line">kube-system   coredns-668d6bf9bc-sxmjq           1/1     Running   0             10m</span><br><span class="line">kube-system   etcd-minikube                      1/1     Running   0             10m</span><br><span class="line">kube-system   kube-apiserver-minikube            1/1     Running   0             10m</span><br><span class="line">kube-system   kube-controller-manager-minikube   1/1     Running   0             10m</span><br><span class="line">kube-system   kube-proxy-n4r7d                   1/1     Running   0             10m</span><br><span class="line">kube-system   kube-scheduler-minikube            1/1     Running   0             10m</span><br><span class="line">kube-system   storage-provisioner                1/1     Running   1 (10m ago)   10m</span><br></pre></td></tr></table></figure>
+
+<h1 id="service"><a href="#service" class="headerlink" title="service"></a>service</h1><hr>
+<p>还是以官方文档对<a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/">service</a>的介绍为主，</p>
+<p>官方对其的定义是</p>
+<p>将在集群中运行的应用通过同一个面向外界的端点公开出去，即使工作负载分散于多个后端也完全可行</p>
+<p>这里的场景通常是指的一个或一组pod，<code>service</code>可以将这样的一个pod集合公开出去<code>(Cluster IP)</code>用于其他pod交互等，同时，<code>service</code>也定义着外部访问到这些pod集合的策略，*官方文档中将每个定义的<code>service</code>视为<code>一个端点（通常是指pod）的逻辑集合</code>*。</p>
+<p>官网文档中举了一个比较实际的例子：<strong>前端pod与后端pod之间交互</strong>。</p>
+<p>思考一下，在每个后端pod的ip都不相同的情况下，如果没有service将后端pod集合为一个ip点位，<code>前端pod</code>如何和<code>后端pod</code>进行连接交互。</p>
+<p><img src="/wpimages/2025/Kubernetes-IngressNightmare-1/image-2.png" alt="alt text"></p>
+<p>总不能像图上这样每个<code>前端</code>都绑定一个<code>后端</code>点位的ip。能不能通信先不说，如果对应的<code>后端</code>点位挂了那<code>前端</code>对应的个pod也就没法用了，有些荒谬的同时这也违背了pod高可用属性的设计初衷。</p>
+<p>那<code>service</code>的出现就解决了这种问题，通过<code>service</code>我们可以将一组同类型的<code>pod</code>作为集合，映射为一个ip，<code>前端</code>pod与<code>后端</code>pod交互时，并不需要在意自己交互的是哪一个<code>后端</code>pod，因为后端pod随时可能发生变更所以也没必要在意，service会将流量<code>负载均衡</code>到后端pod组 或 请求发送到某个<code>node节点</code>上的<code>nodeport</code>端口走到<code>kube-proxy</code>再转发到集群中service给其对应的<code>cluster IP</code>而后kubeproxy再根据其负载均衡走到某个node的一个后端服务pod中(nodeport类型).</p>
+<p><img src="/wpimages/2025/Kubernetes-IngressNightmare-1/image-3.png" alt="alt text"></p>
+<p>(nodeport形式)</p>
+<p><img src="/wpimages/2025/Kubernetes-IngressNightmare-1/image-4.png" alt="alt text"></p>
+<p>需要注意<code>Cluster ip</code>和kube-proxy都是通过<code>api server</code>获取更新的，这里图我是用nodeport模式画的，每个node都会给这个pod集合对应的<code>service</code>开个端口监听，然后收到的请求从nodeport进来会经过<code>kube-proxy</code>转到这个service对应的<code>clusterIP</code>然后再通过其在Endpoints表和具体的负载算法，通过cni（Calico、Flannel）直接走到指定node中的pod</p>
+<p><code>kube-proxy</code>更新频率受到pod迭代影响，其而且其也会通过<code>kubelet</code>监控<code>Endpoints</code>动态更新自己的规则表，通常<code>clusterIP</code>在创建后除非对应<code>serivce</code>删了，不然一般不会变动</p>
+<p><code>service</code>支持多种<code>公开方式</code>或者说<code>服务类型</code>，如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ClusterIP</span><br><span class="line">通过集群的内部 IP 公开 Service，选择该值时 Service 只能够在集群内部访问。 这也是你没有为 Service 显式指定 type 时使用的默认值。 你可以使用 Ingress 或者 Gateway API 向公共互联网公开服务。</span><br><span class="line"></span><br><span class="line">NodePort</span><br><span class="line">通过每个节点上的 IP 和静态端口（NodePort）公开 Service。 为了让 Service 可通过节点端口访问，Kubernetes 会为 Service 配置集群 IP 地址， 相当于你请求了 type: ClusterIP 的 Service。</span><br><span class="line"></span><br><span class="line">LoadBalancer</span><br><span class="line">使用云平台的负载均衡器向外部公开 Service。Kubernetes 不直接提供负载均衡组件； 你必须提供一个，或者将你的 Kubernetes 集群与某个云平台集成。</span><br><span class="line"></span><br><span class="line">ExternalName</span><br><span class="line">将服务映射到 externalName 字段的内容（例如，映射到主机名 api.foo.bar.example）。 该映射将集群的 DNS 服务器配置为返回具有该外部主机名值的 CNAME 记录。 集群不会为之创建任何类型代理。</span><br></pre></td></tr></table></figure>
+
+<h2 id="ClusterIP"><a href="#ClusterIP" class="headerlink" title="ClusterIP"></a>ClusterIP</h2><hr>
+<p>首先是默认的ClusterIp，这个是service默认的配置类型，也是其他几个类型的实现基础。</p>
+<p>虽然是基础，但他也会更方便理解service的特性，或者说是理解pod与service的关系</p>
+<p>这里yaml我的创建两个ng的pod，然后起了个service指关联到这组pod</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">test@test:~/k8s_yaml$</span> <span class="string">cat</span> <span class="string">Deployment-nginx-ClusterIP.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-deployment</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">2</span> </span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">registry.cn-hangzhou.aliyuncs.com/acs-sample/nginx:latest</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-service</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">targetPort:</span> <span class="number">80</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">ClusterIP</span></span><br></pre></td></tr></table></figure>
+
+<p>然后拉起来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl apply -f Deployment-nginx-ClusterIP.yaml                                              </span><br><span class="line">deployment.apps/nginx-deployment created                                                                                </span><br><span class="line">service/nginx-service created </span><br></pre></td></tr></table></figure>
+
+<p>查看当前pod状态，只创建了俩，能看到都正常跑起来了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl get pods                                                                                  </span><br><span class="line">NAME                                READY   STATUS    RESTARTS   AGE                                                    </span><br><span class="line">nginx-deployment-6c7848d5b5-fxp6d   1/1     Running   0          9s</span><br><span class="line">nginx-deployment-6c7848d5b5-kdw46   1/1     Running   0          9s</span><br></pre></td></tr></table></figure>
+
+<p>然后是service状态，能看到已经定义的<code>nginx-service</code>已经跑起来了，这里ClusterIP的用处一会讲到</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl get svc</span><br><span class="line">NAME            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE</span><br><span class="line">kubernetes      ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP   2d21h</span><br><span class="line">nginx-service   ClusterIP   10.107.205.193   &lt;none&gt;        80/TCP    1m</span><br></pre></td></tr></table></figure>
+
+<p>然后就是一个问题，我们要访问到服务的话该如何访问？</p>
+<p>这里可以用port-forward来将服务端口映射出来</p>
+<p>但有两种转发方式，分别是</p>
+<ul>
+<li><p>1.转发pod端口</p>
+</li>
+<li><p>2.转发Cluster端口</p>
+</li>
+</ul>
+<h3 id="一、转发pod端口"><a href="#一、转发pod端口" class="headerlink" title="一、转发pod端口"></a>一、转发pod端口</h3><p>这里转发pod端口指的是：转发指定一个pod的某个端口至某个地址某个端口</p>
+<p>比如这里我们的两个ng的pod</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl get pods</span><br><span class="line">NAME                                READY   STATUS    RESTARTS   AGE</span><br><span class="line">nginx-deployment-6c7848d5b5-fxp6d   1/1     Running   0          144m</span><br><span class="line">nginx-deployment-6c7848d5b5-kdw46   1/1     Running   0          144m</span><br></pre></td></tr></table></figure>
+
+<p>我们用转发pod的方式先看下</p>
+<p>这里选定一个pod将其80端口转发出来，至当前的8888口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl port-forward pod/nginx-deployment-6c7848d5b5-fxp6d --address 0.0.0.0 8888:80 </span><br><span class="line">Forwarding from 0.0.0.0:8888 -&gt; 80</span><br><span class="line">Handling connection <span class="keyword">for</span> 8888</span><br></pre></td></tr></table></figure>
+
+<p>这时可以访问本地8888端口来访问到pod内80口的应用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">curl 192.168.221.130:8888 -is</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK                                                                                                         </span><br><span class="line">Server: nginx/1.13.3                                        </span><br><span class="line">Date: Tue, 01 Apr 2025 09:16:37 GMT</span><br><span class="line">Content-Type: text/html                                     </span><br><span class="line">Content-Length: 612                                         </span><br><span class="line">Last-Modified: Tue, 11 Jul 2017 13:06:07 GMT</span><br><span class="line">Connection: keep-alive                                      </span><br><span class="line">ETag: <span class="string">&quot;5964cd3f-264&quot;</span></span><br><span class="line">Accept-Ranges: bytes </span><br></pre></td></tr></table></figure>
+
+<p>或许也会注意到，采用这种方式，这样仅是用了一个pod，但我们有两个pod，用这种方式是没法做到高可用的。</p>
+<p>那service基础的<code>ClusterIP</code>模式，就是为了解决这一问题而出现的.</p>
+<h3 id="二、ClusterIP"><a href="#二、ClusterIP" class="headerlink" title="二、ClusterIP"></a>二、ClusterIP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl get svc</span><br><span class="line">NAME            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE</span><br><span class="line">kubernetes      ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP   2d21h</span><br><span class="line">nginx-service   ClusterIP   10.107.205.193   &lt;none&gt;        80/TCP    1m</span><br></pre></td></tr></table></figure>
+
+<p>可以看下，这里刚创建的name为<code>nginx-service</code>的service</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl describe svc nginx-service</span><br><span class="line">Name:                     nginx-service</span><br><span class="line">Namespace:                default</span><br><span class="line">Labels:                   app=nginx</span><br><span class="line">Annotations:              &lt;none&gt;</span><br><span class="line">Selector:                 app=nginx</span><br><span class="line">Type:                     ClusterIP</span><br><span class="line">IP Family Policy:         SingleStack</span><br><span class="line">IP Families:              IPv4</span><br><span class="line">IP:                       10.107.205.193</span><br><span class="line">IPs:                      10.107.205.193</span><br><span class="line">Port:                     &lt;<span class="built_in">unset</span>&gt;  80/TCP</span><br><span class="line">TargetPort:               80/TCP</span><br><span class="line">Endpoints:                10.244.0.12:80,10.244.0.13:80</span><br><span class="line">Session Affinity:         None</span><br><span class="line">Internal Traffic Policy:  Cluster</span><br><span class="line">Events:                   &lt;none&gt;</span><br></pre></td></tr></table></figure>
+
+<p>因为我们在创建这个service时将<code>选择器(Selector)</code>连接指向到了标签为<code>app=nginx</code>的pod</p>
+<p>通过这个标签再查询相关的pod，这也正是我们刚创建时候打了<code>app=nginx</code>的这俩pod</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl get pods --selector=<span class="string">&#x27;app=nginx&#x27;</span></span><br><span class="line">NAME                                READY   STATUS    RESTARTS   AGE</span><br><span class="line">nginx-deployment-6c7848d5b5-fxp6d   1/1     Running   0          4h58m</span><br><span class="line">nginx-deployment-6c7848d5b5-kdw46   1/1     Running   0          4h58m</span><br></pre></td></tr></table></figure>
+
+<p>或者这样看也行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~$ kubectl get endpoints nginx-service</span><br><span class="line">NAME            ENDPOINTS                       AGE</span><br><span class="line">nginx-service   10.244.0.12:80,10.244.0.13:80   5h36m</span><br></pre></td></tr></table></figure>
+
+<p>这里如果通过port-forward直接转发<code>service/nginx-service</code>的端口是不行的，会发现只有一个pod的ng能够收到请求，这是因为端口转发时，<code>kubectl</code>会先查询服务对应的所有 pod，然后随机（或按照一定规则）选择其中一个 pod。</p>
+<p><em>所有经由该<code>port-forward</code>的请求都会被固定地转发到这个选中的<code>pod</code>上，后续请求不会在多个 pod 之间做负载均衡。</em></p>
+<p>基础的<code>ClusterIP</code>类型仅是从<code>集群内部</code>访问时才是轮询负载的，如果要实现外部访问也是负载均衡，则需要选择用建立在其之上的<code>Nodeport</code>类型或<code>LoadBalancer</code>，亦或者是使用与这个漏洞相关联的<code>ingress</code>，之后都会讲到。</p>
+<p>为了方便理解这里就不用<code>kubectl proxy</code>走apiserver访问了，这里我选择临时拉个<code>busybox</code>从集群内访问会更直观一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl run busybox-pod-1 --<span class="built_in">rm</span> -it --image=docker.m.daocloud.io/library/busybox:latest -- /bin/sh</span><br><span class="line">If you don<span class="string">&#x27;t see a command prompt, try pressing enter.</span></span><br><span class="line"><span class="string">/ # </span></span><br></pre></td></tr></table></figure>
+
+<p>确定一下svc的ip <code>10.105.131.184</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx-service   ClusterIP   10.105.131.184   &lt;none&gt;        80/TCP    56m</span><br></pre></td></tr></table></figure>
+
+<p>然后从<code>busybox</code>pod对<code>nginx-service</code>的<code>ClusterIP</code>发起访问</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/ # for i in `seq 0 60`;do wget  10.105.131.184:80 1&gt;&amp;2 2&gt;/dev/null ;done</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl logs 两个pod_name</span><br></pre></td></tr></table></figure>
+
+<p>查看两个pod日志，会发现请求的流量是基本均匀分布开的。</p>
+<p><img src="/wpimages/2025/Kubernetes-IngressNightmare-1/image-5.png" alt="alt text"></p>
+<p><code>ClusterIP</code>服务本身没有负载均衡功能，这部分通过是<code>kube-proxy</code>来负载到后面pod的，<code>kube-proxy</code>会捕获到至<code>ClusterIP</code>的流量，依照当前ipvs或者iptables的网络规则匹配目的地址和端口，并依据负载规则决定将请求重定向至哪个目的pod。</p>
+<p><em>参考官方文档对于这部分的阐述</em></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/networking/virtual-ips/">https://kubernetes.io/docs/reference/networking/virtual-ips/</a></p>
+</blockquote>
+<p>这里kube-proxy如果用的iptables是仅支持轮询的负责方式，而ipvs则玩的会比较花，相对的service越多的话iptables的性能会更显著一些。</p>
+<p>这里我因为是docker拉的 k8s 所以需要看下<code>kube-proxy-pod</code>的信息才能确认用的是ipvs还是iptables.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl describe pods kube-proxy-n4r7d -n kube-system|grep -i <span class="built_in">command</span> -A10</span><br><span class="line">    Command:</span><br><span class="line">      /usr/local/bin/kube-proxy</span><br><span class="line">      --config=/var/lib/kube-proxy/config.conf</span><br><span class="line">      --hostname-override=$(NODE_NAME)</span><br></pre></td></tr></table></figure>
+
+<p>这里并没有直接通过<code>--proxy-mode</code>指定模式，所以还要进一步看<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/"><code>config.conf</code></a>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl <span class="built_in">exec</span> -n kube-system kube-proxy-n4r7d --  <span class="built_in">cat</span> /var/lib/kube-proxy/config.conf</span><br><span class="line">apiVersion: kubeproxy.config.k8s.io/v1alpha1</span><br><span class="line">bindAddress: 0.0.0.0</span><br><span class="line">bindAddressHardFail: <span class="literal">false</span></span><br><span class="line">clientConnection:</span><br><span class="line">  acceptContentTypes: <span class="string">&quot;&quot;</span></span><br><span class="line">  burst: 0</span><br><span class="line">  contentType: <span class="string">&quot;&quot;</span></span><br><span class="line">  kubeconfig: /var/lib/kube-proxy/kubeconfig.conf</span><br><span class="line">  qps: 0</span><br><span class="line">clusterCIDR: 10.244.0.0/16</span><br><span class="line">configSyncPeriod: 0s</span><br><span class="line">conntrack:</span><br><span class="line">  maxPerCore: 0</span><br><span class="line">  min: null</span><br><span class="line">  tcpBeLiberal: <span class="literal">false</span></span><br><span class="line">  tcpCloseWaitTimeout: 0s</span><br><span class="line">  tcpEstablishedTimeout: 0s</span><br><span class="line">  udpStreamTimeout: 0s</span><br><span class="line">  udpTimeout: 0s</span><br><span class="line">detectLocal:</span><br><span class="line">  bridgeInterface: <span class="string">&quot;&quot;</span></span><br><span class="line">  interfaceNamePrefix: <span class="string">&quot;&quot;</span></span><br><span class="line">detectLocalMode: <span class="string">&quot;&quot;</span></span><br><span class="line">enableProfiling: <span class="literal">false</span></span><br><span class="line">healthzBindAddress: <span class="string">&quot;&quot;</span></span><br><span class="line">hostnameOverride: <span class="string">&quot;&quot;</span></span><br><span class="line">iptables:</span><br><span class="line">  localhostNodePorts: null</span><br><span class="line">  masqueradeAll: <span class="literal">false</span></span><br><span class="line">  masqueradeBit: null</span><br><span class="line">  minSyncPeriod: 0s</span><br><span class="line">  syncPeriod: 0s</span><br><span class="line">ipvs:</span><br><span class="line">  excludeCIDRs: null</span><br><span class="line">  minSyncPeriod: 0s</span><br><span class="line">  scheduler: <span class="string">&quot;&quot;</span></span><br><span class="line">  strictARP: <span class="literal">false</span></span><br><span class="line">  syncPeriod: 0s</span><br><span class="line">  tcpFinTimeout: 0s</span><br><span class="line">  tcpTimeout: 0s</span><br><span class="line">  udpTimeout: 0s</span><br><span class="line">kind: KubeProxyConfiguration</span><br><span class="line">logging:</span><br><span class="line">  flushFrequency: 0</span><br><span class="line">  options:</span><br><span class="line">    json:</span><br><span class="line">      infoBufferSize: <span class="string">&quot;0&quot;</span></span><br><span class="line">    text:</span><br><span class="line">      infoBufferSize: <span class="string">&quot;0&quot;</span></span><br><span class="line">  verbosity: 0</span><br><span class="line">metricsBindAddress: 0.0.0.0:10249</span><br><span class="line">mode: <span class="string">&quot;&quot;</span></span><br><span class="line">nftables:</span><br><span class="line">  masqueradeAll: <span class="literal">false</span></span><br><span class="line">  masqueradeBit: null</span><br><span class="line">  minSyncPeriod: 0s</span><br><span class="line">  syncPeriod: 0s</span><br><span class="line">nodePortAddresses: null</span><br><span class="line">oomScoreAdj: null</span><br><span class="line">portRange: <span class="string">&quot;&quot;</span></span><br><span class="line">showHiddenMetricsForVersion: <span class="string">&quot;&quot;</span></span><br><span class="line">winkernel:</span><br><span class="line">  enableDSR: <span class="literal">false</span></span><br><span class="line">  forwardHealthCheckVip: <span class="literal">false</span></span><br><span class="line">  networkName: <span class="string">&quot;&quot;</span></span><br><span class="line">  rootHnsEndpointName: <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>能看到<code>mode:</code>并没有给值，所以是默认的<code>iptables</code>，这里iptabes只支持基础的负载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在此模式下，kube-proxy 使用内核 netfilter 子系统的 iptables API 配置数据包转发规则。对于每个端点，它会安装 iptables 规则，默认情况下会随机选择一个后端 Pod</span><br></pre></td></tr></table></figure>
+
+<p>iptables也只能在conf改动一部分规则同步优化的内容，这里面用的相对多的是<code>minSyncPeriod</code>、<code>masqueradeAll</code>、<code>syncPeriod</code>其他的其实用的比较少，但可见并没有负载相关的配置供修改</p>
+<p>这部分可以参考下文</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/#kubeproxy-config-k8s-io-v1alpha1-KubeProxyIPTablesConfiguration">https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/#kubeproxy-config-k8s-io-v1alpha1-KubeProxyIPTablesConfiguration</a></p>
+</blockquote>
+<p>南无三、此间事于《<code>库伯-普肉瑟斯/挨批忒宝斯</code>》源码中——壹仟陆佰叁拾行间亦有记载</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/iptables/proxier.go#L1630">https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/iptables/proxier.go#L1630</a></p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">// Now write loadbalancing rules.</span></span><br><span class="line">	numEndpoints := <span class="built_in">len</span>(endpoints)</span><br><span class="line">	<span class="keyword">for</span> i, ep := <span class="keyword">range</span> endpoints &#123;</span><br><span class="line">		epInfo, ok := ep.(*endpointInfo)</span><br><span class="line">		<span class="keyword">if</span> !ok &#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		comment := fmt.Sprintf(<span class="string">`&quot;%s -&gt; %s&quot;`</span>, svcPortNameString, epInfo.String())</span><br><span class="line"></span><br><span class="line">		args = <span class="built_in">append</span>(args[:<span class="number">0</span>], <span class="string">&quot;-A&quot;</span>, <span class="type">string</span>(svcChain))</span><br><span class="line">		args = proxier.appendServiceCommentLocked(args, comment)</span><br><span class="line">		<span class="keyword">if</span> i &lt; (numEndpoints - <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="comment">// Each rule is a probabilistic match.</span></span><br><span class="line">			args = <span class="built_in">append</span>(args,</span><br><span class="line">				<span class="string">&quot;-m&quot;</span>, <span class="string">&quot;statistic&quot;</span>,</span><br><span class="line">				<span class="string">&quot;--mode&quot;</span>, <span class="string">&quot;random&quot;</span>,  <span class="comment">// 这里指定死了是random</span></span><br><span class="line">				<span class="string">&quot;--probability&quot;</span>, proxier.probability(numEndpoints-i))</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// The final (or only if n == 1) rule is a guaranteed match.</span></span><br><span class="line">		natRules.Write(args, <span class="string">&quot;-j&quot;</span>, <span class="type">string</span>(epInfo.ChainName))</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那有没有在这部分能弥补处理负载策略的模式呢</p>
+<p><strong>有的，兄弟有的</strong></p>
+<p>与<code>iptables</code>相对的<code>ipvs</code>则可以按照我们的自定义做出符合场景的负载模式处理。</p>
+<h1 id="2025年4月7日留-service部分没写完，下一次摸鱼时候会更新"><a href="#2025年4月7日留-service部分没写完，下一次摸鱼时候会更新" class="headerlink" title="2025年4月7日留: service部分没写完，下一次摸鱼时候会更新"></a>2025年4月7日留: service部分没写完，下一次摸鱼时候会更新</h1>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2025/04/04/box-wp-Haze/"
+      title="【season-7】 htb Haze wp"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        【season-7】 htb Haze wp
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2025/03/25/box-wp-Code/"
+      title="【season-7】 htb Code wp"
+     >
+
+    <p class="title-text">
+      
+        【season-7】 htb Code wp
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2025 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
