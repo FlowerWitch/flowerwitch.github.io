@@ -34,13 +34,13 @@
   <meta name="description" content="借着这次的CVE-2025-1097、CVE-2025-1098、CVE-2025-24514、CVE-2025-1974填一下19年留下的陈年云相关的老坑，docker部分也同样会找机会补全 （K8s的部分因为没丢到当时的博客导致和早年的固件笔记一起丢了） ，从kubernetes相对基础的部分入手，讲一下常见的核心功能，最后以CVE-2025-1974几个漏洞产生的原理和过程为终点，目的是借">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「IngressNightmareをめざす異世界泥頭車！一、serviceはなに？！」">
-<meta property="og:url" content="http://example.com/2025/03/28/Kubernetes-IngressNightmare-1/index.html">
+<meta property="og:url" content="http://example.com/2025/04/14/Kubernetes-IngressNightmare-1/index.html">
 <meta property="og:site_name" content="❀言わぬが花❀">
 <meta property="og:description" content="借着这次的CVE-2025-1097、CVE-2025-1098、CVE-2025-24514、CVE-2025-1974填一下19年留下的陈年云相关的老坑，docker部分也同样会找机会补全 （K8s的部分因为没丢到当时的博客导致和早年的固件笔记一起丢了） ，从kubernetes相对基础的部分入手，讲一下常见的核心功能，最后以CVE-2025-1974几个漏洞产生的原理和过程为终点，目的是借">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/wpimages/2025/Kubernetes-IngressNightmare/background.jpg">
-<meta property="article:published_time" content="2025-03-28T05:23:15.000Z">
-<meta property="article:modified_time" content="2025-04-09T10:10:50.204Z">
+<meta property="article:published_time" content="2025-04-14T12:23:15.000Z">
+<meta property="article:modified_time" content="2025-04-14T12:49:20.244Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Kubernetes">
 <meta property="article:tag" content="service">
@@ -241,6 +241,12 @@
       <h3 class="widget-title">Recent Posts</h3>
       <ul>
         
+          <a class="recent-link" href="/2025/04/14/Kubernetes-IngressNightmare-1/" title="「IngressNightmareをめざす異世界泥頭車！一、serviceはなに？！」" >
+            <div class="recent-link-text">
+              「IngressNightmareをめざす異世界泥頭車！一、serviceはなに？！」
+            </div>
+          </a>
+        
           <a class="recent-link" href="/2025/04/13/box-wp-Nocturnal/" title="【season-7】 htb Nocturnal wp" >
             <div class="recent-link-text">
               【season-7】 htb Nocturnal wp
@@ -250,12 +256,6 @@
           <a class="recent-link" href="/2025/04/04/box-wp-Haze/" title="【season-7】 htb Haze wp" >
             <div class="recent-link-text">
               【season-7】 htb Haze wp
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/03/28/Kubernetes-IngressNightmare-1/" title="「IngressNightmareをめざす異世界泥頭車！一、serviceはなに？！」" >
-            <div class="recent-link-text">
-              「IngressNightmareをめざす異世界泥頭車！一、serviceはなに？！」
             </div>
           </a>
         
@@ -314,7 +314,7 @@
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2025-03-28T05:23:15.000Z" itemprop="datePublished">2025-03-28</time>
+  <time class="dt-published" datetime="2025-04-14T12:23:15.000Z" itemprop="datePublished">2025-04-14</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
@@ -325,7 +325,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            13k words 
+            17k words 
           </div>
         </div>
         
@@ -378,7 +378,7 @@
 <p>需要注意<code>Cluster ip</code>和kube-proxy都是通过<code>api server</code>获取更新的，这里图我是用nodeport模式画的，每个node都会给这个pod集合对应的<code>service</code>开个端口监听，然后收到的请求从nodeport进来会经过<code>kube-proxy</code>转到这个service对应的<code>clusterIP</code>然后再通过其在Endpoints表和具体的负载算法，通过cni（Calico、Flannel）直接走到指定node中的pod</p>
 <p><code>kube-proxy</code>更新频率受到pod迭代影响，其而且其也会通过<code>kubelet</code>监控<code>Endpoints</code>动态更新自己的规则表，通常<code>clusterIP</code>在创建后除非对应<code>serivce</code>删了，不然一般不会变动</p>
 <p><code>service</code>支持多种<code>公开方式</code>或者说<code>服务类型</code>，如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ClusterIP</span><br><span class="line">通过集群的内部 IP 公开 Service，选择该值时 Service 只能够在集群内部访问。 这也是你没有为 Service 显式指定 type 时使用的默认值。 你可以使用 Ingress 或者 Gateway API 向公共互联网公开服务。</span><br><span class="line"></span><br><span class="line">NodePort</span><br><span class="line">通过每个节点上的 IP 和静态端口（NodePort）公开 Service。 为了让 Service 可通过节点端口访问，Kubernetes 会为 Service 配置集群 IP 地址， 相当于你请求了 type: ClusterIP 的 Service。</span><br><span class="line"></span><br><span class="line">LoadBalancer</span><br><span class="line">使用云平台的负载均衡器向外部公开 Service。Kubernetes 不直接提供负载均衡组件； 你必须提供一个，或者将你的 Kubernetes 集群与某个云平台集成。</span><br><span class="line"></span><br><span class="line">ExternalName</span><br><span class="line">将服务映射到 externalName 字段的内容（例如，映射到主机名 api.foo.bar.example）。 该映射将集群的 DNS 服务器配置为返回具有该外部主机名值的 CNAME 记录。 集群不会为之创建任何类型代理。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ClusterIP</span><br><span class="line">通过集群的内部 IP 公开 Service，选择该值时 Service 只能够在集群内部访问。 这也是你没有为 Service 显式指定 type 时使用的默认值。 你可以使用 Ingress 或者 Gateway API 向公共互联网公开服务。</span><br><span class="line"></span><br><span class="line">NodePort</span><br><span class="line">通过每个节点上的 IP 和静态端口（NodePort）公开 Service。 为了让 Service 可通过节点端口访问，Kubernetes 会为 Service 配置集群 IP 地址， 相当于你请求了 type: ClusterIP 的 Service。</span><br><span class="line"></span><br><span class="line">LoadBalancer</span><br><span class="line">使用云平台的负载均衡器向外部公开 Service。Kubernetes 不直接提供负载均衡组件； 你必须提供一个，或者将你的 Kubernetes 集群与某个云平台集成。</span><br><span class="line"></span><br><span class="line">ExternalName</span><br><span class="line">将服务映射到 externalName 字段的内容（例如，映射到主机名 api.foo.bar.example）。 该映射将集群的 DNS 服务器配置为返回具有该外部主机名值的 CNAME 记录。 集群不会为之创建任何类型代理。</span><br><span class="line"></span><br><span class="line">externalIPs</span><br><span class="line">直接在创建svc时指定一个外部ip.</span><br><span class="line"></span><br><span class="line">https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/#external-ips</span><br></pre></td></tr></table></figure>
 
 <h2 id="ClusterIP"><a href="#ClusterIP" class="headerlink" title="ClusterIP"></a>ClusterIP</h2><hr>
 <p>首先是默认的ClusterIp，这个是service默认的配置类型，也是其他几个类型的实现基础。</p>
@@ -431,7 +431,7 @@
 
 <p>这里如果通过port-forward直接转发<code>service/nginx-service</code>的端口是不行的，会发现只有一个pod的ng能够收到请求，这是因为端口转发时，<code>kubectl</code>会先查询服务对应的所有 pod，然后随机（或按照一定规则）选择其中一个 pod。</p>
 <p><em>所有经由该<code>port-forward</code>的请求都会被固定地转发到这个选中的<code>pod</code>上，后续请求不会在多个 pod 之间做负载均衡。</em></p>
-<p>基础的<code>ClusterIP</code>类型仅是从<code>集群内部</code>访问时才是轮询负载的，如果要实现外部访问也是负载均衡，则需要选择用建立在其之上的<code>Nodeport</code>类型或<code>LoadBalancer</code>，亦或者是使用与这个漏洞相关联的<code>ingress</code>，之后都会讲到。</p>
+<p>基础的<code>ClusterIP</code>类型仅是从<code>集群内部</code>访问时才是轮询负载的，如果要实现外部访问也是负载均衡，则需要选择用建立在其之上的<code>Nodeport</code>类型 or 直接给 <code>svc</code> 指定<code>externalIPs</code>或<code>LoadBalancer</code>，亦或者是使用与这个漏洞相关联的<code>ingress</code>，之后都会讲到。</p>
 <p>为了方便理解这里就不用<code>kubectl proxy</code>走apiserver访问了，这里我选择临时拉个<code>busybox</code>从集群内访问会更直观一下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl run busybox-pod-1 --<span class="built_in">rm</span> -it --image=docker.m.daocloud.io/library/busybox:latest -- /bin/sh</span><br><span class="line">If you don<span class="string">&#x27;t see a command prompt, try pressing enter.</span></span><br><span class="line"><span class="string">/ # </span></span><br></pre></td></tr></table></figure>
 
@@ -458,9 +458,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>@<span class="built_in">test</span>:~/k8s_yaml$ kubectl <span class="built_in">exec</span> -n kube-system kube-proxy-n4r7d --  <span class="built_in">cat</span> /var/lib/kube-proxy/config.conf</span><br><span class="line">apiVersion: kubeproxy.config.k8s.io/v1alpha1</span><br><span class="line">bindAddress: 0.0.0.0</span><br><span class="line">bindAddressHardFail: <span class="literal">false</span></span><br><span class="line">clientConnection:</span><br><span class="line">  acceptContentTypes: <span class="string">&quot;&quot;</span></span><br><span class="line">  burst: 0</span><br><span class="line">  contentType: <span class="string">&quot;&quot;</span></span><br><span class="line">  kubeconfig: /var/lib/kube-proxy/kubeconfig.conf</span><br><span class="line">  qps: 0</span><br><span class="line">clusterCIDR: 10.244.0.0/16</span><br><span class="line">configSyncPeriod: 0s</span><br><span class="line">conntrack:</span><br><span class="line">  maxPerCore: 0</span><br><span class="line">  min: null</span><br><span class="line">  tcpBeLiberal: <span class="literal">false</span></span><br><span class="line">  tcpCloseWaitTimeout: 0s</span><br><span class="line">  tcpEstablishedTimeout: 0s</span><br><span class="line">  udpStreamTimeout: 0s</span><br><span class="line">  udpTimeout: 0s</span><br><span class="line">detectLocal:</span><br><span class="line">  bridgeInterface: <span class="string">&quot;&quot;</span></span><br><span class="line">  interfaceNamePrefix: <span class="string">&quot;&quot;</span></span><br><span class="line">detectLocalMode: <span class="string">&quot;&quot;</span></span><br><span class="line">enableProfiling: <span class="literal">false</span></span><br><span class="line">healthzBindAddress: <span class="string">&quot;&quot;</span></span><br><span class="line">hostnameOverride: <span class="string">&quot;&quot;</span></span><br><span class="line">iptables:</span><br><span class="line">  localhostNodePorts: null</span><br><span class="line">  masqueradeAll: <span class="literal">false</span></span><br><span class="line">  masqueradeBit: null</span><br><span class="line">  minSyncPeriod: 0s</span><br><span class="line">  syncPeriod: 0s</span><br><span class="line">ipvs:</span><br><span class="line">  excludeCIDRs: null</span><br><span class="line">  minSyncPeriod: 0s</span><br><span class="line">  scheduler: <span class="string">&quot;&quot;</span></span><br><span class="line">  strictARP: <span class="literal">false</span></span><br><span class="line">  syncPeriod: 0s</span><br><span class="line">  tcpFinTimeout: 0s</span><br><span class="line">  tcpTimeout: 0s</span><br><span class="line">  udpTimeout: 0s</span><br><span class="line">kind: KubeProxyConfiguration</span><br><span class="line">logging:</span><br><span class="line">  flushFrequency: 0</span><br><span class="line">  options:</span><br><span class="line">    json:</span><br><span class="line">      infoBufferSize: <span class="string">&quot;0&quot;</span></span><br><span class="line">    text:</span><br><span class="line">      infoBufferSize: <span class="string">&quot;0&quot;</span></span><br><span class="line">  verbosity: 0</span><br><span class="line">metricsBindAddress: 0.0.0.0:10249</span><br><span class="line">mode: <span class="string">&quot;&quot;</span></span><br><span class="line">nftables:</span><br><span class="line">  masqueradeAll: <span class="literal">false</span></span><br><span class="line">  masqueradeBit: null</span><br><span class="line">  minSyncPeriod: 0s</span><br><span class="line">  syncPeriod: 0s</span><br><span class="line">nodePortAddresses: null</span><br><span class="line">oomScoreAdj: null</span><br><span class="line">portRange: <span class="string">&quot;&quot;</span></span><br><span class="line">showHiddenMetricsForVersion: <span class="string">&quot;&quot;</span></span><br><span class="line">winkernel:</span><br><span class="line">  enableDSR: <span class="literal">false</span></span><br><span class="line">  forwardHealthCheckVip: <span class="literal">false</span></span><br><span class="line">  networkName: <span class="string">&quot;&quot;</span></span><br><span class="line">  rootHnsEndpointName: <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>能看到<code>mode:</code>并没有给值，所以是默认的<code>iptables</code>，这里iptabes只支持基础的负载</p>
+<h4 id="1-iptables"><a href="#1-iptables" class="headerlink" title="1) iptables"></a>1) iptables</h4><hr>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在此模式下，kube-proxy 使用内核 netfilter 子系统的 iptables API 配置数据包转发规则。对于每个端点，它会安装 iptables 规则，默认情况下会随机选择一个后端 Pod</span><br></pre></td></tr></table></figure>
 
-<p>iptables也只能在conf改动一部分规则同步优化的内容，这里面用的相对多的是<code>minSyncPeriod</code>、<code>masqueradeAll</code>、<code>syncPeriod</code>其他的其实用的比较少，但可见并没有负载相关的配置供修改</p>
+<p>iptables也只能在conf改动一部分规则同步优化的内容，这里面用的相对多的是 <code>minSyncPeriod</code>、 <code>masqueradeAll</code>、 <code>syncPeriod</code>其他的其实用的比较少，但可见并没有负载相关的配置供修改</p>
 <p>这部分可以参考下文</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/#kubeproxy-config-k8s-io-v1alpha1-KubeProxyIPTablesConfiguration">https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/#kubeproxy-config-k8s-io-v1alpha1-KubeProxyIPTablesConfiguration</a></p>
@@ -473,8 +474,71 @@
 
 <p>那有没有在这部分能弥补处理负载策略的模式呢</p>
 <p><strong>有的，兄弟有的</strong></p>
-<p>与<code>iptables</code>相对的<code>ipvs</code>则可以按照我们的自定义做出符合场景的负载模式处理。</p>
-<h1 id="2025年4月7日留-service部分没写完，下一次摸鱼时候会更新"><a href="#2025年4月7日留-service部分没写完，下一次摸鱼时候会更新" class="headerlink" title="2025年4月7日留: service部分没写完，下一次摸鱼时候会更新"></a>2025年4月7日留: service部分没写完，下一次摸鱼时候会更新</h1>
+<p>与<code>iptables</code>相对的<code>ipvs</code>则可以按照我们需求做出特定负载模式处理。</p>
+<h1 id="2025年4月7日留-service部分没写完，下一次摸鱼时候会更新"><a href="#2025年4月7日留-service部分没写完，下一次摸鱼时候会更新" class="headerlink" title="2025年4月7日留: service部分没写完，下一次摸鱼时候会更新"></a><del>2025年4月7日留: service部分没写完，下一次摸鱼时候会更新</del></h1><h4 id="2-ipvs"><a href="#2-ipvs" class="headerlink" title="2) ipvs"></a>2) ipvs</h4><hr>
+<p>官网的文档对于 <code>IPVS</code> 的相关资料并不怎么细 <del>（这一点在其他功能点也是通病，不知道之后会不会补全文档）</del> 。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/#kubeproxy-config-k8s-io-v1alpha1-KubeProxyIPVSConfiguration">https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/#kubeproxy-config-k8s-io-v1alpha1-KubeProxyIPVSConfiguration</a></p>
+</blockquote>
+<p>不过倒是有收录一篇华为的研究文章，有对选项和处理逻辑之类做出解释</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.io/blog/2018/07/09/ipvs-based-in-cluster-load-balancing-deep-dive/">https://kubernetes.io/blog/2018/07/09/ipvs-based-in-cluster-load-balancing-deep-dive/</a></p>
+</blockquote>
+<p>这里需要简单引入一下 <code>kube-proxy</code> 的 <code>ipvs</code> 概念。</p>
+<p>我想了下还是通过与 <code>iptables</code> 对比的方式可能会更直观，方便理解一些.</p>
+<p><em>注意：下文中如果出现 <code>VIP</code> 则是代指 <code>ClusterIP</code> 和 <code>externalIP</code></em></p>
+<hr>
+<p>首先 <code>IPVS</code> 对比 <code>iptables</code> 比较核心的差异点：</p>
+<ol>
+<li><p>首当其冲的是允许指定负载算法，不论是 <code>kube-proxy/config.conf</code> 还是直接运行时候<a target="_blank" rel="noopener" href="https://kubernetes.io/blog/2018/07/09/ipvs-based-in-cluster-load-balancing-deep-dive/#parameter-changes">命令行给参</a>，都可以通过指定 <code>scheduler</code>字段，来选择负载方式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rr：循环</span><br><span class="line">lc：最少连接</span><br><span class="line">dh：目标哈希</span><br><span class="line">sh：源散列</span><br><span class="line">sed：最短预期延迟</span><br><span class="line">nq：永不排队</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后是运作方式的区别，<code>ipvs</code> 不同于 <code>iptables</code> 直接在 <code>workNode</code> 上起给当前节点工作的pod都起一个对应的 <code>iptables</code> 规则，<code>IPVS</code> 采用了对于 <code>svc</code> 的 <strong>每个</strong> <code>ClusterIP</code> 和 <code>externalIP</code> 都单独起一个 <code>LVS</code>，其会关联到这一个 <code>svc</code> IP+端口，并后面也关联到对应的所有 <code>pod</code> IP与服务端口，而后在 <code>LVS</code> 中会建立对应 pod <code>ip端口</code> 的hash表. </p>
+<p>对于 <code>客户端</code> 发起请求匹配的时候不会像 <code>iptables</code> 那样链式匹配工作节点上的 <code>iptables</code> 规则链，所以 <code>iptables</code> 规则数量增多时，匹配效率可能下降;</p>
+<p><code>ipvs</code>的 <code>LVS</code> 中采用hash表的匹配模式，当 <code>客户端请求</code> 到了 <code>VIP</code> 其对应的 <code>LVS</code> 会查询的hash表中的 <code>ip+端口</code> 对，再匹配到后端 <code>pod</code> . </p>
+<p>还是以 <code>service</code> 为例，这里文章作者其实给了一个 <code>svc</code> <code>nodePort</code> 的例子，比如起了一个 <code>svc</code> 绑定了一组 <code>pods</code> ，比如<code>pods</code> 里有三个 <code>pod</code>  , 并且 <code>svc</code> 指定了 <code>nodePort</code> 模式，那如果 <code>kubeproxy</code> 是 <code>iptables</code> 模式，每个工作节点上的 <code>iptables</code> 表都会新增三条规则. 之后如果又有一个新增的 <code>svc</code>，那每个工作节点会新增这个 <code>svc</code> 对应的 <code>pod</code> 数量至少相等的规则链。</p>
+<p>这也就使得在多服务的大集群下，一个工作节点的<code>iptables</code>可能会由<code>kubeproxy</code>维护并负责转发着上千个<code>pod</code> 对应的规则链，这样业务越大，越会影响到匹配规则链的效率，同时因为<code>kubeproxy</code>要介入请求转发，还会产生性能瓶颈。</p>
+<p>而对应这种面对大量的规则的场景，<code>IPVS</code> 通过使用hash表来缓解了这部分查询的开销，同时 当请求进入 <code>vip</code> 时 <code>ipvs</code> 会直接查询对应的hash表，然后进行请求转发，！是的，<code>kube-proxy</code>!在 <code>ipvs</code> 的情况下不需要直接参与到转发工作了，<code>kube-proxy</code> 主要工作回到了监听 <code>api-server</code> 及时关注 <code>Service</code> 和 <code>Endpoint</code> ，并更新、创建、检查 <code>IPVS</code> 虚拟服务器的规则。</p>
+<p>但文章中也表述了，</p>
+</li>
+</ol>
+<p>「给还没有吃上饭的 <code>svc</code> 带去！ 对应的 <code>虚拟服务器</code>！ 」 此间事于<code>库伯普肉瑟斯/挨批威埃斯</code>——<code>proxier</code>第<code>L1775</code>行亦有记载</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/proxier.go#L1775C1-L1783C15">https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/proxier.go#L1775C1-L1783C15</a></p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(proxier *Proxier)</span></span> syncService(svcName <span class="type">string</span>, vs *utilipvs.VirtualServer, bindAddr <span class="type">bool</span>, alreadyBoundAddrs sets.Set[<span class="type">string</span>]) <span class="type">error</span> &#123;</span><br><span class="line">	appliedVirtualServer, _ := proxier.ipvs.GetVirtualServer(vs)</span><br><span class="line">	<span class="keyword">if</span> appliedVirtualServer == <span class="literal">nil</span> || !appliedVirtualServer.Equal(vs) &#123;</span><br><span class="line">		<span class="keyword">if</span> appliedVirtualServer == <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="comment">// IPVS service is not found, create a new service</span></span><br><span class="line">			proxier.logger.V(<span class="number">3</span>).Info(<span class="string">&quot;Adding new service&quot;</span>, <span class="string">&quot;serviceName&quot;</span>, svcName, <span class="string">&quot;virtualServer&quot;</span>, vs)</span><br><span class="line">			<span class="keyword">if</span> err := proxier.ipvs.AddVirtualServer(vs); err != <span class="literal">nil</span> &#123;</span><br><span class="line">				proxier.logger.Error(err, <span class="string">&quot;Failed to add IPVS service&quot;</span>, <span class="string">&quot;serviceName&quot;</span>, svcName)</span><br><span class="line">				<span class="keyword">return</span> err</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>其实能看到他函数名是 <code>syncService()</code>，说明这个其实是在每次同步 <code>service</code>时，如果没有找到  <code>svc</code> 对应的<code>GetVirtualServer</code> 就会去调 <code>AddVirtualServer()</code> 给创建个新的</p>
+<p>对于 <code>AddVirtualServer()</code> 他走<code>ipvs.go</code>的接口，最终调用到的这里</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/util/ipvs_linux.go">https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/util/ipvs_linux.go</a></p>
+</blockquote>
+<p>那这时候可能会有疑问</p>
+<blockquote>
+<p>「阿达西，你的ipvs，我的挨个雄鹰一样的vip创建的呢，去哪了！」——出自《生姜男人必修课》</p>
+</blockquote>
+<p>这个需要往上走，其实来看谁调用的<code>syncService()</code>，就会发现它有个轮询 <code>svcPortMap</code></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/proxier.go#L1010">https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/proxier.go#L1010</a></p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里会轮询服务映射，其中会包含这个svc的信息，包含 VIP 端口等</span></span><br><span class="line">	<span class="keyword">for</span> svcPortName, svcPort := <span class="keyword">range</span> proxier.svcPortMap &#123;</span><br><span class="line">		svcInfo, ok := svcPort.(*servicePortInfo)</span><br><span class="line">		<span class="keyword">if</span> !ok &#123;</span><br><span class="line">			proxier.logger.Error(<span class="literal">nil</span>, <span class="string">&quot;Failed to cast serviceInfo&quot;</span>, <span class="string">&quot;servicePortName&quot;</span>, svcPortName)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		protocol := strings.ToLower(<span class="type">string</span>(svcInfo.Protocol()))</span><br><span class="line">		<span class="comment">// Precompute svcNameString; with many services the many calls</span></span><br><span class="line">		<span class="comment">// to ServicePortName.String() show up in CPU profiles.</span></span><br><span class="line">		svcPortNameString := svcPortName.String()</span><br><span class="line"></span><br><span class="line">		......</span><br><span class="line">    <span class="comment">// 下面这里调用了 `syncService` 来创建服务</span></span><br><span class="line">		<span class="keyword">if</span> err := proxier.syncService(svcPortNameString, serv, <span class="literal">true</span>, alreadyBoundAddrs); err == <span class="literal">nil</span> &#123;</span><br><span class="line">			activeIPVSServices.Insert(serv.String())</span><br><span class="line">			activeBindAddrs.Insert(serv.Address.String())</span><br></pre></td></tr></table></figure>
+
+<p>那话说回来有没有 <code>ipvs</code> 相较于 <code>iptables</code> 办不到的事？ </p>
+<p><strong>有的兄弟！有的</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.io/blog/2018/07/09/ipvs-based-in-cluster-load-balancing-deep-dive/#iptables-ipset-in-ipvs-proxier">https://kubernetes.io/blog/2018/07/09/ipvs-based-in-cluster-load-balancing-deep-dive/#iptables-ipset-in-ipvs-proxier</a></p>
+</blockquote>
+<blockquote>
+<p>IPVS is for load balancing and it can’t handle other workarounds in kube-proxy, e.g. packet filtering, hairpin-masquerade tricks, SNAT, etc.</p>
+</blockquote>
+<p><code>IPVS</code> 主要用于负载均衡，它无法处理 <code>kube-proxy</code> 中的其他功能，例如数据包过滤、hairpin-masquerade  、SNAT 等</p>
+<p><em>hairpin-masquerade ：一个 Pod 通过 Service 的 ClusterIP 访问自身时，需要进行特殊的网络地址转换，IPVS 不支持这种处理。</em></p>
+<p>这部分还是由 <code>iptables</code> 来处理的。</p>
+<p>tips:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ipvsadm -Ln <span class="comment">#可以查看当前IPVS规则</span></span><br><span class="line">IP Virtual Server version 1.2.1 (size=4096)</span><br><span class="line">Prot LocalAddress:Port Scheduler Flags</span><br><span class="line">  -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn</span><br><span class="line">TCP  10.96.0.1:443 rr</span><br><span class="line">  -&gt; 192.168.1.101:6443           Masq    1      0          0</span><br><span class="line">  -&gt; 192.168.1.102:6443           Masq    1      0          0</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="最后一次更新于2025年4月14日，service还是没写完，下次摸鱼再更。"><a href="#最后一次更新于2025年4月14日，service还是没写完，下次摸鱼再更。" class="headerlink" title="最后一次更新于2025年4月14日，service还是没写完，下次摸鱼再更。"></a>最后一次更新于2025年4月14日，service还是没写完，下次摸鱼再更。</h1>
         
       </div>
 
@@ -486,27 +550,22 @@
   
     
 <nav id="article-nav">
-  <a class="article-nav-btn left "
-    
-      href="/2025/04/04/box-wp-Haze/"
-      title="【season-7】 htb Haze wp"
+  <a class="article-nav-btn left  disabled "
      >
     <i class="fa-solid fa-angle-left"></i>
     <p class="title-text">
-      
-        【season-7】 htb Haze wp
         
     </p>
   </a>
   <a class="article-nav-btn right "
     
-      href="/2025/03/25/box-wp-Code/"
-      title="【season-7】 htb Code wp"
+      href="/2025/04/13/box-wp-Nocturnal/"
+      title="【season-7】 htb Nocturnal wp"
      >
 
     <p class="title-text">
       
-        【season-7】 htb Code wp
+        【season-7】 htb Nocturnal wp
         
     </p>
     <i class="fa-solid fa-angle-right"></i>
