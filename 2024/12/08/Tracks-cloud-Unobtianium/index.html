@@ -69,6 +69,11 @@
 
 <meta name="generator" content="Hexo 7.1.1"></head>
 
+<script>
+
+
+
+</script>
 <body>
   
   
@@ -279,8 +284,10 @@
   </div>
 
     
-  </div>
+  </div> 
 </sidebar>
+
+
     </div>
     <div id="content-body">
        
@@ -292,7 +299,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_cm95uvrc0001c3gky0mhp536m">
+      <a class="article-gallery-img" rel="gallery_cmatosr21001ncsky59uphdn6">
         <img src="/wpimages/2024/tracks-cloud/Unobtianium/background.jpg" itemprop="image">
       </a>
     
@@ -500,7 +507,7 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Server)</span></span> InstallDebuggingHandlers() &#123;</span><br><span class="line">	klog.InfoS(<span class="string">&quot;Adding debug handlers to kubelet server&quot;</span>)</span><br><span class="line"></span><br><span class="line">	s.addMetricsBucketMatcher(<span class="string">&quot;run&quot;</span>)</span><br><span class="line">	ws := <span class="built_in">new</span>(restful.WebService)</span><br><span class="line">	ws.</span><br><span class="line">		Path(<span class="string">&quot;/run&quot;</span>)</span><br><span class="line">	ws.Route(ws.POST(<span class="string">&quot;/&#123;podNamespace&#125;/&#123;podID&#125;/&#123;containerName&#125;&quot;</span>).</span><br><span class="line">		To(s.getRun).</span><br><span class="line">		Operation(<span class="string">&quot;getRun&quot;</span>))</span><br><span class="line">	ws.Route(ws.POST(<span class="string">&quot;/&#123;podNamespace&#125;/&#123;podID&#125;/&#123;uid&#125;/&#123;containerName&#125;&quot;</span>).</span><br><span class="line">		To(s.getRun).</span><br><span class="line">		Operation(<span class="string">&quot;getRun&quot;</span>))</span><br><span class="line">	s.restfulCont.Add(ws)</span><br><span class="line"></span><br><span class="line">	s.addMetricsBucketMatcher(<span class="string">&quot;exec&quot;</span>)</span><br><span class="line">	ws = <span class="built_in">new</span>(restful.WebService)</span><br><span class="line">	ws.</span><br><span class="line">		Path(<span class="string">&quot;/exec&quot;</span>)</span><br><span class="line">	ws.Route(ws.GET(<span class="string">&quot;/&#123;podNamespace&#125;/&#123;podID&#125;/&#123;containerName&#125;&quot;</span>).</span><br><span class="line">		To(s.getExec).</span><br><span class="line">		Operation(<span class="string">&quot;getExec&quot;</span>))</span><br><span class="line">	ws.Route(ws.POST(<span class="string">&quot;/&#123;podNamespace&#125;/&#123;podID&#125;/&#123;containerName&#125;&quot;</span>).</span><br><span class="line">		To(s.getExec).</span><br><span class="line">		Operation(<span class="string">&quot;getExec&quot;</span>))</span><br><span class="line">	ws.Route(ws.GET(<span class="string">&quot;/&#123;podNamespace&#125;/&#123;podID&#125;/&#123;uid&#125;/&#123;containerName&#125;&quot;</span>).</span><br><span class="line">		To(s.getExec).</span><br><span class="line">		Operation(<span class="string">&quot;getExec&quot;</span>))</span><br><span class="line">	ws.Route(ws.POST(<span class="string">&quot;/&#123;podNamespace&#125;/&#123;podID&#125;/&#123;uid&#125;/&#123;containerName&#125;&quot;</span>).</span><br><span class="line">		To(s.getExec).</span><br><span class="line">		Operation(<span class="string">&quot;getExec&quot;</span>))</span><br><span class="line">	s.restfulCont.Add(ws)</span><br></pre></td></tr></table></figure>
         
       </div>
-
+      
          
     </div>
     
@@ -555,6 +562,7 @@
   </div>
 </footer>
 
+
     </div>
     <div class="back-to-top-wrapper">
     <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
@@ -583,3 +591,5 @@
   <script src="/js/light-dark-switch.js"></script>
 </body>
 </html>
+
+

