@@ -40,7 +40,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/wpimages/2025/Kubernetes-IngressNightmare/background.jpg">
 <meta property="article:published_time" content="2025-04-14T12:23:15.000Z">
-<meta property="article:modified_time" content="2025-04-14T12:49:20.244Z">
+<meta property="article:modified_time" content="2025-05-19T11:39:41.013Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Kubernetes">
 <meta property="article:tag" content="service">
@@ -286,6 +286,60 @@
 
 
     </div>
+    
+    <div id="toc" class="widget-wrap">
+      <button class="toc-toggle" onclick="toggleTOC()">
+    <span class="toc-toggle-icon">
+        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </span>
+</button>
+<div id="tocContainer" style="display: block;">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">1.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tips"><span class="toc-number">2.</span> <span class="toc-text">tips</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#service"><span class="toc-number"></span> <span class="toc-text">service</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ClusterIP"><span class="toc-number">1.</span> <span class="toc-text">ClusterIP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%AE%BF%E9%97%AEpod%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.1.</span> <span class="toc-text">一、访问pod端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AE%BF%E9%97%AEClusterIP%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.2.</span> <span class="toc-text">二、访问ClusterIP端口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-iptables"><span class="toc-number">1.2.1.</span> <span class="toc-text">1) iptables</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2025%E5%B9%B44%E6%9C%887%E6%97%A5%E7%95%99-service%E9%83%A8%E5%88%86%E6%B2%A1%E5%86%99%E5%AE%8C%EF%BC%8C%E4%B8%8B%E4%B8%80%E6%AC%A1%E6%91%B8%E9%B1%BC%E6%97%B6%E5%80%99%E4%BC%9A%E6%9B%B4%E6%96%B0"><span class="toc-number"></span> <span class="toc-text">2025年4月7日留: service部分没写完，下一次摸鱼时候会更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ipvs"><span class="toc-number">0.0.1.</span> <span class="toc-text">2) ipvs</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E6%9B%B4%E6%96%B0%E4%BA%8E2025%E5%B9%B44%E6%9C%8814%E6%97%A5%EF%BC%8Cservice%E8%BF%98%E6%98%AF%E6%B2%A1%E5%86%99%E5%AE%8C%EF%BC%8C%E4%B8%8B%E6%AC%A1%E6%91%B8%E9%B1%BC%E5%86%8D%E6%9B%B4%E3%80%82"><span class="toc-number"></span> <span class="toc-text">最后一次更新于2025年4月14日，service还是没写完，下次摸鱼再更。</span></a>
+</div>
+<script>
+    function toggleTOC() {
+        const tocContainer = document.getElementById('tocContainer');
+        const icon = document.querySelector('.toc-toggle-icon i');
+        const isHidden = tocContainer.style.display === 'none';
+        tocContainer.style.display = isHidden ? 'block' : 'none';
+        icon.className = isHidden ? 'fa fa-chevron-up' : 'fa fa-chevron-down';
+    }
+</script>
+<style>
+    .toc-toggle {
+        position: relative;
+        display: inline-block;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .toc-toggle:hover {
+        background-color: #e5e5e5;
+    }
+
+    .toc-toggle-icon {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .toc-toggle-icon i {
+        font-size: 16px;
+        transition: transform 0.2s ease;
+    }
+
+    #tocContainer {
+        display: block;
+        margin-top: 10px;
+    }
+</style>
+
+
+    </div>
+    
     <div id="content-body">
        
 
@@ -587,6 +641,7 @@
 
   
 </article>
+
 
 
 

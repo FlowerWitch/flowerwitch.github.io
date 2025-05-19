@@ -283,6 +283,60 @@
 
 
     </div>
+    
+    <div id="toc" class="widget-wrap">
+      <button class="toc-toggle" onclick="toggleTOC()">
+    <span class="toc-toggle-icon">
+        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </span>
+</button>
+<div id="tocContainer" style="display: block;">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#USER"><span class="toc-number">1.</span> <span class="toc-text">USER</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nmap"><span class="toc-number">1.1.</span> <span class="toc-text">nmap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1337"><span class="toc-number">1.1.1.</span> <span class="toc-text">1337</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5000"><span class="toc-number">1.1.2.</span> <span class="toc-text">5000</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95-%E6%9C%AA%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81%E4%B8%8B"><span class="toc-number">2.</span> <span class="toc-text">尝试-未登录状态下</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%9D%91%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-number">2.1.</span> <span class="toc-text">有坑的地方</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95-%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81%E4%B8%8B"><span class="toc-number">3.</span> <span class="toc-text">尝试-登录状态下</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E7%82%B9"><span class="toc-number">3.1.</span> <span class="toc-text">坑点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LOGIN-morty"><span class="toc-number">4.</span> <span class="toc-text">LOGIN morty</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH-morty"><span class="toc-number">4.1.</span> <span class="toc-text">SSH morty</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROOT"><span class="toc-number">5.</span> <span class="toc-text">ROOT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker"><span class="toc-number">5.1.</span> <span class="toc-text">docker</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reverse-shell-c"><span class="toc-number">6.</span> <span class="toc-text">reverse-shell.c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Makefile"><span class="toc-number">7.</span> <span class="toc-text">Makefile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hash"><span class="toc-number">8.</span> <span class="toc-text">hash</span></a></li></ol>
+</div>
+<script>
+    function toggleTOC() {
+        const tocContainer = document.getElementById('tocContainer');
+        const icon = document.querySelector('.toc-toggle-icon i');
+        const isHidden = tocContainer.style.display === 'none';
+        tocContainer.style.display = isHidden ? 'block' : 'none';
+        icon.className = isHidden ? 'fa fa-chevron-up' : 'fa fa-chevron-down';
+    }
+</script>
+<style>
+    .toc-toggle {
+        position: relative;
+        display: inline-block;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .toc-toggle:hover {
+        background-color: #e5e5e5;
+    }
+
+    .toc-toggle-icon {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .toc-toggle-icon i {
+        font-size: 16px;
+        transition: transform 0.2s ease;
+    }
+
+    #tocContainer {
+        display: block;
+        margin-top: 10px;
+    }
+</style>
+
+
+    </div>
+    
     <div id="content-body">
        
 
@@ -617,6 +671,7 @@
 
   
 </article>
+
 
 
 

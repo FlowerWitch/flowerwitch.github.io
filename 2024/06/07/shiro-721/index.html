@@ -283,6 +283,60 @@
 
 
     </div>
+    
+    <div id="toc" class="widget-wrap">
+      <button class="toc-toggle" onclick="toggleTOC()">
+    <span class="toc-toggle-icon">
+        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </span>
+</button>
+<div id="tocContainer" style="display: block;">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E9%9D%A2%E7%9A%84%E9%83%BD%E6%B2%BE%E7%82%B9%E5%BA%9F%E8%AF%9D%E4%BA%86%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%9F%BA%E7%A1%80%E7%9A%84%E8%A1%A5%E4%BD%8D%EF%BC%8C%E4%B8%8B%E9%9D%A2%E6%89%8D%E6%98%AF%E6%AD%A3%E7%BB%8F%E7%9A%84%E9%83%A8%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">上面的都沾点废话了，就是基础的补位，下面才是正经的部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E9%87%8C%E6%98%AFpadding-oracle-attack"><span class="toc-number">2.</span> <span class="toc-text">这里是padding oracle attack </span></a></li></ol>
+</div>
+<script>
+    function toggleTOC() {
+        const tocContainer = document.getElementById('tocContainer');
+        const icon = document.querySelector('.toc-toggle-icon i');
+        const isHidden = tocContainer.style.display === 'none';
+        tocContainer.style.display = isHidden ? 'block' : 'none';
+        icon.className = isHidden ? 'fa fa-chevron-up' : 'fa fa-chevron-down';
+    }
+</script>
+<style>
+    .toc-toggle {
+        position: relative;
+        display: inline-block;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .toc-toggle:hover {
+        background-color: #e5e5e5;
+    }
+
+    .toc-toggle-icon {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .toc-toggle-icon i {
+        font-size: 16px;
+        transition: transform 0.2s ease;
+    }
+
+    #tocContainer {
+        display: block;
+        margin-top: 10px;
+    }
+</style>
+
+
+    </div>
+    
     <div id="content-body">
        
 
@@ -492,6 +546,7 @@
 
   
 </article>
+
 
 
 

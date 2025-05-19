@@ -284,6 +284,60 @@
 
 
     </div>
+    
+    <div id="toc" class="widget-wrap">
+      <button class="toc-toggle" onclick="toggleTOC()">
+    <span class="toc-toggle-icon">
+        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </span>
+</button>
+<div id="tocContainer" style="display: block;">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E9%A2%98%EF%BC%8C%E8%80%83%E5%AF%9F-x64%E7%9A%84%E5%AD%97%E7%AC%A6%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%BC%8F%E6%B4%9E-%E5%92%8C-Canray"><span class="toc-number">1.</span> <span class="toc-text">入门题，考察 x64的字符格式化漏洞 和 Canray</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#add"><span class="toc-number">2.</span> <span class="toc-text">add()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#naming"><span class="toc-number">3.</span> <span class="toc-text">naming()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#edit"><span class="toc-number">4.</span> <span class="toc-text">edit()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#show"><span class="toc-number">5.</span> <span class="toc-text">show()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">6.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2pie"><span class="toc-number">7.</span> <span class="toc-text">泄露pie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Canary"><span class="toc-number">8.</span> <span class="toc-text">Canary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#libc"><span class="toc-number">9.</span> <span class="toc-text">libc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-b%E6%89%80%E5%AD%98%E5%82%A8%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">10.</span> <span class="toc-text">修改_b所存储的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4payload"><span class="toc-number">11.</span> <span class="toc-text">完整payload</span></a></li></ol>
+</div>
+<script>
+    function toggleTOC() {
+        const tocContainer = document.getElementById('tocContainer');
+        const icon = document.querySelector('.toc-toggle-icon i');
+        const isHidden = tocContainer.style.display === 'none';
+        tocContainer.style.display = isHidden ? 'block' : 'none';
+        icon.className = isHidden ? 'fa fa-chevron-up' : 'fa fa-chevron-down';
+    }
+</script>
+<style>
+    .toc-toggle {
+        position: relative;
+        display: inline-block;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .toc-toggle:hover {
+        background-color: #e5e5e5;
+    }
+
+    .toc-toggle-icon {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .toc-toggle-icon i {
+        font-size: 16px;
+        transition: transform 0.2s ease;
+    }
+
+    #tocContainer {
+        display: block;
+        margin-top: 10px;
+    }
+</style>
+
+
+    </div>
+    
     <div id="content-body">
        
 
@@ -481,6 +535,7 @@
 
   
 </article>
+
 
 
 

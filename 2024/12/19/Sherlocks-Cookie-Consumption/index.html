@@ -286,6 +286,60 @@
 
 
     </div>
+    
+    <div id="toc" class="widget-wrap">
+      <button class="toc-toggle" onclick="toggleTOC()">
+    <span class="toc-toggle-icon">
+        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </span>
+</button>
+<div id="tocContainer" style="display: block;">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OPTinselTrace24-2-Cookie-Consumption"><span class="toc-number">1.</span> <span class="toc-text">OPTinselTrace24-2: Cookie Consumption</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sherlock-Scenario"><span class="toc-number">1.1.</span> <span class="toc-text">Sherlock Scenario</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-1"><span class="toc-number">1.2.</span> <span class="toc-text">task 1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-many-replicas-are-configured-for-the-flask-app-deployment"><span class="toc-number">1.2.1.</span> <span class="toc-text">How many replicas are configured for the flask-app deployment?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-2"><span class="toc-number">1.3.</span> <span class="toc-text">task 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-the-NodePort-through-which-the-flask-app-is-exposed"><span class="toc-number">1.3.1.</span> <span class="toc-text">What is the NodePort through which the flask-app is exposed?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-3"><span class="toc-number">1.4.</span> <span class="toc-text">task 3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-time-UTC-did-the-attacker-first-initiate-fuzzing-on-the-system-endpoint"><span class="toc-number">1.4.1.</span> <span class="toc-text">What time (UTC) did the attacker first initiate fuzzing on the &#x2F;system&#x2F; endpoint?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-4"><span class="toc-number">1.5.</span> <span class="toc-text">task 4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Which-endpoint-did-the-attacker-discover-through-fuzzing-and-subsequently-exploit"><span class="toc-number">1.5.1.</span> <span class="toc-text">Which endpoint did the attacker discover through fuzzing and subsequently exploit?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-5"><span class="toc-number">1.6.</span> <span class="toc-text">task 5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Which-program-did-the-attacker-attempt-to-install-to-access-their-HTTP-pages"><span class="toc-number">1.6.1.</span> <span class="toc-text">Which program did the attacker attempt to install to access their HTTP pages?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-6"><span class="toc-number">1.7.</span> <span class="toc-text">task 6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-the-IP-address-of-the-attacker"><span class="toc-number">1.7.1.</span> <span class="toc-text">What is the IP address of the attacker?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-7"><span class="toc-number">1.8.</span> <span class="toc-text">task 7</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-the-name-of-the-pod-that-was-compromised-and-used-by-the-attacker-as-the-initial-foothold"><span class="toc-number">1.8.1.</span> <span class="toc-text">What is the name of the pod that was compromised and used by the attacker as the initial foothold?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-8"><span class="toc-number">1.9.</span> <span class="toc-text">task 8</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-the-name-of-the-malicious-pod-created-by-the-attacker"><span class="toc-number">1.9.1.</span> <span class="toc-text">What is the name of the malicious pod created by the attacker?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#task-9"><span class="toc-number">1.10.</span> <span class="toc-text">task 9</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-the-absolute-path-of-the-backdoor-file-left-behind-by-the-attacker"><span class="toc-number">1.10.1.</span> <span class="toc-text">What is the absolute path of the backdoor file left behind by the attacker?</span></a></li></ol></li></ol></li></ol>
+</div>
+<script>
+    function toggleTOC() {
+        const tocContainer = document.getElementById('tocContainer');
+        const icon = document.querySelector('.toc-toggle-icon i');
+        const isHidden = tocContainer.style.display === 'none';
+        tocContainer.style.display = isHidden ? 'block' : 'none';
+        icon.className = isHidden ? 'fa fa-chevron-up' : 'fa fa-chevron-down';
+    }
+</script>
+<style>
+    .toc-toggle {
+        position: relative;
+        display: inline-block;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .toc-toggle:hover {
+        background-color: #e5e5e5;
+    }
+
+    .toc-toggle-icon {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .toc-toggle-icon i {
+        font-size: 16px;
+        transition: transform 0.2s ease;
+    }
+
+    #tocContainer {
+        display: block;
+        margin-top: 10px;
+    }
+</style>
+
+
+    </div>
+    
     <div id="content-body">
        
 
@@ -432,6 +486,7 @@
 
   
 </article>
+
 
 
 
