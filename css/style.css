@@ -3050,13 +3050,19 @@ input[type="range"] {
 #toc a {
   text-decoration: none;
   color: var(--link);
-  -webkit-transition: color 0.3s ease;
-  -moz-transition: color 0.3s ease;
-  -ms-transition: color 0.3s ease;
-  transition: color 0.3s ease;
+  -webkit-transition: color 0.2s ease;
+  -moz-transition: color 0.2s ease;
+  -ms-transition: color 0.2s ease;
+  transition: color 0.2s ease;
 }
 #toc a:hover {
   color: var(--link-hover);
+  text-shadow: 0 0 2px var(--link);
+}
+#toc a:focus {
+  outline: none;
+  -webkit-box-shadow: 0 0 0 2px var(--selection-bg);
+  box-shadow: 0 0 0 2px var(--selection-bg);
 }
 #toc::-webkit-scrollbar {
   width: 6px;
