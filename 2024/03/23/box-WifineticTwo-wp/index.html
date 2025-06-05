@@ -182,14 +182,14 @@
     <div class="widget">
       <h3 class="widget-title">Categories</h3>
       <div class="category-box">
-            <a class="category-link" href="/categories/cloud/">
-                cloud
-                <div class="category-count">8</div>
-            </a>
-        
             <a class="category-link" href="/categories/forensic/">
                 forensic
                 <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">8</div>
             </a>
         
             <a class="category-link" href="/categories/AD/">
@@ -357,7 +357,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img" rel="gallery_cmbjp7l120036jcky2qblcx68">
+      <a class="article-gallery-img" rel="gallery_cmbjpszs600a4q8kyhr5a58bx">
         <img src="/wpimages/2024/wifinetictwo/backgroup.png" itemprop="image">
       </a>
     
@@ -439,7 +439,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ctrl_interface=/var/run/wpa_supplicant</span><br><span class="line">ctrl_interface_group=0</span><br><span class="line">update_config=1</span><br><span class="line"></span><br><span class="line">network=&#123;</span><br><span class="line">  ssid=<span class="string">&quot;plcrouter&quot;</span></span><br><span class="line">  psk=<span class="string">&quot;NoWWEDoKnowwhaTisReal123!&quot;</span></span><br><span class="line">  key_mgmt=WPA-PSK</span><br><span class="line">  proto=WPA2</span><br><span class="line">  pairwise=CCMP TKIP</span><br><span class="line">  group=CCMP TKIP</span><br><span class="line">  scan_ssid=1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>要做dhcp的话就和文档里那样<br><code>vim /etc/systemd/network/25-wlan.network</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Match]</span><br><span class="line">Name=wlan0</span><br><span class="line"></span><br><span class="line">[Network]</span><br><span class="line">DHCP=ipv4</span><br></pre></td></tr></table></figure>
-<p>re一下他wlan0的服务<br>systemctl restart <a href="mailto:&#x77;&#112;&#97;&#x5f;&#x73;&#117;&#112;&#x70;&#108;&#105;&#x63;&#97;&#110;&#116;&#64;&#x77;&#x6c;&#97;&#x6e;&#x30;&#46;&#115;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;">&#x77;&#112;&#97;&#x5f;&#x73;&#117;&#112;&#x70;&#108;&#105;&#x63;&#97;&#110;&#116;&#64;&#x77;&#x6c;&#97;&#x6e;&#x30;&#46;&#115;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;</a></p>
+<p>re一下他wlan0的服务<br>systemctl restart <a href="mailto:&#119;&#112;&#97;&#x5f;&#x73;&#x75;&#x70;&#x70;&#x6c;&#105;&#x63;&#x61;&#110;&#x74;&#x40;&#119;&#x6c;&#x61;&#x6e;&#48;&#46;&#x73;&#101;&#114;&#x76;&#x69;&#99;&#101;">&#119;&#112;&#97;&#x5f;&#x73;&#x75;&#x70;&#x70;&#x6c;&#105;&#x63;&#x61;&#110;&#x74;&#x40;&#119;&#x6c;&#x61;&#x6e;&#48;&#46;&#x73;&#101;&#114;&#x76;&#x69;&#99;&#101;</a></p>
 <p>再ifconfig就能看到了卡起来了</p>
 <p>看一下路由表<br><img src="/wpimages/2024/wifinetictwo/route.jpg" alt="route"></p>
 <p>去ssh 网关192.168.1.1，getroot</p>
