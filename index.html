@@ -250,6 +250,12 @@
       <h3 class="widget-title">Recent Posts</h3>
       <ul>
         
+          <a class="recent-link" href="/2026/01/18/Vuln-SSCMS-2026-1-18/" title="Vuln-SSCMS-2026-1-18" >
+            <div class="recent-link-text">
+              Vuln-SSCMS-2026-1-18
+            </div>
+          </a>
+        
           <a class="recent-link" href="/2026/01/05/wiz-2026-cloudsecuritychampionship-7/" title="【Wiz 2026】State of Affairs" >
             <div class="recent-link-text">
               【Wiz 2026】State of Affairs
@@ -274,12 +280,6 @@
             </div>
           </a>
         
-          <a class="recent-link" href="/2025/08/11/wiz-2025-cloudsecuritychampionship-2/" title="【Wiz 2025】Contain Me If You Can" >
-            <div class="recent-link-text">
-              【Wiz 2025】Contain Me If You Can
-            </div>
-          </a>
-        
       </ul>
     </div>
   </div>
@@ -293,6 +293,85 @@
     
     <div id="content-body">
       
+   
+
+
+<article id="post-Vuln-SSCMS-2026-1-18" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2026/01/18/Vuln-SSCMS-2026-1-18/">Vuln-SSCMS-2026-1-18</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2026-01-18T12:18:50.000Z" itemprop="datePublished">2026-01-18</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            2.2k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              此处用户传入的 RelatedFileName 参数没有进行路径遍历字符的过滤或清洗，导致持有 /api/admin/cms/templates/templatesEditor/actions/settings 接口访问权限的用户，可以构造如  &quot;relatedFileName&quot;:&quot;/../../../../../../../../.././etc/cron.d/e2scrub_all&quot; 进行传参，请求的中 relatedFileName 参数将会进入到如下位置。
+
+cms&#x2F;src&#x2F;SSCMS.Web&#x2F;Controllers&#x2F;Admin&#x2F;Cms&#x2F;Templates&#x2F;TemplatesEditorController.Settings.cs
+
+
+在 TemplatesEditorController.Settings.cs 的 L100，含有路径穿越的内容的 RelatedFileName 的值又赋给了 template.RelatedFileName 中，然后 templ...
+            
+          </div>
+        
+      </div>
+      
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(http://tvax1.sinaimg.cn/large/0065CzJOly1i9f8ay0h55j34mo668b2g.jpg)" 
+      href="/2026/01/18/Vuln-SSCMS-2026-1-18/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
    
 
 
@@ -910,88 +989,6 @@
     <a class="right-panel  with-pic  "
        style="background-image: url(https://image.baidu.com/search/down?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i3bd5ma148j30vc1a74qp.jpg)" 
       href="/2025/06/09/box-wp-TombWatcher/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-Tracks-cloud-Vessel" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2025/06/06/Tracks-cloud-Vessel/">Tracks-cloud-Vessel</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2025-06-06T07:38:01.000Z" itemprop="datePublished">2025-06-06</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/cloud/">cloud</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            18k words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pyside2/" rel="tag">Pyside2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysqljs/" rel="tag">mysqljs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/owa/" rel="tag">owa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pdf/" rel="tag">pdf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pinns/" rel="tag">pinns</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sysctl/" rel="tag">sysctl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              nmap12345678└─$ sudo nmap -sS 10.10.11.178 -p- --min-rate=3000                                                                                   Nmap scan report for 10.10.11.178 Host is up (0.29s latency).                                       Not shown: 65533 closed tcp ports (reset)PORT   STATE SERVICE22/tcp open  ssh                                                  80/tcp open  http
-
-UserTCP 80&#x2F;web80唯一的功能页面就是login
-
-还有一个contant，但是不会触发任何发包
-
-login内可以注册以及修改密码，这里注册点也无法使用会直接跳报错页。
-
-目录扫描1234...
-            
-          </div>
-        
-      </div>
-      
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(https://image.baidu.com/search/down?url=http://tvax1.sinaimg.cn/mw690/0065CzJOly1i3bivb58rmj33k21wk4qr.jpg)" 
-      href="/2025/06/06/Tracks-cloud-Vessel/" 
     >
        
       <div class="overlay">
