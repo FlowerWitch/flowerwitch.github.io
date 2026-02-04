@@ -250,6 +250,12 @@
       <h3 class="widget-title">Recent Posts</h3>
       <ul>
         
+          <a class="recent-link" href="/2026/02/04/wiz-2026-bug-bounty/" title="【wiz】 2026の陈年文章" >
+            <div class="recent-link-text">
+              【wiz】 2026の陈年文章
+            </div>
+          </a>
+        
           <a class="recent-link" href="/2026/01/18/Vuln-SSCMS-2026-1-18/" title="Vuln-SSCMS-2026-1-18" >
             <div class="recent-link-text">
               Vuln-SSCMS-2026-1-18
@@ -271,12 +277,6 @@
           <a class="recent-link" href="/2025/09/02/box-wp-Guardian/" title="【season-8】 htb Guardian wp" >
             <div class="recent-link-text">
               【season-8】 htb Guardian wp
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/08/29/wiz-2025-cloudsecuritychampionship-3/" title="【Wiz 2025】Breaking The Barriers" >
-            <div class="recent-link-text">
-              【Wiz 2025】Breaking The Barriers
             </div>
           </a>
         
@@ -341,6 +341,41 @@
     
     &copy; 2026 Flower<br>
     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
+
+
+"_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
   </div>
 </footer>
 
