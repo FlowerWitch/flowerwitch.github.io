@@ -38,14 +38,14 @@
 <meta property="og:site_name" content="❀言わぬが花❀">
 <meta property="og:description" content="此处用户传入的 RelatedFileName 参数没有进行路径遍历字符的过滤或清洗，导致持有 &#x2F;api&#x2F;admin&#x2F;cms&#x2F;templates&#x2F;templatesEditor&#x2F;actions&#x2F;settings 接口访问权限的用户，可以构造如  &quot;relatedFileName&quot;:&quot;&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;.&#x2F;etc&#x2F;cron.d&#x2F;e2">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://image.baidu.com/search/down?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f8ay0h55j34mo668b2g.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/pic.html?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f8ay0h55j34mo668b2g.jpg">
 <meta property="article:published_time" content="2026-01-18T12:18:50.000Z">
-<meta property="article:modified_time" content="2026-01-18T14:16:17.707Z">
+<meta property="article:modified_time" content="2026-06-09T07:17:43.564Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="cve">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://image.baidu.com/search/down?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f8ay0h55j34mo668b2g.jpg">
+<meta name="twitter:image" content="https://cdn.cdnjson.com/pic.html?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f8ay0h55j34mo668b2g.jpg">
   
     <link rel="alternate" href="/atom.xml" title="❀言わぬが花❀" type="application/atom+xml">
   
@@ -268,6 +268,12 @@
       <h3 class="widget-title">Recent Posts</h3>
       <ul>
         
+          <a class="recent-link" href="/2026/05/14/Azure/" title="「花」铁线莲" >
+            <div class="recent-link-text">
+              「花」铁线莲
+            </div>
+          </a>
+        
           <a class="recent-link" href="/2026/02/04/wiz-2026-bug-bounty/" title="【wiz】 2026の陈年文章" >
             <div class="recent-link-text">
               【wiz】 2026の陈年文章
@@ -289,12 +295,6 @@
           <a class="recent-link" href="/2025/12/16/wiz-2025-cloudsecuritychampionship-6/" title="【Wiz 2025】Malware Busters!" >
             <div class="recent-link-text">
               【Wiz 2025】Malware Busters!
-            </div>
-          </a>
-        
-          <a class="recent-link" href="/2025/09/02/box-wp-Guardian/" title="【season-8】 htb Guardian wp" >
-            <div class="recent-link-text">
-              【season-8】 htb Guardian wp
             </div>
           </a>
         
@@ -383,7 +383,7 @@
   <div class="article-gallery-photos">
     
       <a class="article-gallery-img" rel="gallery_cmkjspivy0000r0kygr81ftik">
-        <img src="https://image.baidu.com/search/down?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f8ay0h55j34mo668b2g.jpg" itemprop="image">
+        <img src="https://cdn.cdnjson.com/pic.html?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f8ay0h55j34mo668b2g.jpg" itemprop="image">
       </a>
     
   </div>
@@ -431,29 +431,29 @@
 <blockquote>
 <p>cms&#x2F;src&#x2F;SSCMS.Web&#x2F;Controllers&#x2F;Admin&#x2F;Cms&#x2F;Templates<br>&#x2F;TemplatesEditorController.Settings.cs</p>
 </blockquote>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax3.sinaimg.cn/large/0065CzJOly1i9f60dv6rkj311e0v348i.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax3.sinaimg.cn/large/0065CzJOly1i9f60dv6rkj311e0v348i.jpg" alt="image"></p>
 <p>在 <code>TemplatesEditorController.Settings.cs</code> 的 <code>L100</code>，含有路径穿越的内容的 <code>RelatedFileName</code> 的值又赋给了 <code>template.RelatedFileName</code> 中，然后 <code>template</code> 被传入了到 <code>WriteContentToTemplateFileAsync()</code> 函数.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> _pathManager.WriteContentToTemplateFileAsync(site, template, request.Content, _authManager.AdminId);</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://image.baidu.com/search/down?url=http://tvax2.sinaimg.cn/large/0065CzJOly1i9f6n40mw6j31130uotie.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax2.sinaimg.cn/large/0065CzJOly1i9f6n40mw6j31130uotie.jpg" alt="image"></p>
 <p><code>WriteContentToTemplateFileAsync</code> 函数位于如下路径。</p>
 <blockquote>
 <p>cms&#x2F;src&#x2F;SSCMS.Core&#x2F;Services<br>&#x2F;PathManager.Template.cs</p>
 </blockquote>
 <p>传入的 <code>template</code> 又被传入到了 <code>GetTemplateFilePathAsync()</code> 函数中 </p>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/large/0065CzJOly1i9f6fqnnyxj312k0fbae9.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax4.sinaimg.cn/large/0065CzJOly1i9f6fqnnyxj312k0fbae9.jpg" alt="image"></p>
 <p>在 <code>GetTemplateFilePathAsync()</code> 中 <code>template.RelatedFileName</code> 又被传入到 <code>GetSitePathAsync()</code>  函数。</p>
 <blockquote>
 <p>src&#x2F;SSCMS.Core&#x2F;Services&#x2F;PathManager.Template.cs</p>
 </blockquote>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f724c007j31180cw428.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f724c007j31180cw428.jpg" alt="image"></p>
 <p><code>GetSitePathAsync()</code> 定义如下</p>
 <blockquote>
 <p>cms&#x2F;src&#x2F;SSCMS.Core&#x2F;Services<br>&#x2F;PathManager.Site.cs</p>
 </blockquote>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/large/0065CzJOly1i9f7690eklj31200q2q9b.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax4.sinaimg.cn/large/0065CzJOly1i9f7690eklj31200q2q9b.jpg" alt="image"></p>
 <p>传入的 <code>template.RelatedFileName</code> 首先进入到了 <code>PathUtils.Combine(returnPath, path);</code></p>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f79oprq2j30u90dwwhd.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f79oprq2j30u90dwwhd.jpg" alt="image"></p>
 <p>在这里与siteId项目路径路径进行拼接</p>
 <p>比如</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url1 = &quot;/var/www/html/111&quot;</span><br><span class="line"></span><br><span class="line">url2 = &quot;index.html&quot;</span><br></pre></td></tr></table></figure>
@@ -463,12 +463,12 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returnPath = <span class="string">&quot;/var/www/html/111/../../../../../../../../../etc/cron.d/test&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>然后 <code>returnPath</code> 进入到了 <code>DirectoryUtils.IsInDirectory(_settingsManager.WebRootPath, returnPath)</code> 函数</p>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax2.sinaimg.cn/large/0065CzJOly1i9f7dcdb0nj311o0awq65.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax2.sinaimg.cn/large/0065CzJOly1i9f7dcdb0nj311o0awq65.jpg" alt="image"></p>
 <p><code>IsInDirectory()</code> 函数定义如下</p>
 <blockquote>
 <p>cms&#x2F;src&#x2F;SSCMS&#x2F;Utils<br>&#x2F;DirectoryUtils.cs</p>
 </blockquote>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/large/0065CzJOly1i9f7jkbnv4j30wu07iwi1.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax4.sinaimg.cn/large/0065CzJOly1i9f7jkbnv4j30wu07iwi1.jpg" alt="image"></p>
 <p>此处 <code>IsInDirectory</code> 是该漏洞的主要成因，该函数用于判断传入的 <code>path</code> 是否在 web 规定的目录沙箱内，但是此处仅使用 <code>path.StartsWith</code> 来进行判断。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> parentDirectoryPath == path || path.StartsWith(parentDirectoryPath);</span><br></pre></td></tr></table></figure>
 
@@ -477,15 +477,15 @@
 
 <p>这恰好符合了 <code>path.StartsWith(parentDirectoryPath);</code> 从而导致我们的路径穿越被认为在合法web路径范围内。</p>
 <p>然后 <code>path</code> 的值返回到了 <code>cms/src/SSCMS.Core/Services /PathManager.Template.cs</code> 的 <code>WriteContentToTemplateFileAsync()</code> 函数，并被被赋予到其中 <code>filePath</code> 参数。</p>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/large/0065CzJOly1i9f7tsvp8zj30zz0h30y2.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax4.sinaimg.cn/large/0065CzJOly1i9f7tsvp8zj30zz0h30y2.jpg" alt="image"></p>
 <p>路径穿越的值又进入到了文件写入函数 <code>FileUtils.WriteTextAsync(filePath, content);</code> ，并于此处触发漏洞，文件被写入到系统指定位置下。</p>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/large/0065CzJOly1i9f7ybw6mtj30wx08lgoh.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax4.sinaimg.cn/large/0065CzJOly1i9f7ybw6mtj30wx08lgoh.jpg" alt="image"></p>
 <p>于linux系统下，可以通过此种方式将文件写入到定时任务最终实现rce。</p>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax3.sinaimg.cn/large/0065CzJOly1i9f84lu9ftj31fl0n31kx.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax3.sinaimg.cn/large/0065CzJOly1i9f84lu9ftj31fl0n31kx.jpg" alt="image"></p>
 <p>查看 <code>/etc/cron.d/e2scrub_all</code> ，确认写入成功。</p>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f88lw682j312o03077d.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax1.sinaimg.cn/large/0065CzJOly1i9f88lw682j312o03077d.jpg" alt="image"></p>
 <p>等待1分钟之后触发rce.</p>
-<p><img src="https://image.baidu.com/search/down?url=http://tvax3.sinaimg.cn/large/0065CzJOly1i9f89n3ik7j30s00c97d4.jpg" alt="image"></p>
+<p><img src="https://cdn.cdnjson.com/pic.html?url=http://tvax3.sinaimg.cn/large/0065CzJOly1i9f89n3ik7j30s00c97d4.jpg" alt="image"></p>
 
         
       </div>
