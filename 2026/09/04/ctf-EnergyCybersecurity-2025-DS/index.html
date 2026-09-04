@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-84TPQBH5EH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-84TPQBH5EH');
+</script>
+<!-- End Google Analytics -->
+
+  
+  
+
+  
+  <title>【2025 能源网络安全大赛】数据安全赛道 | ❀言わぬが花❀</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="EnergyGroup-DataSecurity-dataIntegrityVerification题目介绍1234567891011121314151617给定一个Excel 文件《data.xlsx》，其中包含多个数据列，每一列的数据代表某一类记录。文件中的数据可能在传输、存储或处理的过程中发生了丢失或篡改。参赛选手需要对文件中的数据进行完整性校验，识别哪些列中的数据存在完整性问题，并输出校验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【2025 能源网络安全大赛】数据安全赛道">
+<meta property="og:url" content="http://example.com/2026/09/04/ctf-EnergyCybersecurity-2025-DS/index.html">
+<meta property="og:site_name" content="❀言わぬが花❀">
+<meta property="og:description" content="EnergyGroup-DataSecurity-dataIntegrityVerification题目介绍1234567891011121314151617给定一个Excel 文件《data.xlsx》，其中包含多个数据列，每一列的数据代表某一类记录。文件中的数据可能在传输、存储或处理的过程中发生了丢失或篡改。参赛选手需要对文件中的数据进行完整性校验，识别哪些列中的数据存在完整性问题，并输出校验">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.cdnjson.com/pic.html?url=http://tvax4.sinaimg.cn/large/0065CzJOly1igri3w8ndrj312b1hv4oc.jpg">
+<meta property="article:published_time" content="2026-09-04T03:11:00.000Z">
+<meta property="article:modified_time" content="2026-09-04T04:00:41.892Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.cdnjson.com/pic.html?url=http://tvax4.sinaimg.cn/large/0065CzJOly1igri3w8ndrj312b1hv4oc.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="❀言わぬが花❀" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<script>
+
+
+
+</script>
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/images/backgroup.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>❀言わぬが花❀ </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/images/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Flower </div>
+      <div class="dot"></div>
+      <div class="subtitle">Hi Im Flower </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+    
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/cloud/">
+                cloud
+                <div class="category-count">9</div>
+            </a>
+        
+            <a class="category-link" href="/categories/forensic/">
+                forensic
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/AD/">
+                AD
+                <div class="category-count">13</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-5/">
+                htb-Season-5
+                <div class="category-count">7</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-6/">
+                htb-Season-6
+                <div class="category-count">10</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-4/">
+                htb-Season-4
+                <div class="category-count">3</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-7/">
+                htb-Season-7
+                <div class="category-count">9</div>
+            </a>
+        
+            <a class="category-link" href="/categories/htb-Season-8/">
+                htb-Season-8
+                <div class="category-count">4</div>
+            </a>
+        
+            <a class="category-link" href="/categories/CVE/">
+                CVE
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/ctf/">
+                ctf
+                <div class="category-count">13</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/ctf/wiz/">
+                wiz
+                <div class="category-count">4</div>
+            </a>
+        </div></div>
+            <a class="category-link" href="/categories/Sherlocks/">
+                Sherlocks
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/src/">
+                src
+                <div class="category-count">1</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/src/wiz/">
+                wiz
+                <div class="category-count">1</div>
+            </a>
+        </div></div></div>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/2FA/" rel="tag">2FA</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AD/" rel="tag">AD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ADCS/" rel="tag">ADCS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AS-REQ-ST/" rel="tag">AS-REQ ST</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AllowedtoAct/" rel="tag">AllowedtoAct</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Below/" rel="tag">Below</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2022-29623/" rel="tag">CVE-2022-29623</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-36467/" rel="tag">CVE-2024-36467</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CVE-2024-42327/" rel="tag">CVE-2024-42327</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Command-injection/" rel="tag">Command injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CreateChild/" rel="tag">CreateChild</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DACL/" rel="tag">DACL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DLL/" rel="tag">DLL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Dacl/" rel="tag">Dacl</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ESC1/" rel="tag">ESC1</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ESC4/" rel="tag">ESC4</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ForceChangePassword/" rel="tag">ForceChangePassword</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Forensic/" rel="tag">Forensic</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GMSA/" rel="tag">GMSA</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GPO/" rel="tag">GPO</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GSSAPI/" rel="tag">GSSAPI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Gbbion/" rel="tag">Gbbion</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/GenericAll/" rel="tag">GenericAll</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/HKLM/" rel="tag">HKLM</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/IDOR/" rel="tag">IDOR</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/LFI/" rel="tag">LFI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/LFR/" rel="tag">LFR</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/NTHASH/" rel="tag">NTHASH</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Nmap/" rel="tag">Nmap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Nodeport/" rel="tag">Nodeport</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Ntlmv1/" rel="tag">Ntlmv1</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/OU/" rel="tag">OU</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PKI-ADMIN/" rel="tag">PKI ADMIN</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PKINIT/" rel="tag">PKINIT</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PSReadLine/" rel="tag">PSReadLine</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PasstheCert/" rel="tag">PasstheCert</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PetitPotam/" rel="tag">PetitPotam</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Powershell/" rel="tag">Powershell</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Pseudorandom/" rel="tag">Pseudorandom</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Pyside2/" rel="tag">Pyside2</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/RECYCLE-BIN/" rel="tag">RECYCLE.BIN</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Rogue-potato/" rel="tag">Rogue potato</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Roundcube/" rel="tag">Roundcube</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Roundcube-Webmail/" rel="tag">Roundcube Webmail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Rubeus/" rel="tag">Rubeus</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SPN/" rel="tag">SPN</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQL-injection/" rel="tag">SQL injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SSRF/" rel="tag">SSRF</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SeBackupPrivilege/" rel="tag">SeBackupPrivilege</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SeImpersonatePrivilege/" rel="tag">SeImpersonatePrivilege</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Self/" rel="tag">Self</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Server-Operators/" rel="tag">Server Operators</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SharPy/" rel="tag">SharPy</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Shellcode/" rel="tag">Shellcode</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/TOTP/" rel="tag">TOTP</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/TeamCity/" rel="tag">TeamCity</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Terraform/" rel="tag">Terraform</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Tips/" rel="tag">Tips</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Tombstone/" rel="tag">Tombstone</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/WriteGPlink/" rel="tag">WriteGPlink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/WriteOwner/" rel="tag">WriteOwner</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Zabbix/" rel="tag">Zabbix</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ansible-vault/" rel="tag">ansible_vault</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/asp/" rel="tag">asp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azure/" rel="tag">azure</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azure-devops/" rel="tag">azure devops</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/azureAD/" rel="tag">azureAD</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bbot/" rel="tag">bbot</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/beacon/" rel="tag">beacon</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bloodhound/" rel="tag">bloodhound</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bookstack/" rel="tag">bookstack</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/browser/" rel="tag">browser</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/brute-rid/" rel="tag">brute-rid</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bypass-AMSI/" rel="tag">bypass AMSI</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/bypass-kerberos-only/" rel="tag">bypass-kerberos-only</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cd/" rel="tag">cd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cme/" rel="tag">cme</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/consul/" rel="tag">consul</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/crtp/" rel="tag">crtp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/deb/" rel="tag">deb</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/defaultapppool/" rel="tag">defaultapppool</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dnsadmin/" rel="tag">dnsadmin</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dnschef/" rel="tag">dnschef</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dnstools/" rel="tag">dnstools</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dpapi/" rel="tag">dpapi</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/efspotato/" rel="tag">efspotato</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/esc1/" rel="tag">esc1</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/esc14/" rel="tag">esc14</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/esc15/" rel="tag">esc15</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fifo/" rel="tag">fifo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/firewall/" rel="tag">firewall</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fishing/" rel="tag">fishing</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/fuzz/" rel="tag">fuzz</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gamepwn/" rel="tag">gamepwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ghost/" rel="tag">ghost</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/gpo/" rel="tag">gpo</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/h2/" rel="tag">h2</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/hardhat/" rel="tag">hardhat</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/havoc/" rel="tag">havoc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/impacket-GetUserSPNs/" rel="tag">impacket-GetUserSPNs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/impacket-smbclient/" rel="tag">impacket-smbclient</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/iptables-save/" rel="tag">iptables-save</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ipv6/" rel="tag">ipv6</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ispconfig/" rel="tag">ispconfig</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/jar/" rel="tag">jar</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/jwt/" rel="tag">jwt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/kcd/" rel="tag">kcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/krbrelayx/" rel="tag">krbrelayx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/kube-proxy/" rel="tag">kube-proxy</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/laps/" rel="tag">laps</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ldap/" rel="tag">ldap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ldaps/" rel="tag">ldaps</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/limesurvey/" rel="tag">limesurvey</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/logon-script/" rel="tag">logon script</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/lsaquery/" rel="tag">lsaquery</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mail/" rel="tag">mail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/merge/" rel="tag">merge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/msDS-KeyCredentialLink/" rel="tag">msDS-KeyCredentialLink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mssql/" rel="tag">mssql</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/mysqljs/" rel="tag">mysqljs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/neo4j/" rel="tag">neo4j</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/no-preAuth/" rel="tag">no-preAuth</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ntlmrelayx/" rel="tag">ntlmrelayx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/owa/" rel="tag">owa</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pdf/" rel="tag">pdf</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pfishing/" rel="tag">pfishing</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pfx/" rel="tag">pfx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pinns/" rel="tag">pinns</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/poc/" rel="tag">poc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pod/" rel="tag">pod</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pods/" rel="tag">pods</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/postgres/" rel="tag">postgres</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/postgresql/" rel="tag">postgresql</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/powershell/" rel="tag">powershell</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/powerview/" rel="tag">powerview</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pre2k/" rel="tag">pre2k</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/psexec/" rel="tag">psexec</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pswa/" rel="tag">pswa</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pth/" rel="tag">pth</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pwn/" rel="tag">pwn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/pyjail/" rel="tag">pyjail</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rbcd/" rel="tag">rbcd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/reg/" rel="tag">reg</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/remote-potato/" rel="tag">remote-potato</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/reverse/" rel="tag">reverse</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rootkit/" rel="tag">rootkit</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rosating/" rel="tag">rosating</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rpc/" rel="tag">rpc</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/rpcclient/" rel="tag">rpcclient</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/runascs/" rel="tag">runascs</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/s3/" rel="tag">s3</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sercerts/" rel="tag">sercerts</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/service/" rel="tag">service</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sherlocks/" rel="tag">sherlocks</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/shm/" rel="tag">shm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sliver-ticketer/" rel="tag">sliver ticketer</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/smb/" rel="tag">smb</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/smb-krbrelayx/" rel="tag">smb_krbrelayx</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/smbmap/" rel="tag">smbmap</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/splunk/" rel="tag">splunk</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/spn/" rel="tag">spn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sqlcmd/" rel="tag">sqlcmd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sqli/" rel="tag">sqli</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sssd/" rel="tag">sssd</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ssti/" rel="tag">ssti</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/study/" rel="tag">study</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/symlink/" rel="tag">symlink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/sysctl/" rel="tag">sysctl</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/teampass/" rel="tag">teampass</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/tgt/" rel="tag">tgt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/username-anarchy/" rel="tag">username-anarchy</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wapt/" rel="tag">wapt</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/winlogon/" rel="tag">winlogon</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ysoserial-net/" rel="tag">ysoserial.net</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/zip/" rel="tag">zip</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E8%AE%B0%E5%BD%95/" rel="tag">实例记录</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2026/09/04/ctf-EnergyCybersecurity-2025-DS/" title="【2025 能源网络安全大赛】数据安全赛道" >
+            <div class="recent-link-text">
+              【2025 能源网络安全大赛】数据安全赛道
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2026/08/01/ctf-taishancup-2025/" title="【2025 泰山杯】数据安全赛道" >
+            <div class="recent-link-text">
+              【2025 泰山杯】数据安全赛道
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2026/05/14/Azure/" title="「花」铁线莲" >
+            <div class="recent-link-text">
+              「花」铁线莲
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2026/02/04/wiz-2026-bug-bounty/" title="【wiz】 2026の陈年文章" >
+            <div class="recent-link-text">
+              【wiz】 2026の陈年文章
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2026/01/18/Vuln-SSCMS-2026-1-18/" title="Vuln-SSCMS-2026-1-18" >
+            <div class="recent-link-text">
+              Vuln-SSCMS-2026-1-18
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div> 
+</sidebar>
+
+
+    </div>
+    
+    <div id="toc" class="widget-wrap">
+      <button class="toc-toggle" onclick="toggleTOC()">
+    <span class="toc-toggle-icon">
+        <i class="fa fa-angle-down" aria-hidden="true" style="border-radius: 50%; padding: 5px; border: 1px solid var(--link);"></i>
+    </span>
+</button>
+<div id="tocContainer" style="display: block;">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EnergyGroup-DataSecurity-dataIntegrityVerification"><span class="toc-number">1.</span> <span class="toc-text">EnergyGroup-DataSecurity-dataIntegrityVerification</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">题目介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wp"><span class="toc-number">1.2.</span> <span class="toc-text">wp</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Socialgroup-DataSecurity-dataEncryption"><span class="toc-number">2.</span> <span class="toc-text">Socialgroup-DataSecurity-dataEncryption</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E4%BB%8B%E7%BB%8D-1"><span class="toc-number">2.1.</span> <span class="toc-text">题目介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wp-1"><span class="toc-number">2.2.</span> <span class="toc-text">wp</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text"></span></a></li></ol>
+</div>
+<script>
+    function toggleTOC() {
+        const tocContainer = document.getElementById('tocContainer');
+        tocContainer.style.display = tocContainer.style.display === 'none' ? 'block' : 'none';
+        const toggleIcon = document.querySelector('.toc-toggle-icon i');
+        toggleIcon.classList.toggle('fa-angle-down');
+        toggleIcon.classList.toggle('fa-angle-up');
+    }
+</script>
+<style>
+    .toc-toggle {
+        position: relative;
+        display: inline-block;
+        padding: 2% 2% 2%;
+        border: none;
+        border-radius: 100%;
+        background-color: var(--link);
+        cursor: pointer;
+        transition: all 0.1s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* position: absolute; */
+        top: 0;
+        right: 0;
+        z-index: 10;
+    }
+
+    .toc-toggle:hover {
+        background-color: var(--selection-bg);
+        transform: scale(1.1);
+    }
+
+    .toc-toggle-icon {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .toc-toggle-icon i {
+        display: inline-block;
+        border-radius: 50%; /* Ensures the icon itself is a perfect circle */
+    }
+
+    /* #tocContainer {
+        display: block;
+        margin-top: 10px;
+    } */
+    #tocContainer {
+    position: relative;
+    padding-top: 10px; /* 留出按钮位置 */
+}
+</style>
+
+
+    </div>
+    
+    <div id="content-body">
+       
+
+
+<article id="post-ctf-EnergyCybersecurity-2025-DS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cmtmfdvno000044ky88h34fvv">
+        <img src="https://cdn.cdnjson.com/pic.html?url=http://tvax4.sinaimg.cn/large/0065CzJOly1igri3w8ndrj312b1hv4oc.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        【2025 能源网络安全大赛】数据安全赛道
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2026-09-04T03:11:00.000Z" itemprop="datePublished">2026-09-04</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            3.8k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="EnergyGroup-DataSecurity-dataIntegrityVerification"><a href="#EnergyGroup-DataSecurity-dataIntegrityVerification" class="headerlink" title="EnergyGroup-DataSecurity-dataIntegrityVerification"></a>EnergyGroup-DataSecurity-dataIntegrityVerification</h1><h2 id="题目介绍"><a href="#题目介绍" class="headerlink" title="题目介绍"></a>题目介绍</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">给定一个Excel 文件《data.xlsx》，其中包含多个数据列，每一列的数据代表某一类记录。</span><br><span class="line"></span><br><span class="line">文件中的数据可能在传输、存储或处理的过程中发生了丢失或篡改。</span><br><span class="line"></span><br><span class="line">参赛选手需要对文件中的数据进行完整性校验，识别哪些列中的数据存在完整性问题，并输出校验结果。</span><br><span class="line"></span><br><span class="line">A列B列的数据在文件生成时有对应的一列校验和（Checksum）数据。参赛选手需要根据原始数据列计算校验和，并与文件中的校验和列进行比较。</span><br><span class="line"></span><br><span class="line">如果两者不一致，则认为该行的数据存在完整性问题。</span><br><span class="line"></span><br><span class="line">参赛选手需要根据校验列推导使用的校验算法并编写程序对数据进行校验，并输出识别结果。输出格式“A列-不匹配的行数;B列-不匹配的行数”。</span><br><span class="line"></span><br><span class="line">请参赛选手编写程序对《data.xlsx》中的A列B列数据进行完整性校验，构造上述格式的答案，并将答案的 MD5 值（MD5 值英文字符全小写，长度 32 个字符；计算答案的 MD5 值时，用 UTF-8 字符编码）提交至平台。</span><br><span class="line"></span><br><span class="line">正确答案示例：A列-30;B列-40，提交结果示例：4d1c5c9b4757f2ff5d453b375c18254b</span><br><span class="line"></span><br><span class="line">详细见题目附件</span><br></pre></td></tr></table></figure>
+
+<h2 id="wp"><a href="#wp" class="headerlink" title="wp"></a>wp</h2><p>这题难点在于题目是统计AB错误的总行数，而不是每列的每一个错误行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">info = pd.read_excel(<span class="string">&quot;./data.xlsx&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check_sum</span>(<span class="params">Ainfo,Asign</span>):</span><br><span class="line">    <span class="comment"># print(hashlib.sha512(Ainfo.encode(&quot;utf-8&quot;)).hexdigest())</span></span><br><span class="line">    <span class="keyword">if</span> hashlib.sha256(Ainfo.encode(<span class="string">&quot;utf-8&quot;</span>)).hexdigest() == Asign:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">if</span> hashlib.sha512(Ainfo.encode(<span class="string">&quot;utf-8&quot;</span>)).hexdigest() == Asign:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">if</span> hashlib.md5(Ainfo.encode(<span class="string">&quot;utf-8&quot;</span>)).hexdigest() == Asign:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">final = []</span><br><span class="line">An = Bn = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx,row <span class="keyword">in</span> info.iterrows():</span><br><span class="line">    Aflag = <span class="literal">None</span></span><br><span class="line">    Bflag = <span class="literal">None</span></span><br><span class="line">    A = row[<span class="string">&quot;A列&quot;</span>]</span><br><span class="line">    B = row[<span class="string">&quot;B列&quot;</span>]</span><br><span class="line">    Acheck = row[<span class="string">&quot;A列校验和&quot;</span>]</span><br><span class="line">    Bcheck = row[<span class="string">&quot;B列校验和&quot;</span>]</span><br><span class="line">    <span class="keyword">if</span> Aflag:=check_sum(A,Acheck)== <span class="literal">False</span>:</span><br><span class="line">        An +=<span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> Bflag:=check_sum(B,Bcheck)== <span class="literal">False</span>:</span><br><span class="line">        Bn +=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(hashlib.md5(<span class="string">f&quot;A列-<span class="subst">&#123;An&#125;</span>;B列-<span class="subst">&#123;Bn&#125;</span>&quot;</span>.encode(<span class="string">&quot;utf-8&quot;</span>)).hexdigest())</span><br><span class="line"><span class="comment"># print(&quot;;&quot;.join(final))</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Socialgroup-DataSecurity-dataEncryption"><a href="#Socialgroup-DataSecurity-dataEncryption" class="headerlink" title="Socialgroup-DataSecurity-dataEncryption"></a>Socialgroup-DataSecurity-dataEncryption</h1><h2 id="题目介绍-1"><a href="#题目介绍-1" class="headerlink" title="题目介绍"></a>题目介绍</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">给定一个包含敏感信息的文件《data.xlsx》，文件中有多个数据列，每列代表不同的敏感数据类型，如手机号、身份证号码、银行卡号和邮箱等。参赛选手需要对文件中的每一个数据进行加密处理，并输出加密后的数据。</span><br><span class="line"></span><br><span class="line">数据加密应使用对称加密算法 AES (Advanced Encryption Standard)，采用CBC模式并应用自定义填充方式（见下文），加密后的结果应以16进制字符串的形式保存。</span><br><span class="line"></span><br><span class="line">参赛选手需要使用给定的密钥和初始iv，并使用该密钥对每个数据进行加密。加密后的数据最后按先行后列顺序拼接计算md5。</span><br><span class="line"></span><br><span class="line">自定义填充方案：</span><br><span class="line"></span><br><span class="line">第一层：数据长度字节：在填充开始部分添加表示原始数据长度的字节数。</span><br><span class="line"></span><br><span class="line">第二层：固定字节序列：使用固定字节序列0xBB以增加填充的层次。</span><br><span class="line"></span><br><span class="line">第三层：填充长度字节：填充内容的末尾添加表示填充长度的字节。</span><br><span class="line"></span><br><span class="line">取舍：若只缺少一位填充，则只填充第一层，若只缺少两位填充，则只填充第一层第三层。</span><br><span class="line"></span><br><span class="line">例子：块大小为16，当前值为11，填充内容：0x0b+0xBB*3+0x5</span><br><span class="line"></span><br><span class="line">数据AES加密的密钥为：b&#x27;0123456789abcdef&#x27;，初始IV为：b&#x27;abcdef0987654321&#x27;。</span><br><span class="line"></span><br><span class="line">详细见题目附件</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="wp-1"><a href="#wp-1" class="headerlink" title="wp"></a>wp</h2><p>唯一考点就是AES加密的应用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> pad,unpad</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fileinfo = pd.read_excel(<span class="string">&quot;./data.xlsx&quot;</span>,dtype=<span class="built_in">str</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">pendfunc</span>(<span class="params">datainfo</span>):</span><br><span class="line">    pad_num = <span class="number">16</span> - (<span class="built_in">len</span>(datainfo) % <span class="number">16</span>)</span><br><span class="line">    pad_data_len = pad_num - <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> pad_num == <span class="number">1</span> <span class="keyword">or</span> pad_num == <span class="number">2</span>:</span><br><span class="line">        pad_data_len = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> pad_num == <span class="number">16</span>:</span><br><span class="line">        pad_num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> pad_num,pad_data_len</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">info_parse</span>(<span class="params">datainfo</span>):</span><br><span class="line">    datainfo_padnum, datainfo_pad_datalen = pendfunc(datainfo)</span><br><span class="line">    final_data = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> datainfo_padnum &gt; <span class="number">2</span>:</span><br><span class="line">        final_data = datainfo.encode(<span class="string">&quot;utf-8&quot;</span>) + <span class="built_in">len</span>(datainfo).to_bytes(<span class="number">1</span>, <span class="string">&#x27;big&#x27;</span>) + (datainfo_pad_datalen * <span class="string">b&#x27;\xBB&#x27;</span>) + <span class="built_in">bytes</span>([datainfo_padnum])</span><br><span class="line">    <span class="keyword">if</span> datainfo_padnum == <span class="number">2</span>:</span><br><span class="line">        final_data = datainfo.encode(<span class="string">&quot;utf-8&quot;</span>) + <span class="built_in">len</span>(datainfo).to_bytes(<span class="number">1</span>, <span class="string">&#x27;big&#x27;</span>) + <span class="built_in">bytes</span>([datainfo_padnum])</span><br><span class="line">    <span class="keyword">if</span> datainfo_padnum == <span class="number">1</span>:</span><br><span class="line">        final_data = datainfo.encode(<span class="string">&quot;utf-8&quot;</span>) + <span class="built_in">len</span>(datainfo).to_bytes(<span class="number">1</span>, <span class="string">&#x27;big&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> datainfo_padnum == <span class="number">0</span>:</span><br><span class="line">        final_data = datainfo.encode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> final_data</span><br><span class="line"></span><br><span class="line">final = []</span><br><span class="line"></span><br><span class="line">bak_fileinfo = fileinfo.copy()</span><br><span class="line"></span><br><span class="line">ciper = AES.new(<span class="string">b&#x27;0123456789abcdef&#x27;</span>,AES.MODE_CBC,<span class="string">b&#x27;abcdef0987654321&#x27;</span>)</span><br><span class="line"></span><br><span class="line">new_xlx = pd.DataFrame(columns=[<span class="string">&quot;手机号&quot;</span>,<span class="string">&quot;身份证号&quot;</span>,<span class="string">&quot;银行卡号&quot;</span>,<span class="string">&quot;邮箱&quot;</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">new_xlx[<span class="string">&quot;手机号&quot;</span>] = bak_fileinfo[<span class="string">&quot;手机号&quot;</span>].apply(<span class="keyword">lambda</span> x: ciper.encrypt(info_parse(x)).<span class="built_in">hex</span>() )</span><br><span class="line">new_xlx[<span class="string">&quot;身份证号&quot;</span>] = bak_fileinfo[<span class="string">&quot;身份证号&quot;</span>].apply(<span class="keyword">lambda</span> x:  ciper.encrypt(info_parse(x)).<span class="built_in">hex</span>() )</span><br><span class="line">new_xlx[<span class="string">&quot;银行卡号&quot;</span>] = bak_fileinfo[<span class="string">&quot;银行卡号&quot;</span>].apply(<span class="keyword">lambda</span> x: ciper.encrypt(info_parse(x)).<span class="built_in">hex</span>() )</span><br><span class="line">new_xlx[<span class="string">&quot;邮箱&quot;</span>] = bak_fileinfo[<span class="string">&quot;邮箱&quot;</span>].apply(<span class="keyword">lambda</span> x: ciper.encrypt(info_parse(x)).<span class="built_in">hex</span>() )</span><br><span class="line"></span><br><span class="line"><span class="comment"># dec = AES.new(b&#x27;0123456789abcdef&#x27;,AES.MODE_CBC,b&#x27;abcdef0987654321&#x27;)</span></span><br><span class="line"></span><br><span class="line">new_xlx.to_csv(<span class="string">&quot;./data.csv&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+        
+      </div>
+      
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2026/08/01/ctf-taishancup-2025/"
+      title="【2025 泰山杯】数据安全赛道"
+     >
+
+    <p class="title-text">
+      
+        【2025 泰山杯】数据安全赛道
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2026 Flower<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
+
+
